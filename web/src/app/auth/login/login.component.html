@@ -1,3 +1,71 @@
-<p>
-  login works!
-</p>
+<div class="container section-padding">
+    <h2>LOGIN</h2>
+  <div class="row-same-height row">
+    <div class="col-same-height col-sm-6 flexVMiddle">
+      <div class="form-wrapper content">
+        <form action="/action_page.php">
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Email">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <mat-checkbox>Remember me</mat-checkbox>
+              </div>
+              <div class="col-sm-6 text-right">
+                <button type="button" mat-stroked-button color="primary">Forgot Password?</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-6">
+                <button type="button" mat-raised-button color="primary">LOGIN</button>
+              </div>
+              <div class="col-sm-6 text-right">
+                New to eGurus? <button type="button" mat-button color="accent" [routerLink]="['/auth/register']">SIGNUP</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-same-height col-sm-6 text-center flexVMiddle bgGray">
+      <div class="form-wrapper content">
+        <div class="social-opton">
+          <div class="form-group">
+            <div class="mb-5">
+              <button type="button" class="btn btn-fb"><i class="fa fa-facebook"
+                  aria-hidden="true"></i>Facebook</button>
+            </div>
+            <div class="mb-5">
+              <button type="button" class="btn btn-li"><i class="fa fa-linkedin"
+                  aria-hidden="true"></i>LINKEDIN</button>
+            </div>
+            <div class="mb-5">
+              <button type="button" class="btn btn-gplus"><i class="fa fa-google" aria-hidden="true"></i>GOOGLE</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="">
+              <hr>
+              <div class="text-center">
+                <div color="warn">Trouble signing in?</div>
+                <div>
+                  <button mat-raised-button color="accent">REPORT AN ISSUE</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

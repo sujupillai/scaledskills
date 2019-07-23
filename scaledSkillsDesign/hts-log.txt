@@ -1,0 +1,49 @@
+HTTrack3.49-2+htsswf+htsjava launched on Thu, 11 Jul 2019 15:24:11 at http://scaledskills.com/public/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://scaledskills.com/public/ -O1 "D:\Himanshu\practice\scaledskills\scaledSkillsDesign" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+15:25:12	Error: 	"Not Found" (404) at link scaledskills.com/public/home.html (from scaledskills.com/public/)
+15:25:12	Error: 	"Not Found" (404) at link scaledskills.com/public/services.html (from scaledskills.com/public/)
+15:25:12	Error: 	"Not Found" (404) at link scaledskills.com/public/about.html (from scaledskills.com/public/)
+15:25:12	Error: 	"Not Found" (404) at link scaledskills.com/public/blog-main.html (from scaledskills.com/public/)
+15:25:12	Error: 	"Not Found" (404) at link scaledskills.com/public/contact.html (from scaledskills.com/public/)
+15:25:30	Error: 	"Not Found" (404) at link scaledskills.com/public/youtube.com (from scaledskills.com/public/)
+15:25:30	Error: 	"Not Found" (404) at link scaledskills.com/public/twitter.com (from scaledskills.com/public/)
+15:25:30	Error: 	"Not Found" (404) at link scaledskills.com/public/facebook.com (from scaledskills.com/public/)
+15:25:30	Error: 	"Not Found" (404) at link scaledskills.com/public/plus.google.com (from scaledskills.com/public/)
+15:25:30	Error: 	"Not Found" (404) at link scaledskills.com/public/instagram.com (from scaledskills.com/public/)
+15:26:23	Error: 	"Not Found" (404) at link scaledskills.com/public/skype.com (from scaledskills.com/public/events)
+15:26:23	Error: 	"Not Found" (404) at link scaledskills.com/public/behance.com (from scaledskills.com/public/events)
+15:26:23	Error: 	"Not Found" (404) at link scaledskills.com/public/vimeo.com (from scaledskills.com/public/events)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/img/section-1-demo.jpg (from scaledskills.com/public/plugins/headers/header.css)
+15:26:27	Warning: 	File not parsed, looks like binary: scaledskills.com/public/plugins/slider-pro/images/openhand.cur
+15:26:27	Warning: 	File not parsed, looks like binary: scaledskills.com/public/plugins/slider-pro/images/closedhand.cur
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/texture-1.png (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/texture-2.png (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/bg/2.jpg (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/label-vertical.png (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/components/b-404/bg-1.png (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/components/b-advertisement/bg-1.jpg (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/bg/1.jpg (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/ui-decor-2.png (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/bg/4.jpg (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/general/bg/3.jpg (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/media/components/b-title-page/bg-1.jpg (from scaledskills.com/public/css/theme.css)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/favicon.ico (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/home.html (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/services.html (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/about.html (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/blog-main.html (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/contact.html (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/youtube.com (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/twitter.com (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/facebook.com (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/plus.google.com (from scaledskills.com/public/password/reset)
+15:26:27	Error: 	"Not Found" (404) at link scaledskills.com/public/password/instagram.com (from scaledskills.com/public/password/reset)
+
+HTTrack Website Copier/3.49-2 mirror complete in 2 minutes 16 seconds : 148 links scanned, 111 files written (4168768 bytes overall) [4094237 bytes received at 30104 bytes/sec], 620202 bytes transferred using HTTP compression in 47 files, ratio 20%, 5.2 requests per connection
+(36 errors, 2 warnings, 0 messages)

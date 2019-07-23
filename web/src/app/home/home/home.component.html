@@ -1,0 +1,212 @@
+<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems" class="main-banner">
+  <div *nguCarouselDef="let item;" class="item">
+    <div class="text-center">
+      <div class="main-slider__info">We are the Event Management
+        Specialists</div>
+      <h2 data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="800"
+        data-show-delay="400" data-hide-delay="400" class="main-slider__title sp-layer">we personalize your wedding
+        events</h2>
+      <div data-width="100%" data-show-transition="left" data-hide-transition="left" data-show-duration="1200"
+        data-show-delay="2000" data-hide-delay="400" class="sp-layer"><a href="services.html"
+          class="main-slider__btn btn btn-default">our features</a></div>
+    </div>
+  </div>
+  <button NguCarouselNext class="rightRs"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
+  <button NguCarouselPrev class="leftRs"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></button>
+</ngu-carousel>
+<section class="section-default">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <div class="text-center">
+          <h2 class="ui-title-block">Browse Categories</h2>
+          <div class="ui-subtitle-block"><strong>Achieve your career goals with industry-recognized learning
+              paths</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let item of [1,2,3,4,5,6]">
+        <section class="b-advantages b-advantages-1">
+          <div class="b-advantages__inner">
+            <h3 class="b-advantages__title ui-title-inner">Machine Learning</h3>
+            <div class="b-advantages__info">Aorem ipsum dolor sit amet consectetur elit sed lusm tempor incididunt ut
+              labore et dolore mag aliqua enima minim veniam quis nostrud exercitation</div><a href="javascript:void(0)"
+              class="btn btn-default btn-xs"><i class="icon"></i>Read More</a>
+          </div>
+        </section>
+        <!-- end .b-advantages-->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- b-progress width parallax-->
+<div class="section-progress" class="progressBarWrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3" *ngFor="let item of [1,2,3,4,5,6,7,8,9], let i =index">
+        <p class="progress-label">Featured Events 89%</p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="89" aria-valuemin="0"
+            aria-valuemax="100" style="width:89%">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end b-progress width parallax-->
+<section>
+  <div class="container">
+    <ngu-carousel #myCarousel [inputs]="TutorsCarouselConfig" [dataSource]="TutorslItems" class="">
+      <div *nguCarouselDef="let item;" class="item">
+        <div class="text-center">
+          <section class="b-events-2 text-center">
+            <div class="b-events-2__media">
+              <img src="../assets/images/events/1.jpg" alt="foto" class="img-responsive" />
+              <div class="b-events-calendar">
+                <div class="b-events-calendar__wrap">
+                  <div class="b-events-calendar__item"><span class="b-events-calendar__number">25</span><span
+                      class="b-events-calendar__title">days</span></div>
+                  <div class="b-events-calendar__item"><span class="b-events-calendar__number">16</span><span
+                      class="b-events-calendar__title">hours</span></div>
+                  <div class="b-events-calendar__item"><span class="b-events-calendar__number">47</span><span
+                      class="b-events-calendar__title">mins</span></div>
+                  <div class="b-events-calendar__item"><span class="b-events-calendar__number">38</span><span
+                      class="b-events-calendar__title">secs</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="ui-decor-2 ui-decor-2_vert bg-primary"></div>
+            <h3 class="b-events-2__title">SEO Seminar 2016</h3>
+            <div class="b-events__details"><i class="icon icon-map"></i> 32-B, Envato St, Hill Ave, CA</div>
+          </section>
+        </div>
+      </div>
+      <button NguCarouselNext class="rightRs">&gt;</button>
+      <button NguCarouselPrev class="leftRs">&lt;</button>
+      <ul class="myPoint" NguCarouselPoint>
+        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
+          (click)="myCarousel.moveTo(j)">
+        </li>
+      </ul>
+    </ngu-carousel>
+  </div>
+</section>
+<section class="section-default bgLearner" style="padding-bottom:10px;">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-lg-offset-2">
+        <div class="text-center">
+          <h2 class="ui-title-block clrWhite">How it works for Learners</h2>
+        </div>
+      </div>
+    </div>
+    <ngu-carousel #myCarousel [inputs]="TutorsCarouselConfig" [dataSource]="TutorslItems">
+      <div *nguCarouselDef="let item;" class="item">
+        <div class="text-center">
+          <img class="img-circle"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Generic placeholder image" width="140" height="140">
+        </div>
+        <h2 class="clrWhite text-center">Post your requiment</h2>
+      </div>
+      <button NguCarouselNext class="rightRs">&gt;</button>
+      <button NguCarouselPrev class="leftRs">&lt;</button>
+      <ul class="myPoint" NguCarouselPoint>
+        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
+          (click)="myCarousel.moveTo(j)">
+        </li>
+      </ul>
+    </ngu-carousel>
+    <div class="row text-center bg-grey-light" style="padding: 20px;margin: 20px 0;">
+      <div class="col-xs-3">
+        <h2>Find Gurus in any Category</h2>
+        <p>Over 1000 Learners have already found the right Gurus through us!</p>
+      </div>
+      <div class="col-xs-9">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bgTrainer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <div class="text-center">
+          <h2 class="ui-title-block clrWhite">How it works for Tutors and Trainers</h2>
+        </div>
+      </div>
+    </div>
+    <ngu-carousel #myCarousel [inputs]="TutorsCarouselConfig" [dataSource]="TutorslItems">
+      <div *nguCarouselDef="let item;" class="item">
+        <div class="text-center">
+          <img class="img-circle"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Generic placeholder image" width="140" height="140">
+        </div>
+        <h2 class="clrWhite text-center">Post your requiment</h2>
+      </div>
+      <button NguCarouselNext class="rightRs">&gt;</button>
+      <button NguCarouselPrev class="leftRs">&lt;</button>
+      <ul class="myPoint" NguCarouselPoint>
+        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
+          (click)="myCarousel.moveTo(j)">
+        </li>
+      </ul>
+    </ngu-carousel>
+    <div class="row text-center bg-grey-light" style="padding: 20px;margin: 20px 0;">
+      <div class="col-xs-3">
+        <h2>Reach out to more Learners</h2>
+        <p>Join 1000+ Gurus and enqueries!</p>
+      </div>
+      <div class="col-xs-9">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="textimonialBg">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="text-center">
+            <h2 class="ui-title-block clrWhite">What experts say about ScaledSkills</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ngu-carousel #myCarousel [inputs]="TestimonialCarouselConfig" [dataSource]="TutorslItems" class="">
+      <div *nguCarouselDef="let item;" class="item">
+        <div class="text-center">
+          <blockquote class="b-blockquote">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non voluptatibus architecto adipisci. Quia
+              atque amet labore fugiat tenetur! Doloribus vitae unde fugit tempora autem ratione in iste aliquid vel
+              aspernatur?</p>
+            <footer class="b-blockquote__footer">
+              <div class="display-flex v-center">
+                <div class="b-blockquote__face">
+                  <img src="../assets/images/components/b-blockquote/face-1.jpg" alt="face" class="img-responsive" />
+                </div>
+                <cite class="b-blockquote__cite">
+                  <span class="b-blockquote__author">AdamMilney</span>
+                  <span class="b-blockquote__category">California, USA</span>
+                </cite>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+      <button NguCarouselNext class="rightRs">&gt;</button>
+      <button NguCarouselPrev class="leftRs">&lt;</button>
+      <ul class="myPoint" NguCarouselPoint>
+        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
+          (click)="myCarousel.moveTo(j)">
+        </li>
+      </ul>
+    </ngu-carousel>
+  </div>
+
+</section>

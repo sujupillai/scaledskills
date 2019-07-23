@@ -1,26 +1,43 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { AuthenticationService } from './_service';
-import { User, Role } from './_models';
-
-@Component({ selector: 'app-root', templateUrl: 'app.component.html' })
-export class AppComponent {
-  currentUser: User;
-
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+import { Component, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+export class AppComponent implements AfterViewInit {
+  slideNo = 0;
+  withAnim = true;
+  resetAnim = true;
+  carouselConfig: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+    load: 3,
+    interval: { timing: 4000, initialDelay: 1000 },
+    loop: true,
+    touch: true,
+    velocity: 0.2
   }
-
-  get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
+  TutorsCarouselConfig: NguCarouselConfig = {
+    grid: { xs: 1, sm: 2, md: 2, lg: 3, all: 0 },
+    load: 3,
+    interval: { timing: 4000, initialDelay: 1000 },
+    loop: true,
+    touch: true,
+    velocity: 0.2
   }
+  TestimonialCarouselConfig: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+    load: 3,
+    interval: { timing: 4000, initialDelay: 1000 },
+    loop: false,
+    touch: false,
+    velocity: 0.2
+  }
+  carouselItems = [1, 2, 3];
+  TutorslItems = [1, 2, 3,4,5,6];
+  constructor(private cdr: ChangeDetectorRef) { }
 
-  logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 }
