@@ -1,6 +1,7 @@
 body {
   font: 14px/1.8571 Lato;
   color: #777;
+  background: #f7f7f7
 }
 
 * {
@@ -4699,4 +4700,63 @@ background: white
 }
 .mb-5{
   margin-bottom: 5px;
+}
+.mb20{
+  margin-bottom: 20px;
+}
+.mt20{
+  margin-top: 20px;
+}
+.mat-radio-button ~ .mat-radio-button, .mat-raised-button ~ .mat-raised-button {
+  margin-left: 15px;
+}
+
+
+/* Main holder section style */
+.main-holder-section{
+  border: 1px solid rgba(0,0,0,.03);
+    box-shadow: 0 2px 2px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
+    background: #f7f7f7;
+  .title-section{
+    align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 8px 20px;
+    color: rgba(0,0,0,.54);
+    background: rgba(0,0,0,.03);
+    font-weight: 500;
+    font-size: 14px;
+    .title-text{
+      flex: 1 1 auto;
+      color: #015a84
+    }
+  }
+  .content-section{
+    padding: 30px;
+    display: block;
+    color: rgba(0,0,0,.87);
+    font-size: 13px;
+  }
+}
+textarea{
+  overflow: hidden!important;
+}
+.p20{
+  padding:20px!important
+}
+.p30{
+  padding:20px!important
+}
+.title-text{
+  color: #015a84!important
+}
+.mat-expansion-panel{
+  margin-bottom:16px!important
+}
+.sticky-top-0{
+  position: sticky;
+  top:0;
+  background: white!important;
+  z-index: 999;
 }

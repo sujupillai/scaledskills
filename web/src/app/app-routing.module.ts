@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule),
   },
   {
-    path:'trainer',
-    loadChildren:()=>import('./trainer/trainer.module').then(mod=>mod.TrainerModule)
+    path: 'account',
+    loadChildren: () => import('./myAccount/my-account.module').then(mod => mod.MyAccountModule),
   },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];

@@ -1,0 +1,94 @@
+<form>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="First Name">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Last Name">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Email">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Mobile Number">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="Male">M</mat-radio-button>
+          <mat-radio-button value="Female">F</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput [matDatepicker]="dobDateCtrl" placeholder="Date of Birth">
+          <mat-datepicker-toggle matSuffix [for]="dobDateCtrl"></mat-datepicker-toggle>
+          <mat-datepicker #dobDateCtrl></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <mat-label>Country</mat-label>
+          <mat-select>
+            <mat-option value="">Select</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <mat-select>
+            <mat-option value="">Select</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <mat-select>
+            <mat-option value="">Select</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Zip Code">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-checkbox>
+          <mat-label>Interested for Affiliate Partner?</mat-label>
+        </mat-checkbox>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Referral ID">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-right">
+        <button mat-raised-button color="accent">Save</button>
+        <button mat-raised-button color="warn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>
