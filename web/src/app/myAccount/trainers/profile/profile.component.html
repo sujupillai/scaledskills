@@ -7,53 +7,19 @@
       </li>
     </ul>
     <mat-accordion multi="true">
-      <mat-expansion-panel class="scrollToDiv" [expanded]="expandedTab === -1 || expandedTab === 0">
+      <mat-expansion-panel class="scrollToDiv" *ngFor="let item of tabArray, let index =index"
+        [expanded]="expandedTab === -1 || expandedTab === index">
         <mat-expansion-panel-header>
           <mat-panel-title class="title-text">
-            Personal
+            {{item.label}}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-personal></app-personal>
-      </mat-expansion-panel>
-      <mat-expansion-panel class="scrollToDiv" [expanded]="expandedTab === -1 || expandedTab === 1">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="title-text">
-            Password
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-credentials></app-credentials>
-      </mat-expansion-panel>
-      <mat-expansion-panel class="scrollToDiv" [expanded]="expandedTab === -1 || expandedTab === 2">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="title-text">
-            Keywords
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-keywords></app-keywords>
-      </mat-expansion-panel>
-      <mat-expansion-panel class="scrollToDiv" [expanded]="expandedTab === -1 || expandedTab === 3">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="title-text">
-            About
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-about></app-about>
-      </mat-expansion-panel>
-      <mat-expansion-panel class="scrollToDiv" [expanded]="expandedTab === -1 || expandedTab === 4">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="title-text">
-            Certifications Earned
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-certifications-earned></app-certifications-earned>
-      </mat-expansion-panel>
-      <mat-expansion-panel class="scrollToDiv" [expanded]="expandedTab === -1 || expandedTab === 5">
-        <mat-expansion-panel-header>
-          <mat-panel-title class="title-text">
-            Social Media
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-social-media></app-social-media>
+        <app-personal *ngIf="index==0"></app-personal>
+        <app-credentials *ngIf="index==1"></app-credentials>
+        <app-keywords *ngIf="index==2"></app-keywords>
+        <app-about *ngIf="index==3"></app-about>
+        <app-certifications-earned *ngIf="index==4"></app-certifications-earned>
+        <app-social-media *ngIf="index==4"></app-social-media>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
