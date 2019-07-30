@@ -3,25 +3,30 @@
   <div class="row-same-height row">
     <div class="col-same-height col-sm-6 flexVMiddle">
       <div class="form-wrapper content">
-        <form action="/action_page.php">
+        <form [formGroup]="registerForm">
           <div class="form-group">
             <mat-form-field>
-              <input matInput placeholder="Full Name">
+              <input matInput placeholder="First Name" formControlName="firstName">
             </mat-form-field>
           </div>
           <div class="form-group">
             <mat-form-field>
-              <input matInput placeholder="Email address">
+              <input matInput placeholder="Last Name" formControlName="lastName">
             </mat-form-field>
           </div>
           <div class="form-group">
             <mat-form-field>
-              <input matInput placeholder="Password">
+              <input matInput placeholder="Email address" formControlName="email">
             </mat-form-field>
           </div>
           <div class="form-group">
             <mat-form-field>
-              <input matInput placeholder="Mobile Number">
+              <input matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Mobile Number" formControlName="phoneNumber">
             </mat-form-field>
           </div>
           <div class="form-group">
@@ -35,7 +40,7 @@
           <div class="form-group">
             <div class="row">
               <div class="col-sm-6">
-                <button type="button" mat-raised-button color="primary">SIGNUP</button>
+                <button type="button" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGNUP</button>
               </div>
               <div class="col-sm-6 text-right">
                 Aleady registered? <button type="button" [routerLink]="['/auth/login']" mat-button color="accent">LOGIN</button>

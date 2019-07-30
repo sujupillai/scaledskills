@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {AuthenticationService} from '../../../auth/authentication.service';
 @Component({
   selector: 'app-header-middle',
   templateUrl: './header-middle.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderMiddleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _AuthenticationService:AuthenticationService) { }
 
   ngOnInit() {
+  }
+  handleLogOut=()=>{
+    this._AuthenticationService.logout()
   }
 
 }
