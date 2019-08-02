@@ -3,7 +3,7 @@
   <div class="row-same-height row">
     <div class="col-same-height col-sm-6 flexVMiddle">
       <div class="form-wrapper content">
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" autocomplete="off" novalidate>
           <div class="form-group">
             <mat-form-field>
               <input matInput placeholder="User Name" formControlName="userName">
