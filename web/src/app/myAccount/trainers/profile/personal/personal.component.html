@@ -1,39 +1,40 @@
-<form>
+<form [formGroup]="profileForm">
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="First Name">
+          <input matInput placeholder="First Name" formControlName="firstName">
         </mat-form-field>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Last Name">
+          <input matInput placeholder="Last Name" formControlName="lastName">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Email">
+          <input matInput placeholder="Email" formControlName="email">
         </mat-form-field>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Mobile Number">
+          <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <mat-radio-group aria-label="Select an option">
+        <mat-radio-group formControlName="gender">
           <mat-radio-button value="Male">M</mat-radio-button>
           <mat-radio-button value="Female">F</mat-radio-button>
         </mat-radio-group>
+
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput [matDatepicker]="dobDateCtrl" placeholder="Date of Birth">
+          <input matInput [matDatepicker]="dobDateCtrl" placeholder="Date of Birth" formControlName="dateOfBirth">
           <mat-datepicker-toggle matSuffix [for]="dobDateCtrl"></mat-datepicker-toggle>
           <mat-datepicker #dobDateCtrl></mat-datepicker>
         </mat-form-field>
@@ -43,7 +44,7 @@
       <div class="col-sm-6">
         <mat-form-field>
           <mat-label>Country</mat-label>
-          <mat-select>
+          <mat-select formControlName="country">
             <mat-option value="">Select</mat-option>
           </mat-select>
         </mat-form-field>
@@ -51,7 +52,7 @@
       <div class="col-sm-6">
         <mat-form-field>
           <mat-label>State</mat-label>
-          <mat-select>
+          <mat-select formControlName="state">
             <mat-option value="">Select</mat-option>
           </mat-select>
         </mat-form-field>
@@ -61,32 +62,32 @@
       <div class="col-sm-6">
         <mat-form-field>
           <mat-label>City</mat-label>
-          <mat-select>
+          <mat-select formControlName="city">
             <mat-option value="">Select</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Zip Code">
+          <input matInput placeholder="Zip Code" formControlName="zipCode">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <mat-checkbox>
+        <mat-checkbox formControlName="interestedAffiliate">
           <mat-label>Interested for Affiliate Partner?</mat-label>
         </mat-checkbox>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Referral ID">
+          <input matInput placeholder="Referral ID" formControlName="referalId">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12 text-right">
-        <button mat-raised-button color="accent">Save</button>
+        <button type="submit" mat-raised-button color="accent" (click)="handleSubmit()">Save</button>
         <button mat-raised-button color="warn">Cancel</button>
       </div>
     </div>

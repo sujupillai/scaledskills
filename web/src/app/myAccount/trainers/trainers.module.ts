@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrainersRoutingModule } from './trainers-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from '../../_material/material.module';
@@ -15,6 +15,8 @@ import { SocialMediaComponent } from './profile/social-media/social-media.compon
   declarations: [ProfileComponent, PersonalComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsEarnedComponent, SocialMediaComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     TrainersRoutingModule,
     MaterialModule
   ]

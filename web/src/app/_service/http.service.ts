@@ -11,6 +11,8 @@ export class HttpService {
     const origin = window.location.origin;
     if (origin.indexOf("localhost") > -1) {
       url = 'http://sujupillai-001-site1.btempurl.com/api/';
+    } else if (origin.indexOf("scaledskills") > -1) {
+      url = 'http://sujupillai-001-site1.btempurl.com/api/';
     }
     return url;
   }

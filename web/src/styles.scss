@@ -4760,3 +4760,15 @@ textarea{
   background: white!important;
   z-index: 999;
 }
+.mat-snack-bar-container.mat-snack-bar-top.mat-snack-bar-center {
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-top: 100px;
+  margin-left: -170px;
+}

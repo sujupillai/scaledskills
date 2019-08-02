@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-credentials',
-  templateUrl: './credentials.component.html',
-  styleUrls: ['./credentials.component.scss']
+  templateUrl: './credentials.component.html'
 })
 export class CredentialsComponent implements OnInit {
 

@@ -1,15 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
-  styleUrls: ['./personal.component.scss']
 })
 export class PersonalComponent implements OnInit {
-
-  constructor() { }
+  profileForm: FormGroup;
+  constructor(private _FormBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.createprofileForm(() => {
+
+    })
+  }
+
+  createprofileForm = (callback) => {
+    this.profileForm = this._FormBuilder.group({
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required],
+      'email': ['', Validators.required],
+      'mobileNumber': ['', Validators.required],
+      'gender': ['', Validators.required],
+      'dateOfBirth': ['', Validators.required],
+      'country': ['', Validators.required],
+      'state': ['', Validators.required],
+      'city': ['', Validators.required],
+      'zipCode': ['', Validators.required],
+      'interestedAffiliate': [false, Validators.required],
+      'referalId': ['', Validators.required],
+    })
+    if (callback) {
+      callback();
+    }
+  }
+  get formControl() { return this.profileForm.controls }
+  handleSubmit = () => {
+    let postData = {
+      ...this.profileForm.value
+    }
+    prompt('', JSON.stringify(postData));
   }
 
 }
