@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../authentication.service';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { AuthenticationService } from '../../_service';
+import { SharedService } from '../../_service'
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
+  isRememberMe: boolean = false;
   error = '';
   constructor(
     private _FormBuilder: FormBuilder,
     private _Router: Router,
     private _ActivatedRoute: ActivatedRoute,
     private _AuthenticationService: AuthenticationService,
+    private _SharedService: SharedService
 
   ) {
     if (this._AuthenticationService.currentUserValue) {
@@ -36,8 +38,9 @@ export class LoginComponent implements OnInit {
   createForm = (callback) => {
     this.loginForm = this._FormBuilder.group(
       {
-        "userName": "lovekush@gmail.com",
-        "password": "lovekush@gmail.com",
+        "userName": ['', Validators.required],
+        "password": ['', Validators.required],
+        "isRememberMe": false,
         "id": 0
       }
     )
@@ -51,14 +54,27 @@ export class LoginComponent implements OnInit {
       return
     }
     let data = this.loginForm.value;
-    let url = 'http://sujupillai-001-site1.btempurl.com/api/Account/login';
-
-    this._AuthenticationService.login(url, data).pipe(first()).subscribe(data => {
-      this._Router.navigate([this.returnUrl]);
+    let url = 'Account/login';
+    this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
+      if (res) {
+        this._Router.navigate([this.returnUrl]);
+        this.resetForm(this.loginForm)
+      } else {
+        this._SharedService.openSnackBar('Invalid login credentials', 'close')
+      }
     },
       error => {
         this.error = error;
       });
   }
 
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+  }
 }

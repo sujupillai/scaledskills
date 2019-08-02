@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '../../_service/http.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { HttpService } from '../../_service';
 import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-register',
@@ -34,20 +34,21 @@ export class RegisterComponent implements OnInit {
 
   }
   get formControl() { return this.registerForm.controls }
+
   handleSubmitForm = () => {
     debugger
+
     let data = {
       ...this.registerForm.value,
       userName: this.formControl.email.value
     };
-    if (this.registerForm.invalid) {
-      return
+    if (this.registerForm.valid) {
+      let url = 'Account'
+      this._HttpService.httpCall(url, 'POST', data, null).pipe(first()).subscribe(res => {
+        console.log(res)
+      })
     }
-    let url = 'http://sujupillai-001-site1.btempurl.com/api/Account'
-    prompt('postObj', JSON.stringify(data));
-    this._HttpService.httpCall(url, 'POST', data, null).pipe(first()).subscribe(res => {
-      console.log(res)
-    })
+
   }
 
 }

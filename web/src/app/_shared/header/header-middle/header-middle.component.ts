@@ -1,18 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../../../auth/authentication.service';
+import { AuthenticationService } from '../../../_service/authentication.service';
+
 @Component({
   selector: 'app-header-middle',
   templateUrl: './header-middle.component.html',
   styleUrls: ['./header-middle.component.scss']
 })
 export class HeaderMiddleComponent implements OnInit {
-
-  constructor(private _AuthenticationService:AuthenticationService) { }
+  userInfo: any = {};
+  isLoggedIn: boolean = false;
+  constructor(private _AuthenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.gerUserInfo();
+    this._AuthenticationService.getAuthEmitter().subscribe((customObject) => {
+      this.gerUserInfo();
+    });
   }
-  handleLogOut=()=>{
+  handleLogOut = () => {
     this._AuthenticationService.logout()
+    this.gerUserInfo();
   }
+  gerUserInfo = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue
+    this.isLoggedIn = this.userInfo ? true : false;
+  }
+
 
 }

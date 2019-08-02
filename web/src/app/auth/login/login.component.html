@@ -17,7 +17,7 @@
           <div class="form-group">
             <div class="row">
               <div class="col-sm-6">
-                <mat-checkbox>Remember me</mat-checkbox>
+                <mat-checkbox formControlName="isRememberMe">Remember me</mat-checkbox>
               </div>
               <div class="col-sm-6 text-right">
                 <button type="button" mat-stroked-button color="primary">Forgot Password?</button>
@@ -27,7 +27,7 @@
           <div class="form-group">
             <div class="row">
               <div class="col-sm-6">
-                <button type="button" mat-raised-button color="primary" (click)="handleLogin()">LOGIN</button>
+                <button type="submit" mat-raised-button color="primary" (click)="handleLogin()">LOGIN</button>
               </div>
               <div class="col-sm-6 text-right">
                 New to eGurus? <button type="button" mat-button color="accent"
