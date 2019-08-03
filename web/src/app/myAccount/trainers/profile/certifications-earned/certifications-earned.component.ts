@@ -14,15 +14,17 @@ export class CertificationsEarnedComponent implements OnInit {
     this.createForm(() => { })
   }
   createForm = (callback) => {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.certificatesForm = this._FormBuilder.group({
       'name': ['', Validators.required],
-      'URL': ['', Validators.required],
+      'url': ['', [Validators.required, Validators.pattern(reg)]],
     })
     if (callback) {
       callback()
     }
   }
   handleSubmit = () => {
+    alert(this.certificatesForm.valid)
     let postObj = {
       ...this.certificatesForm.value
     }

@@ -19,7 +19,7 @@ export class PersonalComponent implements OnInit {
     this.profileForm = this._FormBuilder.group({
       'firstName': ['', Validators.required],
       'lastName': ['', Validators.required],
-      'email': ['', Validators.required],
+      'email': ['', [Validators.required, Validators.email]],
       'mobileNumber': ['', Validators.required],
       'gender': ['', Validators.required],
       'dateOfBirth': ['', Validators.required],

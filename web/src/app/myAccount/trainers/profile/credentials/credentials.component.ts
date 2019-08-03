@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { MustMatch } from '../../../../_helpers/_validators/must-match.validator'
 @Component({
   selector: 'app-credentials',
   templateUrl: './credentials.component.html'
@@ -15,10 +16,12 @@ export class CredentialsComponent implements OnInit {
   }
   createForm = (callback: any): void => {
     this.credentialForm = this._FormBuilder.group({
-      'currentPassword': ['', Validators.required],
-      'newPassword': ['', Validators.required],
-      'confirmPassword': ['', Validators.required],
-    })
+      currentPassword: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, {
+        validator: MustMatch('password', 'confirmPassword')
+      })
     if (callback) {
       callback()
     }
