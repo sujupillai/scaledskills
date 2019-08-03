@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./myAccount/my-account.module').then(mod => mod.MyAccountModule),
   },
+  {
+    path: 'training',
+    loadChildren: () => import('./training/training.module').then(mod => mod.TrainingModule),
+  },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
 
