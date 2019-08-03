@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../_material/material.module';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TrainingRoutingModule } from './training-routing.module';
 import { TrainingBasicsComponent } from './training-basics/training-basics.component';
 import { TrainingLocationComponent } from './training-location/training-location.component';
@@ -21,7 +21,9 @@ import { TrainingMainComponent } from './training-main/training-main.component';
   imports: [
     CommonModule,
     TrainingRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class TrainingModule { }

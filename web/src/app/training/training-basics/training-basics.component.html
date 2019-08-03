@@ -1,1 +1,102 @@
-<p>training-basics works!</p>
+<form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="training Name *" formControlName="trainingName" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.trainingName.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Training URL *" formControlName="trainingUrl" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.trainingUrl.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Training for *" formControlName="trainingFor" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.trainingFor.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Organization *" formControlName="organization" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.organization.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-form-field>
+          <input matInput placeholder="Description *" formControlName="description" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.description.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Start Date *" formControlName="startDate" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.startDate.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Start Time *" formControlName="startTime" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.startTime.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="End Date *" formControlName="endDate" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.endDate.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="End Time *" formControlName="endTime" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.endTime.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Time Zone *" formControlName="timeZone" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.timeZone.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-right">
+        <button type="submit" mat-raised-button color="accent" (click)="handleSubmit()">Save</button>
+        <button mat-raised-button color="warn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>
