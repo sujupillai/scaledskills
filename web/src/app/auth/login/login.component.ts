@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../_service';
 import { SharedService } from '../../_service'
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as authConstant from '../../_helpers/_constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -54,13 +55,14 @@ export class LoginComponent implements OnInit {
       return
     }
     let data = this.loginForm.value;
-    let url = 'Account/login';
+    let url = authConstant.ApiPath.Accountlogin;
     this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
       if (res) {
         this._Router.navigate([this.returnUrl]);
         this.resetForm(this.loginForm)
       } else {
-        this._SharedService.openSnackBar('Invalid login credentials', 'close')
+
+        this._SharedService.openSnackBar(authConstant.RES_CODE[101], authConstant.RES_CODE[100])
       }
     },
       error => {
