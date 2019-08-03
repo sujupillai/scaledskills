@@ -3,24 +3,39 @@
     <div class="row">
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="First Name" formControlName="firstName">
+          <input matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.firstName.hasError('required')">
+            <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Last Name" formControlName="lastName">
+          <input matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.lastName.hasError('required')">
+            <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email">
+          <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.email.hasError('email') && !formControl.email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="formControl.email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
+          <input matInput placeholder="Mobile Number" formControlName="mobileNumber" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.mobileNumber.hasError('required')">
+            Mobile number is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -34,10 +49,14 @@
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput [matDatepicker]="dobDateCtrl" placeholder="Date of Birth" formControlName="dateOfBirth">
+          <input matInput [matDatepicker]="dobDateCtrl" placeholder="Date of Birth" formControlName="dateOfBirth" [errorStateMatcher]="matcher">
           <mat-datepicker-toggle matSuffix [for]="dobDateCtrl"></mat-datepicker-toggle>
           <mat-datepicker #dobDateCtrl></mat-datepicker>
+          <mat-error *ngIf="formControl.dateOfBirth.hasError('required')">
+              <strong>required</strong>
+            </mat-error>
         </mat-form-field>
+
       </div>
     </div>
     <div class="row">

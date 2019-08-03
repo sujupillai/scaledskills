@@ -27,8 +27,8 @@ export class PersonalComponent implements OnInit {
       'state': ['', Validators.required],
       'city': ['', Validators.required],
       'zipCode': ['', Validators.required],
-      'interestedAffiliate': [false, Validators.required],
-      'referalId': ['', Validators.required],
+      'interestedAffiliate': false,
+      'referalId': '',
     })
     if (callback) {
       callback();

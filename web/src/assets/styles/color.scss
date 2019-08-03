@@ -1,32 +1,32 @@
-a,
-.text-primary,
-.text-primary_h:hover,
-.text-primary_b:before,
-.text-primary_a:after,
-.list>li>a:hover,
-.list-mark-1 li:before {
-  color: #fe3e01;
-}
+// a,
+// .text-primary,
+// .text-primary_h:hover,
+// .text-primary_b:before,
+// .text-primary_a:after,
+// .list>li>a:hover,
+// .list-mark-1 li:before {
+//   color: #fe3e01;
+// }
 
-.pager li>a:hover {
-  color: #fe3e01;
+// .pager li>a:hover {
+//   color: #fe3e01;
 
-  .icon {
-    color: #fe3e01;
-  }
-}
+//   .icon {
+//     color: #fe3e01;
+//   }
+// }
 
-.pagination_primary>li {
+// .pagination_primary>li {
 
-  &:first-child>a:hover,
-  &:last-child>a:hover {
-    color: #fe3e01;
+//   &:first-child>a:hover,
+//   &:last-child>a:hover {
+//     color: #fe3e01;
 
-    .icon {
-      color: #fe3e01;
-    }
-  }
-}
+//     .icon {
+//       color: #fe3e01;
+//     }
+//   }
+// }
 
 .search-close:hover,
 .breadcrumb>li>a:hover,
@@ -35,7 +35,9 @@ a,
 .b-contact-social-net .social-net .social-net__link:hover {
   color: #fe3e01;
 }
-
+.clrRed{
+  color: #fe3e01!important;
+}
 .pagination>.active> {
 
   a,

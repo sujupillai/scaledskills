@@ -3402,6 +3402,8 @@ input {
 .footer__logo {
   display: inline-block;
   margin-bottom: 53px;
+  font-size: 20px;
+  color:white;
 }
 
 .footer__contact {
@@ -4771,4 +4773,15 @@ textarea{
   left: 50%;
   margin-top: 100px;
   margin-left: -170px;
+}
+.mat-expansion-panel-content, .mat-form-field, .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+  line-height: 24px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper{
+  margin-top: 0px!important;
+}
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label, span.mat-checkbox-label{
+  color:#484848;
+  line-height: 24px;
+  font-weight: normal;
 }
