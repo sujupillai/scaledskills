@@ -11,22 +11,22 @@ export class CertificationsEarnedComponent implements OnInit {
   constructor(private _FormBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.createForm(()=>{})
+    this.createForm(() => { })
   }
   createForm = (callback) => {
     this.certificatesForm = this._FormBuilder.group({
-      'name':['', Validators.required],
-      'URL':['', Validators.required],
+      'name': ['', Validators.required],
+      'URL': ['', Validators.required],
     })
     if (callback) {
       callback()
     }
   }
-  handleSubmit=()=>{
-    let postObj={
+  handleSubmit = () => {
+    let postObj = {
       ...this.certificatesForm.value
     }
-    prompt('postObj',JSON.stringify(postObj))
+    prompt('postObj', JSON.stringify(postObj))
   }
 
 }
