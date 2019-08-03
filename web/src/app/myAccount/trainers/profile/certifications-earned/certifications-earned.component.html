@@ -1,22 +1,22 @@
-<form autocomplete="off" novalidate>
+<!-- <form [formGroup]="certificatesForm" autocomplete="off" novalidate>
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="Name">
+          <input matInput placeholder="Name" formControlName="name">
         </mat-form-field>
       </div>
       <div class="col-sm-6">
         <mat-form-field>
-          <input matInput placeholder="URL">
+          <input matInput placeholder="URL" formControlName="URL">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12 text-right">
-        <button mat-raised-button color="accent">Save</button>
+        <button type="submit" mat-raised-button color="accent" (click)="handleSubmit()">Save</button>
         <button mat-raised-button color="warn">Cancel</button>
       </div>
     </div>
   </div>
-</form>
+</form> -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-certifications-earned',
@@ -7,18 +7,25 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./certifications-earned.component.scss']
 })
 export class CertificationsEarnedComponent implements OnInit {
-  profileForm:FormGroup
-  constructor( private _FormBuilder:FormBuilder) { }
+  certificatesForm: FormGroup
+  constructor(private _FormBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
-  createForm=(callback)=>{
-    this.profileForm=this._FormBuilder.group({
-
+  createForm = (callback) => {
+    this.certificatesForm = this._FormBuilder.group({
+      'name':['', Validators.required],
+      'URL':['', Validators.required],
     })
-    if(callback){
+    if (callback) {
       callback()
     }
+  }
+  handleSubmit=()=>{
+    let postObj={
+      ...this.certificatesForm.value
+    }
+    prompt('postObj',JSON.stringify(postObj))
   }
 
 }
