@@ -1,7 +1,7 @@
-<div mat-dialog-content>
-  {{message}}
+<div mat-dialog-content class="text-center">
+  {{data.message}}
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="handleeAction(false)">No</button>
-  <button mat-button (click)="handleeAction(true)" cdkFocusInitial>Yes</button>
+<div mat-dialog-actions *ngIf="data.isActions" class="text-center">
+  <button mat-button *ngIf="data.isNo" (click)="handleeAction(false)">{{data.noText}}</button>
+  <button mat-button *ngIf="data.isYes" (click)="handleeAction(true)" cdkFocusInitial>{{data.yesText}}</button>
 </div>

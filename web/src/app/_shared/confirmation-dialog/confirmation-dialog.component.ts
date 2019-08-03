@@ -14,10 +14,18 @@ export class ConfirmationDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dialogConfig=this.data;
+    if (!this.data.isActions) {
+      setTimeout(() => {
+        this.autoClose()
+      }, 3000);
+    }
   }
   handleeAction(res): void {
     this.dialogRef.close(res);
   }
+  autoClose = () => {
+    this.dialogRef.close(false);
+  }
+
 
 }

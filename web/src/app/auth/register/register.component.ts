@@ -57,9 +57,10 @@ export class RegisterComponent implements OnInit {
       data: {
         'yesText': 'Yes',
         'noText': 'No',
-        'isyes': true,
+        'isYes': true,
         'isNo': true,
-        'message': 'Welcome',
+        'isActions': false,
+        'message': 'Registration successfull',
       }
     });
 
