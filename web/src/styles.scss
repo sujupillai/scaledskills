@@ -4074,7 +4074,7 @@ blockquote {
   }
 }
 
-.display-flex {
+.display-flex, .flex {
   display: flex;
 }
 
@@ -4784,4 +4784,10 @@ textarea{
   color:#484848;
   line-height: 24px;
   font-weight: normal;
+}
+.mr-15{
+  margin-right: 15px!important
+}
+.mb-15{
+  margin-bottom: 15px!important
 }
