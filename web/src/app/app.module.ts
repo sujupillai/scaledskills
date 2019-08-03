@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './auth/token.interceptor';
+import * as interceptor from './_interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './_shared/header/header.component';
@@ -36,7 +36,7 @@ import { HeaderSearchComponent } from './_shared/header/header-search/header-sea
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
+    useClass: interceptor.TokenInterceptor,
     multi: true
   }],
   bootstrap: [AppComponent]

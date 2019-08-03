@@ -36,8 +36,6 @@ export class RegisterComponent implements OnInit {
   get formControl() { return this.registerForm.controls }
 
   handleSubmitForm = () => {
-    debugger
-
     let data = {
       ...this.registerForm.value,
       userName: this.formControl.email.value

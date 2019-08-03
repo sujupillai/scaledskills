@@ -12,7 +12,6 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public _AuthenticationService: AuthenticationService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger
     let isTokenRquired = true;
     const url = req.url.split('/')
     url.filter((x) => {
