@@ -1,10 +1,10 @@
 <div class="container">
   <div class="main-holder-section mb20 p30">
     <ul class="nav nav-tabs mt20 sticky-top-0">
-        <li *ngFor="let item of tabArray, let index =index" [ngClass]="{active: activeProfileTab==index}">
-          <a href="javascript:void(0)" (click)="activeTab(index, 'scrollToDiv')">{{item.name}}</a>
-        </li>
-      </ul>
+      <li *ngFor="let item of tabArray, let index =index" [ngClass]="{active: activeProfileTab==index}">
+        <a href="javascript:void(0)" (click)="activeTab(index, 'scrollToDiv')">{{item.name}}</a>
+      </li>
+    </ul>
     <div class="clearfix" style="margin-top: 10px">
       <mat-accordion multi="true">
         <mat-expansion-panel class="scrollToDiv" *ngFor="let item of tabArray, let index =index"
@@ -14,7 +14,8 @@
               {{item.label}}
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-training-basics></app-training-basics>
+          <app-training-basics *ngIf="index==0"></app-training-basics>
+          <app-training-location *ngIf="index==1"></app-training-location>
         </mat-expansion-panel>
       </mat-accordion>
     </div>
