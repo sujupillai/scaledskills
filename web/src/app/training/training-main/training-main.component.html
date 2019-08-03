@@ -1,1 +1,24 @@
-<p>training-main works!</p>
+<div class="container">
+  <div class="main-holder-section mb20 p30">
+    <ul class="nav nav-tabs mt20 sticky-top-0">
+        <li *ngFor="let item of tabArray, let index =index" [ngClass]="{active: activeProfileTab==index}">
+          <a href="javascript:void(0)" (click)="activeTab(index, 'scrollToDiv')">{{item.name}}</a>
+        </li>
+      </ul>
+    <div class="clearfix" style="margin-top: 10px">
+      <mat-accordion multi="true">
+        <mat-expansion-panel class="scrollToDiv" *ngFor="let item of tabArray, let index =index"
+          [expanded]="expandedTab === -1 || expandedTab === index">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="title-text">
+              {{item.label}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-training-basics></app-training-basics>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+<br>
+<br>

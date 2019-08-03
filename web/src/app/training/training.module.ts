@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../_material/material.module';
 
 import { TrainingRoutingModule } from './training-routing.module';
 import { TrainingBasicsComponent } from './training-basics/training-basics.component';
@@ -19,7 +20,8 @@ import { TrainingMainComponent } from './training-main/training-main.component';
   declarations: [TrainingBasicsComponent, TrainingLocationComponent, TrainingTagsComponent, TrainingImageComponent, TrainingTicketsComponent, TrainingQuestionsComponent, TrainingReviewComponent, TrainingPromotiionnsComponent, TrainingPromotionsComponent, TrainingSettingsComponent, TrainingFinalComponent, TrainingMainComponent],
   imports: [
     CommonModule,
-    TrainingRoutingModule
+    TrainingRoutingModule,
+    MaterialModule
   ]
 })
 export class TrainingModule { }

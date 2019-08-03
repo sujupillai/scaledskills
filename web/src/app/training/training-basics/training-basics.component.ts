@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./training-basics.component.scss']
 })
 export class TrainingBasicsComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
+
   }
+
 
 }
