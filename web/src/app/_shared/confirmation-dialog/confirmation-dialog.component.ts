@@ -7,16 +7,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./confirmation-dialog.component.scss']
 })
 export class ConfirmationDialogComponent implements OnInit {
-
+  dialogConfig: any = {}
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public message: string
-    ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit() {
+    this.dialogConfig=this.data;
   }
-  onNoClick(): void {
-    this.dialogRef.close();
+  handleeAction(res): void {
+    this.dialogRef.close(res);
   }
 
 }

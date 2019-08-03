@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpService } from '../../_service';
 import { first } from 'rxjs/operators';
+import { ConfirmationDialogComponent } from '../../_shared/confirmation-dialog/confirmation-dialog.component';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,7 +11,8 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService) { }
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.createForm(() => {
@@ -47,6 +50,26 @@ export class RegisterComponent implements OnInit {
       })
     }
 
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: {
+        'yesText': 'Yes',
+        'noText': 'No',
+        'isyes': true,
+        'isNo': true,
+        'message': 'Welcome',
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+
+      }
+
+
+    });
   }
 
 }

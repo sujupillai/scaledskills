@@ -41,6 +41,7 @@
             <div class="row">
               <div class="col-sm-6">
                 <button type="submit" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGNUP</button>
+                <button  type="button"  mat-raised-button (click)="openDialog()">Pick one</button>
               </div>
               <div class="col-sm-6 text-right">
                 Aleady registered? <button type="button" [routerLink]="['/auth/login']" mat-button color="accent">LOGIN</button>
