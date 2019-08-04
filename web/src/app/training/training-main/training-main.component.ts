@@ -27,24 +27,6 @@ export class TrainingMainComponent implements OnInit {
       { 'name': 'Preview', 'label': 'Preview', 'displayOrder': '9' },
     ]
   }
-  // activeTab = (number, className: string): void => {
-  //   this.activeProfileTab = number;
-  //   const elementList = document.querySelectorAll('.' + className);
-  //   let element;
-  //   if (number == -1) {
-  //     element = elementList[0] as HTMLElement;
-  //   } else {
-  //     element = elementList[number] as HTMLElement;
-  //   }
-  //   setTimeout(() => {
-  //     const yCoordinate = element.getBoundingClientRect().top + window.pageYOffset;
-  //     const yOffset = -50;
 
-  //     window.scrollTo({
-  //       top: yCoordinate + yOffset,
-  //       behavior: 'smooth'
-  //     });
-  //   }, 300);
 
-  // }
 }

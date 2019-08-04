@@ -1,31 +1,41 @@
-<div class="container">
-  <div class="main-holder-section mb20 p30">
-    <ul class="nav nav-tabs mt20 sticky-top-0">
-      <li *ngFor="let item of tabArray, let index =index" [ngClass]="{active: activeProfileTab==index}">
-        <a href="javascript:void(0)" (click)="activeTab(index, 'scrollToDiv')">{{item.name}}</a>
-      </li>
-    </ul>
-    <div class="clearfix" style="margin-top: 10px">
-      <mat-accordion multi="true">
-        <mat-expansion-panel class="scrollToDiv" *ngFor="let item of tabArray, let index =index"
-          [expanded]="expandedTab === -1 || expandedTab === index">
-          <mat-expansion-panel-header>
-            <mat-panel-title class="title-text">
-              {{item.label}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <app-training-basics *ngIf="index==0"></app-training-basics>
-          <app-training-location *ngIf="index==1"></app-training-location>
-          <app-training-tags *ngIf="index==2"></app-training-tags>
-          <app-training-image *ngIf="index==3"></app-training-image>
-          <app-training-tickets *ngIf="index==4"></app-training-tickets>
-          <app-training-questions *ngIf="index==5"></app-training-questions>
-          <app-training-review *ngIf="index==6"></app-training-review>
-          <app-training-promotiionns *ngIf="index==7"></app-training-promotiionns>
-          <app-training-settings *ngIf="index==8"></app-training-settings>
-          <app-training-final *ngIf="index==9"></app-training-final>
-        </mat-expansion-panel>
-      </mat-accordion>
+<div class="main-holder-section ">
+  <div class="mb20 p30">
+    <div class="row-same-height traineeDashboard">
+      <div class="col-same-height vertical-menu">
+        <div class="content">
+          <div class="vertical-menu-inner">
+            <div *ngFor="let item of tabArray, let index =index">
+              <a [ngClass]="{active: activeProfileTab==index}">{{item.name}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-same-height dashboard-content">
+        <div class="content">
+          <div class="clearfix" style="margin-top: 10px">
+            <mat-accordion multi="true">
+              <mat-expansion-panel class="scrollToDiv" *ngFor="let item of tabArray, let index =index"
+                [expanded]="expandedTab === -1 || expandedTab === index">
+                <mat-expansion-panel-header>
+                  <mat-panel-title class="title-text">
+                    {{item.label}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <app-training-basics *ngIf="index==0"></app-training-basics>
+                <app-training-location *ngIf="index==1"></app-training-location>
+                <app-training-tags *ngIf="index==2"></app-training-tags>
+                <app-training-image *ngIf="index==3"></app-training-image>
+                <app-training-tickets *ngIf="index==4"></app-training-tickets>
+                <app-training-questions *ngIf="index==5"></app-training-questions>
+                <app-training-review *ngIf="index==6"></app-training-review>
+                <app-training-promotiionns *ngIf="index==7"></app-training-promotiionns>
+                <app-training-settings *ngIf="index==8"></app-training-settings>
+                <app-training-final *ngIf="index==9"></app-training-final>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

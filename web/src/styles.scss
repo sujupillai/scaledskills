@@ -4791,3 +4791,35 @@ textarea{
 .mb-15{
   margin-bottom: 15px!important
 }
+.dashboard-content{
+  max-height: 100vh;
+  overflow: auto;
+}
+.traineeDashboard{
+  flex-wrap: nowrap;
+
+}
+.vertical-menu {
+  min-width: 200px;
+  background-color: #eee;
+}
+
+.vertical-menu a {
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.vertical-menu-inner{
+  border:1px green solid;
+}
