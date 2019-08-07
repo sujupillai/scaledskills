@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../_service';
 import { first } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from '../../_shared/confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +12,7 @@ import { ConfirmationDialogComponent } from '../../_shared/confirmation-dialog/c
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService,
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _Router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
     })
   }
-  createForm = (callback) => {
+  createForm = (callback: any): void => {
     this.registerForm = this._FormBuilder.group(
       {
         "firstName": ['', Validators.required],
@@ -43,11 +44,15 @@ export class RegisterComponent implements OnInit {
       ...this.registerForm.value,
       userName: this.formControl.email.value
     };
+
     if (this.registerForm.valid) {
       let url = 'Account'
       this._HttpService.httpCall(url, 'POST', data, null).pipe(first()).subscribe(res => {
-        console.log(res)
+        if (res) {
+          this.openDialog()
+        }
       })
+
     }
 
   }
@@ -63,14 +68,8 @@ export class RegisterComponent implements OnInit {
         'message': 'Registration successfull',
       }
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-
-      }
-
-
+      this._Router.navigate(['/auth']);
     });
   }
-
 }
