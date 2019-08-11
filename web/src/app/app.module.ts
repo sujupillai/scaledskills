@@ -15,7 +15,6 @@ import { HeaderMiddleComponent } from './_shared/header/header-middle/header-mid
 import { HeaderFullComponent } from './_shared/header/header-full/header-full.component';
 import { ErrorComponent } from './_shared/error/error.component';
 import { HeaderSearchComponent } from './_shared/header/header-search/header-search.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +30,7 @@ import { HeaderSearchComponent } from './_shared/header/header-search/header-sea
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
-
+    HttpClientModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

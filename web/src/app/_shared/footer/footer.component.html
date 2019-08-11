@@ -2,88 +2,25 @@
   <div class="footer__main">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
-          <div class="text-center">
-            <a href="javascript:void(0)" class="footer__logo">
-              <span class="clrRed">Scaled</span><span>Skills</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <form class="footer-form" autocomplete="off" novalidate>
-            <div class="row">
-              <div class="col-sm-6">
-                <h3 class="footer-form__title">Get the FREE Newsletter</h3>
-                <div class="footer-form__info">Sign up to get the updates about new events</div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input type="email" placeholder="Your email address ..." class="footer-form__input" />
-                  <button class="footer-form__btn form-control-feedback">
-                      <i class="fa fa-envelope-open-o" aria-hidden="true"></i></button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
+        <div class="col-sm-12 text-center">
           <section class="footer-section">
             <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> COMPANY</h3>
-            <ul class="footer-list list list-mark-4 list-unstyled">
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>About Us</a></li>
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Our Team</a></li>
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"> <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Contact Us</a></li>
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Help & Support</a>
+            <ul class="footer-list list-inline">
+              <li class="footer__contact">
+                <a [routerLink]="['/home/about']" class="footer-list__link">
+                  <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                  About Us
+                </a>
               </li>
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Tearms of Use</a>
+              <li class="footer__contact">
+                <a [routerLink]="['/home/contact']" class="footer-list__link"><i class="fa fa-caret-right mr-3"
+                    aria-hidden="true"></i>Contact Us</a>
               </li>
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>FAQs</a></li>
-              <li class="footer-list__item"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Privacy Policy</a>
-              </li>
-            </ul>
-          </section>
-        </div>
-        <div class="col-md-3">
-          <section class="footer-section">
-            <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> WORK WITH US</h3>
-            <ul class="footer-list list list-mark-4 list-unstyled">
-              <li class="footer__contact"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Become a Trainer</a>
-              </li>
-              <li class="footer__contact"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Become a Learner</a>
-              </li>
-              <li class="footer__contact"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Blog as Guest</a></li>
-            </ul>
-          </section>
-        </div>
-        <div class="col-md-3">
-          <section class="footer-section">
-            <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> DISCOVER</h3>
-            <ul class="footer-list list list-mark-4 list-unstyled">
-              <li class="footer__contact"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Resources</a></li>
-              <li class="footer__contact"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Tutorials</a></li>
-              <li class="footer__contact"><a href="javascript:void(0)" class="footer-list__link"><i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Elocate Community</a>
-              </li>
-            </ul>
-          </section>
-        </div>
-        <div class="col-md-3">
-          <section class="footer-section">
-            <h3 class="footer-section__title ui-title-inner"><i class="ui-decor-2 bg-primary"></i> FOLLOW US!</h3>
-            <ul class="social-net list-inline">
-              <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                    class="icon fa fa-youtube"></i></a></li>
-              <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                    class="icon fa fa-twitter"></i></a></li>
-              <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                    class="icon fa fa-facebook"></i></a></li>
-              <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                    class="icon fa fa-google-plus"></i></a></li>
-              <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                    class="icon fa fa-instagram"></i></a></li>
+              <li class="footer__contact">
+                <a [routerLink]="['/home/terms']" class="footer-list__link">
+                  <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>Tearms of Use</a></li>
+              <li class="footer__contact"><a [routerLink]="['/home/privacy']" class="footer-list__link"><i
+                    class="fa fa-caret-right mr-3" aria-hidden="true"></i>Privacy Policy</a></li>
             </ul>
           </section>
         </div>
@@ -94,19 +31,33 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <div class="copyright pull-left">© 2018<strong> ScaledSkills</strong> - The Events Specialists All Rights
+          <div class="copyright pull-left">© 2019<strong> ScaledSkills</strong> - Transforming Training. All Rights
             Reserved.</div>
           <ul class="social-net list-inline pull-right">
-            <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                  class="icon fa fa-youtube"></i></a></li>
-            <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                  class="icon fa fa-twitter"></i></a></li>
-            <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                  class="icon fa fa-facebook"></i></a></li>
-            <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                  class="icon fa fa-google-plus"></i></a></li>
-            <li class="social-net__item"><a href="javascript:void(0)" class="social-net__link text-primary_h"><i
-                  class="icon fa fa-instagram"></i></a></li>
+            <li class="social-net__item">
+              <a href="https://www.youtube.com/channel/UCZqOaxce42UMYz2E6-coO0g" target="_blank"
+                class="social-net__link text-primary_h"><i class="icon fa fa-youtube"></i>
+              </a>
+            </li>
+            <li class="social-net__item"><a href="https://twitter.com/ScaledSkills" target="_blank"
+                class="social-net__link text-primary_h"><i class="icon fa fa-twitter"></i></a></li>
+            <li class="social-net__item">
+              <a href="https://www.facebook.com/scaledskills" target="_blank" class="social-net__link text-primary_h">
+                <i class="icon fa fa-facebook"></i>
+              </a>
+            </li>
+            <li class="social-net__item">
+              <a href="https://www.linkedin.com/company/scaledskills" target="_blank"
+                class="social-net__link text-primary_h">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="social-net__item">
+              <a href="https://www.meetup.com/Scaled-Skills-Transforming-Training/" target="_blank"
+                class="social-net__link text-primary_h">
+                <i class="fa fa-meetup" aria-hidden="true"></i>
+              </a>
+            </li>
           </ul>
           <!-- end social-list-->
         </div>

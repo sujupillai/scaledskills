@@ -23,6 +23,12 @@ export class HttpService {
       case 'POST':
         return this._HttpClient.post<any>(apiUrl, data, { 'headers': {}, 'params': params })
         break;
+      case 'PUT':
+        return this._HttpClient.put<any>(apiUrl, data, { 'headers': {}, 'params': params })
+        break;
+      case 'DELETE':
+        return this._HttpClient.delete<any>(apiUrl, { 'headers': {}, 'params': params })
+        break;
       case 'GET':
         switch (params) {
           case null:

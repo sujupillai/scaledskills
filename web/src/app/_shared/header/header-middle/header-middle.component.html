@@ -1,16 +1,21 @@
-<nav class="navbar navbar-inverse navar-middle">
-  <div class="container">
+<nav class="navbar navbar-default navar-middle">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" [routerLink]="['/home']"><span class="clrRed">Scaled</span><span>Skills</span></a>
+      <a class="navbar-brand" [routerLink]="['/home']">
+        <span class="logoClr">ScaledSkills</span>
+      </a>
     </div>
-    <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/home']">Home</a></li>
-      <li routerLinkActive="active"><a href="javascript:void(0)">EVENTS</a></li>
-      <li routerLinkActive="active"><a href="javascript:void(0)">ABOUT</a></li>
-      <li routerLinkActive="active"><a href="javascript:void(0)">CONTACT</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/account']">ACCOUNT</a></li>
-    </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li routerLinkActive="active">
+        <a>
+          Training Request
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a>
+          About Us
+        </a>
+      </li>
       <li routerLinkActive="active" *ngIf="!isLoggedIn">
         <a [routerLink]="['auth/register']">
           <span class="glyphicon glyphicon-user"></span> Sign Up
@@ -22,9 +27,16 @@
         </a>
       </li>
       <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()">Log Out</a></li>
-      <li routerLinkActive="active"><a href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
-      <li routerLinkActive="active"><a href="javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+      <li class="dropdown" *ngIf="isLoggedIn">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
       </li>
+      <!-- <li routerLinkActive="active"><a href="javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
+      </li> -->
     </ul>
   </div>
 </nav>

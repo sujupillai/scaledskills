@@ -9,9 +9,10 @@ import { AuthenticationService } from '../_service/authentication.service';
 import { Observable } from 'rxjs';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public _AuthenticationService: AuthenticationService) {}
+  constructor(public _AuthenticationService: AuthenticationService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    debugger
     let isTokenRquired = true;
     const url = req.url.split('/')
     url.filter((x) => {
@@ -28,8 +29,7 @@ export class TokenInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${accessToken.auth_token}`
         }
       });
-    } else {
-      return next.handle(req);
     }
+    return next.handle(req);
   }
 }
