@@ -4802,13 +4802,7 @@ span.mat-checkbox-label {
   overflow: auto;
 }
 
-.traineeDashboard {
-  flex-wrap: nowrap;
-
-}
-
-.vertical-menu {
-  min-width: 200px;
+.vertical-menu .content {
   background-color: #eee;
 }
 
@@ -4817,6 +4811,7 @@ span.mat-checkbox-label {
   display: block;
   padding: 12px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .vertical-menu a:hover {
@@ -4824,13 +4819,10 @@ span.mat-checkbox-label {
 }
 
 .vertical-menu a.active {
-  background-color: #4CAF50;
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, .92) 0%, rgba(118, 33, 199, .92) 100%);
   color: white;
 }
 
-.vertical-menu-inner {
-  border: 1px green solid;
-}
 
 .dropdown:hover {
 
@@ -4866,32 +4858,51 @@ span.mat-checkbox-label {
 .home-search {
   padding: 20px 0 10px 0
 }
-.label-price{
-  border:1px #ddd solid;
-  padding:4px;
+
+.label-price {
+  border: 1px #ddd solid;
+  padding: 4px;
   border-radius: 4px;
 
 }
-.mb30{
+
+.mb30 {
   margin-bottom: 30px;
 }
-.rightRs, .leftRs{
+
+.rightRs,
+.leftRs {
   background: transparent;
+
   &:hover {
     background-image: linear-gradient(40deg, rgba(92, 116, 241, .92) 0%, rgba(118, 33, 199, .92) 100%);
-    color:white;
+    color: white;
     font-weight: bold;
-}
+  }
 }
 
-.btn-gradient, .btn-gradient span:after {
+.btn-gradient,
+.btn-gradient span:after {
   background-image: linear-gradient(40deg, rgba(92, 116, 241, .92) 0%, rgba(118, 33, 199, .92) 100%);
   color: #fff;
 }
-.ml15{
+
+.ml15 {
   margin-left: 15px
 }
 
-.clrPurple{
+.clrPurple {
   color: #7030a0;
+}
+.pt30{
+  padding-top: 30px;
+}
+.pb30{
+  padding-bottom: 30px;
+}
+.pt20{
+  padding-top: 20px;
+}
+.pb20{
+  padding-bottom: 20px;
 }

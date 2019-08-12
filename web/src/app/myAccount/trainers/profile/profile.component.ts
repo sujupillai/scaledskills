@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,36 +10,28 @@ export class ProfileComponent implements OnInit {
   expandedTab: number = -1;
   scrollTop;
   tabArray = []
-  constructor() { }
+  routeArray = []
+  returnUrl
+  id: number;
+  private sub: any;
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
 
   ngOnInit() {
-    this.tabArray = [
-      { 'name': 'Personal', 'label': 'Personal', 'displayOrder': '0' },
-      { 'name': 'Credentials', 'label': 'Password', 'displayOrder': '1' },
-      { 'name': 'Keywords', 'label': 'Keywords', 'displayOrder': '2' },
-      { 'name': 'About', 'label': 'About', 'displayOrder': '3' },
-      { 'name': 'Certifications Earned', 'label': 'Certifications Earned', 'displayOrder': '4' },
-      { 'name': 'Social Media', 'label': 'Social Media', 'displayOrder': '5' }
+    this.routeArray = [
+      { 'path': 'basic', 'routeId': '1' },
+      { 'path': 'password', 'routeId': '2' },
+      { 'path': 'keyword', 'routeId': '3' },
+      { 'path': 'about', 'routeId': '4' },
+      { 'path': 'certificate', 'routeId': '5' },
+      { 'path': 'social', 'routeId': '6' },
     ]
-  }
-  activeTab = (number, className: string): void => {
-    this.activeProfileTab = number;
-    const elementList = document.querySelectorAll('.' + className);
-    let element;
-    if (number == -1) {
-      element = elementList[0] as HTMLElement;
-    } else {
-      element = elementList[number] as HTMLElement;
-    }
-    setTimeout(() => {
-      const yCoordinate = element.getBoundingClientRect().top + window.pageYOffset;
-      const yOffset = -50;
-
-      window.scrollTo({
-        top: yCoordinate + yOffset,
-        behavior: 'smooth'
-      });
-    }, 300);
-
+    this.tabArray = [
+      { 'name': 'Personal', 'label': 'basic', 'routeId': '1' },
+      { 'name': 'Credentials', 'label': 'password', 'routeId': '2' },
+      { 'name': 'Keywords', 'label': 'keyword', 'routeId': '3' },
+      { 'name': 'About', 'label': 'about', 'routeId': '4' },
+      { 'name': 'Certifications Earned', 'label': 'certificate', 'routeId': '5' },
+      { 'name': 'Social Media', 'label': 'social', 'routeId': '6' }
+    ]
   }
 }

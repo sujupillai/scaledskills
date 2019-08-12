@@ -1,29 +1,50 @@
-<div class="container">
-  <div class="main-holder-section mb20 p30">
-    <ul class="nav nav-tabs mt20 sticky-top-0">
-      <li *ngFor="let item of tabArray, let index =index" [ngClass]="{active: activeProfileTab==index}">
-        <a href="javascript:void(0)" (click)="activeTab(index, 'scrollToDiv')">{{item.name}}</a>
-      </li>
-    </ul>
-    <div class="clearfix" style="margin-top: 10px">
-      <mat-accordion multi="true">
-        <mat-expansion-panel class="scrollToDiv" *ngFor="let item of tabArray, let index =index"
-          [expanded]="expandedTab === -1 || expandedTab === index">
-          <mat-expansion-panel-header>
-            <mat-panel-title class="title-text">
-              {{item.label}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <app-personal *ngIf="index==0"></app-personal>
-          <app-credentials *ngIf="index==1"></app-credentials>
-          <app-keywords *ngIf="index==2"></app-keywords>
-          <app-about *ngIf="index==3"></app-about>
-          <app-certifications-earned *ngIf="index==4"></app-certifications-earned>
-          <app-social-media *ngIf="index==5"></app-social-media>
-        </mat-expansion-panel>
-      </mat-accordion>
+<div class="">
+  <h2 class="text-center">Profile</h2>
+  <div class="main-holder-section mt20 pt30 pb30">
+    <div class="container">
+      <div class="row row-same-height traineeDashboard">
+        <div class="col-sm-3 col-same-height vertical-menu">
+          <div class="content">
+            <div class="vertical-menu-inner">
+              <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      General
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div *ngFor="let item of tabArray, let index =index">
+                    <a routerLinkActive="active" [routerLink]="[item.label]">{{item.name}}</a>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Trainer
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div *ngFor="let item of tabArray, let index =index">
+                    <a routerLinkActive="active" [routerLink]="[item.label]">{{item.name}}</a>
+                  </div>
+                </mat-expansion-panel>
+
+              </mat-accordion>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9 same-height dashboard-content p30">
+          <div class="content">
+            <div class="clearfix" style="margin-top: 10px">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <br>
+  <br>
 </div>
-<br>
-<br>
