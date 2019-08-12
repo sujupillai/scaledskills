@@ -1,4 +1,38 @@
-<header>
-  <!-- <app-header-top></app-header-top> -->
-  <app-header-middle></app-header-middle>
-</header>
+<nav class="navbar navbar-default navar-middle">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" [routerLink]="['/home']">
+        <span class="logoClr">ScaledSkills</span>
+      </a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li routerLinkActive="active">
+        <a>
+          Training Request
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a>
+          About Us
+        </a>
+      </li>
+      <li routerLinkActive="active" *ngIf="!isLoggedIn">
+        <a [routerLink]="['auth/register']">
+          <span class="glyphicon glyphicon-user"></span> Sign Up
+        </a>
+      </li>
+      <li routerLinkActive="active" *ngIf="!isLoggedIn">
+        <a [routerLink]="['auth/login']">
+          <span class="glyphicon glyphicon-log-in"></span> Login
+        </a>
+      </li>
+      <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()">Log Out</a></li>
+      <li class="dropdown" *ngIf="isLoggedIn">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a [routerLink]="['account']">Profile</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
