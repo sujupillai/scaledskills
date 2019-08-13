@@ -16,10 +16,12 @@ import {FormModule} from '../_forms/form/form.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TermsUseComponent } from './terms-use/terms-use.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { HomeAddComponent } from './home/home-add/home-add.component'
+import { HomeAddComponent } from './home/home-add/home-add.component';
+import { HomeBannerComponent } from './home-banner/home-banner.component';
+import { TestimonialComponent } from './testimonial/testimonial.component'
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent, BannerComponent, CategoryComponent, HomeProgressComponent, WorkshopComponent, HomeWorkshopComponent, HomeLearnerComponent, HomeTrainerComponent, HomeSearchComponent, ContactUsComponent, TermsUseComponent, PrivacyPolicyComponent, HomeAddComponent],
+  declarations: [HomeComponent, AboutComponent, BannerComponent, CategoryComponent, HomeProgressComponent, WorkshopComponent, HomeWorkshopComponent, HomeLearnerComponent, HomeTrainerComponent, HomeSearchComponent, ContactUsComponent, TermsUseComponent, PrivacyPolicyComponent, HomeAddComponent, HomeBannerComponent, TestimonialComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -18,24 +18,7 @@ export class HomeComponent implements AfterViewInit {
     touch: true,
     velocity: 0.2
   }
-  TutorsCarouselConfig: NguCarouselConfig = {
-    grid: { xs: 1, sm: 2, md: 2, lg: 3, all: 0 },
-    load: 3,
-    interval: { timing: 4000, initialDelay: 1000 },
-    loop: true,
-    touch: true,
-    velocity: 0.2
-  }
-  TestimonialCarouselConfig: NguCarouselConfig = {
-    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-    load: 3,
-    interval: { timing: 4000, initialDelay: 1000 },
-    loop: false,
-    touch: false,
-    velocity: 0.2
-  }
   carouselItems = [1, 2, 3];
-  TutorslItems = [1, 2, 3, 4, 5, 6];
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {

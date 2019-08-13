@@ -3,7 +3,6 @@ import { NguCarouselConfig } from '@ngu/carousel';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements AfterViewInit {
   slideNo = 0;
