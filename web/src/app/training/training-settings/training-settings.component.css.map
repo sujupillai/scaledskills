@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "training-settings.component.scss"
+    ],
+    "names": [],
+    "file": "training-settings.component.css"
+}
