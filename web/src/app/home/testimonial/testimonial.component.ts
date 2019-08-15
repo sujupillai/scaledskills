@@ -6,10 +6,10 @@ import { NguCarouselConfig } from '@ngu/carousel';
   styleUrls: ['./testimonial.component.scss']
 })
 export class TestimonialComponent implements AfterViewInit, OnInit {
-  TestimonialDataSource = [1, 2, 3, 4, 5]
+  TestimonialDataSource = [1, 2]
   TestimonialCarouselConfig: NguCarouselConfig = {
     grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-    load: 3,
+    load: 1,
     interval: { timing: 4000, initialDelay: 1000 },
     loop: false,
     touch: false,
