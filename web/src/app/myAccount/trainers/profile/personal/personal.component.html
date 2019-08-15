@@ -5,7 +5,7 @@
         <mat-form-field>
           <input matInput placeholder="First Name" formControlName="firstName" [errorStateMatcher]="matcher">
           <mat-error *ngIf="formControl.firstName.hasError('required')">
-            <strong>required</strong>
+              Required
           </mat-error>
         </mat-form-field>
       </div>
@@ -13,7 +13,7 @@
         <mat-form-field>
           <input matInput placeholder="Last Name" formControlName="lastName" [errorStateMatcher]="matcher">
           <mat-error *ngIf="formControl.lastName.hasError('required')">
-            <strong>required</strong>
+              Required
           </mat-error>
         </mat-form-field>
       </div>
@@ -53,7 +53,7 @@
           <mat-datepicker-toggle matSuffix [for]="dobDateCtrl"></mat-datepicker-toggle>
           <mat-datepicker #dobDateCtrl></mat-datepicker>
           <mat-error *ngIf="formControl.dateOfBirth.hasError('required')">
-            <strong>required</strong>
+              Required
           </mat-error>
         </mat-form-field>
 
