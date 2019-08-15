@@ -5,49 +5,33 @@
       <div class="form-wrapper content">
         <h2>SIGN UP</h2>
         <form [formGroup]="registerForm" autocomplete="off" novalidate>
-          <div class="form-group">
-            <mat-form-field>
-              <input matInput placeholder="First Name" formControlName="firstName">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="lastName">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field>
-              <input matInput placeholder="Email address" formControlName="email">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field>
-              <input matInput placeholder="Password" formControlName="password">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <mat-form-field>
-              <input matInput placeholder="Mobile Number" formControlName="phoneNumber">
-            </mat-form-field>
-          </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-12">
-                <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a
-                    href="javascript:void(0)"><b>T&C</b></a> and <a href="javascript:void(0)"><b>Privacy Policy</b></a>
-                </div>
-              </div>
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastName">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email address" formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Mobile Number" formControlName="phoneNumber">
+          </mat-form-field>
+          <div class="">
+            <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a
+                href="javascript:void(0)"><b>T&C</b></a> and <a href="javascript:void(0)"><b>Privacy Policy</b></a>
             </div>
           </div>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-6">
-                <button type="submit" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGNUP</button>
-              </div>
-              <div class="col-sm-6 text-right">
-                Aleady registered? <button type="button" [routerLink]="['/auth/login']" mat-button
-                  color="accent">LOGIN</button>
-              </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="submit" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGNUP</button>
+            </div>
+            <div class="col-sm-6 text-right">
+              Aleady registered? <button type="button" [routerLink]="['/auth/login']" mat-button
+                color="accent">LOGIN</button>
             </div>
           </div>
         </form>
@@ -56,7 +40,7 @@
     <div class="col-same-height col-sm-6 text-center flexVMiddle bgGray">
       <div class="form-wrapper content">
         <div class="social-opton">
-          <div class="form-group">
+          <div class="">
             <div class="mb-5">
               <button type="button" class="btn btn-fb"><i class="fa fa-facebook"
                   aria-hidden="true"></i>Facebook</button>
@@ -69,7 +53,7 @@
               <button type="button" class="btn btn-gplus"><i class="fa fa-google" aria-hidden="true"></i>GOOGLE</button>
             </div>
           </div>
-          <div class="form-group">
+          <div class="">
             <div class="">
               <hr>
               <div class="text-center">

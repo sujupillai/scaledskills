@@ -36,7 +36,6 @@ p+p {
 }
 
 /* CAROUSEL */
-
 .owl-theme .owl-controls {
   position: absolute;
   right: 0;
@@ -118,7 +117,6 @@ p+p {
 }
 
 /* ======= FOOTER ======= */
-
 .footer {
   position: relative;
   padding: 20px 0;
@@ -170,9 +168,7 @@ p+p {
           &:hover {
             border-color: orange;
           }
-
         }
-
       }
     }
   }
@@ -185,7 +181,6 @@ p+p {
 .view-container {
   background: #fff;
 }
-
 
 .display-flex,
 .flex {
@@ -275,7 +270,6 @@ p+p {
     width: 100% !important;
   }
 }
-
 
 .display-flex {
   display: -webkit-box;
@@ -434,25 +428,6 @@ textarea {
   left: 50%;
   margin-top: 100px;
   margin-left: -170px;
-}
-
-.mat-expansion-panel-content,
-.mat-form-field,
-.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
-.mat-form-field-empty.mat-form-field-label {
-  line-height: 24px;
-}
-
-.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
-  margin-top: 0px !important;
-}
-
-.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
-.mat-form-field-empty.mat-form-field-label,
-span.mat-checkbox-label {
-  color: #484848;
-  line-height: 24px;
-  font-weight: normal;
 }
 
 .mr-15 {
@@ -694,27 +669,42 @@ span.mat-checkbox-label {
   padding: 10px
 }
 
-.home-banner{
+.home-banner {
   background: rgba(118, 33, 199, 0.3);
   padding: 10px 0 0 0;
 }
-.home-search{
-  .mat-form-field-label{
-    color:white;
-    font-size: 24px;
-  };
-  .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label, span.mat-checkbox-label{
-    color:white;
+
+.home-search {
+  .mat-form-field-label {
+    color: white;
     font-size: 24px;
   }
-  .mat-expansion-panel-content,
-.mat-form-field,
+
+  .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+  .mat-form-field-empty.mat-form-field-label,
+  span.mat-checkbox-label {
+    color: white;
+    font-size: 24px;
+  }
+}
+
+.width_100 {
+  width: 100%
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+  margin-top: 0px !important;
+}
+
 .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
-.mat-form-field-empty.mat-form-field-label {
-  line-height: 34px;
-  font-size: 24px;
+.mat-form-field-empty.mat-form-field-label,
+span.mat-checkbox-label {
+  color: #7030a0;
 }
-}
-.width_100{
-    width: 100%
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label,
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  font-size: 18px;
+  font-weight: 500;
+  color:rgba(92, 116, 241, 1)
 }
