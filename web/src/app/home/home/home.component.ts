@@ -1,10 +1,9 @@
-import { Component, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { NguCarouselConfig } from '@ngu/carousel';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements AfterViewInit {
   slideNo = 0;
