@@ -264,11 +264,13 @@ p+p {
     margin-right: 10px;
   }
 }
+
 .social-opton {
   display: inline-block;
   margin: 0px auto;
   width: 100%;
   max-width: 300px;
+
   button {
     width: 100% !important;
   }
@@ -502,9 +504,11 @@ span.mat-checkbox-label {
   font-weight: bold;
   letter-spacing: 2px;
 }
-.navbar{
+
+.navbar {
   margin-bottom: 0;
 }
+
 .navbar-default .navbar-nav>li>a {
   color: #7030a0;
   font-weight: 300;
@@ -647,12 +651,33 @@ span.mat-checkbox-label {
   }
 }
 
-.section-border{
-  border:1px #ddd solid;
+.section-border {
+  border: 1px #ddd solid;
 }
-.bgPurple{
+
+.bgPurple {
   background: rgba(118, 33, 199, 0.92);
 }
-.bgBlue{
-  background:rgba(92, 116, 241, 0.92);
+
+.bgBlue {
+  background: rgba(92, 116, 241, 0.92);
+}
+
+.myPoint {
+  text-align: center;
+
+  li {
+    display: inline-block;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.55);
+    padding: 4px;
+    margin: 0 3px;
+    transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    transition: 0.4s;
+
+    &.active {
+      background: #6b6b6b;
+      transform: scale(1.2);
+    }
+  }
 }
