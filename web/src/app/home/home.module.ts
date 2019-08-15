@@ -5,7 +5,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { NguCarouselModule } from '@ngu/carousel';
 import { AboutComponent } from './about/about.component';
 import { CategoryComponent } from './home/category/category.component';
-import { HomeSearchComponent } from './home/home-search/home-search.component';
 import { FormModule } from '../_forms/form/form.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TermsUseComponent } from './terms-use/terms-use.component';
@@ -15,7 +14,7 @@ import { HomeBannerComponent } from './home-banner/home-banner.component';
 import { TestimonialComponent } from './testimonial/testimonial.component'
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent, CategoryComponent, HomeSearchComponent, ContactUsComponent, TermsUseComponent, PrivacyPolicyComponent, HomeAddComponent, HomeBannerComponent, TestimonialComponent],
+  declarations: [HomeComponent, AboutComponent, CategoryComponent, ContactUsComponent, TermsUseComponent, PrivacyPolicyComponent, HomeAddComponent, HomeBannerComponent, TestimonialComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
