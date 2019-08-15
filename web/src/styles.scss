@@ -698,3 +698,23 @@ span.mat-checkbox-label {
   background: rgba(118, 33, 199, 0.3);
   padding: 10px 0 0 0;
 }
+.home-search{
+  .mat-form-field-label{
+    color:white;
+    font-size: 24px;
+  };
+  .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label, span.mat-checkbox-label{
+    color:white;
+    font-size: 24px;
+  }
+  .mat-expansion-panel-content,
+.mat-form-field,
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-empty.mat-form-field-label {
+  line-height: 34px;
+  font-size: 24px;
+}
+}
+.width_100{
+    width: 100%
+}

@@ -1,5 +1,23 @@
 <app-home-banner></app-home-banner>
-<!-- <app-home-search class="clearfix"></app-home-search> -->
 <app-home-add></app-home-add>
+<section class="clearfix bg-gradient">
+  <div class="container">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="flex clrWhite home-search flexVMiddle">
+        <form novalidate autocomplete="off" class="width_100">
+          <mat-form-field>
+            <input matInput placeholder="Search Training">
+          </mat-form-field>
+        </form>
+
+        <button type="button" class="search-btn" mat-button color="accent">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+</section>
 <app-category></app-category>
 <app-testimonial></app-testimonial>
