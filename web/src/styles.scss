@@ -264,6 +264,16 @@ p+p {
     margin-right: 10px;
   }
 }
+.social-opton {
+  display: inline-block;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 300px;
+  button {
+    width: 100% !important;
+  }
+}
+
 
 .display-flex {
   display: -webkit-box;

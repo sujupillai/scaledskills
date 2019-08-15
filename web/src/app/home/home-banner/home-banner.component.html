@@ -1,9 +1,12 @@
 <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="carouselItems" class="home-banner">
-  <div *nguCarouselDef="let item;" class="item">
-    <div class="text-center">
-      <img src="../../../assets/images/banner/home/{{item.name}}">
+  <div class="">
+    <div *nguCarouselDef="let item;" class="item">
+      <div class="text-center container">
+        <img src="../../../assets/images/banner/home/{{item.name}}" class="img-responsive">
+      </div>
     </div>
   </div>
+
   <button NguCarouselNext class="rightRs"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
   <button NguCarouselPrev class="leftRs"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></button>
 </ngu-carousel>

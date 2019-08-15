@@ -1,8 +1,9 @@
 <div class="container section-padding">
-  <h2>SIGN UP</h2>
+
   <div class="row-same-height row">
     <div class="col-same-height col-sm-6 flexVMiddle">
       <div class="form-wrapper content">
+        <h2>SIGN UP</h2>
         <form [formGroup]="registerForm" autocomplete="off" novalidate>
           <div class="form-group">
             <mat-form-field>
@@ -33,7 +34,8 @@
             <div class="row">
               <div class="col-sm-12">
                 <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a
-                    href="javascript:void(0)"><b>T&C</b></a> and <a href="javascript:void(0)"><b>Privacy Policy</b></a></div>
+                    href="javascript:void(0)"><b>T&C</b></a> and <a href="javascript:void(0)"><b>Privacy Policy</b></a>
+                </div>
               </div>
             </div>
           </div>
@@ -43,7 +45,8 @@
                 <button type="submit" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGNUP</button>
               </div>
               <div class="col-sm-6 text-right">
-                Aleady registered? <button type="button" [routerLink]="['/auth/login']" mat-button color="accent">LOGIN</button>
+                Aleady registered? <button type="button" [routerLink]="['/auth/login']" mat-button
+                  color="accent">LOGIN</button>
               </div>
             </div>
           </div>
