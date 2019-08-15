@@ -12,7 +12,8 @@
     <button NguCarouselPrev class="leftRs"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></button> -->
     <ul class="myPoint" NguCarouselPoint>
       <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
-        (click)="myCarousel.moveTo(j)"></li>
-      </ul>
+        (click)="myCarousel.moveTo(j)">
+      </li>
+    </ul>
   </ngu-carousel>
 </section>

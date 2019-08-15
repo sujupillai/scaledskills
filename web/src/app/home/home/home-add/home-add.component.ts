@@ -14,11 +14,11 @@ export class HomeAddComponent implements AfterViewInit {
     grid: { xs: 1, sm: 2, md: 2, lg: 4, all: 0 },
     load: 4,
     interval: { timing: 3000, initialDelay: 1000 },
-    loop: true,
+    loop: false,
     touch: true,
     velocity: 0.2
   }
-  TutorslItems = [1, 2, 3, 4, 5, 6];
+  TutorslItems = [1,2,3,4,5,6];
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
