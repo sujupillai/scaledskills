@@ -678,12 +678,6 @@ textarea {
   margin-top: 0px !important;
 }
 
-.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
-.mat-form-field-empty.mat-form-field-label,
-span.mat-checkbox-label {
-  color: #7030a0;
-}
-
 .mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label,
 .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
   font-size: 18px;
@@ -750,5 +744,15 @@ span.mat-checkbox-label {
         }
       }
     }
+  }
+}
+
+.profile-wrap{
+  margin-bottom: 20px;
+  min-height: 400px;
+  .content-section{
+    box-shadow: 0 3px 1px -2px rgba(92, 116, 241, 0.92), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    padding-top:30px;
+    padding-bottom:30px;
   }
 }

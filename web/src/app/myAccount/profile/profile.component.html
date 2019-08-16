@@ -1,10 +1,10 @@
 <div class="container">
   <h2 class="text-center">Profile</h2>
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="mat-accordion-plain">
+  <div class="row row-same-height profile-wrap">
+    <div class="col-same-height col-sm-3">
+      <div class="mat-accordion-plain content">
         <mat-accordion>
-          <mat-expansion-panel>
+          <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 General
@@ -29,8 +29,10 @@
         </mat-accordion>
       </div>
     </div>
-    <div class="col-sm-9">
-      <router-outlet></router-outlet>
+    <div class="col-same-height col-sm-9 content-section">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
