@@ -3,29 +3,36 @@
     <div class="row">
       <br>
       <div class="col-sm-4">
-        <mat-card>
-          <mat-card-title class="text-center">GENERAL</mat-card-title>
-          <mat-card-content>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </mat-card-content>
-        </mat-card>
+        <a [routerLink]="['/home/about']">
+          <mat-card>
+            <mat-card-title>GENERAL</mat-card-title>
+            <mat-card-content>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            </mat-card-content>
+          </mat-card>
+        </a>
       </div>
       <div class="col-sm-4">
-        <mat-card>
-          <mat-card-title class="text-center">TRAINERS</mat-card-title>
-          <mat-card-content>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </mat-card-content>
-        </mat-card>
+        <a [routerLink]="['/home/about']">
+          <mat-card>
+            <mat-card-title>TRAINERS</mat-card-title>
+            <mat-card-content>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            </mat-card-content>
+          </mat-card>
+        </a>
       </div>
       <div class="col-sm-4">
-        <mat-card>
-          <mat-card-title class="text-center">ORGANIZATION</mat-card-title>
-          <mat-card-content>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </mat-card-content>
-        </mat-card>
+        <a [routerLink]="['/home/about']">
+          <mat-card>
+            <mat-card-title>ORGANIZATION</mat-card-title>
+            <mat-card-content>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            </mat-card-content>
+          </mat-card>
+        </a>
       </div>
     </div>
   </div>
+  <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
 </section>
