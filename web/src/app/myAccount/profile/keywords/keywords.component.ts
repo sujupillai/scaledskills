@@ -4,8 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-keywords',
-  templateUrl: './keywords.component.html',
-  styleUrls: ['./keywords.component.scss']
+  templateUrl: './keywords.component.html'
 })
 export class KeywordsComponent implements OnInit {
   keywordForm: FormGroup;
