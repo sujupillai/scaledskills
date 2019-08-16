@@ -3,7 +3,7 @@
     <div class="row">
       <br>
       <div class="col-sm-4">
-        <a [routerLink]="['/home/about']">
+        <a [routerLink]="['general']">
           <mat-card>
             <mat-card-title>GENERAL</mat-card-title>
             <mat-card-content>
@@ -13,7 +13,7 @@
         </a>
       </div>
       <div class="col-sm-4">
-        <a [routerLink]="['/home/about']">
+        <a>
           <mat-card>
             <mat-card-title>TRAINERS</mat-card-title>
             <mat-card-content>
@@ -23,7 +23,7 @@
         </a>
       </div>
       <div class="col-sm-4">
-        <a [routerLink]="['/home/about']">
+        <a>
           <mat-card>
             <mat-card-title>ORGANIZATION</mat-card-title>
             <mat-card-content>
@@ -34,5 +34,4 @@
       </div>
     </div>
   </div>
-  <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
 </section>

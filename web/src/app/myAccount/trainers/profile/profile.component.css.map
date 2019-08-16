@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,cAAc,CAAC;EACb,cAAc,EAAE,GAAG;CACpB;;AACD,AAAA,eAAe,CAAC;EAChB,aAAa,EAAE,IAAI;CAClB;;AACD,AAAA,0BAA0B,CAAC;EACzB,OAAO,EAAE,eAAe;CACzB;;AACD,AAAA,eAAe,CAAC;EACd,cAAc,EAAE,MAAM;CACvB;;AACD,AAAA,YAAY,CAAC;EACX,MAAM,EAAE,IAAI;EACZ,IAAI,EAAE,cAAc;CACrB;;AACD,AAAA,qBAAqB,CAAC;EACpB,IAAI,EAAE,QAAQ;CACf",
-    "sources": [
-        "profile.component.scss"
-    ],
-    "names": [],
-    "file": "profile.component.css"
-}

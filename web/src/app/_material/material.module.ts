@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 
 import {
@@ -62,7 +60,6 @@ import {
     MatSnackBarModule,
     MatExpansionModule,
     MatSliderModule,
-
     MatSlideToggleModule,
     MatGridListModule,
     MatProgressBarModule,

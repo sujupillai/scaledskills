@@ -2,15 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MyAccountRoutingModule } from './my-account-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MaterialModule} from '../_material/material.module';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MaterialCardModule } from '../_material/material.card.module';
+import { AccountComponent } from './my-account.component';
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, AccountComponent],
   imports: [
     CommonModule,
     MyAccountRoutingModule,
-    MaterialModule,
-    CKEditorModule
+    MaterialCardModule,
   ]
 })
 export class MyAccountModule { }

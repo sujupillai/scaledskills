@@ -674,9 +674,34 @@ textarea {
   padding: 10px 0 0 0;
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+  margin-top: 0px !important;
+}
+
+.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+.mat-form-field-empty.mat-form-field-label,
+span.mat-checkbox-label {
+  color: #7030a0;
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label,
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(92, 116, 241, 1)
+}
+
 .home-search {
   .mat-form-field-label {
     color: white;
+    font-size: 24px;
+  }
+
+  .mat-form-field {
+    line-height: 40px;
+  }
+
+  input.mat-input-element {
     font-size: 24px;
   }
 
@@ -692,19 +717,38 @@ textarea {
   width: 100%
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
-  margin-top: 0px !important;
-}
 
-.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
-.mat-form-field-empty.mat-form-field-label,
-span.mat-checkbox-label {
-  color: #7030a0;
-}
+.mat-accordion-plain {
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
 
-.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label,
-.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  font-size: 18px;
-  font-weight: 500;
-  color:rgba(92, 116, 241, 1)
+  .mat-expansion-panel {
+    margin: 0px !important;
+    box-shadow: none !important;
+  }
+
+  .mat-expansion-panel-header {
+    height: 48px !important;
+
+    &:hover,
+    &.mat-expanded {
+      background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%) !important;
+      height: 48px !important;
+
+    }
+  }
+
+  .accordion-nav {
+    li {
+      padding: 5px 0;
+
+      a {
+        // color: #7030a0;
+        color: #444;
+
+        &.active {
+          color: rgba(92, 116, 241, 1)
+        }
+      }
+    }
+  }
 }
