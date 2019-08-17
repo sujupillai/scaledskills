@@ -16,16 +16,6 @@
               </li>
             </ul>
           </mat-expansion-panel>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                General
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div *ngFor="let item of tabArray, let index =index">
-              <a routerLinkActive="active" [routerLink]="[item.label]">{{item.name}}</a>
-            </div>
-          </mat-expansion-panel>
         </mat-accordion>
       </div>
     </div>

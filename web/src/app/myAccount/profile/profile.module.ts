@@ -9,12 +9,14 @@ import { KeywordsComponent } from './keywords/keywords.component';
 import { AboutComponent } from './about/about.component';
 import { CertificationsComponent } from './certifications/certifications.component';
 import { SocialComponent } from './social/social.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    FormModule
+    FormModule,
+    AngularEditorModule
   ]
 })
 export class ProfileModule { }
