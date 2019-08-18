@@ -34,6 +34,13 @@
         </div>
         <div class="col-sm-6">
           <mat-form-field>
+            <input matInput placeholder="Number of participant" formControlName="participant">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field>
             <input matInput placeholder="Training Summary" formControlName="trainingSummary">
           </mat-form-field>
         </div>
@@ -42,6 +49,67 @@
         <div class="col-sm-12">
           <mat-label>Description</mat-label>
           <angular-editor formControlName="description" [config]="descriptionConfig"></angular-editor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input matInput placeholder="Budget" formControlName="budget">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div formGroupName="address">
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="countryId">
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <mat-label>State</mat-label>
+                <mat-select formControlName="stateId">
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city">
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-6">
+              <div>
+                <mat-form-field>
+                  <input matInput placeholder="zip Code" formControlName="zipCode">
+                </mat-form-field>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field>
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let item of keywordList" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(item)">
+                {{item.name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Keywords" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
