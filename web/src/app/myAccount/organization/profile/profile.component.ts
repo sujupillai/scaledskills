@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this._FormBuilder.group({
       organizationName: ['', Validators.required],
       ownerName: ['', Validators.required],
+      file:[],
       address: this._FormBuilder.group({
         address1: [''],
         address2: [''],
