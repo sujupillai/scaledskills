@@ -31,27 +31,10 @@ export class AboutComponent implements OnInit {
         coursesOffered: [''],
         language: ['', Validators.required],
         fileUrl: [null, Validators.required],
-        fileName: [null, Validators.required],
       }
     )
     if (callback) {
       callback()
-    }
-  }
-  onFileChange(event) {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
-      let curentFile =event.currentTarget.value;
-      var fileName = curentFile.substring(curentFile.lastIndexOf('/')+1);
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.aboutForm.get('fileName').setValue(fileName)
-        this.aboutForm.patchValue({
-          fileUrl: reader.result
-        });
-        this.cd.markForCheck();
-      };
     }
   }
   handleSubmit = (): void => {

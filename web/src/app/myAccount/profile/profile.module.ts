@@ -10,8 +10,9 @@ import { AboutComponent } from './about/about.component';
 import { CertificationsComponent } from './certifications/certifications.component';
 import { SocialComponent } from './social/social.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FileuploadComponent } from '../../_shared/widgets/fileupload.component';
 @NgModule({
-  declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent],
+  declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
