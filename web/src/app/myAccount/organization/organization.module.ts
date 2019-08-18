@@ -6,13 +6,13 @@ import { FormModule } from '../../_forms/form/form.module';
 import { ProfileComponent } from './profile/profile.component';
 import { MembersComponent } from './members/members.component';
 import { BankDetailsComponent } from './bank-details/bank-details.component';
-import { BasicComponent } from './profile/basic/basic.component';
+import { OrgBasicComponent } from './profile/basic/basic.component';
 import { OrgAboutComponent } from './profile/about/about.component';
 import { OrgSocialComponent } from './profile/social/social.component'
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
-  declarations: [OrganizationComponent, ProfileComponent, MembersComponent, BankDetailsComponent, BasicComponent, OrgAboutComponent, OrgSocialComponent],
+  declarations: [OrganizationComponent, ProfileComponent, MembersComponent, BankDetailsComponent, OrgBasicComponent, OrgAboutComponent, OrgSocialComponent],
   imports: [
     CommonModule,
     OrganizationRoutingModule,

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-basic',
+  selector: 'app-org-basic',
   templateUrl: './basic.component.html',
 })
-export class BasicComponent implements OnInit {
+export class OrgBasicComponent implements OnInit {
   orgBasicForm: FormGroup
   constructor(private _FormBuilder: FormBuilder) { }
 
