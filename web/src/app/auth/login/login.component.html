@@ -6,10 +6,10 @@
         <h2>LOGIN</h2>
         <form [formGroup]="loginForm" autocomplete="off" novalidate>
           <mat-form-field>
-            <input matInput placeholder="User Name" formControlName="userName">
+            <input matInput placeholder="Email" formControlName="userName">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Password" formControlName="password">
+            <input matInput placeholder="Password" formControlName="confirmPassword">
           </mat-form-field>
           <div class="row form-group">
             <div class="col-sm-6">
@@ -30,7 +30,7 @@
                 </span>
 
                 <button type="button" mat-stroked-button color="primary" [routerLink]="['/auth/register']">
-                  SIGNUP
+                  SIGN UP
                 </button>
               </div>
             </div>

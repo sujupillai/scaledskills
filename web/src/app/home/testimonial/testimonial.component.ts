@@ -2,8 +2,7 @@ import { Component, AfterViewInit, ChangeDetectorRef, OnInit } from '@angular/co
 import { NguCarouselConfig } from '@ngu/carousel';
 @Component({
   selector: 'app-testimonial',
-  templateUrl: './testimonial.component.html',
-  styleUrls: ['./testimonial.component.scss']
+  templateUrl: './testimonial.component.html'
 })
 export class TestimonialComponent implements AfterViewInit, OnInit {
   TestimonialDataSource = [1, 2]

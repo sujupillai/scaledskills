@@ -18,16 +18,20 @@
             <input matInput placeholder="Password" formControlName="password">
           </mat-form-field>
           <mat-form-field>
+            <input matInput placeholder="Confirm Password" formControlName="password">
+          </mat-form-field>
+          <mat-form-field>
             <input matInput placeholder="Mobile Number" formControlName="phoneNumber">
           </mat-form-field>
           <div class="">
-            <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a
-                href="javascript:void(0)"><b>T&C</b></a> and <a href="javascript:void(0)"><b>Privacy Policy</b></a>
+            <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a [routerLink]="['/home/terms']"><b>T&C</b></a>
+               and
+               <a [routerLink]="['/home/privacy']"><b>Privacy Policy</b></a>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-6">
-              <button type="submit" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGNUP</button>
+              <button type="submit" mat-raised-button color="primary" (click)="handleSubmitForm()">SIGN UP</button>
             </div>
             <div class="col-sm-6 text-right">
               <span class="mar-r-15">
