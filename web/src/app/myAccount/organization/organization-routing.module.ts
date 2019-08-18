@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OrganizationComponent } from './organization.component';
 import { MembersComponent } from './members/members.component';
-import { BankDetailsComponent } from './bank-details/bank-details.component';
+import { OrgBankDetailsComponent } from './bank-details/bank-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrgBasicComponent } from './profile/basic/basic.component';
 import { OrgAboutComponent } from './profile/about/about.component';
@@ -30,7 +30,7 @@ const routes = [
         path: 'member', component: MembersComponent,
       },
       {
-        path: 'bank', component: BankDetailsComponent,
+        path: 'bank', component: OrgBankDetailsComponent,
       }
     ]
   },
