@@ -4,6 +4,10 @@ import { ErrorComponent } from './_shared/error/error.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
+    path: 'trainingRequest',
+    loadChildren: () => import('./training-request/training-request.module').then(mod => mod.TrainingRequestModule),
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
   },

@@ -1,0 +1,55 @@
+<br>
+<br>
+<div class="container">
+  <form [formGroup]="requestForm" autocomplete="off" novalidate>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Training Need</mat-label>
+            <mat-select formControlName="trainingNeed">
+              <mat-option value="0">Select</mat-option>
+              <mat-option value="1">Corporate</mat-option>
+              <mat-option value="2">Individual</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Training Type</mat-label>
+            <mat-select formControlName="trainingType">
+              <mat-option value="0">Select</mat-option>
+              <mat-option value="1">Online</mat-option>
+              <mat-option value="2">Classroom</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input matInput placeholder="Company Name" formControlName="companyName">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input matInput placeholder="Training Summary" formControlName="trainingSummary">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-12">
+          <mat-label>Description</mat-label>
+          <angular-editor formControlName="description" [config]="descriptionConfig"></angular-editor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-right">
+          <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Submit</button>
+          <button mat-raised-button color="warn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

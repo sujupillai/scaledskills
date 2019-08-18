@@ -10,15 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './_shared/header/header.component';
 import { FooterComponent } from './_shared/footer/footer.component';
-
 import { ErrorComponent } from './_shared/error/error.component';
-
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
