@@ -1,0 +1,93 @@
+<form [formGroup]="orgBasicForm" autocomplete="off" novalidate>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Organization Name" formControlName="organizationName"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.organizationName.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Contact Person or Owner Name" formControlName="ownerName"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.ownerName.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input readonly matInput placeholder="Base Url" formControlName="baseUrl">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Enter your Url" formControlName="url" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.url.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Email address" formControlName="email" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.email.hasError('email') && !formControl.email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="formControl.email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="Contact Number" formControlName="phoneNumber" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.phoneNumber.hasError('minlength')">
+            Phone Number should be atleast 10 characters.
+          </mat-error>
+          <mat-error *ngIf="formControl.phoneNumber.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="GST" formControlName="gst" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.gst.hasError('minlength')">
+            GST should be atleast 15 digits.
+          </mat-error>
+          <mat-error *ngIf="formControl.gst.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field>
+          <input matInput placeholder="PAN" formControlName="pan" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="formControl.pan.hasError('minlength')">
+            PAN Number should be atleast 10 characters.
+          </mat-error>
+          <mat-error *ngIf="formControl.pan.hasError('required')">
+            Required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 text-right">
+        <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>
+        <button mat-raised-button color="warn">Cancel</button>
+      </div>
+    </div>
+  </div>
+</form>

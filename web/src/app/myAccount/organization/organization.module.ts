@@ -6,14 +6,16 @@ import {FormModule } from '../../_forms/form/form.module';
 import { ProfileComponent } from './profile/profile.component';
 import { MembersComponent } from './members/members.component';
 import { BankDetailsComponent } from './bank-details/bank-details.component';
-import { CommunicationComponent } from './communication/communication.component'
+import { BasicComponent } from './profile/basic/basic.component';
+import { AboutComponent } from './profile/about/about.component';
+import { SocialComponent } from './profile/social/social.component'
 
 @NgModule({
-  declarations: [OrganizationComponent, ProfileComponent, MembersComponent, BankDetailsComponent, CommunicationComponent],
+  declarations: [OrganizationComponent, ProfileComponent, MembersComponent, BankDetailsComponent, BasicComponent, AboutComponent, SocialComponent],
   imports: [
     CommonModule,
     OrganizationRoutingModule,
-    FormModule
+    FormModule,
   ]
 })
 export class OrganizationModule { }

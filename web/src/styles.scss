@@ -867,29 +867,46 @@ textarea {
 }
 
 .accordion-like-nav {
-  li {
+  >li {
     line-height: 48px !important;
-    padding:0 24px;
-    a{
+
+    a {
       display: block;
-      width:100%;
-      color:#000
+      width: 100%;
+      color: #000;
+      padding: 0 24px;
+
+
     }
-    &.active{
+
+    &.active {
       background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%) !important;
-      a{
-        color:#fff
+
+      a {
+        color: #fff
+      }
+    }
+
+    .accordion-nav {
+      background: white;
+      color: #000;
+
+      li {
+        a {
+          color: #000
+        }
       }
     }
   }
 }
 
-.image-container{
-  border:1px #ddd dotted;
-  width:100%;
+.image-container {
+  border: 1px #ddd dotted;
+  width: 100%;
   height: 200px;
   margin-bottom: 20px;
-  img{
+
+  img {
     max-height: 100%
   }
 

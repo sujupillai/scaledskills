@@ -18,6 +18,9 @@ import { FileuploadComponent } from '../../_shared/widgets/fileupload.component'
     ProfileRoutingModule,
     FormModule,
     AngularEditorModule
+  ],
+  exports: [
+    ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent
   ]
 })
 export class ProfileModule { }
