@@ -1,0 +1,25 @@
+<div class="container">
+  <h2 class="text-center">Organization</h2>
+  <div class="row row-same-height profile-wrap">
+    <div class="col-same-height col-sm-3">
+      <div class="mat-accordion-plain content">
+        <ul class="accordion-like-nav">
+          <li routerLinkActive="active">
+            <a [routerLink]="['profile']">Profile</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['member']">Members</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['bank']">Bank Details</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-same-height col-sm-9 content-section">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

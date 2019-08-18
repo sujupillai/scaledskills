@@ -14,6 +14,10 @@ const routes = [
     path: 'dashboard/general',
     loadChildren: () => import('./general/general.module').then(mod => mod.GeneralModule),
   },
+  {
+    path: 'dashboard/organization',
+    loadChildren: () => import('./organization/organization.module').then(mod => mod.OrganizationModule),
+  },
 ];
 
 @NgModule({

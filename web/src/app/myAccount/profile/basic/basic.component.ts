@@ -69,7 +69,6 @@ export class BasicComponent implements OnInit {
 
   get formControl() { return this.profileForm.controls }
   handleSubmit = () => {
-    debugger
     let url = profileConstant.ApiPath.userBasic;
     let postData = {
       ...this.profileForm.value,
