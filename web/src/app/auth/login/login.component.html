@@ -11,12 +11,12 @@
           <mat-form-field>
             <input matInput placeholder="Password" formControlName="password">
           </mat-form-field>
-          <div class="row">
+          <div class="row form-group">
             <div class="col-sm-6">
               <mat-checkbox formControlName="isRememberMe">Remember me</mat-checkbox>
             </div>
             <div class="col-sm-6 text-right">
-              <button type="button" mat-stroked-button color="primary">Forgot Password?</button>
+              <button type="button" mat-stroked-button color="">Forgot Password?</button>
             </div>
           </div>
           <div class="form-group">
@@ -25,8 +25,13 @@
                 <button type="submit" mat-raised-button color="primary" (click)="handleLogin()">LOGIN</button>
               </div>
               <div class="col-sm-6 text-right">
-                New to ScaledSkills? <button type="button" mat-button color="accent"
-                  [routerLink]="['/auth/register']">SIGNUP</button>
+                <span class="mar-r-15">
+                  New to ScaledSkills?
+                </span>
+
+                <button type="button" mat-stroked-button color="primary" [routerLink]="['/auth/register']">
+                  SIGNUP
+                </button>
               </div>
             </div>
           </div>
