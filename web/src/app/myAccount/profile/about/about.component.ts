@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 @Component({
@@ -13,14 +13,16 @@ export class AboutComponent implements OnInit {
     minHeight: '5rem',
     placeholder: 'Bio...',
     translate: 'no',
+
     toolbarPosition: 'top',
     defaultFontName: 'Times New Roman',
   };
-  constructor(private _FormBuilder: FormBuilder) { }
+  constructor(private _FormBuilder: FormBuilder, private cd: ChangeDetectorRef) { }
   aboutForm: FormGroup
   ngOnInit() {
     this.createForm(() => { })
   }
+
   createForm = (callback) => {
     this.aboutForm = this._FormBuilder.group(
       {
@@ -28,10 +30,28 @@ export class AboutComponent implements OnInit {
         bio: [''],
         coursesOffered: [''],
         language: ['', Validators.required],
+        fileUrl: [null, Validators.required],
+        fileName: [null, Validators.required],
       }
     )
     if (callback) {
       callback()
+    }
+  }
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      let curentFile =event.currentTarget.value;
+      var fileName = curentFile.substring(curentFile.lastIndexOf('/')+1);
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.aboutForm.get('fileName').setValue(fileName)
+        this.aboutForm.patchValue({
+          fileUrl: reader.result
+        });
+        this.cd.markForCheck();
+      };
     }
   }
   handleSubmit = (): void => {
