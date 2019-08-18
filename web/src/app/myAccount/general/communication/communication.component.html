@@ -1,0 +1,41 @@
+<br>
+<br>
+<div class="container">
+  <form [formGroup]="communicationForm" autocomplete="off" novalidate>
+    <div class="form-group">
+      <div class="row form-group">
+        <div class="col-sm-12">
+          <mat-label class="mar-r-15">Send this message to</mat-label>
+          <div class="clearfix">
+            <mat-radio-group formControlName="sendTo">
+              <mat-radio-button value="1">All members of the organization</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-12">
+          <mat-form-field>
+            <input matInput placeholder="Subject" formControlName="subject" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="formControl.subject.hasError('required')">
+              Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-12">
+          <mat-label class="mar-r-15">Message</mat-label>
+          <angular-editor formControlName="message" [config]="messageConfig"></angular-editor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-right">
+          <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Submit</button>
+          <button mat-raised-button color="warn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
