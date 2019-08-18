@@ -22,6 +22,16 @@ export class BasicComponent implements OnInit {
       phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
       gst: ['', [Validators.minLength(15)]],
       pan: ['', [Validators.minLength(10)]],
+      address: this._FormBuilder.group({
+        address1: [''],
+        address2: [''],
+        address3: [''],
+        city: [''],
+        zipCode: [''],
+        street: [''],
+        countryId: [''],
+        stateId: [''],
+      }),
     })
     if (callback) {
       callback()

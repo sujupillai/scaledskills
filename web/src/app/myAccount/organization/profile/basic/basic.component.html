@@ -21,6 +21,73 @@
       </div>
     </div>
     <div class="row">
+        <div formGroupName="address">
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="address1" formControlName="address1">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="address2" formControlName="address2">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="address3" formControlName="address3">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="zipCode" formControlName="zipCode">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <mat-label>city</mat-label>
+                <mat-select formControlName="city">
+                  <mat-option value="">Select</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <mat-label>country</mat-label>
+                <mat-select formControlName="countryId">
+                  <mat-option value="">Select</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              <mat-form-field>
+                <mat-label>State</mat-label>
+                <mat-select formControlName="stateId">
+                  <mat-option value="">Select</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="row">
       <div class="col-sm-6">
         <mat-form-field>
           <input readonly matInput placeholder="Base Url" formControlName="baseUrl">
@@ -83,6 +150,16 @@
         </mat-form-field>
       </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <mat-label>Image</mat-label>
+          </div>
+          <div>
+            <!-- <vo-mat-fileUpload></vo-mat-fileUpload> -->
+          </div>
+        </div>
+      </div>
     <div class="row">
       <div class="col-sm-12 text-right">
         <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>

@@ -3,50 +3,23 @@
   <div class="row row-same-height profile-wrap">
     <div class="col-same-height col-sm-3">
       <div class="mat-accordion-plain content">
-        <!-- <ul class="accordion-like-nav">
-          <li routerLinkActive="active">
-            <a href="javascript:void(0)">Profile</a>
-            <ul class="accordion-nav">
-                <li *ngFor="let item of tabArray, let index =index">
-                  <a routerLinkActive="active" [routerLink]="[item.label]">{{item.name}}</a>
-                </li>
-              </ul>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['member']">Members</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['bank']">Bank Details</a>
-          </li>
-        </ul> -->
-        <!-- <mat-accordion>
-          <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Profile
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <ul class="accordion-nav">
-              <li>
-                <a routerLinkActive="active" [routerLink]="['basic']">Basic</a>
-              </li>
-            </ul>
-          </mat-expansion-panel>
-        </mat-accordion> -->
         <ul class="accordion-like-nav">
-          <li routerLinkActive="active">
-            <a [routerLink]="['profile']">Profile</a>
-            <ul>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['profile']">Profile</a>
+            <ul class="accordion-nav">
               <li>
-                <a [routerLink]="['profile/basic']">Basic</a>
+                <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/about']">About</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/social']">Social</a>
               </li>
             </ul>
           </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['member']">Members</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['bank']">Bank Details</a>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['bank']">Bank Details</a>
           </li>
         </ul>
       </div>

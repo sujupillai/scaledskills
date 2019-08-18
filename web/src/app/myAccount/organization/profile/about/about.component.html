@@ -1,1 +1,22 @@
-<p>about works!</p>
+<form autocomplete="off" novalidate [formGroup]="aboutForm">
+    <div class="form-group">
+      <div class="row form-group">
+        <div class="col-sm-12">
+          <mat-label>About</mat-label>
+          <angular-editor formControlName="bio" [config]="config"></angular-editor>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-12">
+            <mat-label>Courses Offered</mat-label>
+          <angular-editor formControlName="coursesOffered" [config]="coursesOffered"></angular-editor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-right">
+          <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>
+          <button mat-raised-button color="warn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
