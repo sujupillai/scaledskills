@@ -509,10 +509,6 @@ textarea {
   background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
 }
 
-.home-search {
-  padding: 20px 0 10px 0;
-}
-
 .label-price {
   border: 1px #ddd solid;
   padding: 4px;
@@ -686,17 +682,19 @@ textarea {
 }
 
 .home-search {
+  padding: 20px 0 10px 0;
+
   .mat-form-field-label {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .mat-form-field {
-    line-height: 40px;
+    line-height: 42px;
   }
 
   input.mat-input-element {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
@@ -747,16 +745,18 @@ textarea {
   }
 }
 
-.profile-wrap{
+.profile-wrap {
   margin-bottom: 20px;
   min-height: 400px;
-  .content-section{
+
+  .content-section {
     box-shadow: 0 3px 1px -2px rgba(92, 116, 241, 0.92), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    padding-top:30px;
-    padding-bottom:30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 }
-.ck-content.ck-editor__editable{
+
+.ck-content.ck-editor__editable {
   min-height: 150px;
 }
 
@@ -842,6 +842,7 @@ textarea {
   background-repeat: no-repeat;
   background-position: center;
 }
-.input_fileupload--hidden{
-  display:none!important;
+
+.input_fileupload--hidden {
+  display: none !important;
 }
