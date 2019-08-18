@@ -6,31 +6,15 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   templateUrl: './about.component.html'
 })
 export class AboutComponent implements OnInit {
-  htmlContent = '';
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
     height: '15rem',
     minHeight: '5rem',
-    placeholder: 'Enter text here...',
+    placeholder: 'Bio...',
     translate: 'no',
     toolbarPosition: 'top',
     defaultFontName: 'Times New Roman',
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote",
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
-      },
-    ]
   };
   constructor(private _FormBuilder: FormBuilder) { }
   aboutForm: FormGroup
@@ -40,9 +24,10 @@ export class AboutComponent implements OnInit {
   createForm = (callback) => {
     this.aboutForm = this._FormBuilder.group(
       {
-        'profileURL': ['', Validators.required],
-        'bio': [''],
-        'language': ['', Validators.required],
+        profileURL: ['', Validators.required],
+        bio: [''],
+        coursesOffered: [''],
+        language: ['', Validators.required],
       }
     )
     if (callback) {
