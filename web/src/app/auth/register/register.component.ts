@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../_service';
 import { first } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from '../../_shared/confirmation-dialog/confirmation-dialog.component';
+import { MustMatch } from '../../_helpers/_validators/must-match.validator'
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
@@ -22,14 +23,17 @@ export class RegisterComponent implements OnInit {
   createForm = (callback: any): void => {
     this.registerForm = this._FormBuilder.group(
       {
-        "firstName": ['', Validators.required],
-        "lastName": ['', Validators.required],
-        "email": ['', Validators.required],
-        "phoneNumber": ['', Validators.required],
-        "userName": '',
-        "password": ['', Validators.required],
-        "confirmPassword": ['', Validators.required],
-        "id": 0
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phoneNumber: ['', Validators.required],
+        userName: '',
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        confirmPassword: ['', Validators.required],
+        id: 0
+      },
+      {
+        validator: MustMatch('password', 'confirmPassword'),
       }
     )
     if (callback) {

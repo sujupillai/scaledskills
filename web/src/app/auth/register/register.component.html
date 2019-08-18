@@ -1,5 +1,4 @@
 <div class="container section-padding">
-
   <div class="row-same-height row">
     <div class="col-same-height col-sm-6 flexVMiddle">
       <div class="form-wrapper content">
@@ -15,18 +14,31 @@
             <input matInput placeholder="Email address" formControlName="email">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Password" formControlName="password">
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error *ngIf="formControl.password.hasError('minlength')">
+              Password should be atleast 5 characters.
+            </mat-error>
+            <mat-error *ngIf="formControl.password.hasError('required')">
+              Required
+            </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Confirm Password" formControlName="password">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+            <mat-error *ngIf="formControl.confirmPassword.hasError('mustMatch')">
+              Password and confirm password should be same.
+            </mat-error>
+            <mat-error *ngIf="formControl.confirmPassword.hasError('required')">
+              Required
+            </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Mobile Number" formControlName="phoneNumber">
           </mat-form-field>
           <div class="">
-            <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a [routerLink]="['/home/terms']"><b>T&C</b></a>
-               and
-               <a [routerLink]="['/home/privacy']"><b>Privacy Policy</b></a>
+            <div mat-stroked-button color="primary">By signing up, I agree to ScaledSkills <a
+                [routerLink]="['/home/terms']"><b>T&C</b></a>
+              and
+              <a [routerLink]="['/home/privacy']"><b>Privacy Policy</b></a>
             </div>
           </div>
           <div class="row">
@@ -35,7 +47,7 @@
             </div>
             <div class="col-sm-6 text-right">
               <span class="mar-r-15">
-                  Aleady registered?
+                Aleady registered?
               </span>
               <button type="button" [routerLink]="['/auth/login']" mat-stroked-button color="primary">LOGIN</button>
             </div>

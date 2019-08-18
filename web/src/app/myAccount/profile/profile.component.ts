@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
       { 'path': 'social', 'routeId': '6' },
     ]
     this.tabArray = [
-      { 'name': 'Basic', 'label': 'basic', 'routeId': '1' },
+      { 'name': 'Personal', 'label': 'basic', 'routeId': '1' },
       { 'name': 'Credentials', 'label': 'password', 'routeId': '2' },
       { 'name': 'Keywords', 'label': 'keyword', 'routeId': '3' },
       { 'name': 'About', 'label': 'about', 'routeId': '4' },
