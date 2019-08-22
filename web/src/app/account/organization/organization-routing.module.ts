@@ -5,7 +5,8 @@ import { OrganizationBankDetailComponent } from './organization-bank-detail/orga
 import { OrganizationProfileComponent } from './organization-profile/organization-profile.component';
 import { OrgBasicComponent } from '../../_shared/profile/org-basic/org-basic.component';
 import { OrgAboutComponent } from '../../_shared/profile/org-about/org-about.component';
-import { OrgSocialComponent } from '../../_shared/profile/org-social/org-social.component';
+import { SocialComponent } from '../../_shared/profile/social/social.component';
+
 const routes = [
   {
     path: '', component: OrganizationComponent,
@@ -17,7 +18,7 @@ const routes = [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: OrgBasicComponent },
           { path: 'about', component: OrgAboutComponent },
-          { path: 'social', component: OrgSocialComponent },
+          { path: 'social', component: SocialComponent },
         ]
       },
       {
