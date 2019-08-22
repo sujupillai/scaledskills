@@ -1,1 +1,43 @@
-<p>organization works!</p>
+<div class="container">
+  <h2 class="text-center">Organization</h2>
+  <div class="row row-same-height profile-wrap">
+    <div class="col-same-height col-sm-3">
+      <div class="mat-accordion-plain content">
+        <ul class="accordion-like-nav">
+          <li>
+            <a class="flex v-center justifyCenter" routerLinkActive="active" (click)="setActiveTab('1')"
+              [routerLink]="['profile']">
+              Profile
+              <span class="glyphicon" [ngClass]="setActiveTabIndex== 1?'glyphicon-minus':'glyphicon-plus'"></span>
+            </a>
+            <ul class="accordion-nav" [ngClass]="{active: setActiveTabIndex==1}">
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/about']">About</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/social']">Social</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['bank']">Bank Details</a>
+          </li>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['/account']">
+              <button type="button" mat-button color="primary">
+                <i class="glyphicon glyphicon-chevron-left"></i> Back</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-same-height col-sm-9 content-section">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

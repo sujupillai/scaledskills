@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrganizationProfileComponent } from './organization-profile/organization-profile.component';
-import { OrganizationBankDetailComponent } from './organization-bank-detail/organization-bank-detail.component';
-
+import { OrganizationComponent } from './organization.component';
+import { AccountOrganizationRoutingModule } from './organization-routing.module'
 @NgModule({
-  declarations: [OrganizationProfileComponent, OrganizationBankDetailComponent],
+  declarations: [OrganizationComponent],
   imports: [
-    CommonModule
+    CommonModule, AccountOrganizationRoutingModule
   ]
 })
 export class OrganizationModule { }
