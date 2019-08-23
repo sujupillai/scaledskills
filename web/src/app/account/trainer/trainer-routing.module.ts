@@ -8,6 +8,7 @@ import { SocialComponent } from '../../_shared/profile/social/social.component';
 import { CredentialsComponent } from '../../_shared/profile/credentials/credentials.component';
 import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
+import { AddTrainingComponent } from './add-training/add-training.component'
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -24,7 +25,8 @@ const routes = [
           { path: 'certificate', component: CertificationsComponent },
           { path: 'social', component: SocialComponent },
         ]
-      }
+      },
+      { path: 'addTraining', component: AddTrainingComponent },
     ]
   }
 ];

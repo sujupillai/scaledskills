@@ -32,6 +32,42 @@
             </ul>
           </li>
           <li>
+            <a class="flex v-center justifyCenter" routerLinkActive="active" (click)="setActiveTab('2')"
+              [routerLink]="['addTraining']">
+              Add Training
+              <span class="glyphicon" [ngClass]="setActiveTabIndex== 2?'glyphicon-minus':'glyphicon-plus'"></span>
+            </a>
+            <ul class="accordion-nav" [ngClass]="{active: setActiveTabIndex==2}">
+              <li>
+                <a routerLinkActive="active" [routerLink]="['addTraining/basic']">Basics</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['addTraining/password']">Location</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['addTraining/keyword']">Tags</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['addTraining/about']">Images</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['addTraining/certificate']">Ticket</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/social']">Custom Questions</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/social']">Feedback</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/social']">Promotions</a>
+              </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['profile/social']">Settings</a>
+              </li>
+            </ul>
+          </li>
+          <li>
             <a [routerLink]="['/account']">
               <i class="glyphicon glyphicon-chevron-left"></i> Back
             </a>
