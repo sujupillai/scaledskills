@@ -9,8 +9,9 @@ import { CredentialsComponent } from '../../_shared/profile/credentials/credenti
 import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
 import { AddTrainingComponent } from './add-training/add-training.component';
-import {BasicComponent} from './add-training/basic/basic.component';
-import {LocationComponent} from './add-training/location/location.component';
+import { AddTrainingBasicComponent } from './add-training-basic/add-training-basic.component';
+import { AddTrainingLocationComponent } from './add-training-location/add-training-location.component';
+
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -32,8 +33,8 @@ const routes = [
         path: 'addTraining', component: AddTrainingComponent,
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
-          { path: 'basic', component: BasicComponent },
-          { path: 'location', component: LocationComponent },
+          { path: 'basic', component: AddTrainingBasicComponent },
+          { path: 'location', component: AddTrainingLocationComponent },
         ]
       },
     ]

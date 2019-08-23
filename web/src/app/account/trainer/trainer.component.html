@@ -5,8 +5,8 @@
       <div class="mat-accordion-plain content">
         <ul class="accordion-like-nav">
           <li>
-            <a class="flex v-center justifyCenter" routerLinkActive="active"
-              [routerLink]="['/account/trainer/profile']" (click)="setActiveTab('1')">
+            <a class="flex v-center justifyCenter" routerLinkActive="active" [routerLink]="['profile']"
+              (click)="setActiveTab('1')">
               Profile
               <span class="glyphicon" [ngClass]="setActiveTabIndex== 1?'glyphicon-minus':'glyphicon-plus'"></span>
             </a>
@@ -32,8 +32,8 @@
             </ul>
           </li>
           <li>
-            <a class="flex v-center justifyCenter" routerLinkActive="active"
-              [routerLink]="['/account/trainer/addTraining']" (click)="setActiveTab('2')">
+            <a class="flex v-center justifyCenter" routerLinkActive="active" [routerLink]="['addTraining']"
+              (click)="setActiveTab('2')">
               Add Training
               <span class="glyphicon" [ngClass]="setActiveTabIndex== 2?'glyphicon-minus':'glyphicon-plus'"></span>
             </a>

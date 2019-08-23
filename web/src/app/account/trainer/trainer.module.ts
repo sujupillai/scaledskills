@@ -6,11 +6,12 @@ import { AccountTrainerRoutingModule } from './trainer-routing.module';
 import { ProfileModule } from '../../_shared/profile/profile.module';
 import { FormModule } from '../../_forms/form/form.module';
 import { AddTrainingComponent } from './add-training/add-training.component';
-import { BasicComponent } from './add-training/basic/basic.component';
-import { LocationComponent } from './add-training/location/location.component'
+import { AddTrainingBasicComponent } from './add-training-basic/add-training-basic.component';
+import { AddTrainingLocationComponent } from './add-training-location/add-training-location.component';
+
 
 @NgModule({
-  declarations: [TrainerComponent, TrainerProfileComponent, AddTrainingComponent, BasicComponent, LocationComponent],
+  declarations: [TrainerComponent, TrainerProfileComponent, AddTrainingComponent, AddTrainingBasicComponent, AddTrainingLocationComponent],
   imports: [
     CommonModule, AccountTrainerRoutingModule, ProfileModule, FormModule
   ]
