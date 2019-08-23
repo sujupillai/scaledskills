@@ -1,0 +1,35 @@
+<ngu-carousel #myCarousel [inputs]="TutorsCarouselConfig" [dataSource]="TutorslItems">
+  <div *nguCarouselDef="let item;" class="item padding-10">
+    <mat-card class="">
+      <img mat-card-image src="../../../../assets/images/placeholder-image.jpg" alt="image">
+      <mat-card-title>Card Title</mat-card-title>
+      <mat-card-subtitle>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</mat-card-subtitle>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label>
+              <i class="material-icons">location_on</i>New Delhi</mat-label>
+          </div>
+          <div class="col-sm-6 text-right">
+            <mat-label class="label-price">Rs. 1200</mat-label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="material-icons">
+              date_range
+            </i>
+            <mat-label>12/2/2019</mat-label>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <button mat-button color="Primary">#tag</button>
+        <button mat-button color="Primary">#tag</button>
+        <button mat-button color="Primary">#tag</button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  <button NguCarouselNext class="rightRs">&gt;</button>
+  <button NguCarouselPrev class="leftRs">&lt;</button>
+</ngu-carousel>

@@ -5,10 +5,15 @@ import { GeneralComponent } from './general.component';
 import { GeneralProfileComponent } from './general-profile/general-profile.component';
 import { FormModule } from '../../_forms/form/form.module';
 import { ProfileModule } from '../../_shared/profile/profile.module';
+import { GeneralTrainingComponent } from './general-training/general-training.component';
+import { PastTrainingComponent } from './past-training/past-training.component';
+import { FeatureTrainingComponent } from './feature-training/feature-training.component';
+import { CancelTrainingParticipationComponent } from './cancel-training-participation/cancel-training-participation.component';
+import { NguCarouselModule } from '@ngu/carousel';
 @NgModule({
-  declarations: [GeneralComponent, GeneralProfileComponent],
+  declarations: [GeneralComponent, GeneralProfileComponent, GeneralTrainingComponent, PastTrainingComponent, FeatureTrainingComponent, CancelTrainingParticipationComponent],
   imports: [
-    CommonModule, AccountGeneralRoutingModule, FormModule, ProfileModule
+    CommonModule, AccountGeneralRoutingModule, FormModule, ProfileModule, NguCarouselModule
   ]
 })
 export class AccountGeneralModule { }

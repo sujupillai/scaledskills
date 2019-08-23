@@ -5,6 +5,9 @@ import { GeneralProfileComponent } from './general-profile/general-profile.compo
 import { BasicComponent } from '../../_shared/profile/basic/basic.component';
 import { AboutComponent } from '../../_shared/profile/about/about.component';
 import { SocialComponent } from '../../_shared/profile/social/social.component';
+import { FeatureTrainingComponent } from './feature-training/feature-training.component';
+import { PastTrainingComponent } from './past-training/past-training.component';
+import { CancelTrainingParticipationComponent } from './cancel-training-participation/cancel-training-participation.component';
 const routes = [
   {
     path: '', component: GeneralComponent,
@@ -18,7 +21,10 @@ const routes = [
           { path: 'about', component: AboutComponent },
           { path: 'social', component: SocialComponent },
         ]
-      }
+      },
+      { path: 'featureTraining', component: FeatureTrainingComponent },
+      { path: 'pastTraining', component: PastTrainingComponent },
+      { path: 'cancelParticipation', component: CancelTrainingParticipationComponent },
     ]
   }
 ];

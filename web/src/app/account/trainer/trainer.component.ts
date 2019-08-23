@@ -21,10 +21,6 @@ export class TrainerComponent implements OnInit {
     ]
   }
   setActiveTab = (number) => {
-    if (this.setActiveTabIndex == number) {
-      this.setActiveTabIndex = 0
-    } else {
-      this.setActiveTabIndex = number
-    }
+    this.setActiveTabIndex = number
   }
 }

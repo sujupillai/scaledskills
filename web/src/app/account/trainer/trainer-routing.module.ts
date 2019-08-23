@@ -8,12 +8,14 @@ import { SocialComponent } from '../../_shared/profile/social/social.component';
 import { CredentialsComponent } from '../../_shared/profile/credentials/credentials.component';
 import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
-import { AddTrainingComponent } from './add-training/add-training.component'
+import { AddTrainingComponent } from './add-training/add-training.component';
+import {BasicComponent} from './add-training/basic/basic.component';
+import {LocationComponent} from './add-training/location/location.component';
 const routes = [
   {
     path: '', component: TrainerComponent,
     children: [
-      { path: '', redirectTo: 'profile' },
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
       {
         path: 'profile', component: TrainerProfileComponent,
         children: [
@@ -26,7 +28,14 @@ const routes = [
           { path: 'social', component: SocialComponent },
         ]
       },
-      { path: 'addTraining', component: AddTrainingComponent },
+      {
+        path: 'addTraining', component: AddTrainingComponent,
+        children: [
+          { path: '', redirectTo: 'basic', pathMatch: 'full' },
+          { path: 'basic', component: BasicComponent },
+          { path: 'location', component: LocationComponent },
+        ]
+      },
     ]
   }
 ];
