@@ -11,7 +11,13 @@ import { CertificationsComponent } from '../../_shared/profile/certifications/ce
 import { AddTrainingComponent } from './add-training/add-training.component';
 import { AddTrainingBasicComponent } from './add-training-basic/add-training-basic.component';
 import { AddTrainingLocationComponent } from './add-training-location/add-training-location.component';
-
+import { AddTrainingTagsComponent } from './add-training-tags/add-training-tags.component';
+import { AddTrainingImagesComponent } from './add-training-images/add-training-images.component';
+import { AddTrainingTicketComponent } from './add-training-ticket/add-training-ticket.component';
+import { AddTrainingQuestionComponent } from './add-training-question/add-training-question.component';
+import { AddTrainingFeedbackComponent } from './add-training-feedback/add-training-feedback.component';
+import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
+import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component'
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -35,6 +41,14 @@ const routes = [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: AddTrainingBasicComponent },
           { path: 'location', component: AddTrainingLocationComponent },
+          { path: 'tags', component: AddTrainingTagsComponent },
+          { path: 'tags', component: AddTrainingTagsComponent },
+          { path: 'images', component: AddTrainingImagesComponent },
+          { path: 'ticket', component: AddTrainingTicketComponent },
+          { path: 'questions', component: AddTrainingQuestionComponent },
+          { path: 'feedback', component: AddTrainingFeedbackComponent },
+          { path: 'promotions', component: AddTrainingPromotionsComponent },
+          { path: 'settings', component: AddTrainingSettingsComponent },
         ]
       },
     ]
