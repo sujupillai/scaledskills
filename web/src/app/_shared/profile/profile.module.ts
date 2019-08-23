@@ -23,7 +23,7 @@ import { OrgSocialComponent } from './org-social/org-social.component';
     AngularEditorModule
   ],
   exports: [
-    ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent
+    ProfileComponent,
   ]
 })
 export class ProfileModule { }
