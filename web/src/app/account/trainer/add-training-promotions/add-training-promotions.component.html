@@ -13,14 +13,52 @@
     <tr>
       <td>Display my training on main banner of home page?</td>
       <td>
-          <p-inputSwitch></p-inputSwitch>
+        <p-inputSwitch></p-inputSwitch>
       </td>
       <td class="text-right">$0</td>
     </tr>
     <tr>
       <td>Display my training on top search card view of home page?</td>
-      <td> <p-inputSwitch></p-inputSwitch></td>
+      <td>
+        <p-inputSwitch></p-inputSwitch>
+      </td>
       <td class="text-right">$0</td>
     </tr>
+    <tr>
+      <td>Affliliate</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          Sell my trainings through aflliate partners
+        </p>
+        <div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-4">
+                <p-dropdown [options]="commission" placeholder="Commission" optionLabel="name" [showClear]="true">
+                </p-dropdown>
+              </div>
+              <div class="col-sm-4">
+                <input id="input" type="text" size="30" pInputText>
+              </div>
+              <div class="col-sm-4">
+                <input id="input" type="text" size="30" pInputText>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p>
+          * Higher the amount, the partners will pick it up early
+        </p>
+      </td>
+      <td>
+        <p-inputSwitch></p-inputSwitch>
+      </td>
+      <td class="text-right">$0</td>
+    </tr>
+
   </table>
 </form>

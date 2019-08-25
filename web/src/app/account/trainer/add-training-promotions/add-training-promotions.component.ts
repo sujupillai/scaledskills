@@ -6,7 +6,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTrainingPromotionsComponent implements OnInit {
   checked2: boolean = true;
-  constructor() { }
+  commission = [];
+  constructor() {
+    this.commission = [
+      { name: 'Amount', code: 'amount' },
+      { name: '%', code: '%' }
+    ];
+
+  }
 
   ngOnInit() {
   }
