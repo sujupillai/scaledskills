@@ -4,13 +4,12 @@
     <div class="col-sm-6">
       <div class="flex clrWhite home-search flexVMiddle">
         <form novalidate autocomplete="off" class="width_100">
-            <div class="ui-inputgroup">
-                <button pButton type="button" label="Training">
-                    <i class="pi pi-search"></i>
-                </button>
-                <input type="text" class="width_100" pInputText placeholder="Keyword">
-            </div>
-
+          <div class="ui-inputgroup">
+            <button pButton type="button" label="Training">
+              <i class="pi pi-search"></i>
+            </button>
+            <input type="text" class="width_100" pInputText placeholder="Keyword">
+          </div>
         </form>
       </div>
     </div>
@@ -21,41 +20,36 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]">
-        <mat-card class="example-card">
-          <img mat-card-image src="../../../../assets/images/placeholder-img-purple.png" alt="image">
-          <mat-card-title>Card Title</mat-card-title>
-          <mat-card-subtitle>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</mat-card-subtitle>
-          <mat-card-content>
-            <div class="row">
-              <div class="col-sm-6">
-                <mat-label>
-                  <i class="material-icons">location_on</i>New Delhi</mat-label>
-              </div>
-              <div class="col-sm-6 text-right">
-                <mat-label class="label-price">Rs. 1200</mat-label>
-              </div>
+        <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
+          <p-header>
+            <img src="Card" src="../../../../assets/images/placeholder-img-purple.png">
+          </p-header>
+          <div>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <p>
+                <i class="pi pi-map-marker"></i>New Delhi
+              </p>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <i class="material-icons">
-                  date_range
-                </i>
-                <mat-label>12/2/2019</mat-label>
-              </div>
+            <div class="col-sm-6 text-right">
+              <p class="label-price">
+                Rs. 1200
+              </p>
             </div>
-          </mat-card-content>
-          <mat-card-footer>
-            <button mat-button color="Primary">#tag</button>
-            <button mat-button color="Primary">#tag</button>
-            <button mat-button color="Primary">#tag</button>
-          </mat-card-footer>
-        </mat-card>
+          </div>
+          <p-footer>
+            <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+            <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+            <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+          </p-footer>
+        </p-card>
         <br>
       </div>
-
     </div>
     <div class="form-group text-center">
-      <mat-hint class="clrPurple"><strong>1 - 16 of 42 Records</strong></mat-hint>
+      <p class="clrPurple"><strong>1 - 16 of 42 Records</strong></p>
     </div>
     <div class="clearfix text-center">
       <button type="button" class="btn btn-gradient">Previous</button>

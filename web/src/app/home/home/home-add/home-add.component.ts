@@ -18,7 +18,7 @@ export class HomeAddComponent implements AfterViewInit {
     touch: true,
     velocity: 0.2
   }
-  TutorslItems = [1,2,3,4,5,6];
+  TutorslItems = [1, 2, 3, 4, 5, 6];
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
