@@ -7,13 +7,14 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
+import {EditorModule} from 'primeng/editor';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, MatNativeDateModule, MaterialModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule
+    CommonModule, MatNativeDateModule, MaterialModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule
   ],
   exports: [
-    CommonModule, MatNativeDateModule, MaterialModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule
+    CommonModule, MatNativeDateModule, MaterialModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule
   ]
 })
 export class FormModule { }

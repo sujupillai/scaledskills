@@ -13,7 +13,6 @@
               <mat-option value="2">Individual</mat-option>
             </mat-select>
           </mat-form-field>
-
         </div>
         <div class="col-sm-6">
           <mat-form-field>
@@ -48,7 +47,7 @@
       <div class="row form-group">
         <div class="col-sm-12">
           <mat-label>Description</mat-label>
-          <angular-editor formControlName="description" [config]="descriptionConfig"></angular-editor>
+          <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
         </div>
       </div>
       <div class="row">
@@ -88,12 +87,12 @@
             </div>
           </div>
           <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <input matInput placeholder="zip Code" formControlName="zipCode">
-                </mat-form-field>
-              </div>
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="zip Code" formControlName="zipCode">
+              </mat-form-field>
             </div>
+          </div>
         </div>
       </div>
       <div class="row">

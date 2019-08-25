@@ -15,6 +15,10 @@ export class AddTrainingFeedbackComponent implements OnInit {
   }
   createForm = (callback) => {
     this.traineeReviewForm = this._FormBuilder.group({
+      review:['hima']
     })
+    if(callback){
+      callback()
+    }
   }
 }

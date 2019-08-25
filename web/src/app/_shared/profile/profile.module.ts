@@ -9,7 +9,6 @@ import { KeywordsComponent } from './keywords/keywords.component';
 import { AboutComponent } from './about/about.component';
 import { CertificationsComponent } from './certifications/certifications.component';
 import { SocialComponent } from './social/social.component';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FileuploadComponent } from '../../_shared/widgets/fileupload.component';
 import { OrgBasicComponent } from './org-basic/org-basic.component';
 import { OrgAboutComponent } from './org-about/org-about.component';
@@ -19,8 +18,7 @@ import { OrgSocialComponent } from './org-social/org-social.component';
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    FormModule,
-    AngularEditorModule
+    FormModule
   ],
   exports: [
     ProfileComponent,

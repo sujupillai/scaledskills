@@ -10,13 +10,15 @@
     <div class="row form-group">
       <div class="col-sm-12">
         <mat-label>About</mat-label>
-        <angular-editor formControlName="bio" [config]="config"></angular-editor>
+        <p-editor formControlName="bio" [style]="{'height':'200px'}"></p-editor>
+
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-12">
           <mat-label>Courses Offered</mat-label>
-        <angular-editor formControlName="coursesOffered" [config]="coursesOffered"></angular-editor>
+          <p-editor formControlName="coursesOffered" [style]="{'height':'200px'}"></p-editor>
+
       </div>
     </div>
     <div class="row">
