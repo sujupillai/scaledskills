@@ -1,34 +1,36 @@
 <div class="container section-padding">
   <div class="row-same-height row">
     <div class="col-same-height col-sm-6 flexVMiddle">
-
       <div class="form-wrapper content">
         <h2>LOGIN</h2>
         <form [formGroup]="loginForm" autocomplete="off" novalidate>
-          <mat-form-field>
-            <input matInput placeholder="Email" formControlName="userName">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Password" formControlName="password">
-          </mat-form-field>
+          <div class="form-group">
+            <input class="width_100" type="text" placeholder="Email" pInputText formControlName="userName" />
+          </div>
+          <div class="form-group">
+            <input class="width_100" type="password" placeholder="Password" pInputText formControlName="password" />
+          </div>
           <div class="row form-group">
             <div class="col-sm-6">
-              <mat-checkbox formControlName="isRememberMe">Remember me</mat-checkbox>
+              <div class="ui-g-12">
+                <p-checkbox label="Remember me" formControlName="isRememberMe" inputId="isRememberMe">
+                </p-checkbox>
+              </div>
             </div>
             <div class="col-sm-6 text-right">
-              <button type="button" mat-stroked-button color="">Forgot Password?</button>
+              <button pButton type="button" label="Forgot Password?"
+                class="ui-button-raised ui-button-secondary"></button>
             </div>
           </div>
           <div class="form-group">
             <div class="row">
               <div class="col-sm-6">
-                <button type="submit" mat-raised-button color="primary" (click)="handleLogin()">LOGIN</button>
+                <button pButton type="submit" label="LOGIN" class="ui-button-raised" (click)="handleLogin()"></button>
               </div>
               <div class="col-sm-6 text-right">
                 <span class="mar-r-15">
                   New to ScaledSkills?
                 </span>
-
                 <button type="button" mat-stroked-button color="primary" [routerLink]="['/auth/register']">
                   SIGN UP
                 </button>
