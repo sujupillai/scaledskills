@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TrainingRequestRoutingModule } from './training-routing.module';
 import { RequestComponent } from './request.component';
-import { FormModule } from '../_forms/form/form.module';
+import { NgPrimeModule } from '../_forms/prime.module';
 
 @NgModule({
   declarations: [RequestComponent],
   imports: [
     CommonModule,
     TrainingRequestRoutingModule,
-    FormModule
+    NgPrimeModule
   ]
 })
 export class TrainingRequestModule { }
