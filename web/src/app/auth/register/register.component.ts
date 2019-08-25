@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../_service';
 import { first } from 'rxjs/operators';
-import { ConfirmationDialogComponent } from '../../_shared/confirmation-dialog/confirmation-dialog.component';
 import { MustMatch } from '../../_helpers/_validators/must-match.validator'
 import { Router } from '@angular/router';
 @Component({
@@ -58,19 +57,6 @@ export class RegisterComponent implements OnInit {
     }
   }
   openDialog(): void {
-    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-    //   width: '250px',
-    //   data: {
-    //     'yesText': 'Yes',
-    //     'noText': 'No',
-    //     'isYes': true,
-    //     'isNo': true,
-    //     'isActions': false,
-    //     'message': 'Registration successfull',
-    //   }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this._Router.navigate(['/auth']);
-    // });
+
   }
 }

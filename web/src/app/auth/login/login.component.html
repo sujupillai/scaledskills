@@ -25,13 +25,15 @@
           <div class="form-group">
             <div class="row">
               <div class="col-sm-6">
-                <button pButton type="submit" label="LOGIN" class="ui-button-raised ui-button-success" [disabled]="!loginForm.valid" (click)="handleLogin()"></button>
+                <button pButton type="submit" label="LOGIN" class="ui-button-raised ui-button-success"
+                  [disabled]="!loginForm.valid" (click)="handleLogin()"></button>
               </div>
               <div class="col-sm-6 text-right">
                 <span class="mar-r-15">
                   New to ScaledSkills?
                 </span>
-                <button pButton type="button" label="SIGN UP" class="ui-button-raised" [routerLink]="['/auth/register']"></button>
+                <button pButton type="button" label="SIGN UP" class="ui-button-raised"
+                  [routerLink]="['/auth/register']"></button>
               </div>
             </div>
           </div>
@@ -60,7 +62,8 @@
               <div class="text-center">
                 <div color="warn">Trouble signing in?</div>
                 <div>
-                  <button pButton type="button" label="REPORT AN ISSUE" class="ui-button-raised ui-button-warning"></button>
+                  <button pButton type="button" label="REPORT AN ISSUE"
+                    class="ui-button-raised ui-button-warning"></button>
                 </div>
               </div>
             </div>

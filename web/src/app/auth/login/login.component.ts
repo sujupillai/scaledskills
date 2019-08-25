@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         this._Router.navigate([this.returnUrl]);
         this.resetForm(this.loginForm)
       } else {
-        this._SharedService.openSnackBar(authConstant.RES_CODE[101], authConstant.RES_CODE[100])
+        // this._SharedService.openSnackBar(authConstant.RES_CODE[101], authConstant.RES_CODE[100])
       }
     },
       error => {

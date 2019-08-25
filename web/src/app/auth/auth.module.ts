@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {FormModule} from '../_forms/form/form.module'
+import {NgPrimeModule} from '../_forms/prime.module'
 import { AuthRoutingModule } from './auth-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -9,7 +9,7 @@ import {ConfirmationDialogComponent} from '../_shared/confirmation-dialog/confir
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, AuthComponent, ConfirmationDialogComponent],
   imports: [
-    AuthRoutingModule, FormModule,
+    AuthRoutingModule, NgPrimeModule,
   ],
   entryComponents: [ConfirmationDialogComponent],
   providers: [SharedService]
