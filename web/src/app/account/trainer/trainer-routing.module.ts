@@ -5,7 +5,6 @@ import { TrainerProfileComponent } from './trainer-profile/trainer-profile.compo
 import { OrgBasicComponent } from '../../_shared/profile/org-basic/org-basic.component';
 import { OrgAboutComponent } from '../../_shared/profile/org-about/org-about.component';
 import { SocialComponent } from '../../_shared/profile/social/social.component';
-import { CredentialsComponent } from '../../_shared/profile/credentials/credentials.component';
 import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
 import { AddTrainingComponent } from './add-training/add-training.component';
@@ -18,6 +17,7 @@ import { AddTrainingQuestionComponent } from './add-training-question/add-traini
 import { AddTrainingFeedbackComponent } from './add-training-feedback/add-training-feedback.component';
 import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component'
+import { AddTrainerComponent } from './add-trainer/add-trainer.component';
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -28,7 +28,6 @@ const routes = [
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: OrgBasicComponent },
-          { path: 'password', component: CredentialsComponent },
           { path: 'keyword', component: KeywordsComponent },
           { path: 'about', component: OrgAboutComponent },
           { path: 'certificate', component: CertificationsComponent },
@@ -49,6 +48,7 @@ const routes = [
           { path: 'feedback', component: AddTrainingFeedbackComponent },
           { path: 'promotions', component: AddTrainingPromotionsComponent },
           { path: 'settings', component: AddTrainingSettingsComponent },
+          { path: 'addTrainer', component: AddTrainerComponent },
         ]
       },
     ]

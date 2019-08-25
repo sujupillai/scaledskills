@@ -5,8 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './add-training-ticket.component.html'
 })
 export class AddTrainingTicketComponent implements OnInit {
-
-  constructor() { }
+  ticketType=[];
+  constructor() {
+    this.ticketType = [
+      {name: 'Normal', code: '1'}
+  ];
+  }
 
   ngOnInit() {
   }

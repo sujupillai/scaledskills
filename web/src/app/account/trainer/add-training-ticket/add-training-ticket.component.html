@@ -1,1 +1,94 @@
-<p>add-training-ticket works!</p>
+<form>
+  <div class="form-group">
+    <label>Ticket Name</label>
+    <input type="text" pInputText placeholder="Ticket Name" />
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Quantity</label>
+        <input type="text" pInputText placeholder="Quantity" />
+
+      </div>
+      <div class="col-sm-6">
+        <label>Per booking</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" pInputText placeholder="Min" />
+          </div>
+          <div class="col-sm-6">
+            <input type="text" pInputText placeholder="Max" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="pos-relative">
+          <label>Type</label>
+          <p-dropdown [options]="ticketType" placeholder="Select" optionLabel="Selectxx"></p-dropdown>
+
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <label>Price</label>
+        <input type="text" pInputText placeholder="Price" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="pos-relative">
+          <label>Payment Gateway &amp; Services Charges </label>
+          <p-dropdown [options]="ticketType" placeholder="Select" optionLabel="Selectxx"></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Ticket Sale starts from</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" pInputText placeholder="Min" />
+          </div>
+          <div class="col-sm-6">
+            <input type="text" pInputText placeholder="Max" />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label>Ticket Sale Ends at</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <input type="text" pInputText placeholder="Min" />
+          </div>
+          <div class="col-sm-6">
+            <input type="text" pInputText placeholder="Max" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Ticket Description</label>
+    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Description"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Message to Atendee</label>
+    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Message"></textarea>
+  </div>
+  <div class="form-group">
+      <button pButton type="button" label="Add Ticket"
+      class="ui-button-raised ui-button-secondary"></button>
+  </div>
+  <div class="form-group text-right button-group">
+      <button pButton type="button" label="Save" class="ui-button-raised"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+  </div>
+</form>

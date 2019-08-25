@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './add-training-promotions.component.html'
 })
 export class AddTrainingPromotionsComponent implements OnInit {
-
+  checked2: boolean = true;
   constructor() { }
 
   ngOnInit() {

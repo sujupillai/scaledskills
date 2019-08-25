@@ -2,18 +2,15 @@
   <div>
     <mat-label>Please click Yes if you want the below options to show on live training page:</mat-label>
   </div>
-  <div class="row">
+  <div class="row form-group">
     <div class="col-sm-6">
       <div class="">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <mat-label class="mr-15">Custom Questions</mat-label>
           </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="customQuestions">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="customQuestions" [style]="{'width':'100%'}"></p-toggleButton>
           </div>
         </div>
       </div>
@@ -21,31 +18,25 @@
     <div class="col-sm-6">
       <div class="">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <mat-label class="mr-15">Remaining Tickets</mat-label>
           </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="remainingTickets">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="remainingTickets" [style]="{'width':'100%'}"></p-toggleButton>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row form-group">
     <div class="col-sm-6">
       <div class="">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <mat-label class="mr-15">Set Reminder</mat-label>
           </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="setReminder">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="setReminder" [style]="{'width':'100%'}"></p-toggleButton>
           </div>
         </div>
       </div>
@@ -53,31 +44,25 @@
     <div class="col-sm-6">
       <div class="">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <mat-label class="mr-15">Affiliate Promoter Link</mat-label>
           </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="affiliatePromoterLink">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="affiliatePromoterLink" [style]="{'width':'100%'}"></p-toggleButton>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row form-group">
     <div class="col-sm-6">
       <div class="">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <mat-label class="mr-15">Training Id</mat-label>
           </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="trainingId">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="trainingId" [style]="{'width':'100%'}"></p-toggleButton>
           </div>
         </div>
       </div>
@@ -85,137 +70,126 @@
     <div class="col-sm-6">
       <div class="">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <mat-label class="mr-15">pageViews</mat-label>
           </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="pageViews">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">Interested Users</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="interestedUsers">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">Registered Users</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="registeredUsers">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">Add to Calendar</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="addToCalendar">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">x spots left</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="xSpotsLeft">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">Comments</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="comments">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">Feedback</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="feedback">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">About Organizer</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="aboutOrganizer">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-8">
-            <mat-label class="mr-15">More Events From Same Organizer</mat-label>
-          </div>
-          <div class="col-sm-4">
-            <mat-radio-group formControlName="moreEventsFromSameOrganizer">
-              <mat-radio-button value="true">Yes</mat-radio-button>
-              <mat-radio-button value="false">No</mat-radio-button>
-            </mat-radio-group>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="pageViews" [style]="{'width':'100%'}"></p-toggleButton>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">Interested Users</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="interestedUsers" [style]="{'width':'100%'}"></p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">Registered Users</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="registeredUsers" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">Add to Calendar</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="addToCalendar" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">x spots left</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="xSpotsLeft" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">Comments</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="comments" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">Feedback</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="feedback" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">About Organizer</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="aboutOrganizer" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label class="mr-15">More Events From Same Organizer</mat-label>
+          </div>
+          <div class="col-sm-6">
+            <p-toggleButton formControlName="moreEventsFromSameOrganizer" [style]="{'width':'100%'}">
+            </p-toggleButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </form>

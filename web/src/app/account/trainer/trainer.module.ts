@@ -15,10 +15,12 @@ import { AddTrainingQuestionComponent } from './add-training-question/add-traini
 import { AddTrainingFeedbackComponent } from './add-training-feedback/add-training-feedback.component';
 import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component';
+import { AddTrainerComponent } from './add-trainer/add-trainer.component';
+
 
 
 @NgModule({
-  declarations: [TrainerComponent, TrainerProfileComponent, AddTrainingComponent, AddTrainingBasicComponent, AddTrainingLocationComponent, AddTrainingTagsComponent, AddTrainingImagesComponent, AddTrainingTicketComponent, AddTrainingQuestionComponent, AddTrainingFeedbackComponent, AddTrainingPromotionsComponent, AddTrainingSettingsComponent],
+  declarations: [TrainerComponent, TrainerProfileComponent, AddTrainingComponent, AddTrainingBasicComponent, AddTrainingLocationComponent, AddTrainingTagsComponent, AddTrainingImagesComponent, AddTrainingTicketComponent, AddTrainingQuestionComponent, AddTrainingFeedbackComponent, AddTrainingPromotionsComponent, AddTrainingSettingsComponent, AddTrainerComponent],
   imports: [
     CommonModule, AccountTrainerRoutingModule, ProfileModule, FormModule
   ]

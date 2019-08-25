@@ -1,31 +1,53 @@
 <form [formGroup]="trainingLocationForm" autocomplete="off" novalidate>
-  <div class="form-group">
-    <div class="">
-      <mat-radio-group formControlName="location" class="row">
-        <mat-radio-button value="Physical" class="col-sm-6">Physical</mat-radio-button>
-        <mat-radio-button value="Online" class="col-sm-6 m0">Online</mat-radio-button>
-      </mat-radio-group>
+  <div class="clearfix">
+    <div class="form-group">
+      <p-radioButton name="Physical" value="Physical" label="Physical" inputId="Physical">
+      </p-radioButton>
+      <p-radioButton name="Online" value="Online" label="Online" inputId="Online">
+      </p-radioButton>
     </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="Enter Venue Name">
-        </mat-form-field>
-        <div class="row">
-          <div class="col-sm-6">
-            <i class="pi pi-map-marker"></i> Enter Location Manually
-          </div>
-          <div class="col-sm-6">
-            Vanue not decided.
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-12">
+          <input type="text" pInputText placeholder="Enter Address Manually" />
+          <div class="row">
+            <div class="col-sm-6">
+              <i class="pi pi-map-marker"></i> Enter Location Manually
+            </div>
+            <div class="col-sm-6">
+              Vanue not decided.
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="Enter Web Address">
-        </mat-form-field>
-        <div>
-
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="text" pInputText placeholder="Address Line 1" />
+        </div>
+        <div class="col-sm-6">
+          <input type="text" pInputText placeholder="Address Line 2" />
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="text" pInputText placeholder="Country" />
+        </div>
+        <div class="col-sm-6">
+          <input type="text" pInputText placeholder="State" />
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="text" pInputText placeholder="City" />
+        </div>
+        <div class=" col-sm-6">
+          <input type="text" pInputText placeholder="Pin code" />
         </div>
       </div>
     </div>

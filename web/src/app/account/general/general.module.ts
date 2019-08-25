@@ -10,10 +10,11 @@ import { PastTrainingComponent } from './past-training/past-training.component';
 import { FeatureTrainingComponent } from './feature-training/feature-training.component';
 import { CancelTrainingParticipationComponent } from './cancel-training-participation/cancel-training-participation.component';
 import { NguCarouselModule } from '@ngu/carousel';
+import { OrganizationModule } from '../organization/organization.module';
 @NgModule({
   declarations: [GeneralComponent, GeneralProfileComponent, GeneralTrainingComponent, PastTrainingComponent, FeatureTrainingComponent, CancelTrainingParticipationComponent],
   imports: [
-    CommonModule, AccountGeneralRoutingModule, FormModule, ProfileModule, NguCarouselModule
+    CommonModule, AccountGeneralRoutingModule, FormModule, ProfileModule, NguCarouselModule, OrganizationModule
   ]
 })
 export class AccountGeneralModule { }

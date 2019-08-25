@@ -6,13 +6,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddTrainingBasicComponent implements OnInit {
   trainingBasicForm: FormGroup;
-  constructor(private _FormBuilder: FormBuilder) { }
+  baseUrl='http://scaledskills.com/t/';
+  cities=[];
+  trainingForList=[]
+
+  constructor(private _FormBuilder: FormBuilder) {
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
+  this.trainingForList=[
+    {name: 'Individual', code: '1'},
+      {name: 'Organization', code: '2'},
+  ]
+  }
   ngOnInit() {
     this.createForm(() => { })
   }
   createForm = (callback: any): void => {
     this.trainingBasicForm = this._FormBuilder.group({
       trainingName: ['', Validators.required],
+      baseUrl: ['http://scaledskills.com/o/', Validators.required],
       trainingUrl: ['', Validators.required],
       trainingFor: ['', Validators.required],
       organization: ['', Validators.required],
@@ -27,6 +44,7 @@ export class AddTrainingBasicComponent implements OnInit {
       callback()
     }
   }
+
   get formControl() { return this.trainingBasicForm.controls }
   handleSubmit = () => {
     let postData = {

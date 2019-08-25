@@ -15,9 +15,6 @@
                 <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['profile/password']">Credentials</a>
-              </li>
-              <li>
                 <a routerLinkActive="active" [routerLink]="['profile/keyword']">Keywords</a>
               </li>
               <li>
@@ -65,8 +62,12 @@
               <li>
                 <a routerLinkActive="active" [routerLink]="['addTraining/settings']">Settings</a>
               </li>
+              <li>
+                <a routerLinkActive="active" [routerLink]="['addTraining/addTrainer']">Add Trainers</a>
+              </li>
             </ul>
           </li>
+
           <li>
             <a [routerLink]="['/account']">
               <i class="glyphicon glyphicon-chevron-left"></i> Back
