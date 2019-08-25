@@ -22,26 +22,23 @@ export class LoginComponent implements OnInit {
     private _ActivatedRoute: ActivatedRoute,
     private _AuthenticationService: AuthenticationService,
     private _SharedService: SharedService
-
   ) {
     if (this._AuthenticationService.currentUserValue) {
       this._Router.navigate(['/account']);
     }
   }
-
   ngOnInit() {
     this.createForm(() => {
-
     })
     this.returnUrl = this._ActivatedRoute.snapshot.queryParams['returnUrl'] || '/';
   }
   createForm = (callback) => {
     this.loginForm = this._FormBuilder.group(
       {
-        "userName": ['', Validators.required],
-        "password": ['', Validators.required],
-        "isRememberMe": false,
-        "id": 0
+        userName: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
+        isRememberMe: false,
+        id: 0
       }
     )
     if (callback) {
@@ -60,7 +57,6 @@ export class LoginComponent implements OnInit {
         this._Router.navigate([this.returnUrl]);
         this.resetForm(this.loginForm)
       } else {
-
         this._SharedService.openSnackBar(authConstant.RES_CODE[101], authConstant.RES_CODE[100])
       }
     },
@@ -68,7 +64,6 @@ export class LoginComponent implements OnInit {
         this.error = error;
       });
   }
-
   resetForm(formGroup: FormGroup) {
     let control: AbstractControl = null;
     formGroup.reset();

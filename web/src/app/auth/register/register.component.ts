@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../_service';
 import { first } from 'rxjs/operators';
@@ -12,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _Router: Router,
-    public dialog: MatDialog) { }
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _Router: Router) { }
 
   ngOnInit() {
     this.createForm(() => {
@@ -58,22 +56,21 @@ export class RegisterComponent implements OnInit {
       })
 
     }
-
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
-      data: {
-        'yesText': 'Yes',
-        'noText': 'No',
-        'isYes': true,
-        'isNo': true,
-        'isActions': false,
-        'message': 'Registration successfull',
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this._Router.navigate(['/auth']);
-    });
+    // const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+    //   width: '250px',
+    //   data: {
+    //     'yesText': 'Yes',
+    //     'noText': 'No',
+    //     'isYes': true,
+    //     'isNo': true,
+    //     'isActions': false,
+    //     'message': 'Registration successfull',
+    //   }
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this._Router.navigate(['/auth']);
+    // });
   }
 }
