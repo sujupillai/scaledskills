@@ -7,7 +7,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class OrganizationBankDetailComponent implements OnInit {
   orgBankDetailForm: FormGroup;
+  adharCard: any[] = [];
   constructor(private _FormBuilder: FormBuilder) { }
+
 
   ngOnInit() {
     this.createForm(() => { })
@@ -31,6 +33,11 @@ export class OrganizationBankDetailComponent implements OnInit {
     }
   }
   get formControl() { return this.orgBankDetailForm.controls }
+  onUpload(event) {
+    for (let file of event.files) {
+      this.adharCard.push(file);
+    }
+  }
   handleSubmit = () => {
     let postObj = {
       ...this.orgBankDetailForm.value
