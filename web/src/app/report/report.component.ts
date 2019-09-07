@@ -6,7 +6,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ReportComponent implements OnInit {
   requestForm: FormGroup;
+  cars: Array<any>;
 
+  cols: any[];
   trainingNeedDDL = []
   constructor(private _FormBuilder: FormBuilder) {
     this.trainingNeedDDL = [
@@ -15,6 +17,19 @@ export class ReportComponent implements OnInit {
   }
   ngOnInit() {
     this.createForm(() => { })
+    this.cars = [
+      { field: 'Header1', header: 'Header1' },
+      { field: 'Header2', header: 'Header2' },
+      { field: 'Header3', header: 'Header3' },
+    ]
+
+
+    this.cols = [
+      { field: 'Header1', header: 'Header1' },
+      { field: 'Header2', header: 'Header2' },
+      { field: 'Header3', header: 'Header3' },
+      { field: 'Header2', header: 'Header2' }
+    ];
   }
   createForm = (callback) => {
     this.requestForm = this._FormBuilder.group({

@@ -26,36 +26,22 @@
         </div>
       </div>
       <div class="form-group">
-        <table class="table table-striped table-dark">
-          <thead>
+        <p-table [columns]="cols" [value]="cars" [paginator]="true" [rows]="10">
+          <ng-template pTemplate="header" let-columns>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
+              <th *ngFor="let col of columns">
+                {{col.header}}
+              </th>
             </tr>
-          </thead>
-          <tbody>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td *ngFor="let col of columns">
+                Text
+              </td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </form>
