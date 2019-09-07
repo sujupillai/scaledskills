@@ -11,18 +11,22 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './_shared/header/header.component';
 import { FooterComponent } from './_shared/footer/footer.component';
 import { ErrorComponent } from './_shared/error/error.component';
+import { ReportComponent } from './report/report.component';
+import { NgPrimeModule } from './_forms/prime.module';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     ErrorComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgPrimeModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

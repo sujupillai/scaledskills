@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ErrorComponent } from './_shared/error/error.component';
+import { ReportComponent } from './report/report.component'
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
   },
+  { path: 'report', component: ReportComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
 

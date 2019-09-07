@@ -1,0 +1,62 @@
+<br>
+<br>
+<div class="container">
+  <form [formGroup]="requestForm" autocomplete="off" novalidate>
+    <div class="clearfix">
+      <div class="row form-group">
+        <div class="col-sm-6">
+          <label>Report Name</label>
+          <p-dropdown [options]="trainingNeedDDL" formControlName="reportName" placeholder="Select" optionLabel="name"
+            [showClear]="true"></p-dropdown>
+        </div>
+        <div class="col-sm-6">
+          <label>Training</label>
+          <p-multiSelect [options]="trainingNeedDDL" formControlName="reportName" optionLabel="name"></p-multiSelect>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-sm-6">
+          <label>Search</label>
+          <input type="text" pInputText placeholder="Company Name" formControlName="search" />
+        </div>
+        <div class="col-sm-6 text-right">
+          <div class="text-right inline-block mt20">
+            <a class="flex v-center"><i class="pi pi-file-excel text-success" style="font-size: 3em"></i>Excel</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <table class="table table-striped table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>

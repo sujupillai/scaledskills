@@ -586,7 +586,7 @@ textarea {
 }
 .width_100,
 .ui-inputtext,
-body .ui-dropdown, .ui-calendar {
+body .ui-dropdown, .ui-calendar, .ui-multiselect {
   width: 100% !important
 }
 .mat-accordion-plain {
@@ -809,4 +809,7 @@ p-footer{
   .ui-button~.ui-button{
     margin-left: 5px;
   }
+}
+.inline-block{
+  display: inline-block
 }

@@ -2,32 +2,28 @@
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="Website" formControlName="website">
-        </mat-form-field>
+        <input type="text" pInputText placeholder="Website" formControlName="website" />
       </div>
       <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="LinkedIn" formControlName="linkedIn">
-        </mat-form-field>
+        <input type="text" pInputText placeholder="LinkedIn" formControlName="linkedIn" />
       </div>
     </div>
+  </div>
+  <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="Facebook" formControlName="facebook">
-        </mat-form-field>
+        <input type="text" pInputText placeholder="Facebook" formControlName="facebook" />
       </div>
       <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="Twitter" formControlName="twitter">
-        </mat-form-field>
+        <input type="text" pInputText placeholder="Twitter" formControlName="twitter" />
       </div>
     </div>
-    <div class="row">
+  </div>
+  <div class="form-group">
+    <div class="row ">
       <div class="col-sm-12 text-right">
-        <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>
-        <button mat-raised-button color="warn">Cancel</button>
+        <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
       </div>
     </div>
   </div>

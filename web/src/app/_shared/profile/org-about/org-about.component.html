@@ -2,22 +2,20 @@
   <div class="form-group">
     <div class="row form-group">
       <div class="col-sm-12">
-        <mat-label>About</mat-label>
-        <p-editor formControlName="bio" [style]="{'height':'200px'}"></p-editor>
-
+        <label>About</label>
+        <p-editor formContro lName="bio" [style]="{'height':'200px'}"></p-editor>
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-12">
-        <mat-label>Courses Offered</mat-label>
+        <label>Courses Offered</label>
         <p-editor formControlName="coursesOffered" [style]="{'height':'200px'}"></p-editor>
-
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12 text-right">
-        <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>
-        <button mat-raised-button color="warn">Cancel</button>
+        <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
       </div>
     </div>
   </div>
