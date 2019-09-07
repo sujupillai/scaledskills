@@ -16,13 +16,14 @@ import { AddTrainingFeedbackComponent } from './add-training-feedback/add-traini
 import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component';
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
+import {NgPrimeModule} from '../../_forms/prime.module';
 
 
 
 @NgModule({
   declarations: [TrainerComponent, TrainerProfileComponent, AddTrainingComponent, AddTrainingBasicComponent, AddTrainingLocationComponent, AddTrainingTagsComponent, AddTrainingImagesComponent, AddTrainingTicketComponent, AddTrainingQuestionComponent, AddTrainingFeedbackComponent, AddTrainingPromotionsComponent, AddTrainingSettingsComponent, AddTrainerComponent],
   imports: [
-    CommonModule, AccountTrainerRoutingModule, ProfileModule, FormModule
+    CommonModule, AccountTrainerRoutingModule, ProfileModule, FormModule, NgPrimeModule
   ]
 })
 export class TrainerModule { }

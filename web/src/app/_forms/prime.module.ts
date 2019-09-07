@@ -19,13 +19,14 @@ import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {DataViewModule} from 'primeng/dataview';
+import {RatingModule} from 'primeng/rating';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule
+    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule
   ],
   exports: [
-    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule
+    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule
   ]
 })
 export class NgPrimeModule { }

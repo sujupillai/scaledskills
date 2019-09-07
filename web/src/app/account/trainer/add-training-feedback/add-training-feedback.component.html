@@ -1,7 +1,24 @@
 <form [formGroup]="traineeReviewForm" autocomplete="off" novalidate>
   <div class="form-goup">
-    <div class="col-sm-12">
-      <p-editor formControlName="review" [style]="{'height':'200px'}"></p-editor>
+    <label>How satisfied were you with the training</label>
+    <div>
+      <p-rating></p-rating>
     </div>
   </div>
+  <div class="form-goup">
+    <label>What you like about the training</label>
+    <input type="text" pInputText>
+  </div>
+  <div class="form-goup">
+    <label>How we can improve the training</label>
+    <input type="text" pInputText>
+  </div>
+  <div class="form-goup">
+    <label>Training you need in feature</label>
+    <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+  </div>
+  <div class="form-group button-group text-right">
+      <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+    </div>
 </form>
