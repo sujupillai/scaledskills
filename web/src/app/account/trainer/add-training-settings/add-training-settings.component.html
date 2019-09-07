@@ -1,195 +1,99 @@
 <form [formGroup]="trainingSettingForm">
-  <div>
+  <div class="form-group">
     <mat-label>Please click Yes if you want the below options to show on live training page:</mat-label>
   </div>
   <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Custom Questions</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="customQuestions" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Custom Questions</mat-label>
+        <p-inputSwitch formControlName="customQuestions"></p-inputSwitch>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Remaining Tickets</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="remainingTickets" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Remaining Tickets</mat-label>
+        <p-inputSwitch formControlName="remainingTickets"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Set Reminder</mat-label>
+        <p-inputSwitch formControlName="setReminder"></p-inputSwitch>
       </div>
     </div>
   </div>
   <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Set Reminder</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="setReminder" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Affiliate Promoter Link</mat-label>
+        <p-inputSwitch formControlName="affiliatePromoterLink"></p-inputSwitch>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Affiliate Promoter Link</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="affiliatePromoterLink" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Training Id</mat-label>
+        <p-inputSwitch formControlName="trainingId"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">pageViews</mat-label>
+        <p-inputSwitch formControlName="pageViews"></p-inputSwitch>
       </div>
     </div>
   </div>
   <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Training Id</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="trainingId" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Interested Users</mat-label>
+        <p-inputSwitch formControlName="interestedUsers"></p-inputSwitch>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">pageViews</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="pageViews" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Registered Users</mat-label>
+        <p-inputSwitch formControlName="registeredUsers"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Add to Calendar</mat-label>
+        <p-inputSwitch formControlName="addToCalendar"></p-inputSwitch>
       </div>
     </div>
   </div>
   <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Interested Users</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="interestedUsers" [style]="{'width':'100%'}"></p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">x spots left</mat-label>
+        <p-inputSwitch formControlName="xSpotsLeft"></p-inputSwitch>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Registered Users</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="registeredUsers" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Comments</mat-label>
+        <p-inputSwitch formControlName="comments"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">Feedback</mat-label>
+        <p-inputSwitch formControlName="feedback"></p-inputSwitch>
       </div>
     </div>
   </div>
   <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Add to Calendar</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="addToCalendar" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">About Organizer</mat-label>
+        <p-inputSwitch formControlName="aboutOrganizer"></p-inputSwitch>
       </div>
     </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">x spots left</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="xSpotsLeft" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
+    <div class="col-sm-4">
+      <div class="flex_c_c">
+        <mat-label class="mr-15">More Events From Same Organizer</mat-label>
+        <p-inputSwitch formControlName="moreEventsFromSameOrganizer"></p-inputSwitch>
       </div>
     </div>
   </div>
-  <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Comments</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="comments" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">Feedback</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="feedback" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row form-group">
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">About Organizer</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="aboutOrganizer" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-label class="mr-15">More Events From Same Organizer</mat-label>
-          </div>
-          <div class="col-sm-6">
-            <p-toggleButton formControlName="moreEventsFromSameOrganizer" [style]="{'width':'100%'}">
-            </p-toggleButton>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </form>
