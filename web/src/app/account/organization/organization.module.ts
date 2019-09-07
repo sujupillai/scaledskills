@@ -6,8 +6,9 @@ import { OrganizationBankDetailComponent } from './organization-bank-detail/orga
 import { OrganizationProfileComponent } from './organization-profile/organization-profile.component';
 import { FormModule } from '../../_forms/form/form.module';
 import { ProfileModule } from '../../_shared/profile/profile.module';
+import { CommunicationComponent } from './communication/communication.component';
 @NgModule({
-  declarations: [OrganizationComponent, OrganizationBankDetailComponent, OrganizationProfileComponent],
+  declarations: [OrganizationComponent, OrganizationBankDetailComponent, OrganizationProfileComponent, CommunicationComponent],
   imports: [
     CommonModule, AccountOrganizationRoutingModule, FormModule, ProfileModule
   ],

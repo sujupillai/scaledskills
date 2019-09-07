@@ -1,0 +1,76 @@
+<form autocomplete="off" novalidate>
+  <div class="form-group">
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <label>Organization</label>
+        <p-dropdown [options]="[1,2,3]" placeholder="Organization"></p-dropdown>
+      </div>
+      <div class="col-sm-6">
+        <label>Users/Trainings</label>
+        <p-dropdown [options]="[1,2,3]" placeholder="Users/Trainings"></p-dropdown>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <label>Users</label>
+        <p-dropdown [options]="[1,2,3]" placeholder="Users"></p-dropdown>
+      </div>
+      <div class="col-sm-6">
+        <label>Trainings</label>
+        <p-dropdown [options]="[1,2,3]" placeholder="Trainings"></p-dropdown>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6">
+        <label>Filter User List</label>
+        <div class="ui-g" style="width:250px;margin-bottom:10px">
+          <div class="ui-g-12">
+            <p-checkbox name="group1" value="New York" label="New York" [(ngModel)]="selectedCities" inputId="ny">
+            </p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group1" value="San Francisco" label="San Francisco" [(ngModel)]="selectedCities"
+              inputId="sf"></p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group1" value="Los Angeles" label="Los Angeles" [(ngModel)]="selectedCities" inputId="la">
+            </p-checkbox>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label>Final User List</label>
+        <div class="ui-g" style="width:250px;margin-bottom:10px">
+          <div class="ui-g-12">
+            <p-checkbox name="group1" value="New York" label="New York" [(ngModel)]="selectedCities" inputId="ny">
+            </p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group1" value="San Francisco" label="San Francisco" [(ngModel)]="selectedCities"
+              inputId="sf"></p-checkbox>
+          </div>
+          <div class="ui-g-12">
+            <p-checkbox name="group1" value="Los Angeles" label="Los Angeles" [(ngModel)]="selectedCities" inputId="la">
+            </p-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <label>Subject</label>
+        <input type="text" pInputText placeholder="Subject" />
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <label>Message</label>
+        <p-editor [style]="{'height':'200px'}"></p-editor>
+      </div>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+    </div>
+  </div>
+</form>

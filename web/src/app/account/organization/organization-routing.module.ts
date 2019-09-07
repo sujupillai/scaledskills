@@ -6,6 +6,7 @@ import { OrganizationProfileComponent } from './organization-profile/organizatio
 import { OrgBasicComponent } from '../../_shared/profile/org-basic/org-basic.component';
 import { OrgAboutComponent } from '../../_shared/profile/org-about/org-about.component';
 import { SocialComponent } from '../../_shared/profile/social/social.component';
+import { CommunicationComponent } from './communication/communication.component';
 
 const routes = [
   {
@@ -23,6 +24,9 @@ const routes = [
       },
       {
         path: 'bank', component: OrganizationBankDetailComponent,
+      },
+      {
+        path: 'communication', component:CommunicationComponent ,
       }
     ]
   }
