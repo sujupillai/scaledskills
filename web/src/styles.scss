@@ -1178,13 +1178,114 @@ p-footer {
   }
 }
 
-.training_head{
-  border:1px #ddd solid;
-  height: 50px;
+.training_head {
   border-radius: 4px;
+}
+
+.training_banner {
+  @extend .training_head;
+
+  img {
+    vertical-align: top;
+  }
 
 }
-.training_banner{
-  @extend .training_head;
-  height: 150px;
+
+.event-detail-wrap {
+  border: 1px transparent solid;
+
+  &>ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    &>li {
+      border: 1px redd solid;
+      width: 33.3%;
+    }
+
+    .hostedBy {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: normal;
+      padding: 0;
+      margin: 10px 0;
+    }
+  }
+
+  .heading {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+  }
+
+  .training {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+  }
+
+  hr {
+    margin: 0;
+    padding: 0
+  }
+
+}
+
+.pd_tb_20 {
+  padding: 10px 0;
+}
+
+.feed-row {
+  .item {
+    display: inline-block;
+    margin: 0 8px 0 0;
+    text-align: center;
+  }
+}
+
+.joinbtn {
+  font-weight: normal;
+}
+
+.seprator1 {
+  @extend .bg-gradient;
+  width: 100%;
+  height: 2px;
+}
+
+.userThumb {
+
+  img {
+
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border:1px #ddd solid;
+  }
+  h3{
+    font-size: 13px;
+    font-weight: 700;
+  }
+}
+
+body .ui-carousel .ui-carousel-header{
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+  color:#fff;
+  border-bottom: 0;
+}
+body .ui-carousel .ui-carousel-button, body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link{
+  color:#fff;
+}
+.border-line{
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+  height: 2px;
+  &.top{
+    margin-bottom: 20px;
+  }
+  &.bottom{
+    margin-top: 20px;
+  }
 }

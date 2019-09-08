@@ -1,53 +1,129 @@
-<br><br>
 <div class="container">
   <div class="form-group">
-    <div class="training_head"></div>
-  </div>
+    <img src="../../../assets/images/event.png" alt="headerImg" class="img-responsive">
+    <div class="event-detail-wrap">
+      <ul>
+        <li>
+          <button type="button" class="btn btn-gradient bookBtn">
+            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
+          </button>
+          <p class="hostedBy">
+            GetKanban Game
+          </p>
+          <p class="hostedBy">
+            Xebia Road · Gurugram
+          </p>
+          <div class="sub_links"><span class="icon-calender"></span>
+            Saturday, 15th Jun 2019 | 11:00 AM to 01:00 PM
+          </div>
+          <div class="sub_links"><span class="icon-calender"></span>
+            Xebia, Capital Cyberscape, 4th Floor, Sector-59, Golf Course Extension Road, Gurugram - 122005
+          </div>
+        </li>
+        <li class="text-center">
+          <div>
+            <button type="button" class="btn btn-gradient bookBtn">Register</button>
+          </div>
+          <p class="hostedBy">
+            By Defined Values Consultants <span class="joinbtn">&nbsp;<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Join</span>
+          </p>
+          <div class="inline-block">
+            <div class="flex feed-row">
+              <div class="item"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Interested</div>
+              <div class="item"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</div>
+              <div class="item"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
+            </div>
+          </div>
+        </li>
+        <li class="text-right">
+          <button type="button" class="btn btn-gradient bookBtn">Send Enqiry</button>
+          <p class="hostedBy">
+            Ticket Left : 12/200
+          </p>
+          <div class="inline-block">
+            <div class="flex feed-row">
+              <div class="item">Views <br>10</div>
+              <div class="item">Interested <br>10</div>
+              <div class="item">Registered <br>10</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="border-line top"></div></div>
   <div class="form-group">
-    <div class="training_banner"></div>
-  </div>
-  <div class="form-group">
-    <label>Event Speaker</label>
-    <p-editor [(ngModel)]="text" [style]="{'height':'200px'}"></p-editor>
-  </div>
-  <div class="form-group">
-    <label>Registered Users </label>
-    <p-table [columns]="cols" [value]="cars">
-      <ng-template pTemplate="header" let-columns>
-        <tr>
-          <th *ngFor="let col of columns">
-            {{col.header}}
-          </th>
-        </tr>
+    <p-carousel headerText="Trainers (100)" [value]="cars" numVisible="5" circular="true" autoplayInterval="5000">
+      <ng-template let-car pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card styleClass="ui-card-shadow">
+            <div class="userThumb text-center">
+              <img src="https://secure.meetupstatic.com/photos/member/7/3/b/3/member_292289619.jpeg" alt="">
+              <h3>FirstName</h3>
+            </div>
+
+          </p-card>
+        </div>
       </ng-template>
-      <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-          <td *ngFor="let col of columns">
-            {{rowData[col.field]}}
-          </td>
-        </tr>
+    </p-carousel>
+  </div>
+  <div class="form-group">
+    <label>About</label>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit quo impedit molestias ipsam doloremque odio, ad
+      sint exercitationem porro voluptas amet eveniet modi perferendis aspernatur nam quod dicta, asperiores harum.
+    </p>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit quo impedit molestias ipsam doloremque odio, ad
+      sint exercitationem porro voluptas amet eveniet modi perferendis aspernatur nam quod dicta, asperiores harum.
+    </p>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit quo impedit molestias ipsam doloremque odio, ad
+      sint exercitationem porro voluptas amet eveniet modi perferendis aspernatur nam quod dicta, asperiores harum.
+    </p>
+  </div>
+  <div class="border-line"></div>
+  <div class="form-group">
+    <p-carousel headerText="Registered Users (100)" [value]="cars" numVisible="5" circular="true" autoplayInterval="5000">
+      <ng-template let-car pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card styleClass="ui-card-shadow">
+            <div class="userThumb text-center">
+              <img src="https://secure.meetupstatic.com/photos/member/7/3/b/3/member_292289619.jpeg" alt="">
+              <h3>FirstName</h3>
+            </div>
+
+          </p-card>
+        </div>
       </ng-template>
-    </p-table>
+    </p-carousel>
   </div>
   <div class="form-group">
     <p-carousel headerText="Upcoming Trainings from Organizer" [value]="cars">
       <ng-template let-car pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Vin</div>
-            <div class="ui-grid-col-6">{{car.vin}}</div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Year</div>
-            <div class="ui-grid-col-6">{{car.year}}</div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Color</div>
-            <div class="ui-grid-col-6">{{car.color}}</div>
-          </div>
+          <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
+            <div>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <p>
+                  <i class="pi pi-map-marker"></i>New Delhi
+                </p>
+              </div>
+              <div class="col-sm-6 text-right">
+                <p class="label-price">
+                  Rs. 1200
+                </p>
+              </div>
+            </div>
+            <p-footer>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+            </p-footer>
+          </p-card>
         </div>
       </ng-template>
     </p-carousel>
@@ -56,21 +132,28 @@
     <p-carousel headerText="Past Trainings from Organizer" [value]="cars">
       <ng-template let-car pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Vin</div>
-            <div class="ui-grid-col-6">{{car.vin}}</div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Year</div>
-            <div class="ui-grid-col-6">{{car.year}}</div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Color</div>
-            <div class="ui-grid-col-6">{{car.color}}</div>
-          </div>
+          <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
+            <div>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <p>
+                  <i class="pi pi-map-marker"></i>New Delhi
+                </p>
+              </div>
+              <div class="col-sm-6 text-right">
+                <p class="label-price">
+                  Rs. 1200
+                </p>
+              </div>
+            </div>
+            <p-footer>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+            </p-footer>
+          </p-card>
         </div>
       </ng-template>
     </p-carousel>
@@ -79,21 +162,28 @@
     <p-carousel headerText="Other Related Trainings" [value]="cars">
       <ng-template let-car pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Vin</div>
-            <div class="ui-grid-col-6">{{car.vin}}</div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Year</div>
-            <div class="ui-grid-col-6">{{car.year}}</div>
-          </div>
-          <div class="ui-grid-row">
-            <div class="ui-grid-col-6">Color</div>
-            <div class="ui-grid-col-6">{{car.color}}</div>
-          </div>
+          <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
+            <div>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <p>
+                  <i class="pi pi-map-marker"></i>New Delhi
+                </p>
+              </div>
+              <div class="col-sm-6 text-right">
+                <p class="label-price">
+                  Rs. 1200
+                </p>
+              </div>
+            </div>
+            <p-footer>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+              <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
+            </p-footer>
+          </p-card>
         </div>
       </ng-template>
     </p-carousel>
