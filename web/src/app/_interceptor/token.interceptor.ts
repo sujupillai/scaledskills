@@ -5,31 +5,29 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { AuthenticationService } from '../_service/authentication.service';
+import { SharedService } from '../_service/shared.service';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
+import { AuthenticationService } from '../_service/authentication.service';
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
-  constructor(public _AuthenticationService: AuthenticationService) { }
-
+export class HeaderInterceptor implements HttpInterceptor {
+  constructor(public _SharedService: SharedService, private _AuthenticationService: AuthenticationService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    let isTokenRquired = true;
+    this._SharedService.show();
+    const accessToken = this.getToken();
     const url = req.url.split('/')
-    url.filter((x) => {
-      if (x == 'register' || x == 'login') {
-        isTokenRquired = false
-      } else {
-        isTokenRquired = true
-      }
-    })
-    if (isTokenRquired) {
-      const accessToken = this._AuthenticationService.currentUserValue;
-      req = req.clone({
+    if (url[2] !== 'login.microsoftonline.com') {
+      let dummyrequest = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${accessToken.auth_token}`
+          'Authorization': 'Bearer ' + accessToken
         }
       });
+      return next.handle(dummyrequest).pipe(finalize(() => this._SharedService.hide()));
+    } else {
+      return next.handle(req.clone({ setHeaders: {} })).pipe(finalize(() => this._SharedService.hide()));
     }
-    return next.handle(req);
+  }
+  getToken() {
+    return this._AuthenticationService.currentUserValue;
   }
 }

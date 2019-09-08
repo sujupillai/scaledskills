@@ -13,6 +13,8 @@ import { FooterComponent } from './_shared/footer/footer.component';
 import { ErrorComponent } from './_shared/error/error.component';
 import { ReportComponent } from './report/report.component';
 import { NgPrimeModule } from './_forms/prime.module';
+import { SharedModule } from './_shared/shared.module'
+import { SharedService } from './_service/shared.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +28,16 @@ import { NgPrimeModule } from './_forms/prime.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    NgPrimeModule
+    NgPrimeModule,
+    SharedModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: interceptor.TokenInterceptor,
-    multi: true
-  }],
+  providers: [SharedService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: interceptor.HeaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,7 +23,6 @@ export class CertificationsComponent implements OnInit {
     }
   }
   handleSubmit = () => {
-    alert(this.certificatesForm.valid)
     let postObj = {
       ...this.certificatesForm.value
     }

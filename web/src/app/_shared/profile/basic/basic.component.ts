@@ -76,7 +76,6 @@ export class BasicComponent implements OnInit {
     }
     this._HttpService.httpCall(url, 'PUT', postData, null).subscribe(res => {
       if (res.result) {
-        alert(res.responseMessege)
         // this._SharedService.openSnackBar(res.responseMessege, 'close')
       }
     })
