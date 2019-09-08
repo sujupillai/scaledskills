@@ -18,6 +18,7 @@ import { AddTrainingFeedbackComponent } from './add-training-feedback/add-traini
 import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component'
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
+import { ViewTrainingComponent } from './view-training/view-training.component';
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -51,6 +52,7 @@ const routes = [
           { path: 'addTrainer', component: AddTrainerComponent },
         ]
       },
+      { path: 'view', component: ViewTrainingComponent }
     ]
   }
 ];

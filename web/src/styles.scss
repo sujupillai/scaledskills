@@ -1177,3 +1177,14 @@ p-footer {
     transform: rotate(360deg);
   }
 }
+
+.training_head{
+  border:1px #ddd solid;
+  height: 50px;
+  border-radius: 4px;
+
+}
+.training_banner{
+  @extend .training_head;
+  height: 150px;
+}
