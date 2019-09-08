@@ -5,10 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './add-training-images.component.html'
 })
 export class AddTrainingImagesComponent implements OnInit {
-
+  uploadedFiles: any[] = [];
   constructor() { }
 
   ngOnInit() {
+  }
+  onUpload(event) {
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+
+
   }
 
 }

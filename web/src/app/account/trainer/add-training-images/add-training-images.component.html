@@ -1,1 +1,30 @@
-<p>add-training-images works!</p>
+<div class="form-group">
+  <label>
+    Header Image
+  </label>
+  <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
+    maxFileSize="1000000">
+    <ng-template pTemplate="content">
+      <ul *ngIf="uploadedFiles.length">
+        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+      </ul>
+    </ng-template>
+  </p-fileUpload>
+</div>
+<div class="form-group">
+  <label>
+    Card Image
+  </label>
+  <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
+    maxFileSize="1000000">
+    <ng-template pTemplate="content">
+      <ul *ngIf="uploadedFiles.length">
+        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+      </ul>
+    </ng-template>
+  </p-fileUpload>
+</div>
+<div class="form-group button-group text-right">
+  <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+  <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+</div>
