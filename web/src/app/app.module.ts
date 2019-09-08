@@ -15,13 +15,15 @@ import { ReportComponent } from './report/report.component';
 import { NgPrimeModule } from './_forms/prime.module';
 import { SharedModule } from './_shared/shared.module'
 import { SharedService } from './_service/shared.service';
+import { TrainingUrlComponent } from './view/training-url/training-url.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     ErrorComponent,
-    ReportComponent
+    ReportComponent,
+    TrainingUrlComponent,
   ],
   imports: [
     BrowserModule,

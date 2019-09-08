@@ -1,0 +1,101 @@
+<br><br>
+<div class="container">
+  <div class="form-group">
+    <div class="training_head"></div>
+  </div>
+  <div class="form-group">
+    <div class="training_banner"></div>
+  </div>
+  <div class="form-group">
+    <label>Event Speaker</label>
+    <p-editor [(ngModel)]="text" [style]="{'height':'200px'}"></p-editor>
+  </div>
+  <div class="form-group">
+    <label>Registered Users </label>
+    <p-table [columns]="cols" [value]="cars">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="form-group">
+    <p-carousel headerText="Upcoming Trainings from Organizer" [value]="cars">
+      <ng-template let-car pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Vin</div>
+            <div class="ui-grid-col-6">{{car.vin}}</div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Year</div>
+            <div class="ui-grid-col-6">{{car.year}}</div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Color</div>
+            <div class="ui-grid-col-6">{{car.color}}</div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+  <div class="form-group">
+    <p-carousel headerText="Past Trainings from Organizer" [value]="cars">
+      <ng-template let-car pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Vin</div>
+            <div class="ui-grid-col-6">{{car.vin}}</div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Year</div>
+            <div class="ui-grid-col-6">{{car.year}}</div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Color</div>
+            <div class="ui-grid-col-6">{{car.color}}</div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+  <div class="form-group">
+    <p-carousel headerText="Other Related Trainings" [value]="cars">
+      <ng-template let-car pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-12"><img src="assets/showcase/images/demo/car/{{car.brand}}.png" width="60"></div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Vin</div>
+            <div class="ui-grid-col-6">{{car.vin}}</div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Year</div>
+            <div class="ui-grid-col-6">{{car.year}}</div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-6">Color</div>
+            <div class="ui-grid-col-6">{{car.color}}</div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
