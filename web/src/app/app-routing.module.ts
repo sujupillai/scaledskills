@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ErrorComponent } from './_shared/error/error.component';
 import { ReportComponent } from './report/report.component';
 import { TrainingUrlComponent } from './view/training-url/training-url.component';
+import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
   },
   { path: 'report', component: ReportComponent },
   { path: 'view/training/url', component: TrainingUrlComponent },
+  { path: 'view/trainer/url', component: TrainerUrlComponent },
 
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];

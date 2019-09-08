@@ -997,8 +997,6 @@ p-footer {
   justify-content: space-between;
 }
 
-
-
 // loader
 .loaderSpinner {
   position: fixed;
@@ -1193,7 +1191,6 @@ p-footer {
   img {
     vertical-align: top;
   }
-
 }
 
 .event-detail-wrap {
@@ -1236,7 +1233,6 @@ p-footer {
     margin: 0;
     padding: 0
   }
-
 }
 
 .pd_tb_20 {
@@ -1262,9 +1258,7 @@ p-footer {
 }
 
 .userThumb {
-
   img {
-
     width: 72px;
     height: 72px;
     border-radius: 50%;
@@ -1314,10 +1308,105 @@ body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link {
     text-overflow: ellipsis;
     overflow: hidden;
     padding-left: 10px;
-
   }
 }
 
 hr {
   margin: 5px 0 !important
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+textarea.ui-inputtext {
+  min-height: 80px;
+}
+
+.userThumbWrap {
+  display: flex;
+
+  .thumb {
+    width: 100px;
+    height: 100px;
+
+    img {
+      width: inherit;
+      height: inherit;
+      border-radius: 50%
+    }
+
+    &.trainer {
+      margin-top: 24px;
+      width: 120px;
+      height: 120px;
+      img {
+        border-radius: 10px
+      }
+    }
+  }
+
+  .text-desc {
+    padding-left: 20px;
+  }
+}
+
+.training-reviews {
+  .description {
+    margin-top: 20px;
+  }
+}
+
+.header_detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.trainingActions {
+
+  .item,
+  .fa {
+    font-size: 16px;
+  }
+
+  .item.round {
+    font-size: 16px;
+    border: 1px purple solid;
+    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    display: block;
+    line-height: 30px;
+  }
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.tab-menu {
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #c8c8c8;
+  display: flex;
+  margin-bottom: 10px;
+  border-left: 0;
+  border-right: 0;
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+
+  li {
+    a {
+      padding: 0.714em 30px;
+      display: block;
+      color: #fff;
+      font-size: 16px;
+
+      &:hover,
+      &.active {
+        @extend .bgPurple;
+      }
+    }
+  }
 }

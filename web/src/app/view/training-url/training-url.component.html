@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="form-group">
     <img src="../../../assets/images/event.png" alt="headerImg" class="img-responsive">
@@ -25,18 +26,20 @@
             <button type="button" class="btn btn-gradient bookBtn">Register</button>
           </div>
           <p class="hostedBy">
-            By Defined Values Consultants <span class="joinbtn">&nbsp;<i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Join</span>
+            By Defined Values Consultants <span class="joinbtn">&nbsp;<i class="fa fa-user-plus"
+                aria-hidden="true"></i>&nbsp;Join</span>
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Interested</div>
-              <div class="item"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</div>
-              <div class="item"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
+              <div class="item cursor-pointer"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Interested</div>
+              <div class="item cursor-pointer"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</div>
+              <div class="item cursor-pointer" (click)="showDialog()"><i class="fa fa-pencil-square-o"
+                  aria-hidden="true"></i>&nbsp;Feedback</div>
             </div>
           </div>
         </li>
         <li class="text-right">
-          <button type="button" class="btn btn-gradient bookBtn">Send Enqiry</button>
+          <button type="button" class="btn btn-gradient bookBtn" (click)="showSendMesage()">Send Enqiry</button>
           <p class="hostedBy">
             Ticket Left : 12/200
           </p>
@@ -51,7 +54,8 @@
       </ul>
     </div>
 
-    <div class="border-line top"></div></div>
+    <div class="border-line top"></div>
+  </div>
   <div class="form-group">
     <p-carousel headerText="Trainers (100)" [value]="cars" numVisible="5" circular="true" autoplayInterval="5000">
       <ng-template let-car pTemplate="item">
@@ -84,7 +88,8 @@
   </div>
   <div class="border-line"></div>
   <div class="form-group">
-    <p-carousel headerText="Registered Users (100)" [value]="cars" numVisible="5" circular="true" autoplayInterval="5000">
+    <p-carousel headerText="Registered Users (100)" [value]="cars" numVisible="5" circular="true"
+      autoplayInterval="5000">
       <ng-template let-car pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -189,3 +194,79 @@
     </p-carousel>
   </div>
 </div>
+
+<p-dialog header="Feedback" [(visible)]="display" [modal]="true" [responsive]="true"
+  [style]="{width: '80%', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+  <form autocomplete="off" novalidate>
+    <div class="form-goup">
+      <label>How satisfied were you with the training</label>
+      <div>
+        <p-rating></p-rating>
+      </div>
+    </div>
+    <div class="form-goup">
+      <label>What you like about the training</label>
+      <textarea style="height: 150px" placeholder="What you like about the training" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-goup">
+      <label>How we can improve the training</label>
+      <textarea style="height: 150px" placeholder="How we can improve the training" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-goup">
+      <label>Training you need in future</label>
+      <textarea style="height: 150px" placeholder="Training you need in future" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="submit" label="Submit" class="ui-button-raised"
+        (click)="handleSubmit(); display=false"></button>
+      <button pButton type="button" label="Cancel" (click)="display=false"
+        class="ui-button-raised ui-button-danger"></button>
+    </div>
+  </form>
+  <!-- <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+      class="ui-button-secondary"></button>
+  </p-footer> -->
+</p-dialog>
+
+
+
+<p-dialog header="SEND MESSAGE" [(visible)]="isSendMesage" [modal]="true" [responsive]="true"
+  [style]="{width: '80%', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+  <form autocomplete="off" novalidate>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" pInputText placeholder="Full Name" />
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" pInputText placeholder="Email" />
+    </div>
+    <div class="form-group">
+      <label>Phone No</label>
+      <input type="text" pInputText placeholder="Phone No" />
+    </div>
+    <div class="form-goup">
+      <label>Message</label>
+      <textarea style="height: 150px" placeholder="Message" pInputTextarea autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-group">
+      <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="submit" label="Submit" class="ui-button-raised"
+        (click)="handleSubmit(); display=false"></button>
+      <button pButton type="button" label="Cancel" (click)="display=false"
+        class="ui-button-raised ui-button-danger"></button>
+    </div>
+  </form>
+  <!-- <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No"
+      class="ui-button-secondary"></button>
+  </p-footer> -->
+</p-dialog>

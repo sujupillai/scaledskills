@@ -1,9 +1,11 @@
+
 import { Component, OnInit } from '@angular/core';
 @Component({
-  selector: 'app-training-url',
-  templateUrl: './training-url.component.html',
+  selector: 'app-trainer-url',
+  templateUrl: './trainer-url.component.html',
+  styleUrls: ['./trainer-url.component.scss']
 })
-export class TrainingUrlComponent implements OnInit {
+export class TrainerUrlComponent implements OnInit {
   cars = [];
   cols = [];
   display: boolean = false;

@@ -16,6 +16,7 @@ import { NgPrimeModule } from './_forms/prime.module';
 import { SharedModule } from './_shared/shared.module'
 import { SharedService } from './_service/shared.service';
 import { TrainingUrlComponent } from './view/training-url/training-url.component';
+import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { TrainingUrlComponent } from './view/training-url/training-url.component
     ErrorComponent,
     ReportComponent,
     TrainingUrlComponent,
+    TrainerUrlComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,13 +22,15 @@ import {DataViewModule} from 'primeng/dataview';
 import {RatingModule} from 'primeng/rating';
 import {CarouselModule} from 'primeng/carousel';
 import {TooltipModule} from 'primeng/tooltip';
+import {DialogModule} from 'primeng/dialog';
+import {CaptchaModule} from 'primeng/captcha';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule
+    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule,CaptchaModule
   ],
   exports: [
-    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule
+    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule, CaptchaModule
   ]
 })
 export class NgPrimeModule { }
