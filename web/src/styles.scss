@@ -513,9 +513,14 @@ textarea {
 }
 
 .label-price {
-  border: 1px #ddd solid;
-  padding: 4px;
-  border-radius: 4px;
+  font-size: 11px;
+
+  &.border {
+    border: 1px #ddd solid;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
 }
 
 .mb30 {
@@ -1263,29 +1268,56 @@ p-footer {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    border:1px #ddd solid;
+    border: 1px #ddd solid;
   }
-  h3{
+
+  h3 {
     font-size: 13px;
     font-weight: 700;
   }
 }
 
-body .ui-carousel .ui-carousel-header{
+body .ui-carousel .ui-carousel-header {
   background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
-  color:#fff;
+  color: #fff;
   border-bottom: 0;
 }
-body .ui-carousel .ui-carousel-button, body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link{
-  color:#fff;
+
+body .ui-carousel .ui-carousel-button,
+body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link {
+  color: #fff;
 }
-.border-line{
+
+.border-line {
   background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
   height: 2px;
-  &.top{
+
+  &.top {
     margin-bottom: 20px;
   }
-  &.bottom{
+
+  &.bottom {
     margin-top: 20px;
   }
+}
+
+.card-inner {
+  display: flex;
+
+  .month {
+    font-weight: bold;
+    color: red;
+  }
+
+  .card-desc {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 10px;
+
+  }
+}
+
+hr {
+  margin: 5px 0 !important
 }
