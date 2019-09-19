@@ -12,7 +12,7 @@ export class BasicComponent implements OnInit {
   countryList = [];
   stateList = [];
   submitted: boolean = false;
-  phoneNumber = new FormControl();
+  dateOfBirth = new FormControl();
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService) { }
   ngOnInit() {
     this.createprofileForm(() => {
@@ -25,9 +25,9 @@ export class BasicComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [this.phoneNumber.value, Validators.required],
+      phoneNumber: ['', Validators.required],
       gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
+      dateOfBirth: [this.dateOfBirth, Validators.required],
       address: this._FormBuilder.group({
         address1: [''],
         address2: [''],
@@ -87,14 +87,21 @@ export class BasicComponent implements OnInit {
             }
           }
         });
-        this.profileForm.get(['address', 'address1']).setValue('');
-        this.profileForm.get(['address', 'address2']).setValue('');
-        this.profileForm.get(['address', 'address3']).setValue('');
-        this.profileForm.get(['address', 'city']).setValue('');
-        this.profileForm.get(['address', 'zipCode']).setValue('');
-        this.profileForm.get(['address', 'street']).setValue('');
-        this.profileForm.get(['address', 'countryId']).setValue('');
-        this.profileForm.get(['address', 'stateId']).setValue('');
+        let currentDate =new Date(dataObj.dateOfBirth)
+        this.dateOfBirth.setValue(currentDate);
+        this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth);
+        this.profileForm.get(['address', 'address1']).setValue(dataObj.address && dataObj.address.address1 ? dataObj.address.address1 : 'NA');
+        this.profileForm.get(['address', 'address2']).setValue(dataObj.address && dataObj.address.address2 ? dataObj.address.address2 : 'NA');
+        this.profileForm.get(['address', 'address3']).setValue(dataObj.address && dataObj.address.address3 ? dataObj.address.address3 : 'NA');
+        this.profileForm.get(['address', 'city']).setValue(dataObj.address && dataObj.address.city ? dataObj.address.city : 'NA');
+        this.profileForm.get(['address', 'zipCode']).setValue(dataObj.address && dataObj.address.zipCode ? dataObj.address.zipCode : 'NA');
+        this.profileForm.get(['address', 'street']).setValue(dataObj.address && dataObj.address.street ? dataObj.address.street : 'NA');
+        this.profileForm.get(['address', 'countryId']).setValue(dataObj.address && dataObj.address.countryId ? dataObj.address.countryId : 'NA');
+        this.profileForm.get(['address', 'stateId']).setValue(dataObj.address && dataObj.address.stateId ? dataObj.address.stateId : 'NA');
+        this.profileForm.get(['address', 'countryObj']).setValue(dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : 'NA');
+        this.profileForm.get(['address', 'stateObj']).setValue(dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : 'NA');
+
+
       }
     })
   }

@@ -49,8 +49,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <p-calendar name="dateOfBirth" [formControl]="phoneNumber" dateFormat="yy-mm-dd" [monthNavigator]="true"
-            [yearNavigator]="true"></p-calendar>
+          <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy"></p-calendar>
           <p class="error text-danger" *ngIf="submitted && formControl.dateOfBirth.hasError('required')">
             Required
           </p>
