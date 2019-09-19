@@ -10,9 +10,9 @@ export class HttpService {
     let url: string;
     const origin = window.location.origin;
     if (origin.indexOf("localhost") > -1) {
-      url = 'http://sujupillai-001-site1.btempurl.com/api/';
+      url = 'http://jilacefi-001-site1.dtempurl.com/api/';
     } else if (origin.indexOf("scaledskills") > -1) {
-      url = 'http://sujupillai-001-site1.btempurl.com/api/';
+      url = 'http://jilacefi-001-site1.dtempurl.com/api/';
     }
     return url;
   }

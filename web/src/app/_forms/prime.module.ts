@@ -17,20 +17,23 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
-import {MultiSelectModule} from 'primeng/multiselect';
-import {DataViewModule} from 'primeng/dataview';
-import {RatingModule} from 'primeng/rating';
-import {CarouselModule} from 'primeng/carousel';
-import {TooltipModule} from 'primeng/tooltip';
-import {DialogModule} from 'primeng/dialog';
-import {CaptchaModule} from 'primeng/captcha';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { CarouselModule } from 'primeng/carousel';
+import { TooltipModule } from 'primeng/tooltip';
+import { DialogModule } from 'primeng/dialog';
+import { CaptchaModule } from 'primeng/captcha';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import {PasswordModule} from 'primeng/password';
+
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule,CaptchaModule
+    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule, CaptchaModule, DynamicDialogModule, PasswordModule
   ],
   exports: [
-    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule, CaptchaModule
+    CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule, CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule, AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule, CaptchaModule, DynamicDialogModule, PasswordModule
   ]
 })
 export class NgPrimeModule { }

@@ -1,31 +1,23 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import { DynamicDialogRef } from 'primeng/api';
+import { DynamicDialogConfig } from 'primeng/api';
 @Component({
   selector: 'app-confirmation-dialog',
-  templateUrl: './confirmation-dialog.component.html',
-  styleUrls: ['./confirmation-dialog.component.scss']
+  templateUrl: './confirmation-dialog.component.html'
 })
 export class ConfirmationDialogComponent implements OnInit {
-  dialogConfig: any = {}
-  constructor(
-    public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
-
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
+  data;
   ngOnInit() {
-    if (!this.data.isActions) {
+    this.data = this.config.data
+    if (this.data.autoClose) {
       setTimeout(() => {
-        this.autoClose()
-      }, 3000);
+        this.ref.close(null);
+      }, 3000)
     }
   }
-  handleeAction(res): void {
-    this.dialogRef.close(res);
+  handleClick = (data) => {
+    this.ref.close(data);
   }
-  autoClose = () => {
-    this.dialogRef.close(false);
-  }
-
 
 }

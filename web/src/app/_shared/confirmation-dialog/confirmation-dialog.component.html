@@ -1,7 +1,13 @@
-<div mat-dialog-content class="text-center">
-  {{data.message}}
+<div class="modal-body">
+  <p class="text-center">
+    {{data.message}}
+  </p>
 </div>
-<div mat-dialog-actions *ngIf="data.isActions" class="text-center">
-  <button mat-button *ngIf="data.isNo" (click)="handleeAction(false)">{{data.noText}}</button>
-  <button mat-button *ngIf="data.isYes" (click)="handleeAction(true)" cdkFocusInitial>{{data.yesText}}</button>
+<div class="modal-footer text-center" *ngIf="data.isAction">
+  <button type="button" class="btn btn-danger" *ngIf="data.isNo" (click)="handleClick('No')">
+    {{data.noText}}
+  </button>
+  <button type="button" class="btn btn-primary" *ngIf="data.isYes" (click)="handleClick('Yes')">
+    {{data.yesText}}
+  </button>
 </div>

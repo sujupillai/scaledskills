@@ -5,13 +5,13 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { SharedService } from '../_service/shared.service';
-import {ConfirmationDialogComponent} from '../_shared/confirmation-dialog/confirmation-dialog.component';
+
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, AuthComponent, ConfirmationDialogComponent],
+  declarations: [RegisterComponent, LoginComponent, AuthComponent],
   imports: [
     AuthRoutingModule, NgPrimeModule,
   ],
-  entryComponents: [ConfirmationDialogComponent],
+
   providers: [SharedService]
 })
 export class AuthModule { }

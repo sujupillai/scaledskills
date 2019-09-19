@@ -17,6 +17,8 @@ import { SharedModule } from './_shared/shared.module'
 import { SharedService } from './_service/shared.service';
 import { TrainingUrlComponent } from './view/training-url/training-url.component';
 import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
+import { DialogService } from 'primeng/api';
+import { ConfirmationDialogComponent } from './_shared/confirmation-dialog/confirmation-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
     ReportComponent,
     TrainingUrlComponent,
     TrainerUrlComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
     NgPrimeModule,
     SharedModule
   ],
-  providers: [SharedService,
+  entryComponents: [ConfirmationDialogComponent],
+  providers: [DialogService, SharedService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: interceptor.HeaderInterceptor,
