@@ -6,13 +6,15 @@
       <div class="row form-group">
         <div class="col-sm-6">
           <label>Training Need</label>
-          <p-dropdown [options]="trainingNeedDDL" formControlName="trainingNeed" placeholder="Select" optionLabel="name"
-            [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="trainingNeedDDL" formControlName="needTypeObj" placeholder="Select"
+                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="handleOnChangeId($event, 'needType')">
+              </p-dropdown>
         </div>
         <div class="col-sm-6">
           <label>Training Type</label>
-          <p-dropdown [options]="trainingNeedDDL" formControlName="trainingType" placeholder="Select" optionLabel="name"
-            [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="trainingTypeDDL" formControlName="trainingTypeObj" placeholder="Select"
+                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="handleOnChangeId($event, 'trainingType')">
+              </p-dropdown>
         </div>
       </div>
       <div class="row form-group">
@@ -22,14 +24,13 @@
         </div>
         <div class="col-sm-6">
           <label>Number of participant</label>
-          <input type="text" pInputText placeholder="Participant" formControlName="participant" />
+          <input type="text" pInputText placeholder="Participant" formControlName="numberOfParticipant" />
         </div>
       </div>
       <div class="row form-group">
         <div class="col-sm-12">
           <label>Training Summary</label>
-          <textarea pInputTextarea autoResize="autoResize"
-            formControlName="trainingSummary"></textarea>
+          <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
         </div>
       </div>
       <div class="row form-group">
@@ -43,35 +44,44 @@
         <input type="text" pInputText placeholder="Budget" formControlName="budget" />
       </div>
       <div formGroupName="address">
-        <div class="row form-group">
+        <div class="row">
           <div class="col-sm-6">
-            <label>Country</label>
-            <p-dropdown [options]="trainingNeedDDL" formControlName="countryId" placeholder="Select" optionLabel="name"
-              [showClear]="true"></p-dropdown>
+            <div class="form-group">
+              <label for="">Country</label>
+              <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
+                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
+              </p-dropdown>
+            </div>
           </div>
           <div class="col-sm-6">
-            <label>State</label>
-            <p-dropdown [options]="trainingNeedDDL" formControlName="stateId" placeholder="Select" optionLabel="name"
-              [showClear]="true"></p-dropdown>
+            <div class="form-group">
+              <label for="">State</label>
+              <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
+                [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
+            </div>
           </div>
         </div>
-        <div class="row form-group">
+        <div class="row">
           <div class="col-sm-6">
-            <label>City</label>
-            <p-dropdown [options]="trainingNeedDDL" formControlName="city" placeholder="Select" optionLabel="name"
-              [showClear]="true"></p-dropdown>
+            <div class="form-group">
+              <label for="">City</label>
+              <input pInputText placeholder="City" formControlName="city">
+            </div>
           </div>
           <div class="col-sm-6">
-            <label>zip Code</label>
-            <input type="text" pInputText placeholder="zip Code" formControlName="zipCode">
+            <div class="form-group">
+              <label for="">Zip</label>
+              <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
+            </div>
           </div>
         </div>
       </div>
       <div class="form-group">
-        <p-chips formControlName="keywords"></p-chips>
+        <label for="">Keywords</label>
+        <p-chips formControlName="keywords" placeholder="Keywords"></p-chips>
       </div>
       <div class="form-group button-group text-right">
-        <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+        <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
         <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
       </div>
     </div>

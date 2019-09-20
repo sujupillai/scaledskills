@@ -4,9 +4,8 @@ import { AuthenticationService } from '../../_service';
 import { SharedService } from '../../_service'
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import * as authConstant from '../../_helpers/_constants';
+import { ApiPath } from '../../_helpers/_constants/api';
 import { DialogService } from 'primeng/api';
-import { ConfirmationDialogComponent } from '../../_shared/confirmation-dialog/confirmation-dialog.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -49,6 +48,7 @@ export class LoginComponent implements OnInit {
       callback()
     }
   }
+  get formControl() { return this.loginForm.controls }
   openConfirmDialog = (mesage) => {
     let dialogConfig = {
       message: mesage,
@@ -83,30 +83,31 @@ export class LoginComponent implements OnInit {
     const ref = this._SharedService.openDialog(dialogConfig, dialogHeader, dialogWidth);
     ref.onClose.subscribe((res) => {
       if (res) {
-        alert(res)
       }
     });
   }
   handleLogin = () => {
-    this.submitted = true;
     if (this.loginForm.invalid) {
+      this.submitted = true;
       return
+    } else {
+      this.submitted = false;
+      let data = this.loginForm.value;
+      let url = ApiPath.Accountlogin;
+      this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
+        if (res) {
+          // this.openAlertDialog('Log in success')
+          this._Router.navigate([this.returnUrl]);
+          this.resetForm(this.loginForm)
+        } else {
+          this.openAlertDialog('Something went wrong')
+        }
+      },
+        error => {
+          this.error = error;
+          this.openAlertDialog(this.error['error'])
+        });
     }
-    let data = this.loginForm.value;
-    let url = authConstant.ApiPath.Accountlogin;
-    this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
-      if (res) {
-        // this.openAlertDialog('Log in success')
-        this._Router.navigate([this.returnUrl]);
-        this.resetForm(this.loginForm)
-      } else {
-        this.openAlertDialog('Something went wrong')
-      }
-    },
-      error => {
-        this.error = error;
-        this.openAlertDialog(this.error['error'])
-      });
   }
   resetForm(formGroup: FormGroup) {
     let control: AbstractControl = null;

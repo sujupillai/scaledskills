@@ -27,7 +27,10 @@ export class AuthenticationService {
   login(url: string, data: any) {
     localStorage.clear();
     sessionStorage.clear();
-    return this._SharedService.httpCall(url, 'POST', data, null).pipe(map(user => {
+    let params = {
+      isAuth: 'false',
+    }
+    return this._SharedService.httpCall(url, 'POST', data, params).pipe(map(user => {
       if (user && user.auth_token) {
         user = {
           ...user,

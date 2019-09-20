@@ -930,17 +930,6 @@ body .submit {
   background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
   color: #fff
 }
-
-.msgError {
-  font-size: 11px;
-  color: red;
-  position: absolute;
-  ;
-  left: 0;
-  top: 100%;
-  margin-top: -1.2px;
-}
-
 .form-group,
 .pos-relative {
   position: relative;
@@ -1403,4 +1392,17 @@ textarea.ui-inputtext {
       }
     }
   }
+}
+
+.disabled{
+  pointer-events: none;
+  opacity: .6;
+}
+.msgError {
+  font-size: 11px;
+  color: red;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: -1.2px;
 }

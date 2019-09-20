@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '../../_service';
+import * as service from '../../_service';
 import { first } from 'rxjs/operators';
-import { MustMatch } from '../../_helpers/_validators/must-match.validator'
+import { MustMatch } from '../../_helpers/_validators/must-match.validator';
+import { ApiPath } from '../../_helpers/_constants/api'
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _Router: Router) { }
-
+  registerForm: FormGroup;
+  error = '';
+  submitted: boolean = false;
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, ) { }
   ngOnInit() {
     this.createForm(() => {
-
     })
   }
   createForm = (callback: any): void => {
@@ -36,27 +37,50 @@ export class RegisterComponent implements OnInit {
     if (callback) {
       callback()
     }
-
   }
   get formControl() { return this.registerForm.controls }
-
   handleSubmitForm = () => {
-    let data = {
-      ...this.registerForm.value,
-      userName: this.formControl.email.value
-    };
-
-    if (this.registerForm.valid) {
-      let url = 'Account'
-      this._HttpService.httpCall(url, 'POST', data, null).pipe(first()).subscribe(res => {
+    if (this.registerForm.invalid) {
+      this.submitted = true;
+      this.openAlertDialog('')
+      return
+    } else {
+      let url = ApiPath.register;
+      let postObj = {
+        ...this.registerForm.value
+      };
+      let params = {
+        isAuth: 'false',
+      }
+      this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
         if (res) {
-          this.openDialog()
+          this.openAlertDialog('Account created success')
+        } else {
+          this.openAlertDialog('Something went wrong')
         }
-      })
-
+      },
+        error => {
+          this.error = error;
+          this.openAlertDialog('Something went wrong')
+        });
     }
   }
-  openDialog(): void {
-
+  openAlertDialog = (mesage) => {
+    let dialogConfig = {
+      message: mesage,
+      isAction: false,
+      isYes: false,
+      isNo: false,
+      yesText: 'Yes',
+      noText: 'Cancel',
+      autoClose: true
+    };
+    let dialogHeader = "Alert!!!";
+    let dialogWidth: '50'
+    const ref = this._SharedService.openDialog(dialogConfig, dialogHeader, dialogWidth);
+    ref.onClose.subscribe((res) => {
+      if (res) {
+      }
+    });
   }
 }

@@ -1,5 +1,4 @@
 export const ApiPath = {
-  'Accountlogin': 'Account/login',
   'changePassword': 'Account/changePassword',
   'userEducation': 'api/User/Education',
   'userBasic': 'User',
@@ -8,11 +7,15 @@ export const ApiPath = {
   /* trainer */
 
   /* organization */
-  'Organization':'Organization',
-  'organizationUserTag':'Organization/UserTag',
-
+  'Organization': 'Organization',
+  'organizationUserTag': 'Organization/UserTag',
+  /* auth */
+  'register': 'Account',
+  'Accountlogin': 'Account/login',
   /* global */
-  'globalCountry':'Global/Country',
-  'globalState':'Global/State',
-  'userSocial':'User/UserSocial',
+  'globalCountry': 'Global/Country',
+  'globalState': 'Global/State',
+  'userSocial': 'User/UserSocial',
+  'globalDropdown': 'Global/GlobalDropdown',
+  'trainingRequest': 'Training/Request'
 }

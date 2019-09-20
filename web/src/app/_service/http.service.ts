@@ -21,7 +21,7 @@ export class HttpService {
     let apiUrl = this.apiUrlName() + url;
     switch (method) {
       case 'POST':
-        return this._HttpClient.post<any>(apiUrl, data, { 'headers': {}, 'params': params })
+        return this._HttpClient.post<any>(apiUrl, data, { 'headers': {}, 'params': params})
         break;
       case 'PUT':
         return this._HttpClient.put<any>(apiUrl, data, { 'headers': {}, 'params': params })

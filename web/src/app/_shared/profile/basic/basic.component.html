@@ -12,7 +12,7 @@
         <div class="form-group">
           <label for="">Last Name *</label>
           <input pInputText placeholder="Last Name" formControlName="lastName">
-          <p class="error text-danger" *ngIf="submitted && formControl.lastName.hasError('required')">
+          <p class="msgError text-danger" *ngIf="submitted && formControl.lastName.hasError('required')">
             Required Field.
           </p>
         </div>
@@ -23,11 +23,11 @@
         <div class="form-group">
           <label for="">Email *</label>
           <input pInputText placeholder="Email" formControlName="email">
-          <p class="error text-danger" *ngIf="submitted && formControl.email.hasError('email') &&
+          <p class="msgError text-danger" *ngIf="submitted && formControl.email.hasError('email') &&
                   !formControl.email.hasError('required')">
             Please enter a valid email address
           </p>
-          <p class="error text-danger" *ngIf="submitted && formControl.email.hasError('required')">
+          <p class="msgError text-danger" *ngIf="submitted && formControl.email.hasError('required')">
             Required Field.
           </p>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
           <label for="">Mobile Number</label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
-          <p class="error text-danger" *ngIf="submitted && formControl.phoneNumber.hasError('required')">
+          <p class="msgError text-danger" *ngIf="submitted && formControl.phoneNumber.hasError('required')">
             Required Field.
           </p>
         </div>
@@ -56,7 +56,7 @@
           <label for="">Date of Birth *</label>
           <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true"
             yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy"></p-calendar>
-          <p class="error text-danger" *ngIf="submitted && formControl.dateOfBirth.hasError('required')">
+          <p class="msgError text-danger" *ngIf="submitted && formControl.dateOfBirth.hasError('required')">
             Required Field.
           </p>
         </div>
