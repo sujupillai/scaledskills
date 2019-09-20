@@ -3,10 +3,16 @@ export const ApiPath = {
   'changePassword': 'Account/changePassword',
   'userEducation': 'api/User/Education',
   'userBasic': 'User',
-  'globalCountry':'Global/Country',
-  'globalState':'Global/State',
+  /* General */
+
+  /* trainer */
+
   /* organization */
   'Organization':'Organization',
-  'organizationUserTag':'Organization/UserTag'
+  'organizationUserTag':'Organization/UserTag',
 
+  /* global */
+  'globalCountry':'Global/Country',
+  'globalState':'Global/State',
+  'userSocial':'User/UserSocial',
 }

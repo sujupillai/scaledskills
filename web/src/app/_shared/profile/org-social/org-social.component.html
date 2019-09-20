@@ -2,29 +2,38 @@
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Website" formControlName="website" />
+        <div class="form-group">
+          <label for="">Website Url</label>
+          <input type="text" pInputText placeholder="Website Url" formControlName="websiteUrls" />
+        </div>
+
       </div>
       <div class="col-sm-6">
-        <input type="text" pInputText placeholder="LinkedIn" formControlName="linkedIn" />
+        <div class="form-group">
+          <label for="">LinkedIn Url</label>
+          <input type="text" pInputText placeholder="LinkedIn Url" formControlName="linkedInUrls" />
+        </div>
       </div>
     </div>
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Facebook" formControlName="facebook" />
+        <div class="form-group">
+          <label for="">Facebook Url</label>
+          <input type="text" pInputText placeholder="Facebook Url" formControlName="facebookUrls" />
+        </div>
       </div>
       <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Twitter" formControlName="twitter" />
+        <div class="form-group">
+          <label for="">Twitter Url</label>
+          <input type="text" pInputText placeholder="twitter Urls" formControlName="twitterUrls" />
+        </div>
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="row ">
-      <div class="col-sm-12 text-right">
-        <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
-        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
-      </div>
-    </div>
+  <div class="form-group clearfix button-group text-right">
+    <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
   </div>
 </form>

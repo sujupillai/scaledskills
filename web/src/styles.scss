@@ -360,9 +360,8 @@ p+p {
 }
 
 //
-.mat-radio-button~.mat-radio-button,
-.mat-raised-button~.mat-raised-button,
-p-radiobutton~p-radiobutton {
+p-radiobutton~p-radiobutton,
+.ui-button-raised~.ui-button-raised {
   margin-left: 15px;
 }
 
@@ -947,12 +946,6 @@ body .submit {
   position: relative;
 }
 
-.button-group {
-  .ui-button-raised~.ui-button-raised {
-    margin-left: 15px;
-  }
-}
-
 .urlBox {
   align-items: center;
 
@@ -1340,6 +1333,7 @@ textarea.ui-inputtext {
       margin-top: 24px;
       width: 120px;
       height: 120px;
+
       img {
         border-radius: 10px
       }
