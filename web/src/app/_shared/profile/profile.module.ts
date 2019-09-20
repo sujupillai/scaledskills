@@ -12,10 +12,9 @@ import { SocialComponent } from './social/social.component';
 import { FileuploadComponent } from '../../_shared/widgets/fileupload.component';
 import { OrgBasicComponent } from './org-basic/org-basic.component';
 import { OrgAboutComponent } from './org-about/org-about.component';
-import { OrgSocialComponent } from './org-social/org-social.component';
 import {NgPrimeModule} from '../../_forms/prime.module';
 @NgModule({
-  declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent, OrgBasicComponent, OrgAboutComponent, OrgSocialComponent],
+  declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent, OrgBasicComponent, OrgAboutComponent],
   imports: [
     CommonModule, ProfileRoutingModule, NgPrimeModule, FormModule
   ],
