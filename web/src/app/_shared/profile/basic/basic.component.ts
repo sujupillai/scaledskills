@@ -16,7 +16,7 @@ export class BasicComponent implements OnInit {
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService) { }
   ngOnInit() {
     this.createprofileForm(() => {
-      this.getUserPofile();
+      this.getProfileData();
       this.getCountryList();
     })
   }
@@ -39,7 +39,6 @@ export class BasicComponent implements OnInit {
         stateId: [''],
         stateObj: [''],
         city: [''],
-        cityObj: [''],
       }),
       isInterAffiliatePartner: false,
       referralID: '',
@@ -65,16 +64,14 @@ export class BasicComponent implements OnInit {
     this.getMaster(url, 'stateList')
   }
   onChangeCountry(event) {
-    alert('onchange')
     let id = event.value.value
     this.profileForm.get(['address', 'countryId']).setValue(event.value.value)
     this.getStateList(id)
   }
   onChangeState(event) {
-    alert('onchange')
     this.profileForm.get(['address', 'stateId']).setValue(event.value.value)
   }
-  getUserPofile = () => {
+  getProfileData = () => {
     let url = profileConstant.ApiPath.userBasic;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
@@ -114,7 +111,7 @@ export class BasicComponent implements OnInit {
     }
     this._HttpService.httpCall(url, 'PUT', postData, null).subscribe(res => {
       if (res.result) {
-        this.getUserPofile()
+        this.getProfileData()
       }
     })
   }

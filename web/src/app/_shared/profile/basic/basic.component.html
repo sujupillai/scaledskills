@@ -3,15 +3,17 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
+          <label for="">First Name *</label>
           <input type="text" pInputText placeholder="First Name" formControlName="firstName" />
-          <p *ngIf="formControl.firstName.hasError('required')">Required</p>
+          <p *ngIf="formControl.firstName.hasError('required')">Required Field.</p>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
+          <label for="">Last Name *</label>
           <input pInputText placeholder="Last Name" formControlName="lastName">
           <p class="error text-danger" *ngIf="submitted && formControl.lastName.hasError('required')">
-            Required
+            Required Field.
           </p>
         </div>
       </div>
@@ -19,21 +21,23 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
+          <label for="">Email *</label>
           <input pInputText placeholder="Email" formControlName="email">
           <p class="error text-danger" *ngIf="submitted && formControl.email.hasError('email') &&
                   !formControl.email.hasError('required')">
             Please enter a valid email address
           </p>
           <p class="error text-danger" *ngIf="submitted && formControl.email.hasError('required')">
-            Email is <strong>required</strong>
+            Required Field.
           </p>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
+          <label for="">Mobile Number</label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
           <p class="error text-danger" *ngIf="submitted && formControl.phoneNumber.hasError('required')">
-            Mobile number is <strong>required</strong>
+            Required Field.
           </p>
         </div>
       </div>
@@ -49,9 +53,11 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy"></p-calendar>
+          <label for="">Date of Birth *</label>
+          <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true"
+            yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy"></p-calendar>
           <p class="error text-danger" *ngIf="submitted && formControl.dateOfBirth.hasError('required')">
-            Required
+            Required Field.
           </p>
         </div>
       </div>
@@ -60,26 +66,31 @@
       <div formGroupName="address">
         <div class="col-sm-6">
           <div class="form-group">
-            <input pInputText placeholder="address1" formControlName="address1">
+            <label for="">Address</label>
+            <input pInputText placeholder="Address" formControlName="address1">
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <input pInputText placeholder="address2" formControlName="address2">
+            <label for="">Address</label>
+            <input pInputText placeholder="Address" formControlName="address2">
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <input pInputText placeholder="address3" formControlName="address3">
+            <label for="">Address</label>
+            <input pInputText placeholder="Address" formControlName="address3">
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <input pInputText placeholder="zipCode" formControlName="zipCode">
+            <label for="">Zip/Postal Code</label>
+            <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
+            <label for="">Country</label>
             <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
               optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
             </p-dropdown>
@@ -87,12 +98,14 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group">
+            <label for="">State</label>
             <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
               [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
+            <label for="">City</label>
             <input pInputText placeholder="City" formControlName="city">
           </div>
         </div>
@@ -101,12 +114,14 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
+          <label for="">Interested for Affiliate Partner?</label>
           <p-checkbox formControlName="isInterAffiliatePartner" binary="true" label="Interested for Affiliate Partner?">
           </p-checkbox>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
+          <label for="">Referral ID</label>
           <input pInputText placeholder="Referral ID" formControlName="referralID">
         </div>
       </div>

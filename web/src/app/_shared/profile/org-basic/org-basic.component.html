@@ -1,170 +1,155 @@
 <form [formGroup]="orgBasicForm" autocomplete="off" novalidate>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="Organization Name" formControlName="organizationName"
-              [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.organizationName.hasError('required')">
-              Required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="Contact Person or Owner Name" formControlName="ownerName"
-              [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.ownerName.hasError('required')">
-              Required
-            </mat-error>
-          </mat-form-field>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Organization Name *</label>
+          <input type="text" pInputText placeholder="Organization Name" formControlName="name" />
+          <p *ngIf="submitted && formControl.name.hasError('required')">Required Field.</p>
         </div>
       </div>
-      <div class="row">
-          <div formGroupName="address">
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <input matInput placeholder="address1" formControlName="address1">
-                </mat-form-field>
-
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <input matInput placeholder="address2" formControlName="address2">
-                </mat-form-field>
-
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <input matInput placeholder="address3" formControlName="address3">
-                </mat-form-field>
-
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <input matInput placeholder="zipCode" formControlName="zipCode">
-                </mat-form-field>
-
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <mat-label>city</mat-label>
-                  <mat-select formControlName="city">
-                    <mat-option value="">Select</mat-option>
-                  </mat-select>
-                </mat-form-field>
-
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <mat-label>country</mat-label>
-                  <mat-select formControlName="countryId">
-                    <mat-option value="">Select</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div>
-                <mat-form-field>
-                  <mat-label>State</mat-label>
-                  <mat-select formControlName="stateId">
-                    <mat-option value="">Select</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-        </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input readonly matInput placeholder="Base Url" formControlName="baseUrl">
-          </mat-form-field>
-        </div>
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="Enter your Url" formControlName="url" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.url.hasError('required')">
-              Required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="Email address" formControlName="email" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.email.hasError('email') && !formControl.email.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="formControl.email.hasError('required')">
-              Email is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="Contact Number" formControlName="phoneNumber" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.phoneNumber.hasError('minlength')">
-              Phone Number should be atleast 10 characters.
-            </mat-error>
-            <mat-error *ngIf="formControl.phoneNumber.hasError('required')">
-              Required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="GST" formControlName="gst" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.gst.hasError('minlength')">
-              GST should be atleast 15 digits.
-            </mat-error>
-            <mat-error *ngIf="formControl.gst.hasError('required')">
-              Required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-sm-6">
-          <mat-form-field>
-            <input matInput placeholder="PAN" formControlName="pan" [errorStateMatcher]="matcher">
-            <mat-error *ngIf="formControl.pan.hasError('minlength')">
-              PAN Number should be atleast 10 characters.
-            </mat-error>
-            <mat-error *ngIf="formControl.pan.hasError('required')">
-              Required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <mat-label>Image</mat-label>
-            </div>
-            <div>
-              <!-- <vo-mat-fileUpload></vo-mat-fileUpload> -->
-            </div>
-          </div>
-        </div>
-      <div class="row">
-        <div class="col-sm-12 text-right">
-          <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>
-          <button mat-raised-button color="warn">Cancel</button>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Contact Person or Owner Name *</label>
+          <input type="text" pInputText placeholder="Contact Person or Owner Name" formControlName="ownerName" />
+          <p *ngIf="submitted && formControl.ownerName.hasError('required')">Required Field.</p>
         </div>
       </div>
     </div>
-  </form>
+    <div class="row">
+      <div formGroupName="address">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Address</label>
+            <input pInputText placeholder="Address" formControlName="address1">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Address</label>
+            <input pInputText placeholder="Address" formControlName="address2">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Address</label>
+            <input pInputText placeholder="Address" formControlName="address3">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Zip/Postal Code</label>
+            <input pInputText placeholder="Zip/Postal Code" formControlName="zipCode">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Country</label>
+            <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
+              optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">State</label>
+            <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
+              [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">City</label>
+            <input pInputText placeholder="City" formControlName="city">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <label for="">Profile Url</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="gorm-group">
+              <input pInputText placeholder="Base Url" formControlName="baseUrl" readonly>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <input pInputText placeholder="Enter your Url" formControlName="profileUrl">
+              <p class="error text-danger" *ngIf="formControl.profileUrl.hasError('required')">
+                Required Field.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="">Email *</label>
+        <input pInputText placeholder="Email" formControlName="email">
+        <p class="error text-danger" *ngIf="submitted && formControl.email.hasError('email') &&
+                  !formControl.email.hasError('required')">
+          Please enter a valid email address
+        </p>
+        <p class="error text-danger" *ngIf="submitted && formControl.email.hasError('required')">
+          Required Field.
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Mobile Number</label>
+          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
+          <p class="error text-danger" *ngIf="submitted && formControl.phoneNumber.hasError('required')">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">GST Detail</label>
+          <input pInputText placeholder="GST" formControlName="gst">
+          <p class="error text-danger" *ngIf="formControl.gst.hasError('minlength')">
+            GST should be atleast 15 digits.
+          </p>
+          <p class="error text-danger" *ngIf="formControl.gst.hasError('required')">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">PAN Card Detail</label>
+          <input pInputText placeholder="Pan Number" formControlName="panNumber">
+          <p class="error text-danger" *ngIf="submitted && formControl.panNumber.hasError('minlength')">
+            PAN Number should be atleast 10 characters.
+          </p>
+          <p class="error text-danger" *ngIf="submitted && formControl.panNumber.hasError('required')">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix form-group">
+      <div class="col-sm-12">
+        <div class="clearfix">
+            <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+            accept="image/*" maxFileSize="1000000">
+            <ng-template pTemplate="content">
+              <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+      </div>
+    </div>
+    <div class="form-group clearfix button-group text-right">
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+    </div>
+  </div>
+</form>

@@ -5,5 +5,8 @@ export const ApiPath = {
   'userBasic': 'User',
   'globalCountry':'Global/Country',
   'globalState':'Global/State',
-  'globalCity':'Global/City',
+  /* organization */
+  'Organization':'Organization',
+  'organizationUserTag':'Organization/UserTag'
+
 }
