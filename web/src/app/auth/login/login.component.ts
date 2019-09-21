@@ -49,43 +49,6 @@ export class LoginComponent implements OnInit {
     }
   }
   get formControl() { return this.loginForm.controls }
-  openConfirmDialog = (mesage) => {
-    let dialogConfig = {
-      message: mesage,
-      isAction: false,
-      isYes: false,
-      isNo: false,
-      yesText: 'Yes',
-      noText: 'Cancel',
-      autoClose: true
-    };
-    let dialogHeader = "Alert!!";
-    let dialogWidth: '50'
-    const ref = this._SharedService.openDialog(dialogConfig, dialogHeader, dialogWidth);
-    ref.onClose.subscribe((res) => {
-      if (res) {
-        alert(res)
-      }
-    });
-  }
-  openAlertDialog = (mesage) => {
-    let dialogConfig = {
-      message: mesage,
-      isAction: false,
-      isYes: false,
-      isNo: false,
-      yesText: 'Yes',
-      noText: 'Cancel',
-      autoClose: true
-    };
-    let dialogHeader = "Alert!!";
-    let dialogWidth: '50'
-    const ref = this._SharedService.openDialog(dialogConfig, dialogHeader, dialogWidth);
-    ref.onClose.subscribe((res) => {
-      if (res) {
-      }
-    });
-  }
   handleLogin = () => {
     if (this.loginForm.invalid) {
       this.submitted = true;
@@ -96,16 +59,32 @@ export class LoginComponent implements OnInit {
       let url = ApiPath.Accountlogin;
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
         if (res) {
-          // this.openAlertDialog('Log in success')
-          this._Router.navigate([this.returnUrl]);
-          this.resetForm(this.loginForm)
+          let msgArray = [
+            { mgs: 'Login Sucess', class: 'confirmMsg' },
+            { mgs: 'Do you want to update profile?', class: 'subMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+            if (res == 1) {
+              this._Router.navigate(['/account']);
+            } else {
+              this._Router.navigate(['/']);
+            }
+          })
         } else {
-          this.openAlertDialog('Something went wrong')
+          let msgArray = [
+            { mgs: 'Something went wrong', class: 'confirmMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       },
         error => {
-          this.error = error;
-          this.openAlertDialog(this.error['error'])
+          let msgArray = [
+            { mgs: error['error'], class: 'confirmMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     }
   }

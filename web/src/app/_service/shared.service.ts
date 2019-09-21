@@ -14,7 +14,7 @@ export class SharedService {
   hide() {
     this.activeLoader.next(false);
   }
-  openDialog = (dialogConfig, dialogHeader, dialogWidth) => {
+  openDialog = (dialogConfig, dialogHeader) => {
     return this.dialogService.open(ConfirmationDialogComponent, {
       data: {
         ...dialogConfig
@@ -22,5 +22,20 @@ export class SharedService {
       header: dialogHeader,
       width: '50%'
     });
+  }
+  dialogConfig = (mesage, isAction, isYes, isNo, yesText, noText, autoClose, header) => {
+    let tempRes;
+    let dialogConfig = {
+      message: mesage,
+      isAction: isAction,
+      isYes: isYes,
+      isNo: isNo,
+      yesText: yesText,
+      noText: noText,
+      autoClose: autoClose
+    };
+    let dialogHeader = header;
+    let ref = this.openDialog(dialogConfig, dialogHeader);
+    return ref.onClose;
   }
 }

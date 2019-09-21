@@ -1,13 +1,13 @@
 <div class="modal-body">
-  <p class="text-center">
-    {{data.message}}
+  <p class="text-center {{msg.class}}" *ngFor="let msg of data.message">
+    {{msg.mgs}}
   </p>
 </div>
 <div class="modal-footer text-center" *ngIf="data.isAction">
-  <button type="button" class="btn btn-danger" *ngIf="data.isNo" (click)="handleClick('No')">
+  <button type="button" class="btn btn-danger" *ngIf="data.isNo" (click)="handleClick(0)">
     {{data.noText}}
   </button>
-  <button type="button" class="btn btn-primary" *ngIf="data.isYes" (click)="handleClick('Yes')">
+  <button type="button" class="btn btn-primary" *ngIf="data.isYes" (click)="handleClick(1)">
     {{data.yesText}}
   </button>
 </div>

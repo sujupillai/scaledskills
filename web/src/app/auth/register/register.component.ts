@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as service from '../../_service';
-import { first } from 'rxjs/operators';
 import { MustMatch } from '../../_helpers/_validators/must-match.validator';
 import { ApiPath } from '../../_helpers/_constants/api'
 import { Router } from '@angular/router';
@@ -13,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   error = '';
   submitted: boolean = false;
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, ) { }
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createForm(() => {
     })
@@ -42,7 +41,6 @@ export class RegisterComponent implements OnInit {
   handleSubmitForm = () => {
     if (this.registerForm.invalid) {
       this.submitted = true;
-      this.openAlertDialog('')
       return
     } else {
       let url = ApiPath.register;
@@ -54,33 +52,33 @@ export class RegisterComponent implements OnInit {
       }
       this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
         if (res) {
-          this.openAlertDialog('Account created success')
+          let msgArray = [
+            { mgs: 'Account created success', class: 'confirmMsg' },
+            { mgs: 'Do you want to login now?', class: 'subMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+            if (res == 1) {
+              this._Router.navigate(['/auth/login']);
+            } else {
+              this._Router.navigate(['/']);
+            }
+          })
         } else {
-          this.openAlertDialog('Something went wrong')
+          let msgArray = [
+            { mgs: 'Something went wrong', class: 'confirmMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       },
         error => {
-          this.error = error;
-          this.openAlertDialog('Something went wrong')
+          let msgArray = [
+            { mgs: error['error'], class: 'confirmMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     }
-  }
-  openAlertDialog = (mesage) => {
-    let dialogConfig = {
-      message: mesage,
-      isAction: false,
-      isYes: false,
-      isNo: false,
-      yesText: 'Yes',
-      noText: 'Cancel',
-      autoClose: true
-    };
-    let dialogHeader = "Alert!!!";
-    let dialogWidth: '50'
-    const ref = this._SharedService.openDialog(dialogConfig, dialogHeader, dialogWidth);
-    ref.onClose.subscribe((res) => {
-      if (res) {
-      }
-    });
   }
 }
