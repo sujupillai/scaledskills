@@ -28,7 +28,8 @@ import { ConfirmationDialogComponent } from './_shared/confirmation-dialog/confi
     ReportComponent,
     TrainingUrlComponent,
     TrainerUrlComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -46,6 +47,7 @@ import { ConfirmationDialogComponent } from './_shared/confirmation-dialog/confi
       multi: true
     }
   ],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,38 +4,73 @@
       <div class="form-wrapper content">
         <h2>SIGN UP</h2>
         <form [formGroup]="registerForm" autocomplete="off" novalidate>
-          <div class="form-group">
-            <input class="width_100" type="text" placeholder="First Name *" pInputText formControlName="firstName" />
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">First Name *</label>
+                <input type="text" placeholder="First Name" pInputText formControlName="firstName" />
+                <p class="msgError" *ngIf="formControl.firstName.hasError('required') && formControl.firstName.dirty">
+                  Required
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Last Name *</label>
+                <input class="width_100" type="text" placeholder="Last Name" pInputText formControlName="lastName" />
+                <p class="msgError" *ngIf="formControl.lastName.hasError('required') && formControl.lastName.dirty">
+                  Required
+                </p>
+              </div>
+            </div>
           </div>
           <div class="form-group">
-            <input class="width_100" type="text" placeholder="Last Name *" pInputText formControlName="lastName" />
-          </div>
-          <div class="form-group">
-            <input class="width_100" type="text" placeholder="Email address *" pInputText formControlName="email" />
-          </div>
-          <div class="form-group">
-            <input class="width_100" type="password" placeholder="Password *" pInputText formControlName="password" />
-            <p class="msgError" *ngIf="formControl.password.hasError('minlength')">
-              Password should be atleast 5 characters.
-            </p>
-            <p class="msgError" *ngIf="formControl.password.hasError('required') && formControl.password.dirty">
+            <label for="">Email address *</label>
+            <input class="width_100" type="text" placeholder="Email address" pInputText formControlName="email" />
+            <p class="msgError" *ngIf="formControl.email.hasError('required') && formControl.email.dirty">
               Required
             </p>
           </div>
           <div class="form-group">
-            <input class="width_100" type="password" placeholder="Confirm Password *" pInputText
-              formControlName="confirmPassword" />
-            <p class="msgError" *ngIf="formControl.confirmPassword.hasError('mustMatch')">
-              Password and confirm password should be same.
+            <label for="">Mobile Number *</label>
+            <input type="text" placeholder="Mobile Number" pInputText formControlName="phoneNumber" digitOnly />
+            <p class="msgError" *ngIf="formControl.phoneNumber.hasError('minlength')">
+              Atleast 10 numbers.
             </p>
-            <p class="msgError"
-              *ngIf="formControl.confirmPassword.hasError('required') && formControl.confirmPassword.dirty">
+            <p class="msgError" *ngIf="formControl.phoneNumber.hasError('maxlength')">
+              Max 10 numbers.
+            </p>
+            <p class="msgError" *ngIf="formControl.phoneNumber.hasError('required') && formControl.phoneNumber.dirty">
               Required
             </p>
           </div>
-          <div class="form-group">
-            <input class="width_100" type="number" placeholder="Mobile Number *" pInputText
-              formControlName="phoneNumber" />
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Password *</label>
+                <input class="width_100" type="password" placeholder="Password" pInputText formControlName="password" />
+                <p class="msgError" *ngIf="formControl.password.hasError('minlength')">
+                  Password should be atleast 5 characters.
+                </p>
+                <p class="msgError" *ngIf="formControl.password.hasError('required') && formControl.password.dirty">
+                  Required
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">Confirm Password *</label>
+                <input class="width_100" type="password" placeholder="Confirm Password" pInputText
+                  formControlName="confirmPassword" />
+                <p class="msgError" *ngIf="formControl.confirmPassword.hasError('mustMatch')">
+                  Password and confirm password should be same.
+                </p>
+                <p class="msgError"
+                  *ngIf="formControl.confirmPassword.hasError('required') && formControl.confirmPassword.dirty">
+                  Required
+                </p>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <div>By signing up, I agree to ScaledSkills
