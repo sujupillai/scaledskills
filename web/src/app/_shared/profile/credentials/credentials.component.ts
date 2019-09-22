@@ -62,6 +62,11 @@ export class CredentialsComponent implements OnInit {
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     } else {
+      let msgArray = [
+        { mgs: 'Please complete form', class: 'confirmMsg' },
+      ]
+      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       this.submitted = true;
     }
   }

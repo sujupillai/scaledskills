@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as profileConstant from '../../../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
-import { HttpService } from '../../../_service/http.service';
+import { HttpService, SharedService } from '../../../_service';
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html'
@@ -13,7 +13,7 @@ export class BasicComponent implements OnInit {
   stateList = [];
   submitted: boolean = false;
   dateOfBirth = new FormControl();
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService) { }
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   ngOnInit() {
     this.createprofileForm(() => {
       this.getProfileData();
@@ -84,7 +84,7 @@ export class BasicComponent implements OnInit {
             }
           }
         });
-        let currentDate =new Date(dataObj.dateOfBirth)
+        let currentDate = new Date(dataObj.dateOfBirth)
         this.dateOfBirth.setValue(currentDate);
         this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth);
         this.profileForm.get(['address', 'address1']).setValue(dataObj.address && dataObj.address.address1 ? dataObj.address.address1 : 'NA');
@@ -102,16 +102,44 @@ export class BasicComponent implements OnInit {
   }
   get formControl() { return this.profileForm.controls }
   handleSubmit = () => {
-    this.submitted = true;
-    let url = profileConstant.ApiPath.userBasic;
-    let postData = {
-      ...this.profileForm.value,
-    }
-    this._HttpService.httpCall(url, 'PUT', postData, null).subscribe(res => {
-      if (res.result) {
-        debugger;
-        this.getProfileData()
+    if (this.profileForm.invalid) {
+      this.submitted = true;
+      let msgArray = [
+        { mgs: 'Please complete form', class: 'confirmMsg' },
+      ]
+      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+    } else {
+      this.submitted = false;
+      let url = profileConstant.ApiPath.userBasic;
+      let postData = {
+        ...this.profileForm.value,
       }
-    })
+      this._HttpService.httpCall(url, 'PUT', postData, null).subscribe(res => {
+        if (res.result) {
+          let msgArray = [
+            {
+              mgs: res.responseMessege ? res.responseMessege : 'Success',
+              class: 'confirmMsg'
+            },
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+          this.getProfileData()
+        } else {
+          let msgArray = [
+            { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        }
+      }, error => {
+        let msgArray = [
+          { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
+        ]
+        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      })
+    }
+
   }
 }
