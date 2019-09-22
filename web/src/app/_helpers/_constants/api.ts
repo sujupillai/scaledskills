@@ -18,5 +18,9 @@ export const ApiPath = {
   'globalState': 'Global/State',
   'userSocial': 'User/UserSocial',
   'globalDropdown': 'Global/GlobalDropdown',
-  'trainingRequest': 'Training/Request'
+  'trainingRequest': 'Training/Request',
+  'documentUpload': 'Document/Upload',
+
+  /* training */
+  'training': 'Training',
 }

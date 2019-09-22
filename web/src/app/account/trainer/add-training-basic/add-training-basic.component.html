@@ -1,13 +1,17 @@
 <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
-  <div class="form-group">
+  <div class="clearfix">
     <div class="form-group">
-      <input type="text" pInputText placeholder="Training Name *" formControlName="trainingName">
+      <input type="text" pInputText placeholder="Training Name *" formControlName="name">
+      <p class="msgError text-danger"
+        *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
+        Required
+        Field.</p>
     </div>
     <div class="form-group">
       <div class="flex vMiddle urlBox">
         <div class="fixed-input">{{baseUrl}}</div>
-        <input type="text" pInputText placeholder="Enter Url"
-          value="{{(formControl.trainingName.value).split(' ').join('_')}}">
+        <input type="text" pInputText placeholder="Enter Url" value="{{(formControl.name.value).split(' ').join('_')}}"
+          readonly>
       </div>
     </div>
     <div class="form-group">
@@ -26,38 +30,41 @@
     <div class="form-group">
       <label>Description *</label>
       <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+      <p class="msgError text-danger"
+        *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">
+        Required
+        Field.</p>
     </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-sm-6">
-        <label>Start Date *</label>
-        <p-calendar formControlName="startDate"></p-calendar>
+        <div class="form-group">
+          <label>Start Date *</label>
+          <p-calendar formControlName="startDate"></p-calendar>
+          <p class="msgError text-danger"
+            *ngIf="formControl.startDate.hasError('required') && (formControl.startDate.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
       </div>
       <div class="col-sm-6">
-        <label>Start Time *</label>
-        <p-calendar formControlName="startTime" [timeOnly]="true"></p-calendar>
+        <div class="form-group">
+          <label>End Date *</label>
+          <p-calendar formControlName="endDate"></p-calendar>
+          <p class="msgError text-danger"
+            *ngIf="formControl.endDate.hasError('required') && (formControl.endDate.dirty || submitted)">
+            Required Field.</p>
+        </div>
       </div>
     </div>
-    <div class="row form-group">
-      <div class="col-sm-6">
-        <label>End Date *</label>
-        <p-calendar formControlName="endDate"></p-calendar>
-      </div>
-      <div class="col-sm-6">
-        <label>End Time *</label>
-        <p-calendar formControlName="endTime" [timeOnly]="true"></p-calendar>
-      </div>
-    </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-sm-6">
         <label>Time Zone</label>
         <input type="text" pInputText placeholder="Time Zone" formControlName="timeZone">
       </div>
     </div>
-    <div class="row form-group">
-      <div class="col-sm-12 text-right">
-        <button type="submit" mat-raised-button color="accent" (click)="handleSubmit()">Save</button>
-        <button mat-raised-button color="warn">Cancel</button>
-      </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
 </form>

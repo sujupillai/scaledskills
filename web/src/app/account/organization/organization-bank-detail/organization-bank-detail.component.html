@@ -1,91 +1,141 @@
 <form [formGroup]="orgBankDetailForm" autocomplete="off" novalidate>
-  <div class="form-group">
-    <div class="row form-group">
+  <div class="clearfix">
+    <div class="row">
       <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Account Holder Name" formControlName="name" />
+        <div class="form-group">
+          <label for="">Account Holder Name *</label>
+          <input type="text" pInputText placeholder="Account Holder Name" formControlName="name" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">Required
+            Field.</p>
+        </div>
       </div>
       <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Account Number" formControlName="acNumber" />
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Bank Name" formControlName="bankName" />
-      </div>
-      <div class="col-sm-6">
-        <input type="text" pInputText placeholder="Branch" formControlName="branchName" />
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-sm-6">
-        <input type="text" pInputText placeholder="IFSC" formControlName="ifsc" />
-      </div>
-      <div class="col-sm-6">
-        <input type="text" pInputText placeholder="GST Number" formControlName="gstNumber" />
+        <div class="form-group">
+          <label for="">Account Number *</label>
+          <input type="text" pInputText placeholder="Account Number" formControlName="accountNumber" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.accountNumber.hasError('required') && (formControl.accountNumber.dirty || submitted)">
+            Required
+            Field.</p>
+        </div>
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Bank Name *</label>
+          <input type="text" pInputText placeholder="Bank Name" formControlName="bankName" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.bankName.hasError('required') && (formControl.bankName.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Branch *</label>
+          <input type="text" pInputText placeholder="Branch" formControlName="branchName" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.branchName.hasError('required') && (formControl.branchName.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">IFSC *</label>
+          <input type="text" pInputText placeholder="IFSC" formControlName="ifscCode" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.ifscCode.hasError('required') && (formControl.ifscCode.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">GST Number *</label>
+          <input type="text" pInputText placeholder="GST Number" formControlName="gstNum" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.gstNum.hasError('required') && (formControl.gstNum.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-sm-12">
-        <label>Get Exemption Document</label>
-        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-          maxFileSize="1000000">
-          <ng-template pTemplate="content">
-            <ul *ngIf="adharCard.length">
-              <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-            </ul>
-          </ng-template>
-        </p-fileUpload>
+        <div class="form-group">
+          <label>Get Exemption Document</label>
+          <pre>{{uploadedFiles|json}}</pre>
+          <p-fileUpload mode="basic" name="demo[]" url="{{documentUpload}}" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
+          <!-- <pre>
+            {{formControl.exemptionDocId.value}}
+          </pre> -->
+
+          <p-fileUpload (uploadHandler)="onUpload($event)" (change)="upload($event)" name="myfile[]" url="{{documentUpload}}" multiple="false" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+          <p-fileUpload name="myFile" customUpload="true" multiple="false" (uploadHandler)="onUpload($event)" accept="image/*"></p-fileUpload>
+
+        </div>
+
       </div>
     </div>
-    <div class="row form-group">
+    <!-- <div class="row">
       <div class="col-sm-12">
-        <label>Upload Pancard</label>
-        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-          maxFileSize="1000000">
-          <ng-template pTemplate="content">
-            <ul *ngIf="adharCard.length">
-              <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-            </ul>
-          </ng-template>
-        </p-fileUpload>
+        <div class="form-group">
+          <label>Upload Pancard</label>
+          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
+            maxFileSize="1000000">
+            <ng-template pTemplate="content">
+              <ul *ngIf="adharCard.length">
+                <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
+
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-sm-12">
-        <label>Upload Adharcard</label>
-        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-          maxFileSize="1000000">
-          <ng-template pTemplate="content">
-            <ul *ngIf="adharCard.length">
-              <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-            </ul>
-          </ng-template>
-        </p-fileUpload>
+        <div class="form-group">
+          <label>Upload Adharcard</label>
+          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
+            maxFileSize="1000000">
+            <ng-template pTemplate="content">
+              <ul *ngIf="adharCard.length">
+                <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
       </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
       <div class="col-sm-12">
-        <label>Upload Cancellation</label>
-        <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-          maxFileSize="1000000">
-          <ng-template pTemplate="content">
-            <ul *ngIf="adharCard.length">
-              <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-            </ul>
-          </ng-template>
-        </p-fileUpload>
+        <div class="form-group">
+          <label>Upload Cancellation</label>
+          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
+            maxFileSize="1000000">
+            <ng-template pTemplate="content">
+              <ul *ngIf="adharCard.length">
+                <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
+              </ul>
+            </ng-template>
+          </p-fileUpload>
+        </div>
       </div>
-    </div>
-    <div class="row form-group">
+    </div> -->
+    <div class="row">
       <div class="col-sm-12">
-        <label>Account Type</label>
-        <div class="ui-g">
-          <div class="ui-g-12">
-            <p-radioButton name="account" value="1" label="Current" formControlName="accountType" inputId="opt1">
+        <div class="form-group">
+          <label>Account Type *</label>
+          <div>
+            <p-radioButton name="accountType" value="1" label="Current" formControlName="accountType" inputId="opt1">
             </p-radioButton>
-          </div>
-          <div class="ui-g-12">
-            <p-radioButton name="account" value="2" label="Savings" formControlName="accountType" inputId="opt2">
+            <p-radioButton name="accountType" value="2" label="Savings" formControlName="accountType" inputId="opt2">
             </p-radioButton>
           </div>
         </div>
@@ -94,12 +144,9 @@
     <div class="form-group">
       <label class="text-danger">Bank details need to be varified</label>
     </div>
-    <div class="row">
-      <div class="col-sm-12 text-right">
-        <button pButton type="submit" label="Save" class="ui-button-raised ui-button-success"
-          (click)="handleSubmit()"></button>
-        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-warning"></button>
-      </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
 </form>
