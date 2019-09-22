@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { SharedService, HttpService } from '../../../_service';
 @Component({
@@ -12,7 +12,8 @@ export class AddTrainingBasicComponent implements OnInit {
   cities = [];
   trainingForList = []
   submitted: boolean = false;
-
+  startDate = new FormControl();
+  endDate = new FormControl();
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService) {
     this.cities = [
       { name: 'New York', code: 'NY' },
@@ -27,7 +28,10 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
-    this.createForm(() => { })
+    this.createForm(() => {
+      this.startDate.setValue(new Date());
+      this.endDate.setValue(new Date());
+    })
   }
   createForm = (callback: any): void => {
     this.trainingBasicForm = this._FormBuilder.group({
