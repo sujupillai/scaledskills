@@ -12,7 +12,7 @@
               (onChange)="handleOnChangeId($event, 'needType')">
             </p-dropdown>
             <p class="msgError"
-              *ngIf="formControl.needType.hasError('required') && (formControl.needType.dirty || submited)">
+              *ngIf="formControl.needType.hasError('required') && (formControl.needType.dirty || submitted)">
               Required Field.
             </p>
           </div>
@@ -25,7 +25,7 @@
               (onChange)="handleOnChangeId($event, 'trainingType')">
             </p-dropdown>
             <p class="msgError"
-              *ngIf="formControl.trainingType.hasError('required') && (formControl.trainingType.dirty || submited)">
+              *ngIf="formControl.trainingType.hasError('required') && (formControl.trainingType.dirty || submitted)">
               Required Field.
             </p>
           </div>
@@ -37,7 +37,7 @@
             <label>Company Name *</label>
             <input type="text" pInputText placeholder="Company Name" formControlName="companyName" />
             <p class="msgError"
-              *ngIf="formControl.companyName.hasError('required') && (formControl.companyName.dirty || submited)">
+              *ngIf="formControl.companyName.hasError('required') && (formControl.companyName.dirty || submitted)">
               Required Field.
             </p>
           </div>
@@ -55,7 +55,7 @@
             <label>Training Summary *</label>
             <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
             <p class="msgError"
-              *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submited)">
+              *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submitted)">
               Required Field.
             </p>
           </div>
@@ -67,7 +67,7 @@
             <label>Description *</label>
             <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
             <p class="msgError"
-              *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submited)">
+              *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">
               Required Field.
             </p>
           </div>

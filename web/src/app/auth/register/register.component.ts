@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
       this.submitted = true;
       return
     } else {
+      this.submitted=false;
       let url = ApiPath.register;
       let postObj = {
         ...this.registerForm.value
