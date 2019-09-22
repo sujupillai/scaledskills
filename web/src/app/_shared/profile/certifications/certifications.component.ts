@@ -27,7 +27,6 @@ export class CertificationsComponent implements OnInit {
     let postObj = {
       ...this.certificatesForm.value
     }
-    prompt('postObj', JSON.stringify(postObj))
   }
 
 }

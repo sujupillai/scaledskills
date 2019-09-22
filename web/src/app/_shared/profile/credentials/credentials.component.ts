@@ -28,24 +28,6 @@ export class CredentialsComponent implements OnInit {
     }
   }
   get formControl() { return this.credentialForm.controls; }
-  openAlertDialog = (mesage) => {
-    let dialogConfig = {
-      message: mesage,
-      isAction: false,
-      isYes: false,
-      isNo: false,
-      yesText: 'Yes',
-      noText: 'Cancel',
-      autoClose: true
-    };
-    let dialogHeader = "Alert!!";
-    let dialogWidth: '50'
-    const ref = this._SharedService.openDialog(dialogConfig, dialogHeader, dialogWidth);
-    ref.onClose.subscribe((res) => {
-      if (res) {
-      }
-    });
-  }
   handleSubmit = () => {
     const url = ApiPath.changePassword;
     let postObj = {
@@ -55,11 +37,29 @@ export class CredentialsComponent implements OnInit {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res.responseCode == 200) {
-          this.openAlertDialog(res.responseMessege ? res.responseMessege : 'Something went wrong')
+          let msgArray = [
+            {
+              mgs: res.responseMessege ? res.responseMessege : 'Success',
+              class: 'confirmMsg'
+            },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
+        }
+        else {
+          let msgArray = [
+            { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       },
         error => {
-          this.openAlertDialog(error['error'] ? error['error'] : 'Something went wrong')
+          let msgArray = [
+            { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     } else {
       this.submitted = true;

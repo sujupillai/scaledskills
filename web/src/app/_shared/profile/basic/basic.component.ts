@@ -109,6 +109,7 @@ export class BasicComponent implements OnInit {
     }
     this._HttpService.httpCall(url, 'PUT', postData, null).subscribe(res => {
       if (res.result) {
+        debugger;
         this.getProfileData()
       }
     })

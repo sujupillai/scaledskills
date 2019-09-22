@@ -5,7 +5,7 @@
         <div class="form-group">
           <label for="">First Name *</label>
           <input type="text" pInputText placeholder="First Name" formControlName="firstName" />
-          <p *ngIf="formControl.firstName.hasError('required')">Required Field.</p>
+          <p class="msgError text-danger" *ngIf="formControl.firstName.hasError('required')">Required Field.</p>
         </div>
       </div>
       <div class="col-sm-6">
@@ -114,7 +114,6 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Interested for Affiliate Partner?</label>
           <p-checkbox formControlName="isInterAffiliatePartner" binary="true" label="Interested for Affiliate Partner?">
           </p-checkbox>
         </div>
