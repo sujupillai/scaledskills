@@ -39,19 +39,17 @@ export class RegisterComponent implements OnInit {
   }
   get formControl() { return this.registerForm.controls }
   handleSubmitForm = () => {
+    debugger
     if (this.registerForm.invalid) {
       this.submitted = true;
       return
     } else {
-      this.submitted=false;
+      this.submitted = false;
       let url = ApiPath.register;
       let postObj = {
         ...this.registerForm.value
       };
-      let params = {
-        isAuth: 'false',
-      }
-      this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res) {
           let msgArray = [
             { mgs: 'Account created success', class: 'confirmMsg' },

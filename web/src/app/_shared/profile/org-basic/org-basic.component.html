@@ -5,41 +5,35 @@
         <div class="form-group">
           <label for="">Organization Name *</label>
           <input type="text" pInputText placeholder="Organization Name" formControlName="name" />
-          <p *ngIf="submitted && formControl.name.hasError('required')">Required Field.</p>
+          <p class="msgError text-danger"
+            *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
+            Required Field.
+          </p>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Contact Person or Owner Name *</label>
           <input type="text" pInputText placeholder="Contact Person or Owner Name" formControlName="ownerName" />
-          <p *ngIf="submitted && formControl.ownerName.hasError('required')">Required Field.</p>
+          <p class="msgError text-danger"
+            *ngIf="formControl.ownerName.hasError('required') && (formControl.ownerName.dirty || submitted)">
+            Required Field.
+          </p>
         </div>
       </div>
     </div>
     <div class="row">
       <div formGroupName="address">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
+          <label for="">Address</label>
           <div class="form-group">
-            <label for="">Address</label>
-            <input pInputText placeholder="Address" formControlName="address1">
+            <input pInputText placeholder="Address 1" formControlName="address1">
           </div>
-        </div>
-        <div class="col-sm-6">
           <div class="form-group">
-            <label for="">Address</label>
-            <input pInputText placeholder="Address" formControlName="address2">
+            <input pInputText placeholder="Address 2" formControlName="address2">
           </div>
-        </div>
-        <div class="col-sm-6">
           <div class="form-group">
-            <label for="">Address</label>
-            <input pInputText placeholder="Address" formControlName="address3">
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <label for="">Zip/Postal Code</label>
-            <input pInputText placeholder="Zip/Postal Code" formControlName="zipCode">
+            <input pInputText placeholder="Address 2" formControlName="address3">
           </div>
         </div>
         <div class="col-sm-6">
@@ -61,6 +55,12 @@
           <div class="form-group">
             <label for="">City</label>
             <input pInputText placeholder="City" formControlName="city">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Zip/Postal Code</label>
+            <input pInputText placeholder="Zip/Postal Code" formControlName="zipCode">
           </div>
         </div>
       </div>
@@ -87,21 +87,31 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label for="">Email *</label>
-        <input pInputText placeholder="Email" formControlName="email">
-        <p class="msgError text-danger" *ngIf="submitted && formControl.email.hasError('email') &&
-                  !formControl.email.hasError('required')">
-          Please enter a valid email address
-        </p>
-        <p class="msgError text-danger" *ngIf="submitted && formControl.email.hasError('required')">
-          Required Field.
-        </p>
+        <div class="form-group">
+          <label for="">Email *</label>
+          <input pInputText placeholder="Email" formControlName="email">
+          <p class="msgError text-danger" *ngIf="formControl.email.hasError('email') &&
+                      !formControl.email.hasError('required')">
+            Please enter a valid email address
+          </p>
+          <p class="msgError text-danger"
+            *ngIf="formControl.email.hasError('required') && (formControl.email.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Mobile Number</label>
+          <label for="">Mobile Number *</label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
-          <p class="msgError text-danger" *ngIf="submitted && formControl.phoneNumber.hasError('required')">
+          <p class="msgError" *ngIf="formControl.phoneNumber.hasError('minlength')">
+            Atleast 10 numbers.
+          </p>
+          <p class="msgError" *ngIf="formControl.phoneNumber.hasError('maxlength')">
+            Max 10 numbers.
+          </p>
+          <p class="msgError"
+            *ngIf="formControl.phoneNumber.hasError('required') && (formControl.phoneNumber.dirty || submitted)">
             Required Field.
           </p>
         </div>
@@ -112,11 +122,11 @@
         <div class="form-group">
           <label for="">GST Detail</label>
           <input pInputText placeholder="GST" formControlName="gst">
-          <p class="msgError text-danger" *ngIf="formControl.gst.hasError('minlength')">
-            GST should be atleast 15 digits.
+          <p class="msgError" *ngIf="formControl.gst.hasError('minlength')">
+            Atleast 15 characters.
           </p>
-          <p class="msgError text-danger" *ngIf="formControl.gst.hasError('required')">
-            Required Field.
+          <p class="msgError" *ngIf="formControl.gst.hasError('maxlength')">
+            Max 15 characters.
           </p>
         </div>
       </div>
@@ -124,19 +134,19 @@
         <div class="form-group">
           <label for="">PAN Card Detail</label>
           <input pInputText placeholder="Pan Number" formControlName="panNumber">
-          <p class="msgError text-danger" *ngIf="submitted && formControl.panNumber.hasError('minlength')">
-            PAN Number should be atleast 10 characters.
-          </p>
-          <p class="msgError text-danger" *ngIf="submitted && formControl.panNumber.hasError('required')">
-            Required Field.
-          </p>
+          <p class="msgError" *ngIf="formControl.panNumber.hasError('minlength')">
+              Atleast 10 characters.
+            </p>
+            <p class="msgError" *ngIf="formControl.panNumber.hasError('maxlength')">
+              Max 10 characters.
+            </p>
         </div>
       </div>
     </div>
     <div class="row clearfix form-group">
       <div class="col-sm-12">
         <div class="clearfix">
-            <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
+          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
             accept="image/*" maxFileSize="1000000">
             <ng-template pTemplate="content">
               <ul *ngIf="uploadedFiles.length">

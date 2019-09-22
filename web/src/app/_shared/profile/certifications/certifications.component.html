@@ -1,22 +1,105 @@
 <form [formGroup]="certificatesForm" autocomplete="off" novalidate>
-  <div class="form-group">
+  <div class="">
     <div class="row">
-      <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="Name" formControlName="name">
-        </mat-form-field>
-      </div>
-      <div class="col-sm-6">
-        <mat-form-field>
-          <input matInput placeholder="URL" formControlName="url">
-        </mat-form-field>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="">Name *</label>
+          <input type="text" pInputText placeholder="Name" formControlName="name" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 text-right">
-        <button type="submit" mat-raised-button color="primary" (click)="handleSubmit()">Save</button>
-        <button mat-raised-button color="warn">Cancel</button>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Authority *</label>
+          <input type="text" pInputText placeholder="Authority" formControlName="authority" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.authority.hasError('required') && (formControl.authority.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
       </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Url</label>
+          <input type="text" pInputText placeholder="Url" formControlName="url" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.url.hasError('required') && (formControl.url.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">From *</label>
+          <p-calendar name="certificationFrom" [formControl]="certificationFrom" [monthNavigator]="true"
+            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" [maxDate]="certificationTo.value" placeholder="DD/MM/YY">
+          </p-calendar>
+          <p class="msgError text-danger" *ngIf="!certificationFrom.value && submitted">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">To</label>
+          <p-calendar name="certificationTo" [formControl]="certificationTo" [monthNavigator]="true"
+            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YY" [minDate]="certificationFrom.value">
+          </p-calendar>
+          <p class="msgError text-danger" *ngIf="!certificationTo.value && submitted">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
 </form>
+<p-table [value]="listData">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Authority</th>
+      <th>Valid From</th>
+      <th>Valid To</th>
+      <th>Expired</th>
+      <th class="text-center">Action</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{item.name}}</td>
+      <td>{{item.authority}}</td>
+      <td>{{item.from | date : 'MM/dd/yyyy'}}</td>
+      <td>{{item.to | date : 'MM/dd/yyyy'}}</td>
+      <td>{{item.isExpired?'Yes':'No'}}</td>
+      <td class="text-center">
+        <a href="javascript:void(0)" class="cursor-pointer" (click)="handleEdit(item)">
+          <i class="pi pi-pencil"></i>
+        </a>
+        <a *ngIf='item.url' href="javascript:void(0)" target="_blank" class="cursor-pointer"
+          (click)="handleView(item.url)">
+          <i class="pi pi-info"></i>
+        </a>
+        <a href="javascript:void(0)" class="cursor-pointer" (click)="handleRemove()">
+          <i class="pi pi-times"></i>
+        </a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<div class="tableCustomFooter" *ngIf="loadGrid && listData.lengt==0">
+  No records to display
+</div>
+<div class="tableCustomFooter" *ngIf="!loadGrid">
+  Loading...
+</div>

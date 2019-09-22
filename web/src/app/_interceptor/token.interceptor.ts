@@ -13,27 +13,25 @@ import { finalize } from 'rxjs/operators';
 export class HeaderInterceptor implements HttpInterceptor {
   constructor(public _AuthenticationService: AuthenticationService, private _SharedService: SharedService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    debugger
     let isTokenRquired = false;
-    const url = req.url.split('/');
-    let params = req.params.toString();
-    if (params.indexOf('isAuth=false') >= 0) {
+    const url = req.url.split('/')
+    if (url[url.length - 1] == 'Account' || url[url.length - 1] == 'login') {
       isTokenRquired = false
     } else {
       isTokenRquired = true
     }
-    if (params.indexOf('isLoader=false') >= 0) {
-      this._SharedService.hide();
-    } else {
-      this._SharedService.show();
-    }
     if (isTokenRquired) {
-      const accessToken = this._AuthenticationService.currentUserValue;
+      const accessToken = this.getToken();
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${accessToken.auth_token}`
+          'Authorization': 'Bearer ' + accessToken
         }
       });
     }
     return next.handle(req).pipe(finalize(() => this._SharedService.hide()));
+  }
+  getToken() {
+    return this._AuthenticationService.currentUserValue.auth_token;
   }
 }

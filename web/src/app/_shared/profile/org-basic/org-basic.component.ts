@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HttpService } from '../../../_service/http.service';
+import { HttpService, SharedService } from '../../../_service';
 import { first } from 'rxjs/operators';
 import { ApiPath } from '../../../_helpers/_constants/api';
 @Component({
@@ -11,7 +11,7 @@ export class OrgBasicComponent implements OnInit {
   orgBasicForm: FormGroup;
   uploadedFiles: any[] = [];
   submitted: boolean = false;
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService) { }
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   ngOnInit() {
     this.createForm(() => {
       this.getCountryList()
@@ -24,9 +24,9 @@ export class OrgBasicComponent implements OnInit {
       baseUrl: ['http://scaledskills.com/o/', Validators.required],
       profileUrl: ['scaledskills', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
-      gst: ['', [Validators.minLength(15)]],
-      panNumber: ['', [Validators.minLength(10)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      gst: ['', [Validators.minLength(15), Validators.maxLength(15)]],
+      panNumber: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       address: this._FormBuilder.group({
         address1: [''],
         address2: [''],
@@ -73,7 +73,7 @@ export class OrgBasicComponent implements OnInit {
       this.uploadedFiles.push(file);
     }
   }
-  getProfileData =()=>{
+  getProfileData = () => {
     let url = ApiPath.Organization;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
@@ -105,14 +105,38 @@ export class OrgBasicComponent implements OnInit {
     }
     prompt('dataObj', JSON.stringify(dataObj))
     if (this.orgBasicForm.valid) {
-      this.submitted = true;
+      this.submitted = false;
       this._HttpService.httpCall(url, 'PUT', dataObj, null).subscribe(res => {
         if (res.result) {
+          let msgArray = [
+            {
+              mgs: res.responseMessege ? res.responseMessege : 'Success',
+              class: 'confirmMsg'
+            },
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
           this.getProfileData()
+        } else {
+          let msgArray = [
+            { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
+      }, error => {
+        let msgArray = [
+          { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
+        ]
+        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       })
     } else {
-      this.submitted = true
+      this.submitted = true;
+      let msgArray = [
+        { mgs: 'Please complete form', class: 'confirmMsg' },
+      ]
+      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     }
 
   }
