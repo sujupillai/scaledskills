@@ -3,40 +3,74 @@
 <div class="container">
   <form [formGroup]="requestForm" autocomplete="off" novalidate>
     <div class="clearfix">
-      <div class="row form-group">
+      <div class="row">
         <div class="col-sm-6">
-          <label>Training Need</label>
+          <div class="form-group">
+            <label>Training Need *</label>
             <p-dropdown [options]="trainingNeedDDL" formControlName="needTypeObj" placeholder="Select"
-                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="handleOnChangeId($event, 'needType')">
-              </p-dropdown>
+              optionLabel="text" optionValue="value" [showClear]="true"
+              (onChange)="handleOnChangeId($event, 'needType')">
+            </p-dropdown>
+            <p class="msgError"
+              *ngIf="formControl.needType.hasError('required') && (formControl.needType.dirty || submited)">
+              Required Field.
+            </p>
+          </div>
         </div>
         <div class="col-sm-6">
-          <label>Training Type</label>
+          <div class="form-group">
+            <label>Training Type *</label>
             <p-dropdown [options]="trainingTypeDDL" formControlName="trainingTypeObj" placeholder="Select"
-                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="handleOnChangeId($event, 'trainingType')">
-              </p-dropdown>
+              optionLabel="text" optionValue="value" [showClear]="true"
+              (onChange)="handleOnChangeId($event, 'trainingType')">
+            </p-dropdown>
+            <p class="msgError"
+              *ngIf="formControl.trainingType.hasError('required') && (formControl.trainingType.dirty || submited)">
+              Required Field.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="row form-group">
+      <div class="row">
         <div class="col-sm-6">
-          <label>Company Name</label>
-          <input type="text" pInputText placeholder="Company Name" formControlName="companyName" />
+          <div class="form-group">
+            <label>Company Name *</label>
+            <input type="text" pInputText placeholder="Company Name" formControlName="companyName" />
+            <p class="msgError"
+              *ngIf="formControl.companyName.hasError('required') && (formControl.companyName.dirty || submited)">
+              Required Field.
+            </p>
+          </div>
         </div>
         <div class="col-sm-6">
-          <label>Number of participant</label>
-          <input type="text" pInputText placeholder="Participant" formControlName="numberOfParticipant" />
+          <div class="form-group">
+            <label>Number of participant</label>
+            <input type="text" pInputText placeholder="Participant" formControlName="numberOfParticipant" />
+          </div>
         </div>
       </div>
-      <div class="row form-group">
+      <div class="row">
         <div class="col-sm-12">
-          <label>Training Summary</label>
-          <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
+          <div class="form-group">
+            <label>Training Summary *</label>
+            <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
+            <p class="msgError"
+              *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submited)">
+              Required Field.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="row form-group">
+      <div class="row">
         <div class="col-sm-12">
-          <label>Description</label>
-          <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+          <div class="form-group">
+            <label>Description *</label>
+            <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+            <p class="msgError"
+              *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submited)">
+              Required Field.
+            </p>
+          </div>
         </div>
       </div>
       <div class="form-group">

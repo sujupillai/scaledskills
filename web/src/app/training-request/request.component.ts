@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiPath } from '../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
-import { HttpService } from '../_service/http.service';
+import { HttpService, SharedService } from '../_service';
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html'
 })
 export class RequestComponent implements OnInit {
   requestForm: FormGroup;
+  submitted: boolean = false;
   countryList = [];
   stateList = [];
   trainingNeedDDL = [];
   trainingTypeDDL = [];
   globalDropdown: []
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService) {
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.createForm(() => {
@@ -24,9 +25,9 @@ export class RequestComponent implements OnInit {
   }
   createForm = (callback) => {
     this.requestForm = this._FormBuilder.group({
-      needType: [0, Validators.required],
+      needType: ['', Validators.required],
       needTypeObj: [''],
-      trainingType: [0, Validators.required],
+      trainingType: ['', Validators.required],
       trainingTypeObj: [0, Validators.required],
       companyName: ['', Validators.required],
       numberOfParticipant: [''],
@@ -100,15 +101,36 @@ export class RequestComponent implements OnInit {
     })
   }
   handleSubmit = () => {
-    const url = ApiPath.trainingRequest;
-    let postObj = {
-      ...this.requestForm.value
-    }
-    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      if (res.result) {
-        this.getTrainingData()
+    if (this.requestForm.invalid) {
+      this.submitted = true;
+      return
+    } else {
+      const url = ApiPath.trainingRequest;
+      let postObj = {
+        ...this.requestForm.value
       }
-    })
-    prompt('postObj', JSON.stringify(postObj))
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        if (res.result) {
+          // this.getTrainingData();
+          let msgArray = [
+            { mgs: 'Request Send', class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
+        } else {
+          let msgArray = [
+            { mgs: 'Something went wrong', class: 'confirmMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        }
+      },
+        error => {
+          let msgArray = [
+            { mgs: error['error'], class: 'confirmMsg' },
+          ]
+          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        });
+    }
   }
 }
