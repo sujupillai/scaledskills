@@ -2,17 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { HttpService, SharedService } from '../../../_service'
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-org-about',
   templateUrl: './org-about.component.html'
 })
 export class OrgAboutComponent implements OnInit {
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
+  aboutApiUrl;
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   aboutForm: FormGroup
   ngOnInit() {
     this.createForm(() => {
       this.getUserAboutData();
     })
+    if (this._Router.url.indexOf('trainer/profile/about') >= 0) {
+      this.aboutApiUrl = ApiPath.trainerUserTag;
+    } else {
+      this.aboutApiUrl = ApiPath.organizationUserTag;
+    }
   }
   createForm = (callback) => {
     this.aboutForm = this._FormBuilder.group(
@@ -28,8 +35,7 @@ export class OrgAboutComponent implements OnInit {
   }
   get formControl() { return this.aboutForm.controls };
   getUserAboutData = () => {
-    const url = ApiPath.organizationUserTag;
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+    this._HttpService.httpCall(this.aboutApiUrl, 'GET', null, null).subscribe(res => {
       if (res.result) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -42,12 +48,11 @@ export class OrgAboutComponent implements OnInit {
     })
   }
   handleSubmit = (): void => {
-    const url = ApiPath.organizationUserTag;
     let postData = {
       ...this.aboutForm.value
     }
     postData.name = postData.name.toString();
-    this._HttpService.httpCall(url, 'POST', postData, null).subscribe(res => {
+    this._HttpService.httpCall(this.aboutApiUrl, 'POST', postData, null).subscribe(res => {
       if (res.result) {
         let msgArray = [
           {

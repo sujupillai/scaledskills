@@ -3,8 +3,8 @@ export const ApiPath = {
   'userEducation': 'api/User/Education',
   'userBasic': 'User',
   /* General */
-
   /* trainer */
+  'trainerUserTag': 'Trainer/UserTag',
 
   /* organization */
   'Organization': 'Organization',
