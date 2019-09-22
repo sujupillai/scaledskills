@@ -4,7 +4,8 @@ import { OrganizationComponent } from './organization.component'
 import { OrganizationBankDetailComponent } from './organization-bank-detail/organization-bank-detail.component';
 import { OrganizationProfileComponent } from './organization-profile/organization-profile.component';
 import { OrgBasicComponent } from '../../_shared/profile/org-basic/org-basic.component';
-import { OrgAboutComponent } from '../../_shared/profile/org-about/org-about.component';
+import { AboutComponent } from '../../_shared/profile/about/about.component';
+
 import { SocialComponent } from '../../_shared/profile/social/social.component';
 import { CommunicationComponent } from './communication/communication.component';
 
@@ -18,7 +19,7 @@ const routes = [
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: OrgBasicComponent },
-          { path: 'about', component: OrgAboutComponent },
+          { path: 'about', component: AboutComponent },
           { path: 'social', component: SocialComponent },
         ]
       },

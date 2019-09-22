@@ -11,10 +11,9 @@ import { CertificationsComponent } from './certifications/certifications.compone
 import { SocialComponent } from './social/social.component';
 import { FileuploadComponent } from '../../_shared/widgets/fileupload.component';
 import { OrgBasicComponent } from './org-basic/org-basic.component';
-import { OrgAboutComponent } from './org-about/org-about.component';
 import {NgPrimeModule} from '../../_forms/prime.module';
 @NgModule({
-  declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent, OrgBasicComponent, OrgAboutComponent],
+  declarations: [ProfileComponent, BasicComponent, CredentialsComponent, KeywordsComponent, AboutComponent, CertificationsComponent, SocialComponent, FileuploadComponent, OrgBasicComponent],
   imports: [
     CommonModule, ProfileRoutingModule, NgPrimeModule, FormModule
   ],

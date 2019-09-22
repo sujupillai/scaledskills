@@ -15,17 +15,17 @@ export class HeaderInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let isTokenRquired = false;
     const url = req.url.split('/');
-    // let params = req.params.toString();
-    // if (params.indexOf('isAuth=false') >= 0) {
-    //   isTokenRquired = false
-    // } else {
-    //   isTokenRquired = true
-    // }
-    // if (params.indexOf('isLoader=false') >= 0) {
-    //   this._SharedService.hide();
-    // } else {
-    //   this._SharedService.show();
-    // }
+    let params = req.params.toString();
+    if (params.indexOf('isAuth=false') >= 0) {
+      isTokenRquired = false
+    } else {
+      isTokenRquired = true
+    }
+    if (params.indexOf('isLoader=false') >= 0) {
+      this._SharedService.hide();
+    } else {
+      this._SharedService.show();
+    }
     if (isTokenRquired) {
       const accessToken = this._AuthenticationService.currentUserValue;
       req = req.clone({

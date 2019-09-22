@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { TrainerComponent } from './trainer.component'
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { BasicComponent } from '../../_shared/profile/basic/basic.component';
-import { OrgAboutComponent } from '../../_shared/profile/org-about/org-about.component';
+import {AboutComponent } from '../../_shared/profile/about/about.component';
 import { SocialComponent } from '../../_shared/profile/social/social.component';
 import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
@@ -28,7 +28,7 @@ const routes = [
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: BasicComponent },
-          { path: 'about', component: OrgAboutComponent },
+          { path: 'about', component: AboutComponent },
           { path: 'certificate', component: CertificationsComponent },
           { path: 'social', component: SocialComponent },
         ]
