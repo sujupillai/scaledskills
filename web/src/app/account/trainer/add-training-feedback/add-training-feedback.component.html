@@ -2,23 +2,23 @@
   <div class="form-goup">
     <label>How satisfied were you with the training</label>
     <div>
-      <p-rating></p-rating>
+      <p-rating formControlName="rating"></p-rating>
     </div>
   </div>
   <div class="form-goup">
     <label>What you like about the training</label>
-    <input type="text" pInputText>
+    <input type="text" pInputText formControlName="likeText">
   </div>
   <div class="form-goup">
     <label>How we can improve the training</label>
-    <input type="text" pInputText>
+    <input type="text" pInputText formControlName="improveText">
   </div>
   <div class="form-goup">
     <label>Training you need in feature</label>
-    <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
+    <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" formControlName="featureText"></textarea>
   </div>
-  <div class="form-group button-group text-right">
-      <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
-    </div>
+  <div class="form-group clearfix button-group text-right">
+    <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+  </div>
 </form>
