@@ -6,19 +6,19 @@
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Custom Questions</mat-label>
-        <p-inputSwitch formControlName="customQuestions"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicCustomQuestion"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Remaining Tickets</mat-label>
-        <p-inputSwitch formControlName="remainingTickets"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicRemainingTicket"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Set Reminder</mat-label>
-        <p-inputSwitch formControlName="setReminder"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicSetReminder"></p-inputSwitch>
       </div>
     </div>
   </div>
@@ -26,19 +26,19 @@
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Affiliate Promoter Link</mat-label>
-        <p-inputSwitch formControlName="affiliatePromoterLink"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicAffiliatePromoterLink"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Training Id</mat-label>
-        <p-inputSwitch formControlName="trainingId"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicTrainingId"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
-        <mat-label class="mr-15">pageViews</mat-label>
-        <p-inputSwitch formControlName="pageViews"></p-inputSwitch>
+        <mat-label class="mr-15">Page Views</mat-label>
+        <p-inputSwitch formControlName="isPublicPageViews"></p-inputSwitch>
       </div>
     </div>
   </div>
@@ -46,19 +46,19 @@
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Interested Users</mat-label>
-        <p-inputSwitch formControlName="interestedUsers"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicInterestedUser"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Registered Users</mat-label>
-        <p-inputSwitch formControlName="registeredUsers"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicRegisteredUser"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Add to Calendar</mat-label>
-        <p-inputSwitch formControlName="addToCalendar"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicAddToCalendar"></p-inputSwitch>
       </div>
     </div>
   </div>
@@ -66,19 +66,19 @@
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">x spots left</mat-label>
-        <p-inputSwitch formControlName="xSpotsLeft"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicXSpotsLeft"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Comments</mat-label>
-        <p-inputSwitch formControlName="comments"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicComments"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">Feedback</mat-label>
-        <p-inputSwitch formControlName="feedback"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicFeedback"></p-inputSwitch>
       </div>
     </div>
   </div>
@@ -86,14 +86,18 @@
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">About Organizer</mat-label>
-        <p-inputSwitch formControlName="aboutOrganizer"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicAboutOrganizer"></p-inputSwitch>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="flex_c_c">
         <mat-label class="mr-15">More Events From Same Organizer</mat-label>
-        <p-inputSwitch formControlName="moreEventsFromSameOrganizer"></p-inputSwitch>
+        <p-inputSwitch formControlName="isPublicMoreEventsFromSameOrganizer"></p-inputSwitch>
       </div>
     </div>
+  </div>
+  <div class="form-group clearfix button-group text-right">
+    <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
   </div>
 </form>

@@ -6,7 +6,6 @@ import { SharedService } from '../../_service/shared.service';
   templateUrl: './loader.component.html',
 })
 export class LoaderComponent implements OnInit {
-  debugger;
   activeLoader: Subject<boolean> = this._SharedService.activeLoader;
   constructor(private _SharedService: SharedService) {
   }

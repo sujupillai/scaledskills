@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
   }
   get formControl() { return this.registerForm.controls }
   handleSubmitForm = () => {
-    debugger
     if (this.registerForm.invalid) {
       this.submitted = true;
       return

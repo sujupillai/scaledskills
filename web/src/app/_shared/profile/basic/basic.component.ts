@@ -76,7 +76,6 @@ export class BasicComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
-        debugger
         Object.keys(dataObj).forEach(name => {
           if (this.formControl[name]) {
             if (name != 'address') {
