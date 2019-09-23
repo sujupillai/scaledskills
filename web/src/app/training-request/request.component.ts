@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ApiPath } from '../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
 import { HttpService, SharedService } from '../_service';
@@ -137,5 +137,28 @@ export class RequestComponent implements OnInit {
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     }
+  }
+
+
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+  }
+  handleCancel=()=>{
+    let msgArray = [
+      { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
+      { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
+    ]
+    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+      if (res == 1) {
+        this.resetForm(this.requestForm)
+      }
+    })
   }
 }
