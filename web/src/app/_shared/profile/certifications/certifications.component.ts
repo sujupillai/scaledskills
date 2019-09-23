@@ -49,7 +49,7 @@ export class CertificationsComponent implements OnInit {
         this.listData = res.result;
       } else {
         let msgArray = [
-          { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          { mgs: 'Something went wrong', class: 'confirmMsg' }
         ]
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       }
@@ -99,7 +99,7 @@ export class CertificationsComponent implements OnInit {
           this.getCertificationData()
         } else {
           let msgArray = [
-            { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+            { mgs: 'Something went wrong', class: 'confirmMsg' }
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }

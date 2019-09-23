@@ -48,7 +48,7 @@ export class CredentialsComponent implements OnInit {
         }
         else {
           let msgArray = [
-            { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+            { mgs: 'Something went wrong', class: 'confirmMsg' }
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
