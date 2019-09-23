@@ -23,4 +23,5 @@ export const ApiPath = {
 
   /* training */
   'training': 'Training',
+  'trainingLocation':'Training/{TrainingId}/Location',
 }

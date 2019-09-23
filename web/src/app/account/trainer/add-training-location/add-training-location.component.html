@@ -1,61 +1,81 @@
 <form [formGroup]="trainingLocationForm" autocomplete="off" novalidate>
   <div class="clearfix">
     <div class="form-group">
-      <p-radioButton name="Physical" value="Physical" label="Physical" inputId="Physical">
+      <p-radioButton name="modeType" value="1" label="Physical" inputId="Physical" formControlName="modeType">
       </p-radioButton>
-      <p-radioButton name="Online" value="Online" label="Online" inputId="Online">
+      <p-radioButton name="modeType" value="2" label="Online" inputId="Online" formControlName="modeType">
       </p-radioButton>
     </div>
-    <div class="form-group">
+    <div *ngIf="formControl.modeType.value==1">
       <div class="row">
         <div class="col-sm-12">
-          <input type="text" pInputText placeholder="Enter Address Manually" />
-          <div class="row">
-            <div class="col-sm-6">
-              <i class="pi pi-map-marker"></i> Enter Location Manually
-            </div>
-            <div class="col-sm-6">
-              Vanue not decided.
+          <div class="form-group">
+            <input type="text" pInputText placeholder="Enter Address Manually" />
+            <div class="row">
+              <div class="col-sm-6">
+                <i class="pi pi-map-marker"></i> Enter Location Manually
+              </div>
+              <div class="col-sm-6">
+                Vanue not decided.
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="form-group">
       <div class="row">
-        <div class="col-sm-6">
-          <input type="text" pInputText placeholder="Address Line 1" />
-        </div>
-        <div class="col-sm-6">
-          <input type="text" pInputText placeholder="Address Line 2" />
+        <div formGroupName="addressModel">
+          <div class="col-sm-12">
+            <label for="">Address</label>
+            <div class="form-group">
+              <input pInputText placeholder="Address 1" formControlName="address1">
+            </div>
+            <div class="form-group">
+              <input pInputText placeholder="Address 2" formControlName="address2">
+            </div>
+            <div class="form-group">
+              <input pInputText placeholder="Address 3" formControlName="address3">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Country</label>
+              <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
+                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
+              </p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">State</label>
+              <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
+                [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">City</label>
+              <input pInputText placeholder="City" formControlName="city">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Zip/Postal Code</label>
+              <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-6">
-          <input type="text" pInputText placeholder="Country" />
-        </div>
-        <div class="col-sm-6">
-          <input type="text" pInputText placeholder="State" />
-        </div>
+    <div *ngIf="formControl.modeType.value==2">
+      <div class="form-group">
+        <label for="">Location link</label>
+        <input type="text" pInputText placeholder="Location" />
       </div>
     </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-6">
-          <input type="text" pInputText placeholder="City" />
-        </div>
-        <div class=" col-sm-6">
-          <input type="text" pInputText placeholder="Pin code" />
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 text-right">
-        <button type="submit" mat-raised-button color="accent" (click)="handleSubmit()">Save</button>
-        <button mat-raised-button color="warn">Cancel</button>
-      </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
 </form>
