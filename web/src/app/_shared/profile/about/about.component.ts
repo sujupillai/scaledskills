@@ -13,7 +13,7 @@ export class AboutComponent implements OnInit {
   aboutForm: FormGroup
   ngOnInit() {
     this.createForm(() => {
-      this.getUserAboutData();
+      this.getData();
     })
     if (this._Router.url.indexOf('trainer/profile/about') >= 0) {
       this.aboutApiUrl = ApiPath.trainerUserTag;
@@ -34,7 +34,7 @@ export class AboutComponent implements OnInit {
     }
   }
   get formControl() { return this.aboutForm.controls };
-  getUserAboutData = () => {
+  getData = () => {
     this._HttpService.httpCall(this.aboutApiUrl, 'GET', null, null).subscribe(res => {
       if (res.result) {
         let dataObj = res.result;
@@ -61,7 +61,7 @@ export class AboutComponent implements OnInit {
           },
         ]
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-        this.getUserAboutData()
+        this.getData()
       } else {
         let msgArray = [
           { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
