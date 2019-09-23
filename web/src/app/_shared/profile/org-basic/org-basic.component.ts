@@ -9,24 +9,36 @@ import { ApiPath } from '../../../_helpers/_constants/api';
 })
 export class OrgBasicComponent implements OnInit {
   orgBasicForm: FormGroup;
-  uploadedFiles: any[] = [];
   submitted: boolean = false;
+  fileData = null;
+  selectedCountry = [];
+  selectedState = [];
+  settings = {};
+  defaultList = [];
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   ngOnInit() {
     this.createForm(() => {
-      this.getCountryList()
+      this.getCountryList();
+      this.defaultList = [{
+        "text": "Select",
+        "value": "0",
+        "isSelect": false
+      }];
+      this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
+      this.fetchData()
     })
   }
   createForm = (callback: any): void => {
     this.orgBasicForm = this._FormBuilder.group({
       name: ['', Validators.required],
       ownerName: ['', Validators.required],
-      baseUrl: ['http://scaledskills.com/o/', Validators.required],
-      profileUrl: ['scaledskills', Validators.required],
+      baseUrl: ['http://scaledskills.com/o/'],
+      profileUrl: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       gst: ['', [Validators.minLength(15), Validators.maxLength(15)]],
       panNumber: ['', [Validators.minLength(10), Validators.maxLength(10)]],
+      idProof: ['', [Validators.required]],
       address: this._FormBuilder.group({
         address1: [''],
         address2: [''],
@@ -45,35 +57,7 @@ export class OrgBasicComponent implements OnInit {
     }
   }
   get formControl() { return this.orgBasicForm.controls };
-  getMaster = (url, masterCollection) => {
-    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
-      if (res.responseCode == 200) {
-        this[masterCollection] = res.result
-      }
-    })
-  }
-  getCountryList = () => {
-    let url = ApiPath.globalCountry;
-    this.getMaster(url, 'countryList')
-  }
-  getStateList = (id) => {
-    const url = ApiPath.globalState + '/' + id;
-    this.getMaster(url, 'stateList')
-  }
-  onChangeCountry(event) {
-    let id = event.value.value
-    this.orgBasicForm.get(['address', 'countryId']).setValue(event.value.value)
-    this.getStateList(id)
-  }
-  onChangeState(event) {
-    this.orgBasicForm.get(['address', 'stateId']).setValue(event.value.value)
-  }
-  onUpload(event) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
-  }
-  getProfileData = () => {
+  fetchData = () => {
     let url = ApiPath.Organization;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
@@ -95,18 +79,57 @@ export class OrgBasicComponent implements OnInit {
         this.orgBasicForm.get(['address', 'stateId']).setValue(dataObj.address && dataObj.address.stateId ? dataObj.address.stateId : 'NA');
         this.orgBasicForm.get(['address', 'countryObj']).setValue(dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : 'NA');
         this.orgBasicForm.get(['address', 'stateObj']).setValue(dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : 'NA');
+        this.selectedCountry = [dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : this.defaultList];
+        this.selectedState = [dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : this.defaultList];
+        if (dataObj.address && dataObj.address.countryId > 0) {
+          let id = this.orgBasicForm.get(['address', 'countryId']).value
+          this.getStateList(id)
+        }
       }
+    })
+  }
+  getMaster = (url, masterCollection) => {
+    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
+      if (res.responseCode == 200) {
+        this[masterCollection] = res.result
+      }
+    })
+  }
+  getCountryList = () => {
+    let url = ApiPath.globalCountry;
+    this.getMaster(url, 'countryList')
+  }
+  getStateList = (id) => {
+    const url = ApiPath.globalState + '/' + id;
+    this.getMaster(url, 'stateList')
+  }
+  onChangeCountry(event) {
+    let id = event.value
+    this.orgBasicForm.get(['address', 'countryId']).setValue(event.value)
+    this.getStateList(id)
+  }
+  onChangeState(event) {
+    this.orgBasicForm.get(['address', 'stateId']).setValue(event.value)
+  }
+  myUploader = (event, control) => {
+    this.fileData = <File>event.files[0];
+    let url = ApiPath.documentUpload
+    const formData = new FormData();
+    formData.append('file', this.fileData);
+    this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
+      this.formControl[control].setValue(res.result)
     })
   }
   handleSubmit = () => {
     const url = ApiPath.Organization;
-    let dataObj = {
+    let postObj = {
       ...this.orgBasicForm.value
     }
-    prompt('dataObj', JSON.stringify(dataObj))
+    postObj.address.countryObj = postObj.address.countryObj[0];
+    postObj.address.stateObj = postObj.address.stateObj[0];
     if (this.orgBasicForm.valid) {
       this.submitted = false;
-      this._HttpService.httpCall(url, 'PUT', dataObj, null).subscribe(res => {
+      this._HttpService.httpCall(url, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
             {
@@ -115,19 +138,17 @@ export class OrgBasicComponent implements OnInit {
             },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-          this.getProfileData()
+          this.fetchData();
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       }, error => {
         let msgArray = [
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       })
     } else {
@@ -135,9 +156,7 @@ export class OrgBasicComponent implements OnInit {
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
-      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     }
-
   }
 }

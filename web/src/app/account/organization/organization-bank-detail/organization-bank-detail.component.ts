@@ -46,16 +46,6 @@ export class OrganizationBankDetailComponent implements OnInit {
     }
   }
   get formControl() { return this.orgBankDetailForm.controls }
-  myUploader = (event, control) => {
-    this.fileData = <File>event.files[0];
-    let url = ApiPath.documentUpload
-    const formData = new FormData();
-    formData.append('file', this.fileData);
-    this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
-      this.formControl[control].setValue(res.result)
-      prompt('res', JSON.stringify(this.orgBankDetailForm.value))
-    })
-  }
   getBankDetail = () => {
     let url = ApiPath.userBasic;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
@@ -80,6 +70,16 @@ export class OrganizationBankDetailComponent implements OnInit {
       // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     });
+  }
+  myUploader = (event, control) => {
+    this.fileData = <File>event.files[0];
+    let url = ApiPath.documentUpload
+    const formData = new FormData();
+    formData.append('file', this.fileData);
+    this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
+      this.formControl[control].setValue(res.result)
+      prompt('res', JSON.stringify(this.orgBankDetailForm.value))
+    })
   }
   handleSubmit = () => {
     if (this.orgBankDetailForm.invalid) {

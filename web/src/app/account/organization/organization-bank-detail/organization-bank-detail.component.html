@@ -70,7 +70,7 @@
         <div class="form-group">
           <label>Get Exemption Document</label>
           <p-fileUpload name="file" url="{{documentUpload}}" multiple="false"
-          accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="myUploader($event, exemptionDocId)">
+          accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="myUploader($event, 'exemptionDocId')">
         </p-fileUpload>
         </div>
       </div>
