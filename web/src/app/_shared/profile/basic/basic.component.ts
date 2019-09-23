@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import * as profileConstant from '../../../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
 import { HttpService, SharedService } from '../../../_service';
@@ -13,11 +13,21 @@ export class BasicComponent implements OnInit {
   stateList = [];
   submitted: boolean = false;
   dateOfBirth = new FormControl();
+  selectedCountry = [];
+  selectedState = [];
+  settings = {};
+  defaultList = [];
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   ngOnInit() {
     this.createprofileForm(() => {
+      this.defaultList = [{
+        "text": "Select",
+        "value": "0",
+        "isSelect": false
+      }]
       this.getProfileData();
       this.getCountryList();
+      this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
     })
   }
   createprofileForm = (callback) => {
@@ -35,7 +45,7 @@ export class BasicComponent implements OnInit {
         zipCode: [''],
         street: [''],
         countryId: [''],
-        countryObj: [''],
+        countryObj: [],
         stateId: [''],
         stateObj: [''],
         city: [''],
@@ -64,12 +74,12 @@ export class BasicComponent implements OnInit {
     this.getMaster(url, 'stateList')
   }
   onChangeCountry(event) {
-    let id = event.value.value
-    this.profileForm.get(['address', 'countryId']).setValue(event.value.value)
+    let id = event.value
+    this.profileForm.get(['address', 'countryId']).setValue(event.value)
     this.getStateList(id)
   }
   onChangeState(event) {
-    this.profileForm.get(['address', 'stateId']).setValue(event.value.value)
+    this.profileForm.get(['address', 'stateId']).setValue(event.value)
   }
   getProfileData = () => {
     let url = profileConstant.ApiPath.userBasic;
@@ -96,6 +106,12 @@ export class BasicComponent implements OnInit {
         this.profileForm.get(['address', 'stateId']).setValue(dataObj.address && dataObj.address.stateId ? dataObj.address.stateId : 'NA');
         this.profileForm.get(['address', 'countryObj']).setValue(dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : 'NA');
         this.profileForm.get(['address', 'stateObj']).setValue(dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : 'NA');
+        this.selectedCountry = [dataObj.address.countryObj ? dataObj.address.countryObj : this.defaultList];
+        this.selectedState = [dataObj.address.stateObj ? dataObj.address.stateObj : this.defaultList];
+        if (this.profileForm.get(['address', 'countryId']).value > 0) {
+          let id = this.profileForm.get(['address', 'countryId']).value
+          this.getStateList(id)
+        }
       }
     })
   }
@@ -106,15 +122,16 @@ export class BasicComponent implements OnInit {
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
-      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       this.submitted = false;
       let url = profileConstant.ApiPath.userBasic;
-      let postData = {
+      let postObj = {
         ...this.profileForm.value,
       }
-      this._HttpService.httpCall(url, 'PUT', postData, null).subscribe(res => {
+      postObj.address.countryObj = postObj.address.countryObj[0];
+      postObj.address.stateObj = postObj.address.stateObj[0];
+      this._HttpService.httpCall(url, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
             {
@@ -122,6 +139,7 @@ export class BasicComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
+
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
           this.getProfileData()
         } else {
@@ -139,6 +157,29 @@ export class BasicComponent implements OnInit {
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       })
     }
+  }
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+    this.getProfileData()
+  }
+  handleCancel=()=>{
+    let msgArray = [
+      { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
+      { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
+    ]
+    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+      if (res == 1) {
+        this.resetForm(this.profileForm)
+      }
+    })
+
 
   }
 }

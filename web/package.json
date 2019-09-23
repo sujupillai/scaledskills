@@ -25,6 +25,7 @@
     "@angular/router": "~8.0.0",
     "@ngu/carousel": "^1.5.5",
     "angular-in-memory-web-api": "0.5.4",
+    "angular2-multiselect-dropdown": "^4.6.3",
     "bootstrap3": "^3.3.5",
     "core-js": "2.6.9",
     "font-awesome": "^4.7.0",

@@ -14,8 +14,7 @@ export class HeaderInterceptor implements HttpInterceptor {
   constructor(public _AuthenticationService: AuthenticationService, private _SharedService: SharedService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let isTokenRquired = false;
-    const accessToken = this._AuthenticationService.currentUserValue.auth_token
-    console.log('accessToken', JSON.stringify(accessToken))
+
     const url = req.url.split('/')
     if (url[url.length - 1] == 'Account' || url[url.length - 1] == 'login') {
       isTokenRquired = false
@@ -23,6 +22,8 @@ export class HeaderInterceptor implements HttpInterceptor {
       isTokenRquired = true
     }
     if (isTokenRquired) {
+      const accessToken = this._AuthenticationService.currentUserValue.auth_token
+      console.log('accessToken', JSON.stringify(accessToken))
       req = req.clone({
         setHeaders: {
           'Authorization': 'Bearer ' + accessToken

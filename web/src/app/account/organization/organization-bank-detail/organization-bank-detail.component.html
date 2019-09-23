@@ -69,17 +69,10 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label>Get Exemption Document</label>
-          <pre>{{uploadedFiles|json}}</pre>
-          <p-fileUpload mode="basic" name="demo[]" url="{{documentUpload}}" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload>
-          <!-- <pre>
-            {{formControl.exemptionDocId.value}}
-          </pre> -->
-
-          <p-fileUpload (uploadHandler)="onUpload($event)" (change)="upload($event)" name="myfile[]" url="{{documentUpload}}" multiple="false" accept="image/*" maxFileSize="1000000"></p-fileUpload>
-          <p-fileUpload name="myFile" customUpload="true" multiple="false" (uploadHandler)="onUpload($event)" accept="image/*"></p-fileUpload>
-
+          <p-fileUpload name="file" url="{{documentUpload}}" multiple="false"
+          accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="myUploader($event, exemptionDocId)">
+        </p-fileUpload>
         </div>
-
       </div>
     </div>
     <!-- <div class="row">
