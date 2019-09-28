@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 @Component({
   selector: 'app-account-trainer',
-  templateUrl: './trainer.component.html'
+  templateUrl: '/trainer.component.html'
 })
 export class TrainerComponent implements OnInit {
   activeProfileTab: number = 0;
@@ -11,6 +11,7 @@ export class TrainerComponent implements OnInit {
   id: number;
   setActiveTabIndex: number = 1
   trainingId: number = 0;
+  routeLinks: any[];
   constructor(private _ActivatedRoute:ActivatedRoute, private _Router:Router) { }
   ngOnInit() {
     this.tabArray = [
@@ -22,12 +23,6 @@ export class TrainerComponent implements OnInit {
       { 'name': 'Social Media', 'label': 'social', 'routeId': '6' }
     ]
   }
-  goToRoute=(path)=>{
-    this._ActivatedRoute.paramMap.subscribe((res) => {
-      this.trainingId = res['params']['id']?res['params']['id']:0;
-      this._Router.navigate( [`account/trainer/addTraining/`+this.trainingId+`/`+path]);
-    });
-  }
   setActiveTab = (number) => {
     if (this.setActiveTabIndex == number) {
       this.setActiveTabIndex = 0
@@ -35,4 +30,5 @@ export class TrainerComponent implements OnInit {
       this.setActiveTabIndex = number
     }
   }
+
 }

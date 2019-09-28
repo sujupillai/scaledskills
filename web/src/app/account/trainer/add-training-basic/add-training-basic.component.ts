@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { SharedService, HttpService } from '../../../_service';
+import { ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'app-add-training-basic',
   templateUrl: './add-training-basic.component.html',
@@ -15,20 +16,19 @@ export class AddTrainingBasicComponent implements OnInit {
   startDate = new FormControl();
   endDate = new FormControl();
   settings = {};
-  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService) {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
+  trainingId = 0
+  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
       { text: 'Individual', value: '1' },
       { text: 'Organization', value: '2' },
     ]
   }
   ngOnInit() {
+    this._ActivatedRoute.parent.params.subscribe(
+      (param: any) => {
+        this.trainingId = param['id'];
+
+      });
     this.createForm(() => {
       this.startDate.setValue(new Date());
       this.endDate.setValue(new Date());
@@ -58,16 +58,14 @@ export class AddTrainingBasicComponent implements OnInit {
   getData = () => {
     let url = ApiPath.training;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => [
-
     ])
   }
   onChangeHostedBy(event) {
     let id = event.value
-    if(id==2){
+    if (id == 2) {
       /* display organization */
     }
     this.trainingBasicForm.get('hostedBy').setValue(event.value)
-
   }
   handleSubmit = () => {
     debugger
@@ -76,7 +74,7 @@ export class AddTrainingBasicComponent implements OnInit {
     let postObj = {
       ...this.trainingBasicForm.value,
     }
-        if (this.trainingBasicForm.invalid) {
+    if (this.trainingBasicForm.invalid) {
       this.submitted = true;
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },

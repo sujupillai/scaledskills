@@ -33,23 +33,23 @@ const routes = [
           { path: 'social', component: SocialComponent },
         ]
       },
-      {
-        path: 'training/:id', component: AddTrainingComponent,
-        children: [
-          { path: '', redirectTo: 'basic', pathMatch: 'full' },
-          { path: 'basic', component: AddTrainingBasicComponent },
-          { path: 'location', component: AddTrainingLocationComponent },
-          { path: 'tags', component: AddTrainingTagsComponent },
-          { path: 'tags', component: AddTrainingTagsComponent },
-          { path: 'images', component: AddTrainingImagesComponent },
-          { path: 'ticket', component: AddTrainingTicketComponent },
-          { path: 'questions', component: AddTrainingQuestionComponent },
-          { path: 'feedback', component: AddTrainingFeedbackComponent },
-          { path: 'promotions', component: AddTrainingPromotionsComponent },
-          { path: 'settings', component: AddTrainingSettingsComponent },
-          { path: 'addTrainer', component: AddTrainerComponent },
-        ]
-      }
+    ]
+  },
+  {
+    path: 'training/:id', component: AddTrainingComponent,
+    children: [
+      { path: '', redirectTo: 'basic', pathMatch: 'full' },
+      { path: 'basic', component: AddTrainingBasicComponent },
+      { path: 'location', component: AddTrainingLocationComponent },
+      { path: 'tags', component: AddTrainingTagsComponent },
+      { path: 'tags', component: AddTrainingTagsComponent },
+      { path: 'images', component: AddTrainingImagesComponent },
+      { path: 'ticket', component: AddTrainingTicketComponent },
+      { path: 'questions', component: AddTrainingQuestionComponent },
+      { path: 'feedback', component: AddTrainingFeedbackComponent },
+      { path: 'promotions', component: AddTrainingPromotionsComponent },
+      { path: 'settings', component: AddTrainingSettingsComponent },
+      { path: 'addTrainer', component: AddTrainerComponent },
     ]
   }
 ];

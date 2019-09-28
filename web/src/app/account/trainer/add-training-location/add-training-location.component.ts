@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { HttpService, SharedService } from '../../../_service'
 import { first } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-add-training-location',
   templateUrl: './add-training-location.component.html',
@@ -12,7 +13,7 @@ export class AddTrainingLocationComponent implements OnInit {
   countryList = [];
   stateList = [];
   submitted: boolean = false;
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute) { }
   ngOnInit() {
     this.createForm(() => {
       this.getCountryList();
