@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api'
 import { HttpService, SharedService } from '../../../_service'
+import { ActivatedRoute } from '@angular/router'
 @Component({
   selector: 'app-add-training-tags',
   templateUrl: './add-training-tags.component.html'
@@ -10,9 +11,17 @@ export class AddTrainingTagsComponent implements OnInit {
   traineeTagForm: FormGroup;
   trainingTag = new FormControl()
   submitted: boolean = false;
-  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService) { }
+  trainingId:0;
+  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute:ActivatedRoute) { }
   ngOnInit() {
-
+    this._ActivatedRoute.parent.params.subscribe((param: any) => {
+      this.trainingId = param['id'];
+      if (this.trainingId > 0) {
+        this.getData()
+      }else{
+        alert('please create a training first')
+      }
+    });
   }
 
   getData = () => {

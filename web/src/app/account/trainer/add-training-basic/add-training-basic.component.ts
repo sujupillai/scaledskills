@@ -17,7 +17,7 @@ export class AddTrainingBasicComponent implements OnInit {
   endDate = new FormControl();
   settings = {};
   trainingId = 0
-  trainingData=null;
+  trainingData = null;
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
       { text: 'Individual', value: '1' },
@@ -25,13 +25,12 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
-    this._ActivatedRoute.parent.params.subscribe(
-      (param: any) => {
-        this.trainingId = param['id'];
-        if (this.trainingId > 0) {
-          this.getData()
-        }
-      });
+    this._ActivatedRoute.parent.params.subscribe((param: any) => {
+      this.trainingId = param['id'];
+      if (this.trainingId > 0) {
+        this.getData()
+      }
+    });
     this.createForm(() => {
       this.startDate.setValue(new Date());
       this.endDate.setValue(new Date());
@@ -52,7 +51,7 @@ export class AddTrainingBasicComponent implements OnInit {
       organizationList: [],
       hostedBy: [0, Validators.required],
       hostedByObj: [],
-      id:0
+      id: 0
     })
     if (callback) {
       callback()
@@ -62,13 +61,13 @@ export class AddTrainingBasicComponent implements OnInit {
   getData = () => {
     let url = '1';
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      this.trainingData=res.result;
+      this.trainingData = res.result;
       Object.keys(this.trainingData).forEach(name => {
         if (this.formControl[name]) {
           this.formControl[name].setValue(this.trainingData[name]);
         }
       });
-      var hostedBy =this.trainingForList.filter(x=>x.value==this.trainingData.hostedBy)
+      var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
       this.formControl['hostedByObj'].setValue(hostedBy);
     })
   }

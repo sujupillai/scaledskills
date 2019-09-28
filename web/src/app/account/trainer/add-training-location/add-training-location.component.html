@@ -39,16 +39,17 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="">Country</label>
-              <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
-                optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
-              </p-dropdown>
+              <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
+                [settings]="settings" formControlName="countryObj" (onSelect)="onChangeCountry($event)">
+              </angular2-multiselect>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label for="">State</label>
-              <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
-                [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
+              <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
+                [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)">
+              </angular2-multiselect>
             </div>
           </div>
           <div class="col-sm-6">
@@ -74,8 +75,8 @@
       </div>
     </div>
     <div class="form-group button-group text-right">
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger" (click)="handleCancel()"></button>
       <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
 </form>
