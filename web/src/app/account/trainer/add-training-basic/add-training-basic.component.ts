@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { SharedService, HttpService } from '../../../_service';
 import { ActivatedRoute } from '@angular/router'
@@ -118,5 +118,28 @@ export class AddTrainingBasicComponent implements OnInit {
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       })
     }
+  }
+
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+    this.getData()
+  }
+
+  handleCancel = () => {
+    let msgArray = [
+      { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
+      { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
+    ]
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+      if (res == 1) {
+        this.resetForm(this.trainingBasicForm)
+      }
+    })
   }
 }

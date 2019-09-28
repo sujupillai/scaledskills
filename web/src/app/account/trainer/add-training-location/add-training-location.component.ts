@@ -27,8 +27,15 @@ export class AddTrainingLocationComponent implements OnInit {
   ngOnInit() {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param['id'];
-      if (this.trainingId = 0) {
-        this._Router.navigate(['account/trainer/training/0/basic']);
+      if (this.trainingId == 0) {
+        let msgArray = [
+          { mgs: 'Sorry! You have to create a training first', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
+          if (res == 1) {
+            this._Router.navigate(['account/trainer/training/0/basic']);
+          }
+        })
         return
       } else {
         this.getData()
