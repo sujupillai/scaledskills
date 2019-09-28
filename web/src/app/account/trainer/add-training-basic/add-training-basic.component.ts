@@ -68,6 +68,8 @@ export class AddTrainingBasicComponent implements OnInit {
           this.formControl[name].setValue(this.trainingData[name]);
         }
       });
+      var hostedBy =this.trainingForList.filter(x=>x.value==this.trainingData.hostedBy)
+      this.formControl['hostedByObj'].setValue(hostedBy);
     })
   }
   onChangeHostedBy(event) {
@@ -78,7 +80,6 @@ export class AddTrainingBasicComponent implements OnInit {
     this.trainingBasicForm.get('hostedBy').setValue(event.value)
   }
   handleSubmit = () => {
-    debugger
     this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value : '');
     this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value : '');
     let postObj = {
@@ -89,7 +90,6 @@ export class AddTrainingBasicComponent implements OnInit {
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
-      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       this.submitted = false;
