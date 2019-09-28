@@ -1,31 +1,31 @@
 export const ApiPath = {
-  'changePassword': 'Account/changePassword',
+  'changePassword': 'api/Account/changePassword',
   'userEducation': 'api/User/Education',
-  'userBasic': 'User',
+  'userBasic': 'api/User',
   /* General */
   /* trainer */
-  'trainerUserTag': 'Trainer/UserTag',
-  'trainerCertificate': 'Trainer/Certificate',
+  'trainerUserTag': 'api/Trainer/UserTag',
+  'trainerCertificate': 'api/Trainer/Certificate',
   /* organization */
-  'Organization': 'Organization',
-  'organizationUserTag': 'Organization/UserTag',
-  'organizationUserCertificate': 'Organization/Certificate',
+  'Organization': 'api/Organization',
+  'organizationUserTag': 'api/Organization/UserTag',
+  'organizationUserCertificate': 'api/Organization/Certificate',
   /* auth */
-  'register': 'Account',
-  'Accountlogin': 'Account/login',
+  'register': 'api/Account',
+  'Accountlogin': 'api/Account/login',
   /* global */
-  'globalCountry': 'Global/Country',
-  'globalState': 'Global/State',
-  'userSocial': 'User/UserSocial',
-  'globalDropdown': 'Global/GlobalDropdown',
-  'trainingRequest': 'Training/Request',
-  'documentUpload': 'Document/Upload',
+  'globalCountry': 'api/Global/Country',
+  'globalState': 'api/Global/State',
+  'userSocial': 'api/User/UserSocial',
+  'globalDropdown': 'api/Global/GlobalDropdown',
+  'trainingRequest': 'api/Training/Request',
+  'documentUpload': 'api/Document/Upload',
 
   /* training */
-  'training': 'Training',
-  'trainingLocation': 'Training/{TrainingId}/Location',
-  'trainingPromotions': 'Training/{TrainingId}/Promotions',
-  'trainingSettings': 'Training/{TrainingId}/Settings',
-  'trainingTicket': 'Training/{TrainingId}/Ticket',
-  'trainingTrainers': 'Training/{TrainingId}/Trainers',
+  'training': 'api/Training',
+  'trainingLocation': 'api/Training/{TrainingId}/Location',
+  'trainingPromotions': 'api/Training/{TrainingId}/Promotions',
+  'trainingSettings': 'api/Training/{TrainingId}/Settings',
+  'trainingTicket': 'api/Training/{TrainingId}/Ticket',
+  'trainingTrainers': 'api/Training/{TrainingId}/Trainers',
 }

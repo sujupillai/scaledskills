@@ -17,6 +17,7 @@ export class AddTrainingBasicComponent implements OnInit {
   endDate = new FormControl();
   settings = {};
   trainingId = 0
+  trainingData=null;
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
       { text: 'Individual', value: '1' },
@@ -27,7 +28,9 @@ export class AddTrainingBasicComponent implements OnInit {
     this._ActivatedRoute.parent.params.subscribe(
       (param: any) => {
         this.trainingId = param['id'];
-
+        if (this.trainingId > 0) {
+          this.getData()
+        }
       });
     this.createForm(() => {
       this.startDate.setValue(new Date());
@@ -48,7 +51,8 @@ export class AddTrainingBasicComponent implements OnInit {
       timeZone: 0,
       organizationList: [],
       hostedBy: [0, Validators.required],
-      hostedByObj: []
+      hostedByObj: [],
+      id:0
     })
     if (callback) {
       callback()
@@ -56,9 +60,15 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   get formControl() { return this.trainingBasicForm.controls }
   getData = () => {
-    let url = ApiPath.training;
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => [
-    ])
+    let url = '1';
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      this.trainingData=res.result;
+      Object.keys(this.trainingData).forEach(name => {
+        if (this.formControl[name]) {
+          this.formControl[name].setValue(this.trainingData[name]);
+        }
+      });
+    })
   }
   onChangeHostedBy(event) {
     let id = event.value
