@@ -114,6 +114,7 @@ export class RequestComponent implements OnInit {
       let postObj = {
         ...this.requestForm.value
       }
+      postObj.keywords = postObj.keywords.toString();
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res.result) {
           // this.getTrainingData();

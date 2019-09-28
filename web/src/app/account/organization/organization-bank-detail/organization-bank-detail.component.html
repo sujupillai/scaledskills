@@ -69,24 +69,25 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label>Get Exemption Document</label>
-          <p-fileUpload name="file" url="{{documentUpload}}" multiple="false"
-          accept="image/*" maxFileSize="1000000" customUpload="true" (uploadHandler)="myUploader($event, 'exemptionDocId')">
-        </p-fileUpload>
+          <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'exemptionDocId')">
+          </p-fileUpload>
+          <p class="msgError text-danger" *ngIf="formControl.exemptionDocId.value=='' && submitted">
+            Required Field.
+          </p>
         </div>
       </div>
     </div>
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
           <label>Upload Pancard</label>
-          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-            maxFileSize="1000000">
-            <ng-template pTemplate="content">
-              <ul *ngIf="adharCard.length">
-                <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-              </ul>
-            </ng-template>
+          <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'panCardDocId')">
           </p-fileUpload>
+          <p class="msgError text-danger" *ngIf="formControl.panCardDocId.value=='' && submitted">
+            Required Field.
+          </p>
         </div>
 
       </div>
@@ -95,14 +96,12 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label>Upload Adharcard</label>
-          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-            maxFileSize="1000000">
-            <ng-template pTemplate="content">
-              <ul *ngIf="adharCard.length">
-                <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-              </ul>
-            </ng-template>
+          <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'adharCardDocId')">
           </p-fileUpload>
+          <p class="msgError text-danger" *ngIf="formControl.adharCardDocId.value=='' && submitted">
+            Required Field.
+          </p>
         </div>
       </div>
     </div>
@@ -110,17 +109,15 @@
       <div class="col-sm-12">
         <div class="form-group">
           <label>Upload Cancellation</label>
-          <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" accept="image/*"
-            maxFileSize="1000000">
-            <ng-template pTemplate="content">
-              <ul *ngIf="adharCard.length">
-                <li *ngFor="let file of adharCard">{{file.name}} - {{file.size}} bytes</li>
-              </ul>
-            </ng-template>
+          <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'cancellationDocId')">
           </p-fileUpload>
+          <p class="msgError text-danger" *ngIf="formControl.cancellationDocId.value=='' && submitted">
+            Required Field.
+          </p>
         </div>
       </div>
-    </div> -->
+    </div>
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">

@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { TrainerComponent } from './trainer.component'
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { BasicComponent } from '../../_shared/profile/basic/basic.component';
-import {AboutComponent } from '../../_shared/profile/about/about.component';
+import { AboutComponent } from '../../_shared/profile/about/about.component';
 import { SocialComponent } from '../../_shared/profile/social/social.component';
 import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
@@ -34,7 +34,7 @@ const routes = [
         ]
       },
       {
-        path: 'addTraining', component: AddTrainingComponent,
+        path: 'addTraining/:id', component: AddTrainingComponent,
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: AddTrainingBasicComponent },

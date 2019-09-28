@@ -39,7 +39,8 @@
         <div class="form-group">
           <label for="">From *</label>
           <p-calendar name="certificationFrom" [formControl]="certificationFrom" [monthNavigator]="true"
-            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" [maxDate]="certificationTo.value" placeholder="DD/MM/YY">
+            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy"
+            [maxDate]="certificationTo.value" placeholder="DD/MM/YY">
           </p-calendar>
           <p class="msgError text-danger" *ngIf="!certificationFrom.value && submitted">
             Required Field.
@@ -50,7 +51,8 @@
         <div class="form-group">
           <label for="">To</label>
           <p-calendar name="certificationTo" [formControl]="certificationTo" [monthNavigator]="true"
-            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YY" [minDate]="certificationFrom.value">
+            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YY"
+            [minDate]="certificationFrom.value">
           </p-calendar>
           <p class="msgError text-danger" *ngIf="!certificationTo.value && submitted">
             Required Field.
@@ -59,8 +61,9 @@
       </div>
     </div>
     <div class="form-group button-group text-right">
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+        (click)="handleCancel()"></button>
       <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
 </form>

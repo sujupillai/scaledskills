@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { HttpService, SharedService } from '../../../_service';
 import { MustMatch } from '../../../_helpers/_validators/must-match.validator';
 import { ApiPath } from '../../../_helpers/_constants/api'
@@ -69,5 +69,26 @@ export class CredentialsComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       this.submitted = true;
     }
+  }
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+  }
+  handleCancel = () => {
+    let msgArray = [
+      { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
+      { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
+    ]
+    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+      if (res == 1) {
+        this.resetForm(this.credentialForm)
+      }
+    })
   }
 }

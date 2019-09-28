@@ -26,20 +26,20 @@
             </ul>
           </li>
           <li>
-            <a class="flex v-center justifyCenter" routerLinkActive="active" [routerLink]="['addTraining']"
+            <a class="flex v-center justifyCenter" routerLinkActive="active" (click)="goToRoute('basic', false)"
               (click)="setActiveTab('2')">
               Add Training
               <span class="glyphicon" [ngClass]="setActiveTabIndex== 2?'glyphicon-minus':'glyphicon-plus'"></span>
             </a>
             <ul class="accordion-nav" [ngClass]="{active: setActiveTabIndex==2}">
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/basic']">Basic</a>
+                <a routerLinkActive="active" (click)="goToRoute('basic', false)">Basic</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/location']">Location</a>
+                <a routerLinkActive="active" (click)="goToRoute('location', true)">Location</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/tags']">Tags</a>
+                <a routerLinkActive="active" (click)="goToRoute('tags', true)">Tags</a>
               </li>
               <li>
                 <a routerLinkActive="active" [routerLink]="['addTraining/images']">Images</a>

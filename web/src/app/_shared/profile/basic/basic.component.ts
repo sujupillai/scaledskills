@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import * as profileConstant from '../../../_helpers/_constants/api';
+import { ApiPath } from '../../../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
 import { HttpService, SharedService } from '../../../_service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html'
@@ -17,7 +18,9 @@ export class BasicComponent implements OnInit {
   selectedState = [];
   settings = {};
   defaultList = [];
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
+  basicApi = '';
+  isGeneralUser: boolean = true;
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createprofileForm(() => {
       this.defaultList = [{
@@ -28,6 +31,12 @@ export class BasicComponent implements OnInit {
       this.getProfileData();
       this.getCountryList();
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
+      if (this._Router.url.indexOf('account/trainer/profile/basic') >= 0) {
+        this.isGeneralUser = false;
+
+      } else {
+        this.isGeneralUser = true;
+      }
     })
   }
   createprofileForm = (callback) => {
@@ -52,7 +61,7 @@ export class BasicComponent implements OnInit {
       }),
       isInterAffiliatePartner: false,
       referralID: '',
-      isTrainer: true
+      isTrainer: this.isGeneralUser ? false : true
     })
     if (callback) {
       callback();
@@ -66,11 +75,11 @@ export class BasicComponent implements OnInit {
     })
   }
   getCountryList = () => {
-    let url = profileConstant.ApiPath.globalCountry;
+    let url = ApiPath.globalCountry;
     this.getMaster(url, 'countryList')
   }
   getStateList = (id) => {
-    const url = profileConstant.ApiPath.globalState + '/' + id;
+    const url = ApiPath.globalState + '/' + id;
     this.getMaster(url, 'stateList')
   }
   onChangeCountry(event) {
@@ -82,7 +91,7 @@ export class BasicComponent implements OnInit {
     this.profileForm.get(['address', 'stateId']).setValue(event.value)
   }
   getProfileData = () => {
-    let url = profileConstant.ApiPath.userBasic;
+    let url = ApiPath.userBasic;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
@@ -125,7 +134,7 @@ export class BasicComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       this.submitted = false;
-      let url = profileConstant.ApiPath.userBasic;
+      let url = ApiPath.userBasic;
       let postObj = {
         ...this.profileForm.value,
       }
@@ -167,7 +176,7 @@ export class BasicComponent implements OnInit {
     });
     this.getProfileData()
   }
-  handleCancel=()=>{
+  handleCancel = () => {
     let msgArray = [
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
