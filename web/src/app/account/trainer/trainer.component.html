@@ -26,41 +26,41 @@
             </ul>
           </li>
           <li>
-            <a class="flex v-center justifyCenter" routerLinkActive="active" (click)="goToRoute('basic', false)"
+            <a class="flex v-center justifyCenter" routerLinkActive="active"  [routerLink]="['training/0']"
               (click)="setActiveTab('2')">
               Add Training
               <span class="glyphicon" [ngClass]="setActiveTabIndex== 2?'glyphicon-minus':'glyphicon-plus'"></span>
             </a>
             <ul class="accordion-nav" [ngClass]="{active: setActiveTabIndex==2}">
               <li>
-                <a routerLinkActive="active" (click)="goToRoute('basic', false)">Basic</a>
+                <a routerLinkActive="active"  [routerLink]="['training/0/basic']">Basic</a>
               </li>
               <li>
-                <a routerLinkActive="active" (click)="goToRoute('location', true)">Location</a>
+                <a routerLinkActive="active" [routerLink]="['training/location']">Location</a>
               </li>
               <li>
-                <a routerLinkActive="active" (click)="goToRoute('tags', true)">Tags</a>
+                <a routerLinkActive="active" [routerLink]="['training/tags']">Tags</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/images']">Images</a>
+                <a routerLinkActive="active" [routerLink]="['training/images']">Images</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/ticket']">Ticket</a>
+                <a routerLinkActive="active" [routerLink]="['training/ticket']">Ticket</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/questions']">Custom Questions</a>
+                <a routerLinkActive="active" [routerLink]="['training/questions']">Custom Questions</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/feedback']">Feedback</a>
+                <a routerLinkActive="active" [routerLink]="['training/feedback']">Feedback</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/promotions']">Promotions</a>
+                <a routerLinkActive="active" [routerLink]="['training/promotions']">Promotions</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/settings']">Settings</a>
+                <a routerLinkActive="active" [routerLink]="['training/settings']">Settings</a>
               </li>
               <li>
-                <a routerLinkActive="active" [routerLink]="['addTraining/addTrainer']">Add Trainers</a>
+                <a routerLinkActive="active" [routerLink]="['training/addTrainer']">Add Trainers</a>
               </li>
             </ul>
           </li>

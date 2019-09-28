@@ -34,7 +34,7 @@ const routes = [
         ]
       },
       {
-        path: 'addTraining/:id', component: AddTrainingComponent,
+        path: 'training/:id', component: AddTrainingComponent,
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: AddTrainingBasicComponent },
