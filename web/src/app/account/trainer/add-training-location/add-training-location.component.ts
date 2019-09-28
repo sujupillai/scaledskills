@@ -49,6 +49,7 @@ export class AddTrainingLocationComponent implements OnInit {
   createForm = (callback) => {
     this.trainingLocationForm = this._FormBuilder.group({
       id: 0,
+      onlineLocation:[],
       modeType: [1, Validators.required],
       addressModel: this._FormBuilder.group({
         address1: [''],
@@ -163,6 +164,29 @@ export class AddTrainingLocationComponent implements OnInit {
     }
     postObj.addressModel.countryObj = postObj.addressModel.countryObj[0];
     postObj.addressModel.stateObj = postObj.addressModel.stateObj[0];
+    if(postObj.modeType==2){
+      let dataObject={
+        "address1": "",
+          "address2": "",
+          "address3": "",
+          "zipCode": "",
+          "street": "",
+          "countryId": 0,
+          "countryObj": {},
+          "stateId": 0,
+          "stateObj": {},
+          "city": ""
+      }
+      if(this.prevState.onlineLocation){
+        postObj.onlineLocation=this.prevState.onlineLocation
+      }
+      postObj.addressModel=dataObject;
+    }else{
+      postObj.onlineLocation = '';
+      if(this.prevState.addressModel){
+        postObj.addressModel=this.prevState.addressModel;
+      }
+    }
     if (this.trainingLocationForm.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
