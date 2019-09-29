@@ -29,5 +29,6 @@ export const ApiPath = {
   'trainingTicket': 'api/Training/{TrainingId}/Ticket',
   'trainingTrainers': 'api/Training/{TrainingId}/Trainers',
   'trainingReview': 'api/Training/{TrainingId}/Review',
-  'trainingAbout':'api/Training/{TrainingId}/About'
+  'trainingAbout':'api/Training/{TrainingId}/About',
+  'trainingImage':'api/Training/{TrainingId}/Image',
 }

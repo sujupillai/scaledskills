@@ -1,30 +1,33 @@
-<div class="form-group">
-  <label>
-    Header Image
-  </label>
-  <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
-    maxFileSize="1000000">
-    <ng-template pTemplate="content">
-      <ul *ngIf="uploadedFiles.length">
-        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-      </ul>
-    </ng-template>
-  </p-fileUpload>
-</div>
-<div class="form-group">
-  <label>
-    Card Image
-  </label>
-  <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*"
-    maxFileSize="1000000">
-    <ng-template pTemplate="content">
-      <ul *ngIf="uploadedFiles.length">
-        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-      </ul>
-    </ng-template>
-  </p-fileUpload>
-</div>
-<div class="form-group button-group text-right">
-  <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-  <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
-</div>
+<form [formGroup]="formElement" autocomplete="off" novalidate>
+    <div class="form-group">
+        <label>
+          Header Image (1890X168px)
+        </label>
+        <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'header')">
+            <!-- <ng-template pTemplate="content">
+                <ul>
+                    <li>{{prevState.headerUrl}}</li>
+                </ul>
+            </ng-template> -->
+          </p-fileUpload>
+          <p class="msgError text-danger" *ngIf="formControl.header.value=='' && submitted">
+            Required Field.
+          </p>
+      </div>
+      <div class="form-group">
+        <label>
+          Card Image (1890X620px))
+        </label>
+        <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'card')">
+          </p-fileUpload>
+          <p class="msgError text-danger" *ngIf="formControl.card.value=='' && submitted">
+            Required Field.
+          </p>
+      </div>
+      <div class="form-group button-group text-right">
+        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger" (click)="handleCancel()"></button>
+        <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      </div>
+</form>
