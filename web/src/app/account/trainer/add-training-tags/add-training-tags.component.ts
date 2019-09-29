@@ -1,42 +1,76 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ApiPath } from '../../../_helpers/_constants/api'
+import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { ApiPath } from '../../../_helpers/_constants/api';
 import { HttpService, SharedService } from '../../../_service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-training-tags',
   templateUrl: './add-training-tags.component.html'
 })
 export class AddTrainingTagsComponent implements OnInit {
-  traineeTagForm: FormGroup;
-  trainingTag = new FormControl()
-  submitted: boolean = false;
-  trainingId:0;
-  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute:ActivatedRoute) { }
+  aboutApiUrl;
+  trainingId: any = 0;
+  prevState;
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
+  aboutForm: FormGroup
   ngOnInit() {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
-      this.trainingId = param['id'];
-      if (this.trainingId > 0) {
+      this.trainingId = param.id;
+      if (this.trainingId == 0) {
+        let msgArray = [
+          { mgs: 'Sorry! You have to create a training first', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
+          if (res == 1) {
+            this._Router.navigate(['account/trainer/training/0/basic']);
+          }
+        })
+        return
+      } else {
         this.getData()
-      }else{
-        alert('please create a training first')
       }
     });
-  }
-
-  getData = () => {
-    const url = ApiPath.Organization;
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      prompt('res', JSON.stringify(res))
-      let dataObj = res;
-      this.trainingTag.setValue(dataObj && dataObj.name ? dataObj.name.split(",") : [])
+    this.createForm(() => {
     })
   }
-  handleSubmit = () => {
-    this.submitted = true;
-    const url = ApiPath.Organization;
-    let postData = this.trainingTag.value.toString();
-    prompt('postData', JSON.stringify(postData))
+  createForm = (callback) => {
+    this.aboutForm = this._FormBuilder.group(
+      {
+        aboutText: [''],
+        coursesOfferedText: [''],
+        name: [''],
+      }
+    )
+    if (callback) {
+      callback()
+    }
+  }
+  get formControl() { return this.aboutForm.controls };
+  getData = () => {
+    let url = ApiPath.trainingAbout;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      this.prevState = {
+        ...res.result
+      };
+      if (res.result) {
+        let dataObj = res.result;
+        Object.keys(dataObj).forEach(name => {
+          if (this.formControl[name]) {
+            this.formControl[name].setValue(dataObj[name]);
+          }
+        });
+        this.formControl.name.setValue(dataObj && dataObj.name ? dataObj.name.split(",") : [])
+      }
+    })
+  }
+  handleSubmit = (): void => {
+    let postData = {
+      ...this.aboutForm.value
+    }
+    postData.name = postData.name.toString();
+    let url = ApiPath.trainingAbout;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'POST', postData, null).subscribe(res => {
       if (res.result) {
         let msgArray = [
@@ -61,5 +95,27 @@ export class AddTrainingTagsComponent implements OnInit {
       // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     });
+  }
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+    this.formControl.name.setValue(this.prevState && this.prevState.name ? this.prevState.name.split(",") : [])
+  }
+  handleCancel = () => {
+    let msgArray = [
+      { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
+      { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
+    ]
+    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+      if (res == 1) {
+        this.resetForm(this.aboutForm)
+      }
+    })
   }
 }

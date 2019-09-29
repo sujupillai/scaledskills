@@ -1,16 +1,17 @@
-<form autocomplete="off" novalidate>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="form-group">
-        <p-chips placeholder="Tags (Enter tags/ keyword related to training)" [formControl]="trainingTag"></p-chips>
-        <p class="msgError text-danger" *ngIf="!trainingTag.value && submitted">
-          Required Field.
-        </p>
+<form autocomplete="off" novalidate [formGroup]="aboutForm">
+  <div class="clearfix">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label>Tags/ Keyword related to training</label>
+          <p-chips placeholder="Enter tags" formControlName="name"></p-chips>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group button-group text-right">
-    <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+    <div class="form-group clearfix button-group text-right">
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+        (click)="handleCancel()"></button>
+      <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+    </div>
   </div>
 </form>
