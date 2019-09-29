@@ -56,9 +56,6 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label>End Date *</label>
-          <p class="msgError text-danger"
-            *ngIf="formControl.endDate.hasError('required') && (formControl.endDate.dirty || submitted)">
-            Required Field.</p>
           <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true"
             [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" [minDate]="startDate.value"
             placeholder="DD/MM/YY">

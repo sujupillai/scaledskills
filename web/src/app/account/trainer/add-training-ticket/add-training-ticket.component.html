@@ -1,41 +1,118 @@
-<form>
+<div *ngIf="!addTicketForm">
+  <div class="form-group ticketWrap" *ngFor="let item of trainingData, let i=index"
+    (click)="editTrainingTicket(item.id)">
+    <div class="relative">
+      <div class="left circle"></div>
+      <div class="right circle"></div>
+      <p-card header="Ticket">
+        <div>{{item.name}}</div>
+        <div>Ticket {{item.qty}}
+          <button type="button" class="btn btn-gradient bookBtn">
+            831 TICKETS
+          </button>
+          Rs. {{item.paymentCharge}}
+        </div>
+        <div>
+          <span>
+            {{item.startDate | date: 'dd-MMM-yyyy'}} @ {{item.startDate | date: 'hh:mm a'}}
+          </span>
+          -
+          <span>
+            {{item.endDate | date: 'dd-MMM-yyyy'}} @ {{item.endDate | date: 'hh:mm a'}}
+          </span>
+        </div>
+      </p-card>
+    </div>
+  </div>
+  <div class="form-group" *ngIf="trainingData.length==0">
+    <p-card header="Ticket">
+      {{!displayNoRecord?'loading':'No records to display'}}
+    </p-card>
+  </div>
+  <div class="form-group text-right" *ngIf="displayNoRecord">
+    <button pButton type="button" label="Add Ticket" class="ui-button-raised ui-button-secondary"
+      (click)="addTicketForm=!addTicketForm"></button>
+  </div>
+</div>
+<form [formGroup]="formElement" autocomplete="off" novalidate *ngIf="addTicketForm">
   <div class="form-group">
     <label>Ticket Name</label>
-    <input type="text" pInputText placeholder="Ticket Name" />
+    <input type="text" pInputText placeholder="Ticket Name" formControlName="name" />
+    <p class="msgError text-danger"
+      *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
+      Required Field.
+    </p>
   </div>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
         <label>Quantity</label>
-        <input type="text" pInputText placeholder="Quantity" />
-
+        <input type="text" pInputText placeholder="Quantity" formControlName="qty" digitOnly />
+        <p class="msgError text-danger"
+          *ngIf="formControl.qty.hasError('required') && (formControl.qty.dirty || submitted)">
+          Required Field.
+        </p>
       </div>
-      <div class="col-sm-6">
-        <label>Per booking</label>
+    </div>
+    <div class="col-sm-6">
+      <label>Per booking</label>
+      <div class="">
         <div class="row">
           <div class="col-sm-6">
-            <input type="text" pInputText placeholder="Min" />
+            <div class="form-group">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">Min</span>
+                <input type="text" pInputText placeholder="Min" formControlName="minBooking" digitOnly />
+              </div>
+              <p class="msgError text-danger" *ngIf="formControl.minBooking.value<=0 &&
+                  !formControl.minBooking.hasError('required')">
+                Min qty should be greather than 0.
+              </p>
+              <p class="msgError text-danger"
+                *ngIf="formControl.minBooking.hasError('required') && (formControl.minBooking.dirty || submitted)">
+                Required Field.
+              </p>
+            </div>
           </div>
           <div class="col-sm-6">
-            <input type="text" pInputText placeholder="Max" />
+            <div class="form-group">
+              <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon">Max</span>
+                <input type="text" pInputText placeholder="Qty" formControlName="maxBooking" digitOnly />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="pos-relative">
-          <label>Type</label>
-          <p-dropdown [options]="ticketType" placeholder="Select" optionLabel="Selectxx"></p-dropdown>
-
-        </div>
-
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Type</label>
+        <input type="hidden" formControlName="ticketType">
+        <angular2-multiselect class="form-control" [data]="ticketTypeList" [(ngModel)]="selectedTicketType"
+          [settings]="settings" formControlName="ticketTypeObj" (onSelect)="onTypeChange($event, hostedBy)"
+          (onDeSelect)="OnItemDeSelect($event)">
+        </angular2-multiselect>
+        <p class="msgError text-danger"
+          *ngIf="formControl.ticketType.hasError('required') && (formControl.ticketType.dirty || submitted)">
+          Required Field.
+        </p>
       </div>
-      <div class="col-sm-6">
+    </div>
+    <div class="col-sm-6" [ngClass]="{disabled: formControl.ticketType.value==1}">
+      <div class="form-group">
         <label>Price</label>
-        <input type="text" pInputText placeholder="Price" />
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">Rs.</span>
+          <input type="text" pInputText placeholder="Price" formControlName="paymentCharge" digitOnly />
+          <span class="ui-inputgroup-addon">.00</span>
+        </div>
+        <p class="msgError text-danger"
+          *ngIf="formControl.paymentCharge.hasError('required') && (formControl.paymentCharge.dirty || submitted)">
+          Required Field.
+        </p>
       </div>
     </div>
   </div>
@@ -44,7 +121,7 @@
       <div class="col-sm-6">
         <div class="pos-relative">
           <label>Payment Gateway &amp; Services Charges </label>
-          <p-dropdown [options]="ticketType" placeholder="Select" optionLabel="Selectxx"></p-dropdown>
+          <p-dropdown [options]="ticketType" placeholder="Select" optionLabel="Select"></p-dropdown>
         </div>
       </div>
     </div>
@@ -53,42 +130,37 @@
     <div class="row">
       <div class="col-sm-6">
         <label>Ticket Sale starts from</label>
-        <div class="row">
-          <div class="col-sm-6">
-            <input type="text" pInputText placeholder="Min" />
-          </div>
-          <div class="col-sm-6">
-            <input type="text" pInputText placeholder="Max" />
-          </div>
-        </div>
+        <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true"
+          [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" [maxDate]="endDate.value"
+          placeholder="DD/MM/YY">
+        </p-calendar>
+        <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
+          Required Field.
+        </p>
       </div>
       <div class="col-sm-6">
         <label>Ticket Sale Ends at</label>
-        <div class="row">
-          <div class="col-sm-6">
-            <input type="text" pInputText placeholder="Min" />
-          </div>
-          <div class="col-sm-6">
-            <input type="text" pInputText placeholder="Max" />
-          </div>
-        </div>
+        <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true"
+          [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" [minDate]="startDate.value"
+          placeholder="DD/MM/YY">
+        </p-calendar>
+        <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
+          Required Field.
+        </p>
       </div>
     </div>
   </div>
   <div class="form-group">
     <label>Ticket Description</label>
-    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Description"></textarea>
+    <textarea pInputTextarea autoResize="autoResize" placeholder="Description" formControlName="description"></textarea>
   </div>
   <div class="form-group">
     <label>Message to Atendee</label>
-    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" placeholder="Message"></textarea>
+    <textarea pInputTextarea autoResize="autoResize" placeholder="Message" formControlName="msgForAtendee"></textarea>
   </div>
-  <div class="form-group">
-      <button pButton type="button" label="Add Ticket"
-      class="ui-button-raised ui-button-secondary"></button>
-  </div>
-  <div class="form-group text-right button-group">
-      <button pButton type="button" label="Save" class="ui-button-raised"></button>
-      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+  <div class="form-group button-group text-right">
+    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+      (click)="handleCancel()"></button>
+    <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
   </div>
 </form>

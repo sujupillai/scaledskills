@@ -31,6 +31,7 @@ export class AddTrainingBasicComponent implements OnInit {
         this.getData()
       }
     });
+    // this.getAllData();
     this.createForm(() => {
       this.startDate.setValue(new Date());
       this.endDate.setValue(new Date());
@@ -59,7 +60,7 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   get formControl() { return this.trainingBasicForm.controls }
   getData = () => {
-    let url = '1';
+    let url = this.trainingId.toString();
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       this.trainingData = res.result;
       Object.keys(this.trainingData).forEach(name => {
@@ -71,6 +72,12 @@ export class AddTrainingBasicComponent implements OnInit {
       this.formControl['hostedByObj'].setValue(hostedBy);
     })
   }
+  // getAllData = () => {
+  //   let url = ApiPath.training;
+  //   this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+  //     debugger
+  //   })
+  // }
   onChangeHostedBy(event) {
     let id = event.value
     if (id == 2) {
