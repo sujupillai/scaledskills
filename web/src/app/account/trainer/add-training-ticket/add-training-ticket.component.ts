@@ -113,6 +113,7 @@ export class AddTrainingTicketComponent implements OnInit {
     })
   }
   resetForm(formGroup: FormGroup, addTicketForm) {
+    this.submitted=false;
     let id = this.formControl.id.value;
     if (id > 0) {
       Object.keys(this.prevState).forEach(name => {
