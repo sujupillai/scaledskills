@@ -14,7 +14,7 @@ export class HeaderInterceptor implements HttpInterceptor {
   constructor(public _AuthenticationService: AuthenticationService, private _SharedService: SharedService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let isTokenRquired = false;
-
+    this._SharedService.show();
     const url = req.url.split('/')
     if (url[url.length - 1] == 'Account' || url[url.length - 1] == 'login') {
       isTokenRquired = false

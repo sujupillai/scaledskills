@@ -26,7 +26,7 @@ export class AddTrainingLocationComponent implements OnInit {
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
-      this.trainingId = param['id'];
+      this.trainingId = param.id;
       if (this.trainingId == 0) {
         let msgArray = [
           { mgs: 'Sorry! You have to create a training first', class: 'confirmMsg' },
@@ -94,7 +94,7 @@ export class AddTrainingLocationComponent implements OnInit {
   }
   getData = () => {
     let url = ApiPath.trainingLocation;
-    url = url.replace('{TrainingId}', '1')
+    url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       this.prevState = {
         ...res.result

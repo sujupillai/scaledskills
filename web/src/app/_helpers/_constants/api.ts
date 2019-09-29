@@ -28,4 +28,5 @@ export const ApiPath = {
   'trainingSettings': 'api/Training/{TrainingId}/Settings',
   'trainingTicket': 'api/Training/{TrainingId}/Ticket',
   'trainingTrainers': 'api/Training/{TrainingId}/Trainers',
+  'trainingReview': 'api/Training/{TrainingId}/Review',
 }
