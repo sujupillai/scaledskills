@@ -15,12 +15,6 @@ export class HeaderInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let isTokenRquired = false;
     this._SharedService.show();
-    const url = req.url.split('/api')
-    if (url[1] == "/Home/RT" || url[1] == "/Account/login" || url[1] == "/Account") {
-      isTokenRquired = false
-    } else {
-      isTokenRquired = true
-    }
     if(req.params.toLocaleString().indexOf('auth=false')>=-0){
       isTokenRquired = false
     }else{
