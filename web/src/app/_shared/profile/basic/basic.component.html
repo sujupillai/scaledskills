@@ -25,15 +25,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Email *</label>
-          <input pInputText placeholder="Email" formControlName="email">
-          <p class="msgError text-danger" *ngIf="submitted && formControl.email.hasError('email') &&
-                  !formControl.email.hasError('required')">
-            Please enter a valid email address
-          </p>
-          <p class="msgError text-danger"
-            *ngIf="formControl.email.hasError('required') && (formControl.email.dirty || submitted)">
-            Required Field.
-          </p>
+          <input pInputText placeholder="Email" formControlName="email" class="disabled">
         </div>
       </div>
       <div class="col-sm-6">
@@ -120,7 +112,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Referral ID</label>
-          <input pInputText placeholder="Referral ID" formControlName="referralID">
+          <input pInputText placeholder="Referral ID" formControlName="referralID" class="disabled">
         </div>
       </div>
     </div>

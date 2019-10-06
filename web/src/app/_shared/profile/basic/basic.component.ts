@@ -18,6 +18,7 @@ export class BasicComponent implements OnInit {
   selectedState = [];
   settings = {};
   defaultList = [];
+  minDate: Date= new Date();
   basicApi = '';
   isGeneralUser: boolean = true;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
@@ -140,6 +141,7 @@ export class BasicComponent implements OnInit {
       }
       postObj.address.countryObj = postObj.address.countryObj[0];
       postObj.address.stateObj = postObj.address.stateObj[0];
+      postObj.dateOfBirth = this.dateOfBirth.value;
       this._HttpService.httpCall(url, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
