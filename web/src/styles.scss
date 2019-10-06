@@ -1482,3 +1482,13 @@ textarea.ui-inputtext {
     display: none!important
   }
 }
+.banner_no_header{
+  .ui-carousel-header{
+    display: none!important
+  }
+}
+.no-border{
+  .ui-carousel-item, .ui-carousel .ui-carousel-viewport{
+    border:0px!important
+  }
+}

@@ -70,10 +70,9 @@ export class FileuploadComponent {
       this.fileUpload.nativeElement.click()
   }
   onInput(event) {
-    debugger
+
   }
   onFileSelected(event) {
-    debugger
     let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
     console.log('event::::::', event)
     for (let i = 0; i < files.length; i++) {

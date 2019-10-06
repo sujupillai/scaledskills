@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as service from '../../../_service';
 import { ApiPath } from '../../../_helpers/_constants/api'
 

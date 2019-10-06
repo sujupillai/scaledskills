@@ -72,12 +72,6 @@ export class AddTrainingBasicComponent implements OnInit {
       this.formControl['hostedByObj'].setValue(hostedBy);
     })
   }
-  // getAllData = () => {
-  //   let url = ApiPath.training;
-  //   this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-  //     debugger
-  //   })
-  // }
   onChangeHostedBy(event) {
     let id = event.value
     if (id == 2) {
