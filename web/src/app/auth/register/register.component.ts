@@ -12,9 +12,21 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   error = '';
   submitted: boolean = false;
+  countryList = [];
+  selectedCountry = [];
+  defaultList = [{
+    "text": "Select",
+    "value": "0",
+    "isSelect": false
+  }];
+  settings = {};
   constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createForm(() => {
+      this.settings = {
+        singleSelection: true,text: "Select",labelKey: "text", primaryKey: "value",classes: "myclass custom-class",enableSearchFilter: true,searchBy: ['text'],searchPlaceholderText: 'Search by name'
+      };
+      this.getCountryList();
     })
   }
   createForm = (callback: any): void => {
@@ -27,7 +39,9 @@ export class RegisterComponent implements OnInit {
         userName: '',
         password: ['', [Validators.required, Validators.minLength(5)]],
         confirmPassword: ['', Validators.required],
-        id: 0
+        id: 0,
+        countryObj: [''],
+        countryId:[],
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -38,6 +52,27 @@ export class RegisterComponent implements OnInit {
     }
   }
   get formControl() { return this.registerForm.controls }
+  getMaster = (url, masterCollection) => {
+    let params = {
+      auth: false
+    }
+    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+      if (res.responseCode == 200) {
+        this[masterCollection] = res.result
+      }
+    })
+  }
+  getCountryList = () => {
+    let url = ApiPath.globalCountry;
+    this.getMaster(url, 'countryList')
+  }
+  OnCountrySelect(event) {
+    this.registerForm.get('countryId').setValue(event.value)
+  }
+  OnCountryDeSelect(event) {
+    this.registerForm.get('countryId').setValue('')
+    this.registerForm.get('countryObj').setValue([])
+  }
   handleSubmitForm = () => {
     if (this.registerForm.invalid) {
       this.submitted = true;
@@ -48,8 +83,8 @@ export class RegisterComponent implements OnInit {
       let postObj = {
         ...this.registerForm.value
       };
-      let params={
-        auth:false
+      let params = {
+        auth: false
       }
       this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
         if (res) {
