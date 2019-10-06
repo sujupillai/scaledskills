@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
       this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
         if (res) {
           let msgArray = [
-            { mgs: 'Account created success', class: 'confirmMsg' },
+            { mgs: 'Account created successfully', class: 'confirmMsg' },
             { mgs: 'Do you want to login now?', class: 'subMsg' },
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)

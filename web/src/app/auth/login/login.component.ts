@@ -59,23 +59,11 @@ export class LoginComponent implements OnInit {
       let url = ApiPath.Accountlogin;
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
         if (res) {
-          let msgArray = [
-            { mgs: 'Login Sucess', class: 'confirmMsg' },
-            { mgs: 'Do you want to update profile?', class: 'subMsg' },
-          ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
-            if (res == 1) {
-              this._Router.navigate(['/account']);
-            } else {
-              this._Router.navigate(['/']);
-            }
-          })
+          this._Router.navigate(['/']);
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       },
@@ -83,7 +71,6 @@ export class LoginComponent implements OnInit {
           let msgArray = [
             { mgs: error['error'], class: 'confirmMsg' },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     }
