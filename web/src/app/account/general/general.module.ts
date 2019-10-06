@@ -11,10 +11,14 @@ import { FeatureTrainingComponent } from './feature-training/feature-training.co
 import { CancelTrainingParticipationComponent } from './cancel-training-participation/cancel-training-participation.component';
 import { NguCarouselModule } from '@ngu/carousel';
 import { OrganizationModule } from '../organization/organization.module';
+import { AttendeeViewComponent } from './attendee-view/attendee-view.component';
+import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
+import {NgPrimeModule} from '../../_forms/prime.module'
+
 @NgModule({
-  declarations: [GeneralComponent, GeneralProfileComponent, GeneralTrainingComponent, PastTrainingComponent, FeatureTrainingComponent, CancelTrainingParticipationComponent],
+  declarations: [GeneralComponent, GeneralProfileComponent, GeneralTrainingComponent, PastTrainingComponent, FeatureTrainingComponent, CancelTrainingParticipationComponent, AttendeeViewComponent, OrganizerViewComponent],
   imports: [
-    CommonModule, AccountGeneralRoutingModule, FormModule, ProfileModule, NguCarouselModule, OrganizationModule
+    CommonModule, AccountGeneralRoutingModule, FormModule, ProfileModule, NguCarouselModule, OrganizationModule, NgPrimeModule
   ]
 })
 export class AccountGeneralModule { }

@@ -36,4 +36,6 @@ export const ApiPath = {
   /* home */
   'homeRunningTraining':'api/Home/RT',
   'headerTraining':'api/Home/h/{urlName}',
+  'upcomingTraining':'api/Home/UCT',
+  'pastTraining':'api/Home/PT',
 }

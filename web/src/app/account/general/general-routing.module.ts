@@ -7,6 +7,8 @@ import { FeatureTrainingComponent } from './feature-training/feature-training.co
 import { PastTrainingComponent } from './past-training/past-training.component';
 import { CancelTrainingParticipationComponent } from './cancel-training-participation/cancel-training-participation.component';
 import { OrganizationBankDetailComponent } from '../organization/organization-bank-detail/organization-bank-detail.component';
+import { AttendeeViewComponent } from './attendee-view/attendee-view.component';
+import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
 import { CredentialsComponent } from '../../_shared/profile/credentials/credentials.component';
 const routes = [
   {
@@ -24,6 +26,8 @@ const routes = [
       { path: 'featureTraining', component: FeatureTrainingComponent },
       { path: 'pastTraining', component: PastTrainingComponent },
       { path: 'cancelParticipation', component: CancelTrainingParticipationComponent },
+      { path: 'attendeeView', component: AttendeeViewComponent },
+      { path: 'organizerView', component: OrganizerViewComponent },
       {
         path: 'bank', component: OrganizationBankDetailComponent,
       }

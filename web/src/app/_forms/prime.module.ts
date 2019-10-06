@@ -23,7 +23,6 @@ import { RatingModule } from 'primeng/rating';
 import { CarouselModule } from 'primeng/carousel';
 import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
-
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import {PasswordModule} from 'primeng/password';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
