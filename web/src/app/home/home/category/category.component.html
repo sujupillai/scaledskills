@@ -5,10 +5,10 @@
       <div class="flex clrWhite home-search flexVMiddle">
         <form novalidate autocomplete="off" class="width_100">
           <div class="ui-inputgroup">
-            <button pButton type="button" label="Training">
-              <i class="pi pi-search"></i>
-            </button>
-            <input type="text" class="width_100" pInputText placeholder="Keyword">
+            <input type="text" class="width_100" pInputText placeholder="Keyword" (input)="onSearchChange($event.target.value)" (keyup.enter)="getData()">
+            <button pButton class="searchBtn" type="button" label="Training" [ngClass]="{disabled: searchText==''}" (click)="getData()">
+                <i class="pi pi-search"></i>
+              </button>
           </div>
         </form>
       </div>
@@ -19,30 +19,32 @@
 <section class="section-padding clearfix bgGray">
   <div class="container">
     <div class="row">
-      <div class="col-sm-3" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]">
+      <div class="col-sm-3" *ngFor="let item of RTList">
         <p-card styleClass="ui-card-shadow">
           <p-header>
-            <img src="Card" src="../../../../assets/images/placeholder-img-purple.png">
+            <img src="Card" src="{{item.imageUrl}}" alt="image">
           </p-header>
           <div class="card-inner">
             <div class="date">
-              <span class="month">Sep</span> <br> 15
-            </div>
+              <span class="month">{{item.startDate | date: 'MMM'}}</span>
+              <br>
+              {{item.startDate | date: 'dd'}}
+              </div>
             <div class="card-desc">
-              <a class="javascript:void(0)" tooltipPosition="top" pTooltip="Heritage Walk at Mehrauli Village"
-                class="event">Heritage Walk at Mehrauli Village</a>
+              <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
+                class="event">{{item.name?item.name:'NA'}}</a>
               <p class="text-right">
-                <i class="pi pi-map-marker"></i>New Delhi
+                <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
               </p>
             </div>
           </div>
           <hr>
           <div class="card-desc flex_c_c">
             <p class="label-price">
-              Online
+              {{item.mode?item.mode:'NA'}}
             </p>
             <p class="label-price border">
-              Rs. 1200
+              Rs. {{item.amount?item.amount:'NA'}}
             </p>
           </div>
           <hr>
@@ -51,20 +53,19 @@
               <i class="fa fa-star" aria-hidden="true"></i> interested
             </p>
             <p class="label-price">
-              <i class="fa fa-star" aria-hidden="true"></i> 100 People interested
+              <i class="fa fa-star" aria-hidden="true"></i> {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
             </p>
           </div>
-
         </p-card>
         <br>
       </div>
     </div>
     <div class="form-group text-center">
-      <p class="clrPurple"><strong>1 - 16 of 42 Records</strong></p>
+      <p class="clrPurple"><strong>{{page+1}} - 16 of {{totalTraining}} Records</strong></p>
     </div>
     <div class="clearfix text-center">
-      <button type="button" class="btn btn-gradient">Previous</button>
-      <button type="button" class="btn btn-gradient ml15">Next</button>
+      <button type="button" class="btn btn-gradient" [ngClass]="{disabled: page==0}" (click)="funPrevious(page)">Previous</button>
+      <button type="button" class="btn btn-gradient ml15" [ngClass]="{disabled: (page+1)*pageSize>=totalTraining}" (click)="funNext(page)">Next</button>
     </div>
   </div>
 </section>

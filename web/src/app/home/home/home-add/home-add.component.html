@@ -1,21 +1,49 @@
-<section class="section-padding clearfix">
+<section class="section-padding clearfix homeBanner">
   <div class="container">
-    <ngu-carousel #myCarousel [inputs]="TutorsCarouselConfig" [dataSource]="TutorslItems">
-      <div *nguCarouselDef="let item;" class="item padding-10">
-        <p-card header="Card Title" styleClass="ui-card-shadow">
-          <p-header>
-            <img src="" src="../../../../assets/images/placeholder-image.jpg">
-          </p-header>
-          <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</div>
-        </p-card>
-      </div>
-      <!-- <button NguCarouselNext class="rightRs">&gt;</button>
-      <button NguCarouselPrev class="leftRs">&lt;</button> -->
-      <ul class="myPoint" NguCarouselPoint>
-        <li *ngFor="let j of myCarousel.pointNumbers; let j = index" [class.active]="j==myCarousel.activePoint"
-          (click)="myCarousel.moveTo(j)"></li>
-      </ul>
-    </ngu-carousel>
+    <p-carousel headerText="Promotions" [value]="carouselItems">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card styleClass="ui-card-shadow">
+            <p-header>
+              <img src="Card" src="{{item.imageUrl}}" alt="image">
+            </p-header>
+            <div class="card-inner">
+              <div class="date">
+                <span class="month">{{item.startDate | date: 'MMM'}}</span>
+                <br>
+                {{item.startDate | date: 'dd'}}
+              </div>
+              <div class="card-desc">
+                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
+                  class="event">{{item.name?item.name:'NA'}}</a>
+                <p class="text-right">
+                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
+                </p>
+              </div>
+            </div>
+            <hr>
+            <div class="card-desc flex_c_c">
+              <p class="label-price">
+                {{item.mode?item.mode:'NA'}}
+              </p>
+              <p class="label-price border">
+                Rs. {{item.amount?item.amount:'NA'}}
+              </p>
+            </div>
+            <hr>
+            <div class="card-desc flex_c_c">
+              <p class="label-price border">
+                <i class="fa fa-star" aria-hidden="true"></i> interested
+              </p>
+              <p class="label-price">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+              </p>
+            </div>
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </section>
 <br>

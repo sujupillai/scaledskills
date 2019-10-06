@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
         ...this.registerForm.value
       };
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        debugger
         if (res) {
           let msgArray = [
             { mgs: 'Account created success', class: 'confirmMsg' },

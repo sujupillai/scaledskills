@@ -1283,7 +1283,7 @@ body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link {
 
 .card-inner {
   display: flex;
-
+  justify-content: space-between;
   .month {
     font-weight: bold;
     color: red;
@@ -1470,5 +1470,15 @@ textarea.ui-inputtext {
   .right {
     right: 0px;
     margin: -25px -25px 0 0;
+  }
+}
+
+.searchBtn{
+  border:0px!important;
+  outline: none!important;
+}
+.homeBanner{
+  .ui-carousel-dropdown{
+    display: none!important
   }
 }

@@ -254,9 +254,6 @@
       <label>Message</label>
       <textarea style="height: 150px" placeholder="Message" pInputTextarea autoResize="autoResize"></textarea>
     </div>
-    <div class="form-group">
-      <p-captcha siteKey="6Lf2XQkTAAAAANcvOwYqPxWL4iZDksFqHpS39GDA" (onResponse)="showResponse($event)"></p-captcha>
-    </div>
     <div class="form-group button-group text-right">
       <button pButton type="submit" label="Submit" class="ui-button-raised"
         (click)="handleSubmit(); display=false"></button>

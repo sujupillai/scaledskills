@@ -3,7 +3,7 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { SharedService, HttpService } from '../../../_service';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-training-images',
   templateUrl: './add-training-images.component.html'
@@ -16,6 +16,8 @@ export class AddTrainingImagesComponent implements OnInit {
   uplo: File;
   submitted: boolean = false;
   fileData = null;
+  header=true;
+  card=true;
   documentUpload: string = '';
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
@@ -71,7 +73,8 @@ export class AddTrainingImagesComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.fileData);
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
-      this.formControl[control].setValue(res.result)
+      this.formControl[control].setValue(res.result);
+      this[control]=false;
     })
   }
   handleSubmit = (): void => {

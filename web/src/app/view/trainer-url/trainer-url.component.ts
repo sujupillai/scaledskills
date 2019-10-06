@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-trainer-url',
@@ -11,7 +10,6 @@ export class TrainerUrlComponent implements OnInit {
   display: boolean = false;
   isSendMesage: boolean = false;
   cities=[];
-
   constructor() {
     this.cities = [
       {name: 'New York', code: 'NY'},
@@ -38,7 +36,6 @@ export class TrainerUrlComponent implements OnInit {
       { field: 'color', header: 'Color' }
     ];
   }
-
   showDialog() {
     this.display = true;
   }
