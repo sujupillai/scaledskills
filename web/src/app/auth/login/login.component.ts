@@ -58,13 +58,15 @@ export class LoginComponent implements OnInit {
       let data = this.loginForm.value;
       let url = ApiPath.Accountlogin;
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
-        if (res) {
+        debugger
+        if (res.responseCode==200) {
           this._Router.navigate(['/']);
-        } else {
+        } else if (res.responseCode==406){
           let msgArray = [
-            { mgs: 'Something went wrong', class: 'confirmMsg' },
+            { mgs: res.responseMessege, class: 'confirmMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
+          this._Router.navigate(['auth/userValidate']);
         }
       },
         error => {

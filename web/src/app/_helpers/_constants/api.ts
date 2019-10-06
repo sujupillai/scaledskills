@@ -38,4 +38,7 @@ export const ApiPath = {
   'headerTraining':'api/Home/h/{urlName}',
   'upcomingTraining':'api/Home/UCT',
   'pastTraining':'api/Home/PT',
+
+  /* urls */
+  'trainingUrl':'api/Home/T/{urlName}',
 }

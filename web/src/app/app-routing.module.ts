@@ -23,8 +23,8 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
   },
   { path: 'report', component: ReportComponent },
-  { path: 'view/training/url', component: TrainingUrlComponent },
-  { path: 'view/trainer/url', component: TrainerUrlComponent },
+  { path: 'view/t/:url', component: TrainingUrlComponent },
+  { path: 'view/p/:url', component: TrainerUrlComponent },
 
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];

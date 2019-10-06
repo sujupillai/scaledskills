@@ -1535,3 +1535,36 @@ textarea.ui-inputtext {
     margin-top: 0px !important;
   }
 }
+
+
+
+.form-box {
+  border-radius: 2px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.02);
+  background-color: #ffffff;
+  padding: 60px 100px;
+  margin-top: 65px;
+  position: relative;
+}
+
+.form-box h4 {
+  color: #232f3a;
+  font-size: 23px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin-bottom: 20px;
+
+}
+.form-box .sub-title {
+  color: #285482;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  padding-bottom: 20px;
+}

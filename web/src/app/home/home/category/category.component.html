@@ -20,7 +20,8 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3" *ngFor="let item of RTList">
-        <p-card styleClass="ui-card-shadow">
+        <a href="{{item.fullUrl}}">go</a>
+        <p-card styleClass="ui-card-shadow" [routerLink]="['/view/training/url']" routerLinkActive="router-link-active" >
           <p-header>
             <img src="Card" src="{{item.imageUrl}}" alt="image">
           </p-header>
