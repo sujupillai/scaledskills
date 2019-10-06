@@ -18,7 +18,7 @@ export class BasicComponent implements OnInit {
   selectedState = [];
   settings = {};
   defaultList = [];
-  minDate: Date= new Date();
+  minDate: Date = new Date();
   basicApi = '';
   isGeneralUser: boolean = true;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
@@ -83,13 +83,30 @@ export class BasicComponent implements OnInit {
     const url = ApiPath.globalState + '/' + id;
     this.getMaster(url, 'stateList')
   }
-  onChangeCountry(event) {
+  OnCountrySelect(event) {
     let id = event.value
     this.profileForm.get(['address', 'countryId']).setValue(event.value)
     this.getStateList(id)
   }
+  OnCountryDeSelect(event) {
+    this.profileForm.get(['address', 'countryId']).setValue('')
+    this.profileForm.get(['address', 'stateId']).setValue('')
+    this.profileForm.get(['address', 'stateObj']).setValue('')
+    this.profileForm.get(['address', 'city']).setValue('');
+    this.profileForm.get(['address', 'zipCode']).setValue('');
+    this.selectedState = this.defaultList;
+    this.selectedState = this.defaultList;
+    this.stateList = [];
+  }
   onChangeState(event) {
     this.profileForm.get(['address', 'stateId']).setValue(event.value)
+  }
+  OnStateDeSelect(event) {
+    this.profileForm.get(['address', 'stateId']).setValue('')
+    this.profileForm.get(['address', 'stateObj']).setValue('')
+    this.profileForm.get(['address', 'city']).setValue('');
+    this.profileForm.get(['address', 'zipCode']).setValue('');
+    this.selectedState = this.defaultList;
   }
   getProfileData = () => {
     let url = ApiPath.userBasic;

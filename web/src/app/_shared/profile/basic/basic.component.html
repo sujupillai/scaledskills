@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">First Name  *</label>
+          <label for="">First Name *</label>
           <input type="text" pInputText placeholder="First Name" formControlName="firstName" />
           <p class="msgError text-danger"
             *ngIf="formControl.firstName.hasError('required') && (formControl.firstName.dirty || submitted)">Required
@@ -57,14 +57,16 @@
           <div class="form-group">
             <label for="">Country</label>
             <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
-              [settings]="settings" formControlName="countryObj" (onSelect)="onChangeCountry($event)" ></angular2-multiselect>
+              [settings]="settings" formControlName="countryObj" (onSelect)="OnCountrySelect($event)"
+              (onDeSelect)="OnCountryDeSelect($event)"></angular2-multiselect>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
             <label for="">State</label>
             <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
-            [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)" ></angular2-multiselect>
+              [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)"
+              (onDeSelect)="OnStateDeSelect($event)"></angular2-multiselect>
           </div>
         </div>
         <div class="col-sm-6">
@@ -117,7 +119,8 @@
       </div>
     </div>
     <div class="form-group button-group text-right">
-      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger" (click)="handleCancel()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+        (click)="handleCancel()"></button>
       <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
     </div>
   </div>
