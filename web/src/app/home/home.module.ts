@@ -12,6 +12,7 @@ import { HomeAddComponent } from './home/home-add/home-add.component';
 import { HomeBannerComponent } from './home/home-banner/home-banner.component';
 import { TestimonialComponent } from './testimonial/testimonial.component';
 import { NgPrimeModule } from '../_forms/prime.module'
+import {SharedModule} from '../_shared/shared.module';
 
 @NgModule({
   declarations: [HomeComponent, AboutComponent, CategoryComponent, ContactUsComponent, TermsUseComponent, PrivacyPolicyComponent, HomeAddComponent, HomeBannerComponent, TestimonialComponent],
@@ -19,7 +20,8 @@ import { NgPrimeModule } from '../_forms/prime.module'
     CommonModule,
     HomeRoutingModule,
     NguCarouselModule,
-    NgPrimeModule
+    NgPrimeModule,
+    SharedModule
   ]
 })
 export class HomeModule { }
