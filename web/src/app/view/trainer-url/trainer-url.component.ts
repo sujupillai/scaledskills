@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-trainer-url',
-  templateUrl: './trainer-url.component.html',
-  styleUrls: ['./trainer-url.component.scss']
+  templateUrl: './trainer-url.component.html'
 })
 export class TrainerUrlComponent implements OnInit {
   cars = [];
