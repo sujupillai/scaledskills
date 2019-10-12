@@ -22,45 +22,47 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-3" *ngFor="let item of RTList">
-        <a href="{{item.fullUrl}}">go</a>
-        <p-card styleClass="ui-card-shadow" [routerLink]="['/view/training/url']" routerLinkActive="router-link-active">
-          <p-header>
-            <img src="Card" src="{{item.imageUrl}}" alt="image">
-          </p-header>
-          <div class="card-inner">
-            <div class="date">
-              <span class="month">{{item.startDate | date: 'MMM'}}</span>
-              <br>
-              {{item.startDate | date: 'dd'}}
+        <a href="{{item.fullUrl}}">
+          <p-card styleClass="ui-card-shadow" [routerLink]="['/view/training/url']"
+            routerLinkActive="router-link-active">
+            <p-header>
+              <img src="Card" src="{{item.imageUrl}}" alt="image">
+            </p-header>
+            <div class="card-inner">
+              <div class="date">
+                <span class="month">{{item.startDate | date: 'MMM'}}</span>
+                <br>
+                {{item.startDate | date: 'dd'}}
+              </div>
+              <div class="card-desc">
+                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
+                  class="event">{{item.name?item.name:'NA'}}</a>
+                <p class="text-right">
+                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
+                </p>
+              </div>
             </div>
-            <div class="card-desc">
-              <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                class="event">{{item.name?item.name:'NA'}}</a>
-              <p class="text-right">
-                <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
+            <hr>
+            <div class="card-desc flex_c_c">
+              <p class="label-price">
+                {{item.mode?item.mode:'NA'}}
+              </p>
+              <p class="label-price border">
+                Rs. {{item.amount?item.amount:'NA'}}
               </p>
             </div>
-          </div>
-          <hr>
-          <div class="card-desc flex_c_c">
-            <p class="label-price">
-              {{item.mode?item.mode:'NA'}}
-            </p>
-            <p class="label-price border">
-              Rs. {{item.amount?item.amount:'NA'}}
-            </p>
-          </div>
-          <hr>
-          <div class="card-desc flex_c_c">
-            <p class="label-price border">
-              <i class="fa fa-star" aria-hidden="true"></i> interested
-            </p>
-            <p class="label-price">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
-            </p>
-          </div>
-        </p-card>
+            <hr>
+            <div class="card-desc flex_c_c">
+              <p class="label-price border">
+                <i class="fa fa-star" aria-hidden="true"></i> interested
+              </p>
+              <p class="label-price">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+              </p>
+            </div>
+          </p-card>
+        </a>
         <br>
       </div>
     </div>
