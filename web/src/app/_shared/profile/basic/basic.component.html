@@ -4,7 +4,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">First Name *</label>
-          <input type="text" pInputText placeholder="First Name" formControlName="firstName" />
+          <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled" />
           <p class="msgError text-danger"
             *ngIf="formControl.firstName.hasError('required') && (formControl.firstName.dirty || submitted)">Required
             Field.</p>
@@ -84,7 +84,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6" *ngIf="isGeneralUser">
         <div class="form-group">
           <p-radioButton name="group1" value="1" label="M" formControlName="gender" inputId="opt1">
           </p-radioButton>
@@ -98,26 +98,25 @@
           </p-checkbox>
         </div>
       </div>
-    </div>
-    <div class="row">
       <div class="col-sm-6" *ngIf="isGeneralUser">
-        <div class="form-group">
-          <label for="">Date of Birth *</label>
-          <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true"
-            yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YY"></p-calendar>
-          <p class="msgError text-danger"
-            *ngIf="formControl.dateOfBirth.hasError('required') && (formControl.dateOfBirth.dirty && submitted)">
-            Required Field.
-          </p>
+          <div class="form-group">
+            <label for="">Date of Birth *</label>
+            <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true"
+              yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YY" (ngModelChange)="changeDate($event)"></p-calendar>
+            <p class="msgError text-danger"
+              *ngIf="formControl.dateOfBirth.hasError('required') && (formControl.dateOfBirth.dirty && submitted)">
+              Required Field.
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label for="">Referral ID</label>
-          <input pInputText placeholder="Referral ID" formControlName="referralID" class="disabled">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Referral ID</label>
+            <input pInputText placeholder="Referral ID" formControlName="referralID" class="disabled">
+          </div>
         </div>
-      </div>
     </div>
+
     <div class="form-group button-group text-right">
       <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
         (click)="handleCancel()"></button>

@@ -31,10 +31,11 @@ export class BasicComponent implements OnInit {
       }]
       this.getProfileData();
       this.getCountryList();
-      this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
+      this.settings = {
+        singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
+      };
       if (this._Router.url.indexOf('account/trainer/profile/basic') >= 0) {
         this.isGeneralUser = false;
-
       } else {
         this.isGeneralUser = true;
       }
@@ -108,6 +109,14 @@ export class BasicComponent implements OnInit {
     this.profileForm.get(['address', 'zipCode']).setValue('');
     this.selectedState = this.defaultList;
   }
+  convertDateString = (date, type) => {
+    if (type == 'month') {
+      var x = date.getMonth() + 1;
+    } else if (type == 'date') {
+      var x = date.getDate();
+    }
+    return x < 10 ? '0' + x : '' + x;
+  }
   getProfileData = () => {
     let url = ApiPath.userBasic;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
@@ -122,6 +131,15 @@ export class BasicComponent implements OnInit {
         });
         let currentDate = new Date(dataObj.dateOfBirth)
         this.dateOfBirth.setValue(currentDate);
+        var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
+        if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
+          var monthStr = '00';
+          var dateStr = '00'
+        } else {
+          var monthStr = this.convertDateString(this.dateOfBirth.value, 'month');
+          var dateStr = this.convertDateString(this.dateOfBirth.value, 'date')
+        }
+        this.profileForm.get('referralID').setValue(nameStr + dateStr + monthStr);
         this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth);
         this.profileForm.get(['address', 'address1']).setValue(dataObj.address && dataObj.address.address1 ? dataObj.address.address1 : 'NA');
         this.profileForm.get(['address', 'address2']).setValue(dataObj.address && dataObj.address.address2 ? dataObj.address.address2 : 'NA');
@@ -194,6 +212,17 @@ export class BasicComponent implements OnInit {
       control.setErrors(null);
     });
     this.getProfileData()
+  }
+  changeDate = (event) => {
+    var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
+    if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
+      var monthStr = '00';
+      var dateStr = '00'
+    } else {
+      var monthStr = this.convertDateString(this.dateOfBirth.value, 'month');
+      var dateStr = this.convertDateString(this.dateOfBirth.value, 'date')
+    }
+    this.profileForm.get('referralID').setValue(nameStr + dateStr + monthStr);
   }
   handleCancel = () => {
     let msgArray = [

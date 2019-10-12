@@ -5,10 +5,12 @@
       <div class="flex clrWhite home-search flexVMiddle">
         <form novalidate autocomplete="off" class="width_100">
           <div class="ui-inputgroup">
-            <input type="text" class="width_100" pInputText placeholder="Keyword" (input)="onSearchChange($event.target.value)" (keyup.enter)="getData()">
-            <button pButton class="searchBtn" type="button" label="Training" [ngClass]="{disabled: searchText==''}" (click)="getData()">
-                <i class="pi pi-search"></i>
-              </button>
+            <input type="text" class="width_100" pInputText placeholder="Training Name"
+              (input)="onSearchChange($event.target.value)" (keyup.enter)="getData()">
+            <button class="btn searchBtn btn-primary" type="button" [ngClass]="{disabled: searchText==''}"
+              (click)="getData()">
+              <i class="pi pi-search"></i>
+            </button>
           </div>
         </form>
       </div>
@@ -21,7 +23,7 @@
     <div class="row">
       <div class="col-sm-3" *ngFor="let item of RTList">
         <a href="{{item.fullUrl}}">go</a>
-        <p-card styleClass="ui-card-shadow" [routerLink]="['/view/training/url']" routerLinkActive="router-link-active" >
+        <p-card styleClass="ui-card-shadow" [routerLink]="['/view/training/url']" routerLinkActive="router-link-active">
           <p-header>
             <img src="Card" src="{{item.imageUrl}}" alt="image">
           </p-header>
@@ -30,7 +32,7 @@
               <span class="month">{{item.startDate | date: 'MMM'}}</span>
               <br>
               {{item.startDate | date: 'dd'}}
-              </div>
+            </div>
             <div class="card-desc">
               <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
                 class="event">{{item.name?item.name:'NA'}}</a>
@@ -54,7 +56,8 @@
               <i class="fa fa-star" aria-hidden="true"></i> interested
             </p>
             <p class="label-price">
-              <i class="fa fa-star" aria-hidden="true"></i> {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+              <i class="fa fa-star" aria-hidden="true"></i>
+              {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
             </p>
           </div>
         </p-card>
@@ -65,8 +68,10 @@
       <p class="clrPurple"><strong>{{page+1}} - 16 of {{totalTraining}} Records</strong></p>
     </div>
     <div class="clearfix text-center">
-      <button type="button" class="btn btn-gradient" [ngClass]="{disabled: page==0}" (click)="funPrevious(page)">Previous</button>
-      <button type="button" class="btn btn-gradient ml15" [ngClass]="{disabled: (page+1)*pageSize>=totalTraining}" (click)="funNext(page)">Next</button>
+      <button type="button" class="btn btn-gradient" [ngClass]="{disabled: page==0}"
+        (click)="funPrevious(page)">Previous</button>
+      <button type="button" class="btn btn-gradient ml15" [ngClass]="{disabled: (page+1)*pageSize>=totalTraining}"
+        (click)="funNext(page)">Next</button>
     </div>
   </div>
 </section>
