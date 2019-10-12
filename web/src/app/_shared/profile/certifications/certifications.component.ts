@@ -45,11 +45,11 @@ export class CertificationsComponent implements OnInit {
   getCertificationData = () => {
     this._HttpService.httpCall(this.certificationUrl, 'GET', null, null).subscribe(res => {
       this.loadGrid = true;
-      if (res.responseCode == 200) {
+      if (res && res.responseCode == 200) {
         this.listData = res.result;
       } else {
         let msgArray = [
-          { mgs: 'Something went wrong', class: 'confirmMsg' }
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
         ]
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       }
@@ -88,18 +88,19 @@ export class CertificationsComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       this._HttpService.httpCall(this.certificationUrl, 'POST', postObj, null).subscribe(res => {
-        if (res.result) {
+        if (res && res.responseCode == 200) {
           let msgArray = [
             {
-              mgs: res.responseMessege ? res.responseMessege : 'Success',
+              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
               class: 'confirmMsg'
             },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+          this.resetForm(this.certificatesForm)
           this.getCertificationData()
         } else {
           let msgArray = [
-            { mgs: 'Something went wrong', class: 'confirmMsg' }
+            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }

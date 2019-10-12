@@ -3,9 +3,13 @@ export const ApiPath = {
   'userEducation': 'api/User/Education',
   'userBasic': 'api/User',
   /* General */
-  /* trainer */
+
+
+  /* trainer api path starts */
   'trainerUserTag': 'api/Trainer/UserTag',
   'trainerCertificate': 'api/Trainer/Certificate',
+
+  /* trainer api path starts */
   /* organization */
   'Organization': 'api/Organization',
   'organizationUserTag': 'api/Organization/UserTag',

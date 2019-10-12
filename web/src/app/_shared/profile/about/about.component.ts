@@ -9,17 +9,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AboutComponent implements OnInit {
   aboutApiUrl;
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
+  constructor(private _FormBuilder: FormBuilder,
+    private _HttpService: HttpService,
+    private _SharedService: SharedService,
+    private _Router: Router) { }
   aboutForm: FormGroup
   ngOnInit() {
     this.createForm(() => {
-      this.getData();
+      if (this._Router.url.indexOf('trainer/profile/about') >= 0) {
+        this.aboutApiUrl = ApiPath.trainerUserTag;
+        this.getData();
+      } else {
+        this.aboutApiUrl = ApiPath.organizationUserTag;
+        this.getData();
+      }
     })
-    if (this._Router.url.indexOf('trainer/profile/about') >= 0) {
-      this.aboutApiUrl = ApiPath.trainerUserTag;
-    } else {
-      this.aboutApiUrl = ApiPath.organizationUserTag;
-    }
+
   }
   createForm = (callback) => {
     this.aboutForm = this._FormBuilder.group(
@@ -35,8 +40,10 @@ export class AboutComponent implements OnInit {
   }
   get formControl() { return this.aboutForm.controls };
   getData = () => {
+    debugger
     this._HttpService.httpCall(this.aboutApiUrl, 'GET', null, null).subscribe(res => {
-      if (res.result) {
+      debugger
+      if (res && res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
           if (this.formControl[name]) {
@@ -48,12 +55,14 @@ export class AboutComponent implements OnInit {
     })
   }
   handleSubmit = (): void => {
-    let postData = {
+    let postObj = {
       ...this.aboutForm.value
     }
-    postData.name = postData.name.toString();
-    this._HttpService.httpCall(this.aboutApiUrl, 'POST', postData, null).subscribe(res => {
-      if (res.result) {
+    postObj.name = postObj.name.toString();
+    debugger
+    this._HttpService.httpCall(this.aboutApiUrl, 'POST', postObj, null).subscribe(res => {
+      debugger
+      if (res && res.responseCode == 200) {
         let msgArray = [
           {
             mgs: res.responseMessege ? res.responseMessege : 'Success',
@@ -64,16 +73,15 @@ export class AboutComponent implements OnInit {
         this.getData()
       } else {
         let msgArray = [
-          { mgs: 'Something went wrong', class: 'confirmMsg' }
+          { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       }
+
     }, error => {
       let msgArray = [
         { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
       ]
-      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     });
   }
