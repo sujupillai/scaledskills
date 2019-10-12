@@ -22,18 +22,17 @@ export class AuthenticationService {
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
-
-
   login(url: string, data: any) {
     localStorage.clear();
     sessionStorage.clear();
-    let params={
-      auth:false
+    let params = {
+      auth: false
     }
-    return this._SharedService.httpCall(url, 'POST', data, params).pipe(map(user => {
-      if (user && user.auth_token) {
+    return this._SharedService.httpCall(url, 'POST', data, params).pipe(map(res => {
+      if (res && res.responseCode == 200) {
+        let user;
         user = {
-          ...user,
+          ...res.result,
           isRememberMe: data.isRememberMe
         }
         localStorage.setItem('isRememberMe', data.isRememberMe);
@@ -45,7 +44,7 @@ export class AuthenticationService {
         this.currentUserSubject.next(user);
         this.fireIsLoggedIn.emit()
       }
-      return user;
+      return res;
     }));
   }
   logout() {
