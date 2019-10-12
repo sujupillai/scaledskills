@@ -39,16 +39,17 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label for="">Country</label>
-            <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
-              optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
-            </p-dropdown>
+            <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
+              [settings]="settings" formControlName="countryObj" (onSelect)="OnCountrySelect($event)"
+              (onDeSelect)="OnCountryDeSelect($event)"></angular2-multiselect>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
             <label for="">State</label>
-            <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
-              [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
+            <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
+              [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)"
+              (onDeSelect)="OnStateDeSelect($event)"></angular2-multiselect>
           </div>
         </div>
         <div class="col-sm-6">
@@ -77,7 +78,6 @@
           </div>
           <p class="msgError text-success" *ngIf="isCopied">Url Copied to clipboard.</p>
         </div>
-
       </div>
     </div>
     <div class="row">
@@ -138,15 +138,11 @@
         </div>
       </div>
     </div>
-
     <div class="clearfix form-group">
       <label for="">Upload any one id proof</label>
       <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
         (uploadHandler)="myUploader($event, 'idProof')">
       </p-fileUpload>
-      <p class="msgError text-danger" *ngIf="formControl.idProof.value=='' && submitted">
-        Required Field.
-      </p>
     </div>
     <div class="form-group clearfix button-group text-right">
       <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
