@@ -7,16 +7,16 @@ import { HttpService, SharedService } from '../../../_service'
   templateUrl: './social.component.html',
 })
 export class SocialComponent implements OnInit {
-  socialForm: FormGroup;
+  formElement: FormGroup;
   prevState;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   ngOnInit() {
     this.createForm(() => {
-      this.getSocialData();
+      this.getData();
     })
   }
   createForm = (callback) => {
-    this.socialForm = this._FormBuilder.group({
+    this.formElement = this._FormBuilder.group({
       'websiteUrls': '',
       'linkedInUrls': '',
       'facebookUrls': '',
@@ -26,12 +26,12 @@ export class SocialComponent implements OnInit {
       callback()
     }
   }
-  get formControl() { return this.socialForm.controls };
-  getSocialData = () => {
+  get formControl() { return this.formElement.controls };
+  getData = () => {
     const url = ApiPath.userSocial;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.result) {
-        this.prevState={
+        this.prevState = {
           ...res.result[0]
         };
         let dataObj = res.result[0];
@@ -45,25 +45,24 @@ export class SocialComponent implements OnInit {
   }
   handleSubmit = () => {
     let postObj = {
-      ...this.socialForm.value
+      ...this.formElement.value
     }
     const url = ApiPath.userSocial;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      if (res.result) {
+      if (res && res.responseCode == 200) {
         let msgArray = [
           {
-            mgs: res.responseMessege ? res.responseMessege : 'Success',
+            mgs: res && res.responseMessege ? res.responseMessege : 'Success',
             class: 'confirmMsg'
           },
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
-        this.getSocialData()
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+        this.resetForm(this.formElement)
+        this.getData();
       } else {
         let msgArray = [
-          { mgs: 'Something went wrong', class: 'confirmMsg' }
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       }
     },
@@ -76,13 +75,11 @@ export class SocialComponent implements OnInit {
       });
   }
   resetForm(formGroup: FormGroup) {
-    let control: AbstractControl = null;
     formGroup.reset();
     formGroup.markAsUntouched();
     Object.keys(this.prevState).forEach(name => {
       if (this.formControl[name]) {
-        this.formControl[name].setValue(this.prevState[name]);
-        control.setErrors(null);
+        this.formControl[name].setValue(this.prevState[name])
       }
     });
   }
@@ -94,7 +91,7 @@ export class SocialComponent implements OnInit {
     // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
       if (res == 1) {
-        this.resetForm(this.socialForm)
+        this.resetForm(this.formElement)
       }
     })
   }
