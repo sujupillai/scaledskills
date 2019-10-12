@@ -9,9 +9,12 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class AddTrainingBasicComponent implements OnInit {
   trainingBasicForm: FormGroup;
-  cities = [];
+  isCopied=false;
+  organizationListMaster = [];
+  baseUrl: string = ''
   trainingForList = []
   trainingForValue = [];
+  organizationListValue = [];
   submitted: boolean = false;
   startDate = new FormControl();
   endDate = new FormControl();
@@ -25,6 +28,7 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
+    this.baseUrl = window.location.origin + 't/';
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param['id'];
       if (this.trainingId > 0) {
@@ -42,7 +46,7 @@ export class AddTrainingBasicComponent implements OnInit {
   createForm = (callback: any): void => {
     this.trainingBasicForm = this._FormBuilder.group({
       name: ['', Validators.required],
-      baseUrl: ['http://scaledskills.com/t/'],
+      baseUrl: [this.baseUrl],
       url: ['', Validators.required],
       trainingFor: [''],
       description: ['', Validators.required],
@@ -50,6 +54,7 @@ export class AddTrainingBasicComponent implements OnInit {
       endDate: ['', Validators.required],
       timeZone: 0,
       organizationList: [],
+      organizationListObj: [],
       hostedBy: [0, Validators.required],
       hostedByObj: [],
       id: 0
@@ -70,7 +75,33 @@ export class AddTrainingBasicComponent implements OnInit {
       });
       var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
       this.formControl['hostedByObj'].setValue(hostedBy);
+      let urlStr = (this.formControl['name'].value).split(' ').join('_')
+      this.formControl['url'].setValue(urlStr)
     })
+  }
+  upateUrl = () => {
+    let urlStr = (this.formControl['name'].value).split(' ').join('_')
+    this.formControl['url'].setValue(urlStr)
+  }
+  copyText() {
+    let urlStr = (this.formControl['name'].value).split(' ').join('_')
+    this.formControl['url'].setValue(urlStr)
+    let val = window.location.origin+'/#/view/t/'+this.formControl['url'].value;
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    this.isCopied=true;
+    document.body.removeChild(selBox);
+    setTimeout(() => {
+      this.isCopied=false;
+    }, 2000);
   }
   onChangeHostedBy(event) {
     let id = event.value
@@ -120,7 +151,6 @@ export class AddTrainingBasicComponent implements OnInit {
       })
     }
   }
-
   resetForm(formGroup: FormGroup) {
     let control: AbstractControl = null;
     formGroup.reset();
@@ -131,7 +161,6 @@ export class AddTrainingBasicComponent implements OnInit {
     });
     this.getData()
   }
-
   handleCancel = () => {
     let msgArray = [
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },

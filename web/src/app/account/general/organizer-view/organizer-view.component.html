@@ -1,6 +1,7 @@
 <div class="form-group">
   <div class="width_100">
-    <p-carousel headerText="Upcoming Training" [value]="upcomingTrainingData" autoplayInterval="5000">
+    <p-carousel headerText="Upcoming Training ({{upcomingTrainings.length}})" [value]="upcomingTrainings"
+      (onPage)="setPage($event)" autoplayInterval="5000" *ngIf="upcomingTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -44,14 +45,22 @@
         </div>
       </ng-template>
     </p-carousel>
-    <div class="tableCustomFooter" *ngIf="upcomingTrainingData.length==0">
-      No records to display
-    </div>
+    <p-carousel headerText="Upcoming Training ({{upcomingTrainings.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="upcomingTrainings.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </div>
 <div class="form-group">
   <div class="width_100">
-    <p-carousel headerText="Past Training" [value]="pastTrainingData" autoplayInterval="5000">
+    <p-carousel headerText="Past Training ({{pastTrainings.length}})" [value]="pastTrainings" autoplayInterval="5000"
+      *ngIf="pastTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -95,14 +104,22 @@
         </div>
       </ng-template>
     </p-carousel>
-    <div class="tableCustomFooter" *ngIf="pastTrainingData.length==0">
-      No records to display
-    </div>
+    <p-carousel headerText="Past Training ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="pastTrainings.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </div>
 <div class="form-group">
   <div class="width_100">
-    <p-carousel headerText="Cancel Training" [value]="cancelTrainingData" autoplayInterval="5000">
+    <p-carousel headerText="Cancel Training ({{cancelTrainings.length}})" [value]="cancelTrainings"
+      autoplayInterval="5000" *ngIf="cancelTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -146,8 +163,15 @@
         </div>
       </ng-template>
     </p-carousel>
-    <div class="tableCustomFooter" *ngIf="cancelTrainingData.length==0">
-      No records to display
-    </div>
+    <p-carousel headerText="Cancel Training ({{cancelTrainings.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="cancelTrainings.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </div>

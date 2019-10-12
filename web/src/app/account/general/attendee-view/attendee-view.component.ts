@@ -6,9 +6,12 @@ import { ApiPath } from '../../../_helpers/_constants/api'
   templateUrl: './attendee-view.component.html'
 })
 export class AttendeeViewComponent implements OnInit {
-  pastTrainingData = []
-  upcomingTrainingData = []
-  cancelTrainingData = []
+  cancelTrainings = []
+  upcomingTrainings = []
+  pastTrainings = []
+  noRecord = [
+    { msg: 'No records to display' }
+  ];
   constructor(private _HttpService: service.HttpService) { }
   ngOnInit() {
     this.upcomingTraining();
@@ -24,7 +27,7 @@ export class AttendeeViewComponent implements OnInit {
     }
     let url = ApiPath.upcomingTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this.upcomingTrainingData = res.result.results;
+      this.upcomingTrainings = res.result.results;
     })
   }
   pastTraining = () => {
@@ -36,7 +39,7 @@ export class AttendeeViewComponent implements OnInit {
     }
     let url = ApiPath.pastTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this.pastTrainingData = res.result.results;
+      this.pastTrainings = res.result.results;
     })
   }
   cancelTraining = () => {
@@ -48,7 +51,7 @@ export class AttendeeViewComponent implements OnInit {
     }
     let url = ApiPath.pastTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this.cancelTrainingData = res.result.results;
+      this.cancelTrainings = res.result.results;
     })
   }
   page: any;
