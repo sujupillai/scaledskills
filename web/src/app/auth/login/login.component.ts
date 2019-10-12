@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
       let data = this.loginForm.value;
       let url = ApiPath.Accountlogin;
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
-        debugger
         if (res.responseCode==200) {
           this._Router.navigate(['/']);
         } else if (res.responseCode==406){

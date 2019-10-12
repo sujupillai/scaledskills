@@ -1,6 +1,7 @@
 <section class="section-padding clearfix homeBanner">
   <div class="container">
-    <p-carousel headerText="Promotion" [value]="carouselItems" autoplayInterval="5000" (onPage)="setPage($event)">
+    <!-- (onPage)="setPage($event)" -->
+    <p-carousel headerText="Promotion" [value]="carouselItems" autoplayInterval="5000">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -46,5 +47,3 @@
     </p-carousel>
   </div>
 </section>
-<br>
-<app-loader></app-loader>

@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.createForm(() => {
       this.settings = {
-        singleSelection: true,text: "Select",labelKey: "text", primaryKey: "value",classes: "myclass custom-class",enableSearchFilter: true,searchBy: ['text'],searchPlaceholderText: 'Search by name'
+        singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
       };
       this.getCountryList();
     })
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         confirmPassword: ['', Validators.required],
         id: 0,
         countryObj: [''],
-        countryId:[],
+        countryId: [],
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -87,12 +87,17 @@ export class RegisterComponent implements OnInit {
         auth: false
       }
       this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
-        if (res) {
+        if (res && res.responseCode == 406) {
           let msgArray = [
-            { mgs: 'Account created successfully', class: 'confirmMsg' },
+            { mgs: res.responseMessege, class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
+        } else if (res && res.responseCode == 200) {
+          let msgArray = [
+            { mgs: res.responseMessege, class: 'confirmMsg' },
+            { mgs: 'Please confirm your Email id by Login', class: 'subMsg' },
             { mgs: 'Do you want to login now?', class: 'subMsg' },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
             if (res == 1) {
               this._Router.navigate(['/auth/login']);
@@ -102,9 +107,8 @@ export class RegisterComponent implements OnInit {
           })
         } else {
           let msgArray = [
-            { mgs: 'Something went wrong', class: 'confirmMsg' },
+            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       },
@@ -112,7 +116,6 @@ export class RegisterComponent implements OnInit {
           let msgArray = [
             { mgs: error['error'], class: 'confirmMsg' },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     }

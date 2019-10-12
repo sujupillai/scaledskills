@@ -13,6 +13,7 @@ export const ApiPath = {
   /* auth */
   'register': 'api/Account',
   'Accountlogin': 'api/Account/login',
+  'confirmEmail': 'api/Account/confirmEmail',
   /* global */
   'globalCountry': 'api/Global/Country',
   'globalState': 'api/Global/State',

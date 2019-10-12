@@ -23,9 +23,9 @@ export class HomeAddComponent implements OnInit {
       this.carouselItems=res.result.trainings;
     })
   }
-  setPage(page) {
+  /* setPage(page) {
     //prompt('page', JSON.stringify(page));
     // this.page = page;
-  }
+  } */
 
 }
