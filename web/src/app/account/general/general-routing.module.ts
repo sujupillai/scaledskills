@@ -3,9 +3,6 @@ import { RouterModule } from '@angular/router';
 import { GeneralComponent } from './general.component';
 import { GeneralProfileComponent } from './general-profile/general-profile.component';
 import { BasicComponent } from '../../_shared/profile/basic/basic.component';
-import { FeatureTrainingComponent } from './feature-training/feature-training.component';
-import { PastTrainingComponent } from './past-training/past-training.component';
-import { CancelTrainingParticipationComponent } from './cancel-training-participation/cancel-training-participation.component';
 import { OrganizationBankDetailComponent } from '../organization/organization-bank-detail/organization-bank-detail.component';
 import { AttendeeViewComponent } from './attendee-view/attendee-view.component';
 import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
@@ -23,14 +20,9 @@ const routes = [
           { path: 'password', component: CredentialsComponent }
         ]
       },
-      { path: 'featureTraining', component: FeatureTrainingComponent },
-      { path: 'pastTraining', component: PastTrainingComponent },
-      { path: 'cancelParticipation', component: CancelTrainingParticipationComponent },
       { path: 'attendeeView', component: AttendeeViewComponent },
       { path: 'organizerView', component: OrganizerViewComponent },
-      {
-        path: 'bank', component: OrganizationBankDetailComponent,
-      }
+      {path: 'bank', component: OrganizationBankDetailComponent}
     ]
   }
 ];

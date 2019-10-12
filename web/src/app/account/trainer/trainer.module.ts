@@ -4,7 +4,6 @@ import { TrainerComponent } from './trainer.component'
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
 import { AccountTrainerRoutingModule } from './trainer-routing.module';
 import { ProfileModule } from '../../_shared/profile/profile.module';
-import { FormModule } from '../../_forms/form/form.module';
 import { AddTrainingComponent } from './add-training/add-training.component';
 import { AddTrainingBasicComponent } from './add-training-basic/add-training-basic.component';
 import { AddTrainingLocationComponent } from './add-training-location/add-training-location.component';
@@ -18,11 +17,10 @@ import { AddTrainingSettingsComponent } from './add-training-settings/add-traini
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
 import { NgPrimeModule } from '../../_forms/prime.module';
 import { SharedModule } from '../../_shared/shared.module'
-
 @NgModule({
   declarations: [TrainerComponent, TrainerProfileComponent, AddTrainingComponent, AddTrainingBasicComponent, AddTrainingLocationComponent, AddTrainingTagsComponent, AddTrainingImagesComponent, AddTrainingTicketComponent, AddTrainingQuestionComponent, AddTrainingFeedbackComponent, AddTrainingPromotionsComponent, AddTrainingSettingsComponent, AddTrainerComponent],
   imports: [
-    CommonModule, AccountTrainerRoutingModule, ProfileModule, FormModule, NgPrimeModule, SharedModule
+    CommonModule, AccountTrainerRoutingModule, ProfileModule, NgPrimeModule, SharedModule
   ]
 })
 export class TrainerModule { }
