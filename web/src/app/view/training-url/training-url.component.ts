@@ -8,6 +8,10 @@ import {HttpService} from '../../_service';
 })
 export class TrainingUrlComponent implements OnInit {
   carouselitems = [];
+  regUsers = [];
+  upcommingTrainings = [];
+  pastTrainings = [];
+  relatedTrainings = [];
   noRecord = [];
   display: boolean = false;
   isSendMesage: boolean = false;

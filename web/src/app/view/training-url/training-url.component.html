@@ -66,7 +66,7 @@
   <div class="form-group">
     <p-carousel headerText="Trainers ({{carouselitems.length}})" [value]="carouselitems" numVisible="5" circular="true"
       autoplayInterval="5000" *ngIf="carouselitems.length>0">
-      <ng-template let-car pTemplate="item">
+      <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <div class="userThumb text-center">
@@ -105,24 +105,35 @@
   </div>
   <div class="border-line"></div>
   <div class="form-group">
-    <p-carousel headerText="Registered Users (100)" [value]="cars" numVisible="5" circular="true"
-      autoplayInterval="5000">
-      <ng-template let-car pTemplate="item">
+    <p-carousel headerText="Registered Users ({{regUsers.length}})" [value]="regUsers" numVisible="5" circular="true"
+      autoplayInterval="5000" *ngIf="regUsers.length>0">
+      <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <div class="userThumb text-center">
               <img src="https://secure.meetupstatic.com/photos/member/7/3/b/3/member_292289619.jpeg" alt="">
               <h3>FirstName</h3>
             </div>
-
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
+    <p-carousel headerText="Registered Users ({{regUsers.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="regUsers.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
           </p-card>
         </div>
       </ng-template>
     </p-carousel>
   </div>
   <div class="form-group">
-    <p-carousel headerText="Upcoming Trainings from Organizer" [value]="cars">
-      <ng-template let-car pTemplate="item">
+    <p-carousel headerText="Upcoming Trainings from Organizer ({{upcommingTrainings.length}})"
+      [value]="upcommingTrainings" numVisible="5" circular="true" autoplayInterval="5000"
+      *ngIf="upcommingTrainings.length>0">
+      <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
             <div>
@@ -149,10 +160,22 @@
         </div>
       </ng-template>
     </p-carousel>
+    <p-carousel headerText="Upcoming Trainings from Organizer ({{upcommingTrainings.length}})" [value]="noRecord"
+      numVisible="1" *ngIf="upcommingTrainings.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
+  <!-- past training -->
   <div class="form-group">
-    <p-carousel headerText="Past Trainings from Organizer" [value]="cars">
-      <ng-template let-car pTemplate="item">
+    <p-carousel headerText="Past Trainings from Organizer ({{pastTrainings.length}})" [value]="pastTrainings"
+      numVisible="5" circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
+      <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
             <div>
@@ -179,10 +202,22 @@
         </div>
       </ng-template>
     </p-carousel>
+    <p-carousel headerText="Past Trainings from Organizer ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="pastTrainings.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
+  <!-- other related trainings -->
   <div class="form-group">
-    <p-carousel headerText="Other Related Trainings" [value]="cars">
-      <ng-template let-car pTemplate="item">
+    <p-carousel headerText="Other Related Trainings ({{relatedTrainings.length}})" [value]="relatedTrainings"
+      numVisible="5" circular="true" autoplayInterval="5000" *ngIf="relatedTrainings.length>0">
+      <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
             <div>
@@ -205,6 +240,16 @@
               <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
               <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
             </p-footer>
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
+    <p-carousel headerText="Other Related Trainings ({{relatedTrainings.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="relatedTrainings.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
           </p-card>
         </div>
       </ng-template>
