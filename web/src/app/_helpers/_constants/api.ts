@@ -7,9 +7,10 @@ export const ApiPath = {
 
   /* trainer api path starts */
   'trainerUserTag': 'api/Trainer/UserTag',
+  'trainer': 'api/Trainer',
   'trainerCertificate': 'api/Trainer/Certificate',
 
-  /* trainer api path starts */
+  /* trainer api path ends */
   /* organization */
   'Organization': 'api/Organization',
   'organizationUserTag': 'api/Organization/UserTag',
@@ -34,16 +35,16 @@ export const ApiPath = {
   'trainingTicket': 'api/Training/{TrainingId}/Ticket',
   'trainingTrainers': 'api/Training/{TrainingId}/Trainers',
   'trainingReview': 'api/Training/{TrainingId}/Review',
-  'trainingAbout':'api/Training/{TrainingId}/About',
-  'trainingImage':'api/Training/{TrainingId}/Image',
+  'trainingAbout': 'api/Training/{TrainingId}/About',
+  'trainingImage': 'api/Training/{TrainingId}/Image',
 
 
   /* home */
-  'homeRunningTraining':'api/Home/RT',
-  'headerTraining':'api/Home/h/{urlName}',
-  'upcomingTraining':'api/Home/UCT',
-  'pastTraining':'api/Home/PT',
+  'homeRunningTraining': 'api/Home/RT',
+  'headerTraining': 'api/Home/h/{urlName}',
+  'upcomingTraining': 'api/Home/UCT',
+  'pastTraining': 'api/Home/PT',
 
   /* urls */
-  'trainingUrl':'api/Home/T/{urlName}',
+  'trainingUrl': 'api/Home/T/{urlName}',
 }

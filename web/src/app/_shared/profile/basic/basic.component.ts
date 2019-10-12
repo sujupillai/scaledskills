@@ -29,16 +29,18 @@ export class BasicComponent implements OnInit {
         "value": "0",
         "isSelect": false
       }]
-      this.getProfileData();
       this.getCountryList();
       this.settings = {
         singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
       };
       if (this._Router.url.indexOf('account/trainer/profile/basic') >= 0) {
+        this.basicApi=ApiPath.trainer;
         this.isGeneralUser = false;
       } else {
+        this.basicApi=ApiPath.userBasic
         this.isGeneralUser = true;
       }
+      this.getProfileData();
     })
   }
   createprofileForm = (callback) => {
@@ -118,8 +120,7 @@ export class BasicComponent implements OnInit {
     return x < 10 ? '0' + x : '' + x;
   }
   getProfileData = () => {
-    let url = ApiPath.userBasic;
-    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
+    this._HttpService.httpCall(this.basicApi, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -151,8 +152,8 @@ export class BasicComponent implements OnInit {
         this.profileForm.get(['address', 'stateId']).setValue(dataObj.address && dataObj.address.stateId ? dataObj.address.stateId : 'NA');
         this.profileForm.get(['address', 'countryObj']).setValue(dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : 'NA');
         this.profileForm.get(['address', 'stateObj']).setValue(dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : 'NA');
-        this.selectedCountry = [dataObj.address.countryObj ? dataObj.address.countryObj : this.defaultList];
-        this.selectedState = [dataObj.address.stateObj ? dataObj.address.stateObj : this.defaultList];
+        this.selectedCountry = [dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : this.defaultList];
+        this.selectedState = [dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : this.defaultList];
         if (this.profileForm.get(['address', 'countryId']).value > 0) {
           let id = this.profileForm.get(['address', 'countryId']).value
           this.getStateList(id)
@@ -170,14 +171,13 @@ export class BasicComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       this.submitted = false;
-      let url = ApiPath.userBasic;
       let postObj = {
         ...this.profileForm.value,
       }
       postObj.address.countryObj = postObj.address.countryObj[0];
       postObj.address.stateObj = postObj.address.stateObj[0];
       postObj.dateOfBirth = this.dateOfBirth.value;
-      this._HttpService.httpCall(url, 'PUT', postObj, null).subscribe(res => {
+      this._HttpService.httpCall(this.basicApi, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
             {
