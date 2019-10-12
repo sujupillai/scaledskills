@@ -7,7 +7,8 @@ import {HttpService} from '../../_service';
   templateUrl: './training-url.component.html',
 })
 export class TrainingUrlComponent implements OnInit {
-  cars = [];
+  carouselitems = [];
+  noRecord = [];
   display: boolean = false;
   isSendMesage: boolean = false;
   urlString:string='';
@@ -16,6 +17,9 @@ export class TrainingUrlComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.noRecord = [
+      {msg: 'No records to display'}
+    ];
     let url=ApiPath.trainingUrl
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString=param.url;
