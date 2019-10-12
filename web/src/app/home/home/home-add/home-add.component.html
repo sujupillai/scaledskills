@@ -1,7 +1,8 @@
 <section class="section-padding clearfix homeBanner">
   <div class="container">
     <!-- (onPage)="setPage($event)" -->
-    <p-carousel headerText="Promotion" [value]="carouselItems" autoplayInterval="5000">
+    <p-carousel headerText="Promotion" [value]="carouselItems" autoplayInterval="5000" circular="true"
+      *ngIf="carouselItems.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -41,6 +42,16 @@
                 {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
               </p>
             </div>
+          </p-card>
+        </div>
+      </ng-template>
+    </p-carousel>
+    <p-carousel headerText="Promotion ({{carouselItems.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="carouselItems.length==0">
+      <ng-template let-item pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+          <p-card>
+            {{item.msg}}
           </p-card>
         </div>
       </ng-template>

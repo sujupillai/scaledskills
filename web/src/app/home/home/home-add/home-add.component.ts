@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import * as service from '../../../_service';
 import { ApiPath } from '../../../_helpers/_constants/api'
-
 @Component({
   selector: 'app-home-add',
   templateUrl: './home-add.component.html',
 })
 export class HomeAddComponent implements OnInit {
   carouselItems = [];
+  noRecord = [
+    { msg: 'No records to display' }
+  ];
   constructor(private _HttpService: service.HttpService) { }
-
   ngOnInit() {
     this.getData()
   }
@@ -27,5 +28,4 @@ export class HomeAddComponent implements OnInit {
     //prompt('page', JSON.stringify(page));
     // this.page = page;
   } */
-
 }

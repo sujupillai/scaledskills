@@ -8,7 +8,10 @@ import { ApiPath } from '../../../_helpers/_constants/api'
   styleUrls: ['./home-banner.component.scss']
 })
 export class HomeBannerComponent implements OnInit {
-  carouselItems = [];
+  bannerItems = [];
+  noRecord = [
+    { msg: 'No records to display' }
+  ];
   constructor(private _HttpService: service.HttpService) { }
 
   ngOnInit() {
@@ -16,12 +19,12 @@ export class HomeBannerComponent implements OnInit {
   }
   getData = () => {
     let url = ApiPath.headerTraining;
-    let params={
-      auth:false
+    let params = {
+      auth: false
     }
     url = url.replace('{urlName}', ' ')
     this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
-      this.carouselItems=res.result.topHeaders;
+      this.bannerItems = res.result.topHeaders;
     })
   }
 

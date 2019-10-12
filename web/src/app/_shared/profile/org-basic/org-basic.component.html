@@ -1,10 +1,10 @@
-<form [formGroup]="orgBasicForm" autocomplete="off" novalidate>
+<form [formGroup]="formElement" autocomplete="off" novalidate>
   <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Organization Name *</label>
-          <input type="text" pInputText placeholder="Organization Name" formControlName="name" />
+          <input type="text" pInputText placeholder="Organization Name" formControlName="name" (change)="upateUrl()" />
           <p class="msgError text-danger"
             *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
             Required Field.
@@ -66,15 +66,18 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12" [ngClass]="{disabled: !formControl.name.value}">
         <label for="">Profile Url</label>
         <div class="form-group">
           <div class="flex vMiddle urlBox">
             <div class="fixed-input">{{formControl.baseUrl.value}}</div>
-            <input type="text" pInputText placeholder="Enter Url" formControlName="profileUrl"
-              value="{{(formControl.name.value).split(' ').join('_')}}">
+            <input type="text" pInputText placeholder="Enter Url" formControlName="profileUrl" class="disabled">
+            <i class="pi pi-copy cursor-pointer" [ngClass]="isCopied?'pi-check':'pi-copy'" style="font-size: 2em"
+              (click)="copyText()"></i>
           </div>
+          <p class="msgError text-success" *ngIf="isCopied">Url Copied to clipboard.</p>
         </div>
+
       </div>
     </div>
     <div class="row">
@@ -137,12 +140,11 @@
     </div>
 
     <div class="clearfix form-group">
-        <label for="">Upload any one id proof</label>
+      <label for="">Upload any one id proof</label>
       <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
         (uploadHandler)="myUploader($event, 'idProof')">
       </p-fileUpload>
-      <p class="msgError text-danger"
-        *ngIf="formControl.idProof.value=='' && submitted">
+      <p class="msgError text-danger" *ngIf="formControl.idProof.value=='' && submitted">
         Required Field.
       </p>
     </div>

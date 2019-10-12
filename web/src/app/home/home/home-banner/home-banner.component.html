@@ -1,8 +1,15 @@
 <section class="clearfixk" class="home_banner no-border">
-  <p-carousel [value]="carouselItems" numVisible=1 headerText="" autoplayInterval="5000">
+  <p-carousel [value]="bannerItems" numVisible=1 headerText="" autoplayInterval="5000" *ngIf="bannerItems.length>0">
     <ng-template let-item pTemplate="item">
       <div class="text-center container">
         <img src="{{item.imageUrl}}" class="img-responsive">
+      </div>
+    </ng-template>
+  </p-carousel>
+  <p-carousel [value]="noRecord" numVisible=1 headerText="" autoplayInterval="5000" *ngIf="bannerItems.length==0">
+    <ng-template let-item pTemplate="item">
+      <div class="text-center container">
+        <img src="../../../../assets/images/banner/home/placeholder.png" class="img-responsive">
       </div>
     </ng-template>
   </p-carousel>
