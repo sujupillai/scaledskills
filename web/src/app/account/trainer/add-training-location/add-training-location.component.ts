@@ -49,7 +49,8 @@ export class AddTrainingLocationComponent implements OnInit {
   createForm = (callback) => {
     this.trainingLocationForm = this._FormBuilder.group({
       id: 0,
-      onlineLocation:[],
+      onlineLocation: [],
+      onlineLocationDetail: [],
       modeType: [1, Validators.required],
       addressModel: this._FormBuilder.group({
         address1: [''],
@@ -118,12 +119,12 @@ export class AddTrainingLocationComponent implements OnInit {
     this.trainingLocationForm.get(['addressModel', 'city']).setValue(dataObj.addressModel && dataObj.addressModel.city ? dataObj.addressModel.city : 'NA');
     this.trainingLocationForm.get(['addressModel', 'zipCode']).setValue(dataObj.addressModel && dataObj.addressModel.zipCode ? dataObj.addressModel.zipCode : 'NA');
     this.trainingLocationForm.get(['addressModel', 'street']).setValue(dataObj.addressModel && dataObj.addressModel.street ? dataObj.addressModel.street : 'NA');
-    this.trainingLocationForm.get(['addressModel', 'countryId']).setValue(dataObj.addressModel && dataObj.addressModel.countryId ? dataObj.addressModel.countryId : 'NA');
-    this.trainingLocationForm.get(['addressModel', 'stateId']).setValue(dataObj.addressModel && dataObj.addressModel.stateId ? dataObj.addressModel.stateId : 'NA');
+    this.trainingLocationForm.get(['addressModel', 'countryId']).setValue(dataObj.addressModel && dataObj.addressModel.countryId ? dataObj.addressModel.countryId : 0);
+    this.trainingLocationForm.get(['addressModel', 'stateId']).setValue(dataObj.addressModel && dataObj.addressModel.stateId ? dataObj.addressModel.stateId : 0);
     this.trainingLocationForm.get(['addressModel', 'countryObj']).setValue(dataObj.addressModel && dataObj.addressModel.countryObj ? dataObj.addressModel.countryObj : 'NA');
     this.trainingLocationForm.get(['addressModel', 'stateObj']).setValue(dataObj.addressModel && dataObj.addressModel.stateObj ? dataObj.addressModel.stateObj : 'NA');
-    this.selectedCountry = [dataObj.addressModel.countryObj ? dataObj.addressModel.countryObj : this.defaultList];
-    this.selectedState = [dataObj.addressModel.stateObj ? dataObj.addressModel.stateObj : this.defaultList];
+    this.selectedCountry = dataObj.addressModel && dataObj.addressModel.countryObj ? [dataObj.addressModel.countryObj] : this.defaultList;
+    this.selectedState = dataObj.addressModel && dataObj.addressModel.stateObj ? [dataObj.addressModel.stateObj] : this.defaultList;
     if (this.trainingLocationForm.get(['addressModel', 'countryId']).value > 0) {
       let id = this.trainingLocationForm.get(['addressModel', 'countryId']).value
       this.getStateList(id)
@@ -164,27 +165,29 @@ export class AddTrainingLocationComponent implements OnInit {
     }
     postObj.addressModel.countryObj = postObj.addressModel.countryObj[0];
     postObj.addressModel.stateObj = postObj.addressModel.stateObj[0];
-    if(postObj.modeType==2){
-      let dataObject={
+    if (postObj.modeType == 2) {
+      let dataObject = {
         "address1": "",
-          "address2": "",
-          "address3": "",
-          "zipCode": "",
-          "street": "",
-          "countryId": 0,
-          "countryObj": {},
-          "stateId": 0,
-          "stateObj": {},
-          "city": ""
+        "address2": "",
+        "address3": "",
+        "zipCode": "",
+        "street": "",
+        "countryId": 0,
+        "countryObj": {},
+        "stateId": 0,
+        "stateObj": {},
+        "city": ""
       }
-      if(this.prevState.onlineLocation){
-        postObj.onlineLocation=this.prevState.onlineLocation
+      if (this.prevState.onlineLocation) {
+        postObj.onlineLocation = this.prevState.onlineLocation;
+        postObj.onlineLocationDetail = this.prevState.onlineLocationDetail;
       }
-      postObj.addressModel=dataObject;
-    }else{
+      postObj.addressModel = dataObject;
+    } else {
       postObj.onlineLocation = '';
-      if(this.prevState.addressModel){
-        postObj.addressModel=this.prevState.addressModel;
+      postObj.onlineLocationDetail = '';
+      if (this.prevState.addressModel) {
+        postObj.addressModel = this.prevState.addressModel;
       }
     }
     if (this.trainingLocationForm.valid) {

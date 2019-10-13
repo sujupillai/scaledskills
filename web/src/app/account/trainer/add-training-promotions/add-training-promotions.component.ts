@@ -15,17 +15,16 @@ export class AddTrainingPromotionsComponent implements OnInit {
   }
   createForm = (callback) => {
     this.form = this._FormBuilder.group({
-      trainingId: 0,
-      id: 0,
-      isAdvertisement: false,
-      advertisementRate: false,
-      isDisplayBannerHomePage: false,
-      displayBannerHomePageRate: 0,
-      isDisplayInCardHomePage: false,
-      displayCardHomePageRate: false,
-      isAffliliate: false,
-      affliliateType: false,
-      affliliateRate: false,
+      "isAdvertisement": true,
+      "advertisementRate": 0,
+      "isDisplayBannerHomePage": true,
+      "displayBannerHomePageRate": 0,
+      "isDisplayInCardHomePage": true,
+      "displayCardHomePageRate": 0,
+      "isAffliliate": true,
+      "affliliateType": 0,
+      "affliliateRate": 0,
+      "id": 0
     })
     if (callback) {
       callback()
