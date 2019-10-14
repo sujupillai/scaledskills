@@ -95,15 +95,10 @@ export class RegisterComponent implements OnInit {
         } else if (res && res.responseCode == 200) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
-            { mgs: 'Please confirm your Email id by Login', class: 'subMsg' },
-            { mgs: 'Do you want to login now?', class: 'subMsg' },
+            { mgs: 'Please check your registered email id for verify your account.', class: 'subMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
-            if (res == 1) {
-              this._Router.navigate(['/auth/login']);
-            } else {
-              this._Router.navigate(['/']);
-            }
+            this._Router.navigate(['/']);
           })
         } else {
           let msgArray = [

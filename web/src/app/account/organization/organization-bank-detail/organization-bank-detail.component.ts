@@ -78,7 +78,7 @@ export class OrganizationBankDetailComponent implements OnInit {
     formData.append('file', this.fileData);
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
       this.formControl[control].setValue(res.result)
-      prompt('res', JSON.stringify(this.orgBankDetailForm.value))
+
     })
   }
   handleSubmit = () => {

@@ -1,13 +1,12 @@
 <div class="container">
   <div class="form-box margin-bot-30">
     <div class="thanks-message text-center">
-      <h4>Thank You! Your E-mail has been activated.</h4>
-      <!-- <h4>Error msg</h4> -->
+      <h4>{{message}}</h4>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="!isEmailVerify">
     <div class="col-md-12 text-center">
-      <button class="btn btn-primary" (click)="handleConfirmLogin()">Login</button>
+      <button class="btn btn-primary" (click)="handleConfirmLogin()">Validate</button>
     </div>
   </div>
 </div>

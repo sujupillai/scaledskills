@@ -45,6 +45,11 @@ import { TrainingTplComponent } from './view/training-url/training-tpl/training-
   providers: [DialogService, SharedService,
     {
       provide: HTTP_INTERCEPTORS,
+      useClass: interceptor.EncodeHttpParamsInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: interceptor.HeaderInterceptor,
       multi: true
     }

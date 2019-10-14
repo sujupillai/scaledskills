@@ -5,28 +5,45 @@ import { DialogService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-login-confirm',
-  templateUrl: './login-confirm.component.html',
-  styleUrls: ['./login-confirm.component.scss']
+  templateUrl: './login-confirm.component.html'
 })
 export class LoginConfirmComponent implements OnInit {
-
+  validateObj;
+  isEmailVerify: boolean = false;
+  message: string = "Click to validate your email address."
   constructor(private _SharedService: SharedService,
-    public dialogService: DialogService, private _HttpService: HttpService) { }
-
+    public dialogService: DialogService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute, private _Router:Router) { }
   ngOnInit() {
+    this._ActivatedRoute.queryParams.subscribe(queryParams => {
+      this.validateObj = queryParams;
+    })
   }
   handleConfirmLogin = () => {
-    let postObj = {
-      "code": " ",
-      "userId": "0"
-    }
+    let postObj = this.validateObj;
     let url = ApiPath.confirmEmail;
     let params = {
       auth: false
     }
     this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
-      debugger
-    })
+      if (res && res.responseCode == 200) {
+        this.isEmailVerify = true;
+        this.message = res && res.result ? res.result : 'Email Confirm Successfully';
+        setTimeout(() => {
+          this._Router.navigate(['/']);
+        }, 3000)
+      } else {
+        this.isEmailVerify = false;
+        let msgArray = [
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      }
+    },
+      error => {
+        let msgArray = [
+          { mgs: error['error'], class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      });
   }
-
 }

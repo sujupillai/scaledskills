@@ -46,6 +46,6 @@ export class ReportComponent implements OnInit {
     let postObj = {
       ...this.requestForm.value
     }
-    prompt('postObj', JSON.stringify(postObj))
+
   }
 }

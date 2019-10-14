@@ -12,6 +12,6 @@ export class KeywordsComponent implements OnInit {
 
 
   handleSubmit = () => {
-    // prompt('keywordList', JSON.stringify(this.keywordList))
+
   }
 }

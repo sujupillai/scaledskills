@@ -40,9 +40,7 @@ export class AboutComponent implements OnInit {
   }
   get formControl() { return this.aboutForm.controls };
   getData = () => {
-    debugger
     this._HttpService.httpCall(this.aboutApiUrl, 'GET', null, null).subscribe(res => {
-      debugger
       if (res && res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -59,9 +57,7 @@ export class AboutComponent implements OnInit {
       ...this.aboutForm.value
     }
     postObj.name = postObj.name.toString();
-    debugger
     this._HttpService.httpCall(this.aboutApiUrl, 'POST', postObj, null).subscribe(res => {
-      debugger
       if (res && res.responseCode == 200) {
         let msgArray = [
           {
