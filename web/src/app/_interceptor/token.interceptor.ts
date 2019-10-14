@@ -21,7 +21,7 @@ export class HeaderInterceptor implements HttpInterceptor {
       isTokenRquired = true
     }
     if (isTokenRquired) {
-      const accessToken = this._AuthenticationService.currentUserValue.auth_token
+      const accessToken = this._AuthenticationService.currentUserValue?this._AuthenticationService.currentUserValue.auth_token:null
       console.log('accessToken', JSON.stringify(accessToken))
       req = req.clone({
         setHeaders: {

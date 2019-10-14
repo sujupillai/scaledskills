@@ -52,7 +52,12 @@ import { TrainingTplComponent } from './view/training-url/training-tpl/training-
       provide: HTTP_INTERCEPTORS,
       useClass: interceptor.HeaderInterceptor,
       multi: true
-    }
+    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: interceptor.HttpErrorInterceptor,
+    //   multi: true
+    // }
   ],
   exports: [],
   bootstrap: [AppComponent]
