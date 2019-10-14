@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api'
 import { HttpService, SharedService } from '../../../_service'
 @Component({
@@ -17,10 +17,11 @@ export class SocialComponent implements OnInit {
   }
   createForm = (callback) => {
     this.formElement = this._FormBuilder.group({
-      'websiteUrls': '',
-      'linkedInUrls': '',
-      'facebookUrls': '',
-      'twitterUrls': '',
+      websiteUrls: '',
+      linkedInUrls: '',
+      facebookUrls: '',
+      twitterUrls: '',
+      id: 0
     })
     if (callback) {
       callback()
@@ -30,18 +31,31 @@ export class SocialComponent implements OnInit {
   getData = () => {
     const url = ApiPath.userSocial;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      if (res.result) {
-        this.prevState = {
-          ...res.result[0]
-        };
-        let dataObj = res.result[0];
-        Object.keys(dataObj).forEach(name => {
-          if (this.formControl[name]) {
-            this.formControl[name].setValue(dataObj[name]);
-          }
-        });
+      if (res && res.responseCode == 200) {
+        if (res.result) {
+          this.prevState = {
+            ...res.result
+          };
+          let dataObj = res.result;
+          Object.keys(dataObj).forEach(name => {
+            if (this.formControl[name]) {
+              this.formControl[name].setValue(dataObj[name]);
+            }
+          });
+        }
+      } else {
+        let msgArray = [
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       }
-    })
+    },
+      error => {
+        let msgArray = [
+          { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      });
   }
   handleSubmit = () => {
     let postObj = {
@@ -70,7 +84,6 @@ export class SocialComponent implements OnInit {
         let msgArray = [
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       });
   }
@@ -88,7 +101,6 @@ export class SocialComponent implements OnInit {
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
-    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.formElement)
