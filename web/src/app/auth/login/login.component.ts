@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
             { mgs: res.responseMessege, class: 'confirmMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
-          this._Router.navigate(['auth/userValidate']);
         }
       },
         error => {
