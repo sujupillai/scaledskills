@@ -20,11 +20,15 @@ export class RegisterComponent implements OnInit {
     "isSelect": false
   }];
   settings = {};
+  countrySettings = {};
   constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createForm(() => {
       this.settings = {
         singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
+      };
+      this.countrySettings = {
+        singleSelection: true, text: "Select", labelKey: "text", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
       };
       this.getCountryList();
     })
@@ -41,7 +45,7 @@ export class RegisterComponent implements OnInit {
         confirmPassword: ['', Validators.required],
         id: 0,
         countryObj: [''],
-        countryId: [],
+        countryCode: [],
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -58,7 +62,12 @@ export class RegisterComponent implements OnInit {
     }
     this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
       if (res.responseCode == 200) {
-        this[masterCollection] = res.result
+        this[masterCollection] = res.result;
+        if (masterCollection == 'countryList') {
+          this[masterCollection].map(x => {
+            x.countryCode = "+91"
+          })
+        }
       }
     })
   }
@@ -67,10 +76,10 @@ export class RegisterComponent implements OnInit {
     this.getMaster(url, 'countryList')
   }
   OnCountrySelect(event) {
-    this.registerForm.get('countryId').setValue(event.value)
+    this.registerForm.get('countryCode').setValue(event.countryCode)
   }
   OnCountryDeSelect(event) {
-    this.registerForm.get('countryId').setValue('')
+    this.registerForm.get('countryCode').setValue('')
     this.registerForm.get('countryObj').setValue([])
   }
   handleSubmitForm = () => {

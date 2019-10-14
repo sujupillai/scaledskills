@@ -44,12 +44,22 @@
             <label for="">Mobile Number *</label>
             <div class="row">
               <div class="col-sm-4" style="padding-right: 0">
-                <angular2-multiselect [data]="countryList" [(ngModel)]="selectedCountry" [settings]="settings"
+                <angular2-multiselect [data]="countryList" [(ngModel)]="selectedCountry" [settings]="countrySettings"
                   (onSelect)="OnCountrySelect($event)" (onDeSelect)="OnCountryDeSelect($event)"
                   formControlName="countryObj">
+                  <c-badge>
+                    <ng-template let-item="item">
+                      ({{item.countryCode}}) {{item.text}}
+                    </ng-template>
+                  </c-badge>
+                  <c-item>
+                    <ng-template let-item="item">
+                      {{item.text}}
+                    </ng-template>
+                  </c-item>
                 </angular2-multiselect>
               </div>
-              <div class="col-sm-8" [ngClass]="{disabled: !formControl.countryId.value}">
+              <div class="col-sm-8" [ngClass]="{disabled: !formControl.countryCode.value}">
                 <input type="text" placeholder="Mobile Number" pInputText formControlName="phoneNumber" digitOnly />
               </div>
             </div>
