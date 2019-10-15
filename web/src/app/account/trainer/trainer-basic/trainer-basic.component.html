@@ -5,19 +5,12 @@
         <div class="form-group">
           <label for="">First Name *</label>
           <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled" />
-          <p class="msgError text-danger"
-            *ngIf="formControl.firstName.hasError('required') && (formControl.firstName.dirty || submitted)">Required
-            Field.</p>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Last Name *</label>
           <input pInputText placeholder="Last Name" formControlName="lastName" class="disabled">
-          <p class="msgError text-danger"
-            *ngIf="formControl.lastName.hasError('required') && (formControl.lastName.dirty || submitted)">
-            Required Field.
-          </p>
         </div>
       </div>
     </div>
@@ -26,12 +19,12 @@
         <div class="form-group">
           <label for="">Email *</label>
           <input pInputText placeholder="Email" formControlName="email">
-          <p class="msgError text-danger">
+          <p class="msgError text-danger" *ngIf="formControl.email.invalid && (formControl.email.dirty || submitted)">
             <small *ngIf="formControl.email.hasError('email') &&
-              !formControl.email.hasError('required') && (formControl.email.dirty || submitted)">
+                  !formControl.email.hasError('required')">
               Please enter a valid email address
             </small>
-            <small *ngIf="formControl.email.hasError('required') && (formControl.email.dirty || submitted)">
+            <small *ngIf="formControl.email.hasError('required')">
               Required Field.
             </small>
           </p>
@@ -40,9 +33,16 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Mobile Number *</label>
-          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
-          <p class="msgError text-danger">
-            <small *ngIf="formControl.phoneNumber.hasError('required') && (formControl.phoneNumber.dirty || submitted)">
+          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber" digitOnly>
+          <p class="msgError text-danger"
+            *ngIf="formControl.phoneNumber.invalid && (formControl.phoneNumber.dirty || submitted)">
+            <small *ngIf="formControl.phoneNumber.hasError('maxlength')">
+                Max 10 numbers.
+            </small>
+            <small *ngIf="formControl.phoneNumber.hasError('minlength')">
+                Atleast 10 numbers.
+            </small>
+            <small *ngIf="formControl.phoneNumber.hasError('required')">
               Required Field.
             </small>
           </p>
