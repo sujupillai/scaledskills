@@ -167,17 +167,15 @@ export class TrainerBasicComponent implements OnInit {
   handleSubmit = () => {
     if (this.profileForm.invalid) {
       this.submitted = true;
-      let msgArray = [
-        { mgs: 'Please complete form', class: 'confirmMsg' },
-      ]
-      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       this.submitted = false;
       let postObj = {
         ...this.profileForm.value,
       }
+      postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
+      postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
       postObj.dateOfBirth = this.dateOfBirth.value;
-      this._HttpService.httpCall(this.basicApi, 'POST', postObj, null).subscribe(res => {
+      this._HttpService.httpCall(this.basicApi, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
             {

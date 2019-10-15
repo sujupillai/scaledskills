@@ -26,15 +26,25 @@
         <div class="form-group">
           <label for="">Email *</label>
           <input pInputText placeholder="Email" formControlName="email">
+          <p class="msgError text-danger">
+            <small *ngIf="formControl.email.hasError('email') &&
+              !formControl.email.hasError('required') && (formControl.email.dirty || submitted)">
+              Please enter a valid email address
+            </small>
+            <small *ngIf="formControl.email.hasError('required') && (formControl.email.dirty || submitted)">
+              Required Field.
+            </small>
+          </p>
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Mobile Number *</label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
-          <p class="msgError text-danger"
-            *ngIf="formControl.phoneNumber.hasError('required') && (formControl.phoneNumber.dirty || submitted)">
-            Required Field.
+          <p class="msgError text-danger">
+            <small *ngIf="formControl.phoneNumber.hasError('required') && (formControl.phoneNumber.dirty || submitted)">
+              Required Field.
+            </small>
           </p>
         </div>
       </div>

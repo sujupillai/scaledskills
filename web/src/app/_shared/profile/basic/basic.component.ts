@@ -34,10 +34,10 @@ export class BasicComponent implements OnInit {
         singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
       };
       if (this._Router.url.indexOf('account/trainer/profile/basic') >= 0) {
-        this.basicApi=ApiPath.trainer;
+        this.basicApi = ApiPath.trainer;
         this.isGeneralUser = false;
       } else {
-        this.basicApi=ApiPath.userBasic
+        this.basicApi = ApiPath.userBasic
         this.isGeneralUser = true;
       }
       this.getProfileData();
@@ -52,16 +52,16 @@ export class BasicComponent implements OnInit {
       gender: ['', Validators.required],
       dateOfBirth: [this.dateOfBirth, Validators.required],
       address: this._FormBuilder.group({
-        address1: [''],
+        address1: ['', Validators.required],
         address2: [''],
         address3: [''],
-        zipCode: [''],
+        zipCode: ['', Validators.required],
         street: [''],
-        countryId: [''],
+        countryId: ['', Validators.required],
         countryObj: [],
-        stateId: [''],
+        stateId: ['', Validators.required],
         stateObj: [''],
-        city: [''],
+        city: ['', Validators.required],
       }),
       isInterAffiliatePartner: false,
       referralID: '',
@@ -152,8 +152,8 @@ export class BasicComponent implements OnInit {
         this.profileForm.get(['address', 'stateId']).setValue(dataObj.address && dataObj.address.stateId ? dataObj.address.stateId : 0);
         this.profileForm.get(['address', 'countryObj']).setValue(dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : '');
         this.profileForm.get(['address', 'stateObj']).setValue(dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : '');
-        this.selectedCountry = [dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : this.defaultList];
-        this.selectedState = [dataObj.address && dataObj.address.stateObj ? dataObj.address.stateObj : this.defaultList];
+        this.selectedCountry = dataObj.address && dataObj.address.countryObj ? [dataObj.address.countryObj] : this.defaultList;
+        this.selectedState = dataObj.address && dataObj.address.stateObj ? [dataObj.address.stateObj] : this.defaultList;
         if (this.profileForm.get(['address', 'countryId']).value > 0) {
           let id = this.profileForm.get(['address', 'countryId']).value
           this.getStateList(id)
@@ -165,17 +165,18 @@ export class BasicComponent implements OnInit {
   handleSubmit = () => {
     if (this.profileForm.invalid) {
       this.submitted = true;
-      let msgArray = [
-        { mgs: 'Please complete form', class: 'confirmMsg' },
-      ]
-      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      var errorDiv = document.getElementsByClassName("msgError");
+      errorDiv[0].scrollIntoView({ behavior: "smooth", block: "start", inline: "start" });
+      setTimeout(() => {
+        window.scrollBy(0, -50);
+      }, 500)
     } else {
       this.submitted = false;
       let postObj = {
         ...this.profileForm.value,
       }
-      postObj.address.countryObj = postObj.address.countryObj[0];
-      postObj.address.stateObj = postObj.address.stateObj[0];
+      postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
+      postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
       postObj.dateOfBirth = this.dateOfBirth.value;
       this._HttpService.httpCall(this.basicApi, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
@@ -191,14 +192,12 @@ export class BasicComponent implements OnInit {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       }, error => {
         let msgArray = [
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       })
     }
@@ -229,7 +228,6 @@ export class BasicComponent implements OnInit {
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
-    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.profileForm)
