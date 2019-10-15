@@ -1,0 +1,48 @@
+<form [formGroup]="profileForm" autocomplete="off" novalidate>
+  <div class="clearfix">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">First Name *</label>
+          <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled" />
+          <p class="msgError text-danger"
+            *ngIf="formControl.firstName.hasError('required') && (formControl.firstName.dirty || submitted)">Required
+            Field.</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Last Name *</label>
+          <input pInputText placeholder="Last Name" formControlName="lastName" class="disabled">
+          <p class="msgError text-danger"
+            *ngIf="formControl.lastName.hasError('required') && (formControl.lastName.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Email *</label>
+          <input pInputText placeholder="Email" formControlName="email">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="">Mobile Number *</label>
+          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
+          <p class="msgError text-danger"
+            *ngIf="formControl.phoneNumber.hasError('required') && (formControl.phoneNumber.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+        (click)="handleCancel()"></button>
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+    </div>
+  </div>
+</form>

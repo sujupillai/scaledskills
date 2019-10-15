@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TrainerComponent } from './trainer.component'
 import { TrainerProfileComponent } from './trainer-profile/trainer-profile.component';
-import { BasicComponent } from '../../_shared/profile/basic/basic.component';
 import { AboutComponent } from '../../_shared/profile/about/about.component';
 import { SocialComponent } from '../../_shared/profile/social/social.component';
-import { KeywordsComponent } from '../../_shared/profile/keywords/keywords.component';
 import { CertificationsComponent } from '../../_shared/profile/certifications/certifications.component';
 import { AddTrainingComponent } from './add-training/add-training.component';
 import { AddTrainingBasicComponent } from './add-training-basic/add-training-basic.component';
@@ -18,6 +16,7 @@ import { AddTrainingFeedbackComponent } from './add-training-feedback/add-traini
 import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component'
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
+import { TrainerBasicComponent } from './trainer-basic/trainer-basic.component'
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -27,7 +26,7 @@ const routes = [
         path: 'profile', component: TrainerProfileComponent,
         children: [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
-          { path: 'basic', component: BasicComponent },
+          { path: 'basic', component: TrainerBasicComponent },
           { path: 'about', component: AboutComponent },
           { path: 'certificate', component: CertificationsComponent },
           { path: 'social', component: SocialComponent },
