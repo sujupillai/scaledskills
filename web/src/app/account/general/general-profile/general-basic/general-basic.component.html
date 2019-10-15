@@ -33,7 +33,7 @@
           <input pInputText placeholder="Email" formControlName="email" class="disabled">
           <p class="msgError text-danger" *ngIf="formControl.email.invalid && (formControl.email.dirty || submitted)">
             <small *ngIf="formControl.email.hasError('email') &&
-                !formControl.email.hasError('required')">
+                  !formControl.email.hasError('required')">
               Please enter a valid email address
             </small>
             <small *ngIf="formControl.email.hasError('required')">

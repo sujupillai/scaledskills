@@ -8,9 +8,11 @@ import { GeneralTrainingComponent } from './general-training/general-training.co
 import { OrganizationModule } from '../organization/organization.module';
 import { AttendeeViewComponent } from './attendee-view/attendee-view.component';
 import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
-import { NgPrimeModule } from '../../_forms/prime.module'
+import { NgPrimeModule } from '../../_forms/prime.module';
+import { CredentialsComponent } from './general-profile/credentials/credentials.component';
+import { GeneralBasicComponent } from './general-profile/general-basic/general-basic.component';
 @NgModule({
-  declarations: [GeneralComponent, GeneralProfileComponent, GeneralTrainingComponent, AttendeeViewComponent, OrganizerViewComponent],
+  declarations: [GeneralComponent, GeneralProfileComponent, GeneralTrainingComponent, AttendeeViewComponent, OrganizerViewComponent, CredentialsComponent, GeneralBasicComponent],
   imports: [
     CommonModule, AccountGeneralRoutingModule, ProfileModule, OrganizationModule, NgPrimeModule
   ]

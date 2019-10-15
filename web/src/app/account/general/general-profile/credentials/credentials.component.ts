@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { HttpService, SharedService } from '../../../_service';
-import { MustMatch } from '../../../_helpers/_validators/must-match.validator';
-import { ApiPath } from '../../../_helpers/_constants/api'
+import { HttpService, SharedService } from '../../../../_service';
+import { MustMatch } from '../../../../_helpers/_validators/must-match.validator';
+import { ApiPath } from '../../../../_helpers/_constants/api'
 @Component({
   selector: 'app-credentials',
-  templateUrl: './credentials.component.html'
+  templateUrl: './credentials.component.html',
 })
 export class CredentialsComponent implements OnInit {
   credentialForm: FormGroup;

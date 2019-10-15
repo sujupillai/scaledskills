@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { ApiPath } from '../../../_helpers/_constants/api';
 @Component({
   selector: 'app-org-basic',
-  templateUrl: './org-basic.component.html',
+  templateUrl: './org-basic.component.html'
 })
 export class OrgBasicComponent implements OnInit {
   formElement: FormGroup;

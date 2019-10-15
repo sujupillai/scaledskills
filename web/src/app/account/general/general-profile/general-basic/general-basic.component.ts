@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { ApiPath } from '../../../_helpers/_constants/api';
+import { ApiPath } from '../../../../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
-import { HttpService, SharedService } from '../../../_service';
+import { HttpService, SharedService } from '../../../../_service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-basic',
-  templateUrl: './basic.component.html'
+  selector: 'app-general-basic',
+  templateUrl: './general-basic.component.html',
 })
-export class BasicComponent implements OnInit {
+export class GeneralBasicComponent implements OnInit {
   profileForm: FormGroup;
   countryList = [];
   stateList = [];
