@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private _FormBuilder: FormBuilder,
     private _Router: Router,
-    private _ActivatedRoute: ActivatedRoute,
     private _AuthenticationService: AuthenticationService,
     private _SharedService: SharedService,
     public dialogService: DialogService
@@ -33,7 +32,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.createForm(() => {
     })
-    this.returnUrl = this._ActivatedRoute.snapshot.queryParams['returnUrl'] || '/';
+    let returnUrl = localStorage.getItem('returnurl')
+    this.returnUrl = returnUrl ? returnUrl : '/';
   }
   createForm = (callback) => {
     this.loginForm = this._FormBuilder.group(
@@ -58,9 +58,10 @@ export class LoginComponent implements OnInit {
       let data = this.loginForm.value;
       let url = ApiPath.Accountlogin;
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
-        if (res.responseCode==200) {
-          this._Router.navigate(['/']);
-        } else if (res.responseCode==406){
+        if (res.responseCode == 200) {
+          this._Router.navigate([this.returnUrl]);
+          localStorage.removeItem('returnUrl')
+        } else if (res.responseCode == 406) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
           ]
