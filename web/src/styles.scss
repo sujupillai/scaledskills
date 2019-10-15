@@ -1412,6 +1412,9 @@ textarea.ui-inputtext {
   pointer-events: none;
   opacity: .4;
 }
+.no-cursor {
+  pointer-events: none;
+}
 
 .msgError {
   font-size: 12px;
