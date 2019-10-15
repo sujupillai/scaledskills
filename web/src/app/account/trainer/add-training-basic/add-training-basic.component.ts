@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class AddTrainingBasicComponent implements OnInit {
   trainingBasicForm: FormGroup;
-  isCopied=false;
+  isCopied = false;
   organizationListMaster = [];
   baseUrl: string = ''
   trainingForList = []
@@ -33,6 +33,10 @@ export class AddTrainingBasicComponent implements OnInit {
       this.trainingId = param['id'];
       if (this.trainingId > 0) {
         this.getData()
+      } else {
+
+       this.resetForm(this.trainingBasicForm)
+       this.trainingData={};
       }
     });
     // this.getAllData();
@@ -67,16 +71,21 @@ export class AddTrainingBasicComponent implements OnInit {
   getData = () => {
     let url = this.trainingId.toString();
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      this.trainingData = res.result;
-      Object.keys(this.trainingData).forEach(name => {
-        if (this.formControl[name]) {
-          this.formControl[name].setValue(this.trainingData[name]);
-        }
-      });
-      var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
-      this.formControl['hostedByObj'].setValue(hostedBy);
-      let urlStr = (this.formControl['name'].value).split(' ').join('_')
-      this.formControl['url'].setValue(urlStr)
+
+      if (res.result) {
+        this.trainingData = res.result;
+        Object.keys(this.trainingData).forEach(name => {
+          if (this.formControl[name]) {
+            this.formControl[name].setValue(this.trainingData[name]);
+          }
+        });
+        var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
+        this.formControl['hostedByObj'].setValue(hostedBy);
+        let urlStr = (this.formControl['name'].value).split(' ').join('_')
+        this.formControl['url'].setValue(urlStr)
+      } else {
+        this.resetForm(this.trainingBasicForm)
+      }
     })
   }
   upateUrl = () => {
@@ -86,7 +95,7 @@ export class AddTrainingBasicComponent implements OnInit {
   copyText() {
     let urlStr = (this.formControl['name'].value).split(' ').join('_')
     this.formControl['url'].setValue(urlStr)
-    let val = window.location.origin+'/#/view/t/'+this.formControl['url'].value;
+    let val = window.location.origin + '/#/view/t/' + this.formControl['url'].value;
     let selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
@@ -97,10 +106,10 @@ export class AddTrainingBasicComponent implements OnInit {
     selBox.focus();
     selBox.select();
     document.execCommand('copy');
-    this.isCopied=true;
+    this.isCopied = true;
     document.body.removeChild(selBox);
     setTimeout(() => {
-      this.isCopied=false;
+      this.isCopied = false;
     }, 2000);
   }
   onChangeHostedBy(event) {

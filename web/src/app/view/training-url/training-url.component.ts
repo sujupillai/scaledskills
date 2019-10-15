@@ -32,6 +32,9 @@ export class TrainingUrlComponent implements OnInit {
     });
 
   }
+  goToLink=(trainingId)=>{
+    this._Router.navigate(['account/trainer/training/'+trainingId+'/basic']);
+  }
   getData=(url)=>{
     this._HttpService.httpCall(url,'GET',null, null).subscribe(res=>{
       if(res && res.responseCode==200){

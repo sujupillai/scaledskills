@@ -1,16 +1,18 @@
 <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
   <div class="clearfix">
     <div class="form-group">
-      <input type="text" pInputText placeholder="Training Name *" formControlName="name" (change)="upateUrl()">
+      <label>Training Name *</label>
+      <input type="text" pInputText placeholder="Click here to type" formControlName="name" (change)="upateUrl()">
       <p class="msgError text-danger"
         *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
         Required
         Field.</p>
     </div>
-    <div class="form-group" [ngClass]="{disabled: !formControl.name.value}">
-      <div class="flex vMiddle urlBox">
+    <div class="form-group">
+      <label>Training Url *</label>
+      <div class="flex vMiddle urlBox" [ngClass]="{disabled: !formControl.name.value}">
         <div class="fixed-input">{{formControl.baseUrl.value}}</div>
-        <input type="text" formControlName="url" pInputText placeholder="Enter Url" class="disabled">
+        <input type="text" formControlName="url" pInputText placeholder="Click here to type" class="disabled">
         <i class="pi pi-copy cursor-pointer" [ngClass]="isCopied?'pi-check':'pi-copy'" style="font-size: 2em"
           (click)="copyText()"></i>
       </div>

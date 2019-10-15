@@ -1565,3 +1565,17 @@ textarea.ui-inputtext {
   letter-spacing: normal;
   padding-bottom: 20px;
 }
+
+.verticaltoolbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding-top: 55px;
+
+  .pi-pencil {
+    border: 1px #ddd solid;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
