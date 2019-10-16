@@ -17,6 +17,7 @@ import { AddTrainingPromotionsComponent } from './add-training-promotions/add-tr
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component'
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
 import { TrainerBasicComponent } from './trainer-basic/trainer-basic.component'
+import { AuthGuard } from '../../_guards';
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -30,7 +31,8 @@ const routes = [
           { path: 'about', component: AboutComponent },
           { path: 'certificate', component: CertificationsComponent },
           { path: 'social', component: SocialComponent },
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
     ]
   },
@@ -49,7 +51,8 @@ const routes = [
       { path: 'promotions', component: AddTrainingPromotionsComponent },
       { path: 'settings', component: AddTrainingSettingsComponent },
       { path: 'addTrainer', component: AddTrainerComponent },
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 @NgModule({

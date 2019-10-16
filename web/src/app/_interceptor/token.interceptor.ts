@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 import { Router, RouterStateSnapshot } from '@angular/router';
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
-  constructor(public _AuthenticationService: AuthenticationService, private _SharedService: SharedService, private _Router: Router, private state: RouterStateSnapshot) { }
+  constructor(public _AuthenticationService: AuthenticationService, private _SharedService: SharedService, private _Router: Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let isTokenRquired = false;
     this._SharedService.show();
@@ -23,15 +23,11 @@ export class HeaderInterceptor implements HttpInterceptor {
     }
     if (isTokenRquired) {
       const accessToken = this._AuthenticationService.currentUserValue ? this._AuthenticationService.currentUserValue.auth_token : null;
-      if (accessToken) {
-        req = req.clone({
-          setHeaders: {
-            'Authorization': 'Bearer ' + accessToken
-          }
-        });
-      } else {
-        this._Router.navigate(['/auth/login'], { queryParams: { returnUrl: this.state.url } });
-      }
+      req = req.clone({
+        setHeaders: {
+          'Authorization': 'Bearer ' + accessToken
+        }
+      });
     }
     return next.handle(req).pipe(finalize(() => this._SharedService.hide()));
   }

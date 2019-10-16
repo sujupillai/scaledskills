@@ -5,10 +5,9 @@ import { OrganizationBankDetailComponent } from './organization-bank-detail/orga
 import { OrganizationProfileComponent } from './organization-profile/organization-profile.component';
 import { OrgBasicComponent } from './org-basic/org-basic.component';
 import { AboutComponent } from '../../_shared/profile/about/about.component';
-
 import { SocialComponent } from '../../_shared/profile/social/social.component';
 import { CommunicationComponent } from './communication/communication.component';
-
+import { AuthGuard } from '../../_guards';
 const routes = [
   {
     path: '', component: OrganizationComponent,
@@ -21,13 +20,14 @@ const routes = [
           { path: 'basic', component: OrgBasicComponent },
           { path: 'about', component: AboutComponent },
           { path: 'social', component: SocialComponent },
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
-        path: 'bank', component: OrganizationBankDetailComponent,
+        path: 'bank', component: OrganizationBankDetailComponent, canActivate: [AuthGuard]
       },
       {
-        path: 'communication', component:CommunicationComponent ,
+        path: 'communication', component: CommunicationComponent, canActivate: [AuthGuard]
       }
     ]
   }
