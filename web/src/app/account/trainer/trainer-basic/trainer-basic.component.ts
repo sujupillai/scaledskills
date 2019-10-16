@@ -18,11 +18,12 @@ export class TrainerBasicComponent implements OnInit {
   selectedState = [];
   settings = {};
   defaultList = [];
+  baseUrl: string = ''
   minDate: Date = new Date();
-  basicApi = '';
-  isGeneralUser: boolean = true;
+  isCopied = false;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
+    this.baseUrl = window.location.origin + 'p/';
     this.createprofileForm(() => {
       this.defaultList = [{
         "text": "Select",
@@ -33,13 +34,6 @@ export class TrainerBasicComponent implements OnInit {
       this.settings = {
         singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
       };
-      if (this._Router.url.indexOf('account/trainer/profile/basic') >= 0) {
-        this.basicApi = ApiPath.trainer;
-        this.isGeneralUser = false;
-      } else {
-        this.basicApi = ApiPath.userBasic
-        this.isGeneralUser = true;
-      }
       this.getProfileData();
     })
   }
@@ -51,6 +45,8 @@ export class TrainerBasicComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       gender: [''],
+      baseUrl: [this.baseUrl],
+      profileUrl: ['', Validators.required],
       dateOfBirth: [this.dateOfBirth],
       address: this._FormBuilder.group({
         address1: [''],
@@ -121,7 +117,8 @@ export class TrainerBasicComponent implements OnInit {
     return x < 10 ? '0' + x : '' + x;
   }
   getProfileData = () => {
-    this._HttpService.httpCall(this.basicApi, 'GET', null, null).pipe(first()).subscribe(res => {
+    let url = ApiPath.trainer;
+    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -131,6 +128,8 @@ export class TrainerBasicComponent implements OnInit {
             }
           }
         });
+        let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
+        this.formControl['profileUrl'].setValue(urlStr)
         let currentDate = new Date(dataObj.dateOfBirth)
         this.dateOfBirth.setValue(currentDate);
         var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
@@ -175,7 +174,8 @@ export class TrainerBasicComponent implements OnInit {
       postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
       postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
       postObj.dateOfBirth = this.dateOfBirth.value;
-      this._HttpService.httpCall(this.basicApi, 'PUT', postObj, null).subscribe(res => {
+      let url = ApiPath.trainer;
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
             {
@@ -232,5 +232,29 @@ export class TrainerBasicComponent implements OnInit {
         this.resetForm(this.profileForm)
       }
     })
+  }
+  upateUrl = () => {
+    let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
+    this.formControl['profileUrl'].setValue(urlStr)
+  }
+  copyText() {
+    let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
+    this.formControl['profileUrl'].setValue(urlStr)
+    let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    this.isCopied = true;
+    document.body.removeChild(selBox);
+    setTimeout(() => {
+      this.isCopied = false;
+    }, 2000);
   }
 }

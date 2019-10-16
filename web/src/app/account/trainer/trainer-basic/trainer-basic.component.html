@@ -4,7 +4,8 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">First Name *</label>
-          <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled" />
+          <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled"
+            (change)="upateUrl()" />
         </div>
       </div>
       <div class="col-sm-6">
@@ -37,10 +38,10 @@
           <p class="msgError text-danger"
             *ngIf="formControl.phoneNumber.invalid && (formControl.phoneNumber.dirty || submitted)">
             <small *ngIf="formControl.phoneNumber.hasError('maxlength')">
-                Max 10 numbers.
+              Max 10 numbers.
             </small>
             <small *ngIf="formControl.phoneNumber.hasError('minlength')">
-                Atleast 10 numbers.
+              Atleast 10 numbers.
             </small>
             <small *ngIf="formControl.phoneNumber.hasError('required')">
               Required Field.
@@ -48,6 +49,16 @@
           </p>
         </div>
       </div>
+    </div>
+    <div class="form-group">
+      <label>Trainer Url *</label>
+      <div class="flex vMiddle urlBox" [ngClass]="{disabled: !formControl.firstName.value}">
+        <div class="fixed-input">{{formControl.baseUrl.value}}</div>
+        <input type="text" formControlName="profileUrl" pInputText placeholder="Click here to type" class="disabled">
+        <i class="pi pi-copy cursor-pointer" [ngClass]="isCopied?'pi-check':'pi-copy'" style="font-size: 2em"
+          (click)="copyText()"></i>
+      </div>
+      <p class="msgError text-success" *ngIf="isCopied">Url Copied to clipboard.</p>
     </div>
     <div class="form-group button-group text-right">
       <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
