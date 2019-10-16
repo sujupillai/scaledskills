@@ -47,6 +47,8 @@ export const ApiPath = {
 
   /* urls */
   'trainingUrl': 'api/Home/T/{urlName}',
+  'generalUrl': 'api/Home/P/{urlName}',
+  'orgUrl': 'api/Home/O/{urlName}',
 
   /* interest */
   'interest':'api/Training/{TrainingId}/Interest'

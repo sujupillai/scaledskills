@@ -1,39 +1,50 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiPath } from 'src/app/_helpers/_constants/api';
+import { HttpService } from '../../_service';
 @Component({
   selector: 'app-trainer-url',
   templateUrl: './trainer-url.component.html'
 })
 export class TrainerUrlComponent implements OnInit {
   cars = [];
-  cols = [];
   display: boolean = false;
   isSendMesage: boolean = false;
-  cities=[];
-  constructor() {
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-  ];
+  cities = [];
+  carouselitems = [];
+  regUsers = [];
+  upcommingTrainings = [];
+  pastTrainings = [];
+  relatedTrainings = [];
+  noRecord = [];
+  urlString: string = '';
+  entity = {};
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService) {
   }
   ngOnInit() {
-    this.cars = [
-      { "brand": "VW", "year": 2012, "color": "Orange", "vin": "dsad231ff" },
-      { "brand": "Audi", "year": 2011, "color": "Black", "vin": "gwregre345" },
-      { "brand": "Renault", "year": 2005, "color": "Gray", "vin": "h354htr" },
-      { "brand": "BMW", "year": 2003, "color": "Blue", "vin": "j6w54qgh" },
-      { "brand": "BMW", "year": 2003, "color": "Blue", "vin": "j6w54qgh" },
-      { "brand": "BMW", "year": 2003, "color": "Blue", "vin": "j6w54qgh" },
-      { "brand": "BMW", "year": 2003, "color": "Blue", "vin": "j6w54qgh" },
-    ]
-    this.cols = [
-      { field: 'vin', header: 'Vin' },
-      { field: 'year', header: 'Year' },
-      { field: 'brand', header: 'Brand' },
-      { field: 'color', header: 'Color' }
+    this.noRecord = [
+      { msg: 'No records to display' }
     ];
+    this.cars=this.noRecord;
+    let url = ApiPath.generalUrl
+    this._ActivatedRoute.params.subscribe((param: any) => {
+      this.urlString = param.url;
+      url = url.replace('{urlName}', this.urlString)
+      this.getData(url)
+    });
+  }
+  goToLink = (trainingId) => {
+    this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
+  }
+  getData = (url) => {
+    let params = {
+      auth: false
+    }
+    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.entity = res.result;
+      }
+    })
   }
   showDialog() {
     this.display = true;

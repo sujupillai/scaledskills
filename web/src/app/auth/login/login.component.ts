@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private _Router: Router,
     private _AuthenticationService: AuthenticationService,
     private _SharedService: SharedService,
-    public dialogService: DialogService
+    public dialogService: DialogService, private _ActivatedRoute:ActivatedRoute
   ) {
     if (this._AuthenticationService.currentUserValue) {
       this._Router.navigate(['/account']);
@@ -32,8 +32,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.createForm(() => {
     })
-    let returnUrl = localStorage.getItem('returnurl')
-    this.returnUrl = returnUrl ? returnUrl : '/';
+    this.returnUrl = this._ActivatedRoute.snapshot.queryParams['returnUrl'] || '/';
   }
   createForm = (callback) => {
     this.loginForm = this._FormBuilder.group(

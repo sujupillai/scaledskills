@@ -6,7 +6,8 @@ import { GeneralBasicComponent } from './general-profile/general-basic/general-b
 import { OrganizationBankDetailComponent } from '../organization/organization-bank-detail/organization-bank-detail.component';
 import { AttendeeViewComponent } from './attendee-view/attendee-view.component';
 import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
-import { CredentialsComponent } from './general-profile/credentials/credentials.component'
+import { CredentialsComponent } from './general-profile/credentials/credentials.component';
+import { AuthGuard } from '../../_guards';
 const routes = [
   {
     path: '', component: GeneralComponent,
@@ -18,11 +19,12 @@ const routes = [
           { path: '', redirectTo: 'basic', pathMatch: 'full' },
           { path: 'basic', component: GeneralBasicComponent },
           { path: 'password', component: CredentialsComponent }
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
-      { path: 'attendeeView', component: AttendeeViewComponent },
-      { path: 'organizerView', component: OrganizerViewComponent },
-      {path: 'bank', component: OrganizationBankDetailComponent}
+      { path: 'attendeeView', component: AttendeeViewComponent,  canActivate: [AuthGuard] },
+      { path: 'organizerView', component: OrganizerViewComponent,  canActivate: [AuthGuard] },
+      {path: 'bank', component: OrganizationBankDetailComponent,  canActivate: [AuthGuard]}
     ]
   }
 ];
