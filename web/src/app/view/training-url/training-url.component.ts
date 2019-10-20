@@ -17,8 +17,8 @@ export class TrainingUrlComponent implements OnInit {
   isSendMesage: boolean = false;
   urlString:string='';
   entity={};
+  userId=0;
   constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService:HttpService) {
-
   }
   ngOnInit() {
     this.noRecord = [
@@ -30,7 +30,30 @@ export class TrainingUrlComponent implements OnInit {
       url = url.replace('{urlName}', this.urlString)
       this.getData(url)
     });
-
+  }
+  fetchPastTraining = () => {
+    let postObj = {
+      "userId": this.userId,
+      "searchText": "",
+      "pageSize": 16,
+      "page": 0
+    }
+    let url = ApiPath.pastTraining;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      this.pastTrainings = res.result.results;
+    })
+  }
+  fetchUpcomingTraining = () => {
+    let postObj = {
+      "userId": this.userId,
+      "searchText": "",
+      "pageSize": 16,
+      "page": 0
+    }
+    let url = ApiPath.upcomingTraining;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      this.upcommingTrainings = res.result.results;
+    })
   }
   goToLink=(trainingId)=>{
     this._Router.navigate(['account/trainer/training/'+trainingId+'/basic']);
@@ -42,6 +65,11 @@ export class TrainingUrlComponent implements OnInit {
     this._HttpService.httpCall(url,'GET',null, params).subscribe(res=>{
       if(res && res.responseCode==200){
         this.entity=res.result;
+        this.userId=this.entity['userId'];
+        if(this.userId>0){
+          this.fetchPastTraining();
+          this.fetchUpcomingTraining();
+        }
       }
     })
   }
