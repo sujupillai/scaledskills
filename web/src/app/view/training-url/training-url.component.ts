@@ -35,7 +35,7 @@ export class TrainingUrlComponent implements OnInit {
     let postObj = {
       "userId": this.userId,
       "searchText": "",
-      "pageSize": 16,
+      "pageSize": 1000,
       "page": 0
     }
     let url = ApiPath.pastTraining;
@@ -47,7 +47,7 @@ export class TrainingUrlComponent implements OnInit {
     let postObj = {
       "userId": this.userId,
       "searchText": "",
-      "pageSize": 16,
+      "pageSize": 1000,
       "page": 0
     }
     let url = ApiPath.upcomingTraining;
