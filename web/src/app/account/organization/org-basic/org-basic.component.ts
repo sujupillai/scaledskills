@@ -145,21 +145,7 @@ export class OrgBasicComponent implements OnInit {
     let urlStr = (this.formControl['name'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)
     let val = window.location.origin + '/#/view/o/' + this.formControl['profileUrl'].value;
-    let selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = val;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    this.isCopied = true;
-    document.body.removeChild(selBox);
-    setTimeout(() => {
-      this.isCopied = false;
-    }, 2000);
+    window.open(val, "_blank");
   }
   myUploader = (event, control) => {
     this.fileData = <File>event.files[0];
