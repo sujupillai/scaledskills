@@ -49,13 +49,17 @@ export class AddTrainingFeedbackComponent implements OnInit {
     let url = ApiPath.trainingReview;
     url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      let resObj = res.Data;
-      this.prevState=res.Data;
-      Object.keys(resObj).forEach(name => {
-        if (this.formControl[name]) {
-          this.formControl[name].setValue(resObj[name]);
+      if (res && res.responseCode == 200) {
+        let resObj = res.result[0];
+        this.prevState = res.result[0];
+        if(resObj){
+          Object.keys(resObj).forEach(name => {
+            if (this.formControl[name]) {
+              this.formControl[name].setValue(resObj[name]);
+            }
+          });
         }
-      });
+      }
     })
   }
   handleSubmit = (): void => {
@@ -94,14 +98,16 @@ export class AddTrainingFeedbackComponent implements OnInit {
     formGroup.reset();
     formGroup.markAsUntouched();
     let dataObj = this.prevState;
-    Object.keys(dataObj).forEach(name => {
-      if (this.formControl[name]) {
-        if (name != 'addressModel') {
-          this.formControl[name].setValue(this.prevState[name]);
-          control.setErrors(null);
+    if (dataObj) {
+      Object.keys(dataObj).forEach(name => {
+        if (this.formControl[name]) {
+          if (name != 'addressModel') {
+            this.formControl[name].setValue(this.prevState[name]);
+            control.setErrors(null);
+          }
         }
-      }
-    });
+      });
+    }
   }
   handleCancel = () => {
     let msgArray = [
