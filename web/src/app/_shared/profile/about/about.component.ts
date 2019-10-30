@@ -24,7 +24,6 @@ export class AboutComponent implements OnInit {
         this.getData();
       }
     })
-
   }
   createForm = (callback) => {
     this.aboutForm = this._FormBuilder.group(
@@ -73,7 +72,6 @@ export class AboutComponent implements OnInit {
         ]
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       }
-
     }, error => {
       let msgArray = [
         { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
@@ -91,7 +89,6 @@ export class AboutComponent implements OnInit {
     });
     this.getData()
   }
-
   handleCancel = () => {
     let msgArray = [
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
