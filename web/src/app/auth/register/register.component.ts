@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('countryCode').setValue(event.countryCode)
   }
   OnCountryDeSelect(event) {
-    this.registerForm.get('countryCode').setValue('')
+    this.registerForm.get('countryCode').setValue(null)
     this.registerForm.get('countryObj').setValue([])
   }
   handleSubmitForm = () => {

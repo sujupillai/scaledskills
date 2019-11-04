@@ -11,7 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class AddTrainingFeedbackComponent implements OnInit {
   traineeReviewForm: FormGroup;
   trainingId: any = 0;
-  prevState
+  prevState;
+  listData=[];
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
   ngOnInit() {
@@ -50,15 +51,15 @@ export class AddTrainingFeedbackComponent implements OnInit {
     url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        let resObj = res.result[0];
-        this.prevState = res.result[0];
-        if(resObj){
-          Object.keys(resObj).forEach(name => {
-            if (this.formControl[name]) {
-              this.formControl[name].setValue(resObj[name]);
-            }
-          });
-        }
+        this.listData=res.result
+        // this.prevState = res.result[0];
+        // if(resObj){
+        //   Object.keys(resObj).forEach(name => {
+        //     if (this.formControl[name]) {
+        //       this.formControl[name].setValue(resObj[name]);
+        //     }
+        //   });
+        // }
       }
     })
   }

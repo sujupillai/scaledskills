@@ -14,7 +14,7 @@ export class AddTrainingTicketComponent implements OnInit {
   stateList = [];
   submitted: boolean = false;
   trainingId = 0;
-  addTicketForm = true;
+  addTicketForm = false;
   defaultList = [{
     "text": "Free",
     "value": "1",

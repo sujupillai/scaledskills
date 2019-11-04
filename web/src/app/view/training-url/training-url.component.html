@@ -1,6 +1,6 @@
 <div class="container">
   <div class="form-group">
-    <div class="verticaltoolbar">
+    <div class="verticaltoolbar" *ngIf="canEdit">
       <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity.trainingId)"></i>
     </div>
     <img src="../../../assets/images/event.png" alt="headerImg" class="img-responsive">
@@ -50,11 +50,12 @@
           </div>
         </li>
         <li class="text-center">
-          <div>
+          <div *ngIf="!canEdit">
             <button type="button" class="btn btn-gradient bookBtn">Register</button>
           </div>
           <p class="hostedBy">
-            By {{entity.userName}} <span class="joinbtn">&nbsp;<i class="fa fa-user-plus"
+            By {{entity.userName}}
+            <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
                 aria-hidden="true"></i>&nbsp;Join</span>
           </p>
           <div class="inline-block">
@@ -234,7 +235,6 @@
               <p class="label-price border"
                 [ngClass]="{'text-success no-cursor': item.isInterested,'cursor-pointer': !item.isInterested }"
                 (click)="handleInterest(item)">
-
                 <i class="fa fa-star" aria-hidden="true"></i> interested
               </p>
               <p class="label-price">

@@ -63,7 +63,8 @@
                   </c-item>
                 </angular2-multiselect>
               </div>
-              <div class="col-sm-8" [ngClass]="{disabled: !formControl.countryCode.value}">
+
+              <div class="col-sm-8" [ngClass]="{disabled: formControl.countryCode.value==null}">
                 <input type="text" placeholder="Mobile Number" pInputText formControlName="phoneNumber" digitOnly />
               </div>
             </div>

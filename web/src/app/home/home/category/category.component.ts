@@ -64,7 +64,7 @@ export class CategoryComponent implements OnInit {
             { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Success')
-          item.interestCount=item.interestCount+1;
+          item.interestCount=res['result'];
           item.isInterested=true;
         } else {
           let msgArray = [
