@@ -1,7 +1,7 @@
 <div class="container section-padding">
   <div class="row-same-height row">
     <div class="col-same-height col-sm-3 flexVMiddle"></div>
-    <div class="col-same-height col-sm-6 flexVMiddle">
+    <div class="col-same-height col-sm-6 flexVMiddle bgGray">
       <div class="form-wrapper content">
         <h2>SIGN UP</h2>
         <form [formGroup]="registerForm" autocomplete="off" novalidate>
@@ -121,7 +121,7 @@
               <a [routerLink]="['/home/privacy']"><b>Privacy Policy</b></a>
             </div>
           </div>
-          <div class="row">
+          <div class="row form-group">
             <div class="col-sm-6">
               <button pButton type="button" label="SIGN UP" class="ui-button-raised ui-button-success"
                 (click)="handleSubmitForm()"></button>
