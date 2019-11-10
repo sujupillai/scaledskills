@@ -4,12 +4,12 @@ import { ErrorComponent } from './_shared/error/error.component';
 import { ReportComponent } from './report/report.component';
 import { TrainingUrlComponent } from './view/training-url/training-url.component';
 import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
+import { RequestListComponent } from './training-request/request-list/request-list.component';
+import { RequestComponent } from './training-request/request.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'trainingRequest',
-    loadChildren: () => import('./training-request/training-request.module').then(mod => mod.TrainingRequestModule),
-  },
+  { path: 'trainingRequest', component: RequestComponent },
+  { path: 'trainingRequestList', component: RequestListComponent },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)
@@ -25,10 +25,8 @@ const routes: Routes = [
   { path: 'report', component: ReportComponent },
   { path: 'view/t/:url', component: TrainingUrlComponent },
   { path: 'view/p/:url', component: TrainerUrlComponent },
-
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]

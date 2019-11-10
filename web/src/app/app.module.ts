@@ -19,6 +19,8 @@ import { TrainingUrlComponent } from './view/training-url/training-url.component
 import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
 import { DialogService } from 'primeng/api';
 import { ConfirmationDialogComponent } from './_shared/confirmation-dialog/confirmation-dialog.component';
+import {RequestListComponent} from './training-request/request-list/request-list.component';
+import { RequestComponent } from './training-request/request.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { ConfirmationDialogComponent } from './_shared/confirmation-dialog/confi
     TrainingUrlComponent,
     TrainerUrlComponent,
     ConfirmationDialogComponent,
+    RequestComponent,
+    RequestListComponent
 
   ],
   imports: [
