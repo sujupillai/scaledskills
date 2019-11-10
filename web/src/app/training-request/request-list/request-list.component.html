@@ -1,31 +1,100 @@
 <br>
 <br>
 <div class="container">
+  <div class="form-group text-right">
+    <button type="button" class="btn btn-primary" [routerLink]="['/trainingRequest/0']"> + Request a training</button>
+  </div>
   <form [formGroup]="requestForm" autocomplete="off" novalidate>
     <div class="clearfix">
-      <div class="row form-group">
-        <div class="col-sm-6">
-          <label>Filter</label>
-          <p-dropdown [options]="trainingNeedDDL" formControlName="reportName" placeholder="Select" optionLabel="name"
-            [showClear]="true"></p-dropdown>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Training Name</label>
+            <input type="text" pInputText placeholder="Training Name" />
+          </div>
         </div>
-        <div class="col-sm-6">
-          <label>Filter</label>
-          <p-multiSelect [options]="trainingNeedDDL" formControlName="reportName" optionLabel="name"></p-multiSelect>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" pInputText placeholder="Trainer" />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Training Requester Name</label>
+            <input type="text" pInputText placeholder="Trainer" />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Keyword</label>
+            <input type="text" pInputText placeholder="Keyword" />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Status</label>
+            <input type="text" pInputText placeholder="Status" />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group text-right">
+            <label class="invisible">placeholder</label>
+            <div class="row">
+              <div class="col-sm-6">
+                <button pButton type="button" label="Reset"
+                  class="ui-button-raised ui-button-warning width_100"></button>
+              </div>
+              <div class="col-sm-6">
+                <button pButton type="submit" label="Search" class="ui-button-raised width_100"></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <p-table [columns]="cols" [value]="cars" [paginator]="true" [rows]="10">
+        <p-table [value]="cars" [paginator]="true" [rows]="10">
           <ng-template pTemplate="header" let-columns>
             <tr>
-              <th *ngFor="let col of columns">
-                {{col.header}}
+              <th>
+                Training Name
               </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Location
+              </th>
+              <th>
+                Response Due Date
+              </th>
+              <th>
+                Decision Date
+              </th>
+              <th>
+                Status
+              </th>
+
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <ng-template pTemplate="body" let-rowData>
             <tr>
-              <td *ngFor="let col of columns">
+              <td>
+                <a [routerLink]="['/trainingRequest/1']">Text</a>
+              </td>
+              <td>
+                Text
+              </td>
+              <td>
+                Text
+              </td>
+              <td>
+                Text
+              </td>
+              <td>
+                Text
+              </td>
+              <td>
                 Text
               </td>
             </tr>

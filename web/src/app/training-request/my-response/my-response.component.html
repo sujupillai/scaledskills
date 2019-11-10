@@ -1,0 +1,153 @@
+<div class="form-group">
+    <p-table [value]="cars" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>
+                    Training Name
+                </th>
+                <th>
+                    Respond By
+                </th>
+                <th>
+                    Comment
+                </th>
+                <th>
+                    Respond On
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td>
+                    <a [routerLink]="['/trainingRequest/1']">Text</a>
+                </td>
+                <td>
+                    Text
+                </td>
+                <td>
+                    Text
+                </td>
+                <td>
+                    Text
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<hr>
+<form [formGroup]="requestForm" autocomplete="off" novalidate>
+    <div class="clearfix">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" pInputText placeholder="Type Here" formControlName="keywords" class="disabled" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" pInputText placeholder="Type Here" formControlName="keywords" class="disabled" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" pInputText placeholder="Type Here" formControlName="keywords" class="disabled" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="text" pInputText placeholder="Type Here" formControlName="keywords" class="disabled" />
+                </div>
+            </div>
+        </div>
+        <div formGroupName="address">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Country</label>
+                        <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
+                            optionLabel="text" optionValue="value" class="disabled"
+                            (onChange)="onChangeCountry($event)">
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">State</label>
+                        <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State"
+                            optionLabel="text" (onChange)="onChangeState($event)" class="disabled"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">City</label>
+                        <input pInputText placeholder="City" formControlName="city" class="disabled">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Zip</label>
+                        <input pInputText placeholder="Zip/Postal" formControlName="zipCode" class="disabled">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>
+                        Amount
+                    </label>
+                    <input pInputText placeholder="Enter Here" formControlName="needType">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Description *</label>
+                    <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+                    <p class="msgError"
+                        *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">
+                        Required Field.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>
+                        Status
+                    </label>
+                    <input pInputText placeholder="Select Here" formControlName="needType">
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label>Status Comment *</label>
+                    <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
+                    <p class="msgError"
+                        *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submitted)">
+                        Required Field.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group button-group text-right">
+            <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+            <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+                (click)="handleCancel()"></button>
+        </div>
+    </div>
+</form>

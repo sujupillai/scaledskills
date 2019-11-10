@@ -7,7 +7,7 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li routerLinkActive="active">
-        <a [routerLink]="['/trainingRequest']">
+        <a [routerLink]="['/trainingRequests']">
           Training Request
         </a>
       </li>
@@ -26,13 +26,14 @@
           <span class="glyphicon glyphicon-log-in"></span> Login
         </a>
       </li>
-      <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log Out</a></li>
+      <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log Out</a>
+      </li>
       <li class="dropdown" *ngIf="isLoggedIn">
         <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
           <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a [routerLink]="['account']">Portfolio</a></li>
-          <li><a [routerLink]="['account/trainer/training/0/basic']">Training</a></li>
+          <li><a [routerLink]="['account/trainer/training/0/basic']">Create Training</a></li>
         </ul>
       </li>
     </ul>

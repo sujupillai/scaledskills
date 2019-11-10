@@ -1,0 +1,141 @@
+<form [formGroup]="requestForm" autocomplete="off" novalidate>
+  <div class="clearfix">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Training Need *</label>
+          <p-dropdown [options]="trainingNeedDDL" formControlName="needTypeObj" placeholder="Select" optionLabel="text"
+            optionValue="value" [showClear]="true" (onChange)="handleOnChangeId($event, 'needType')">
+          </p-dropdown>
+          <p class="msgError"
+            *ngIf="formControl.needType.hasError('required') && (formControl.needType.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Training Type *</label>
+          <p-dropdown [options]="trainingTypeDDL" formControlName="trainingTypeObj" placeholder="Select"
+            optionLabel="text" optionValue="value" [showClear]="true"
+            (onChange)="handleOnChangeId($event, 'trainingType')">
+          </p-dropdown>
+          <p class="msgError"
+            *ngIf="formControl.trainingType.hasError('required') && (formControl.trainingType.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Company Name *</label>
+          <input type="text" pInputText placeholder="Company Name" formControlName="companyName" />
+          <p class="msgError"
+            *ngIf="formControl.companyName.hasError('required') && (formControl.companyName.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Number of participant</label>
+          <input type="text" pInputText placeholder="Participant" formControlName="numberOfParticipant" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label>Training Summary *</label>
+          <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
+          <p class="msgError"
+            *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label>Description *</label>
+          <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
+          <p class="msgError"
+            *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Decision Date</label>
+          <p-calendar placeholder="DD/MM/YY">
+          </p-calendar>
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Response Due Date</label>
+          <p-calendar placeholder="DD/MM/YY">
+          </p-calendar>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Budget</label>
+          <input type="text" pInputText placeholder="Budget" formControlName="budget" />
+        </div>
+      </div>
+    </div>
+    <div formGroupName="address">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Country</label>
+            <p-dropdown [options]="countryList" formControlName="countryObj" placeholder="Select Country"
+              optionLabel="text" optionValue="value" [showClear]="true" (onChange)="onChangeCountry($event)">
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">State</label>
+            <p-dropdown [options]="stateList" formControlName="stateObj" placeholder="Select State" optionLabel="text"
+              [showClear]="true" (onChange)="onChangeState($event)"></p-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">City</label>
+            <input pInputText placeholder="City" formControlName="city">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="">Zip</label>
+            <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Keywords</label>
+      <p-chips formControlName="keywords" placeholder="Keywords"></p-chips>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+        (click)="handleCancel()"></button>
+    </div>
+  </div>
+</form>
