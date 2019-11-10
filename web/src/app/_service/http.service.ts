@@ -10,9 +10,9 @@ export class HttpService {
     let url: string;
     const origin = window.location.origin;
     if (origin.indexOf("localhost") > -1) {
-      url = 'http://hajorel712-001-site1.ftempurl.com/';
+      url = 'http://localhost:53379/';
     } else if (origin.indexOf("scaledskills") > -1) {
-      url = 'http://hajorel712-001-site1.ftempurl.com/';
+      url = 'http://localhost:53379/';
     }
     return url;
   }
