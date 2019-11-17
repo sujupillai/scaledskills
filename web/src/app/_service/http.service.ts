@@ -11,8 +11,9 @@ export class HttpService {
     const origin = window.location.origin;
     if (origin.indexOf("localhost") > -1) {
       url = 'http://hajorel712-001-site1.ftempurl.com/';
-    } else if (origin.indexOf("scaledskills") > -1) {
-      url = 'http://hajorel712-001-site1.ftempurl.com/';
+    } else  {
+      /* if (origin.indexOf("scaledskills") > -1) */
+      url = 'http://testapi.scaledskills.com/';
     }
     return url;
   }
@@ -21,7 +22,7 @@ export class HttpService {
     let apiUrl = this.apiUrlName() + url;
     switch (method) {
       case 'POST':
-        return this._HttpClient.post<any>(apiUrl, data, { 'headers': {}, 'params': params})
+        return this._HttpClient.post<any>(apiUrl, data, { 'headers': {}, 'params': params })
         break;
       case 'PUT':
         return this._HttpClient.put<any>(apiUrl, data, { 'headers': {}, 'params': params })
