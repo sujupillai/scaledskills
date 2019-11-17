@@ -20,11 +20,6 @@ export class CategoryComponent implements OnInit {
   constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router, private _AuthenticationService: AuthenticationService) { }
   ngOnInit() {
     this.getData();
-    this.getUserInfo();
-  }
-  getUserInfo = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
-    this.isLoggedIn = this.userInfo ? true : false;
   }
   getData = () => {
     let postObj = {
@@ -53,37 +48,5 @@ export class CategoryComponent implements OnInit {
     this.searchText = searchValue;
     this.page = 0;
     this.currentLength = 0;
-  }
-  handleInterest = (item) => {
-    if (this.isLoggedIn) {
-      let url = ApiPath.interest;
-      url = url.replace('{TrainingId}', item.trainingId.toString())
-      this._HttpService.httpCall(url, 'POST', item.trainingId, null).subscribe(res => {
-        if (res && res.responseCode == 200) {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Success')
-          item.interestCount = res['result'];
-          item.isInterested = true;
-        } else {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-        }
-      })
-    } else {
-      let msgArray = [
-        { mgs: 'You sould login first to send interest for this training.', class: 'confirmMsg' },
-        { mgs: 'Do you want to login ?', class: 'subMsg' },
-      ]
-      this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
-        if (res) {
-          localStorage.setItem('returnurl', this._Router.url);
-          this._Router.navigate(['/auth/login']);
-        }
-      })
-    }
   }
 }
