@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
   }
   get formControl() { return this.registerForm.controls }
   getMaster = (url, masterCollection) => {
-
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.responseCode == 200) {
         this[masterCollection] = res.result;
@@ -104,9 +103,10 @@ export class RegisterComponent implements OnInit {
             { mgs: res.responseMessege, class: 'confirmMsg' },
             { mgs: 'Please check your registered email id for verify your account.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+          setTimeout(()=>{
             this._Router.navigate(['/']);
-          })
+          },500)
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
