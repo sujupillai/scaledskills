@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">First Name *</label>
+          <label for="">First Name <span class="text-required">*</span></label>
           <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled" />
           <p class="msgError text-danger"
             *ngIf="formControl.firstName.invalid && (formControl.firstName.dirty || submitted)">
@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Last Name *</label>
+          <label for="">Last Name <span class="text-required">*</span></label>
           <input pInputText placeholder="Last Name" formControlName="lastName">
           <p class="msgError text-danger"
             *ngIf="formControl.lastName.invalid && (formControl.lastName.dirty || submitted)">
@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Email *</label>
+          <label for="">Email <span class="text-required">*</span></label>
           <input pInputText placeholder="Email" formControlName="email" class="disabled">
           <p class="msgError text-danger" *ngIf="formControl.email.invalid && (formControl.email.dirty || submitted)">
             <small *ngIf="formControl.email.hasError('email') &&
@@ -44,7 +44,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Mobile Number *</label>
+          <label for="">Mobile Number <span class="text-required">*</span></label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber" digitOnly>
           <p class="msgError text-danger"
             *ngIf="formControl.phoneNumber.invalid && (formControl.phoneNumber.dirty || submitted)">
@@ -64,7 +64,7 @@
     <div class="row" *ngIf="isGeneralUser">
       <div formGroupName="address">
         <div class="col-sm-12">
-          <label for="">Address</label>
+          <label for="">Address <span class="text-required">*</span></label>
           <div class="form-group">
             <input pInputText placeholder="Address 1" formControlName="address1">
             <p class="msgError text-danger"
@@ -83,7 +83,7 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">Country</label>
+            <label for="">Country <span class="text-required">*</span></label>
             <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
               [settings]="settings" formControlName="countryObj" (onSelect)="OnCountrySelect($event)"
               (onDeSelect)="OnCountryDeSelect($event)"></angular2-multiselect>
@@ -97,7 +97,7 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">State</label>
+            <label for="">State <span class="text-required">*</span></label>
             <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
               [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)"
               (onDeSelect)="OnStateDeSelect($event)"></angular2-multiselect>
@@ -157,7 +157,7 @@
       </div>
       <div class="col-sm-6" *ngIf="isGeneralUser">
         <div class="form-group">
-          <label for="">Date of Birth *</label>
+          <label for="">Date of Birth <span class="text-required">*</span></label>
           <p-calendar name="dateOfBirth" [formControl]="dateOfBirth" [monthNavigator]="true" [yearNavigator]="true"
             yearRange="2000:3000" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YY"
             (ngModelChange)="changeDate($event)"></p-calendar>
