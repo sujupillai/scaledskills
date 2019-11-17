@@ -4,7 +4,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">First Name <span class="text-required">*</span></label>
-          <input type="text" pInputText placeholder="First Name" formControlName="firstName" class="disabled" />
+          <input type="text" pInputText placeholder="Enter here" formControlName="firstName" class="disabled" />
           <p class="msgError text-danger"
             *ngIf="formControl.firstName.invalid && (formControl.firstName.dirty || submitted)">
             <small *ngIf="formControl.firstName.hasError('required')">
@@ -16,7 +16,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Last Name <span class="text-required">*</span></label>
-          <input pInputText placeholder="Last Name" formControlName="lastName">
+          <input pInputText placeholder="Enter here" formControlName="lastName">
           <p class="msgError text-danger"
             *ngIf="formControl.lastName.invalid && (formControl.lastName.dirty || submitted)">
             <small *ngIf="formControl.lastName.hasError('required')">
@@ -30,7 +30,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Email <span class="text-required">*</span></label>
-          <input pInputText placeholder="Email" formControlName="email" class="disabled">
+          <input pInputText placeholder="Enter here" formControlName="email" class="disabled">
           <p class="msgError text-danger" *ngIf="formControl.email.invalid && (formControl.email.dirty || submitted)">
             <small *ngIf="formControl.email.hasError('email') &&
                   !formControl.email.hasError('required')">
@@ -45,7 +45,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Mobile Number <span class="text-required">*</span></label>
-          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber" digitOnly>
+          <input pInputText placeholder="Enter here" formControlName="phoneNumber" digitOnly>
           <p class="msgError text-danger"
             *ngIf="formControl.phoneNumber.invalid && (formControl.phoneNumber.dirty || submitted)">
             <small *ngIf="formControl.phoneNumber.hasError('maxlength')">
@@ -66,7 +66,7 @@
         <div class="col-sm-12">
           <label for="">Address <span class="text-required">*</span></label>
           <div class="form-group">
-            <input pInputText placeholder="Address 1" formControlName="address1">
+            <input pInputText placeholder="Enter here" formControlName="address1">
             <p class="msgError text-danger"
               *ngIf="profileForm.get(['address', 'address1']).invalid && (profileForm.get(['address', 'address1']).dirty || submitted)">
               <small *ngIf="profileForm.get(['address', 'address1']).hasError('required')">
@@ -75,10 +75,10 @@
             </p>
           </div>
           <div class="form-group">
-            <input pInputText placeholder="Address 2" formControlName="address2">
+            <input pInputText placeholder="Enter here" formControlName="address2">
           </div>
           <div class="form-group">
-            <input pInputText placeholder="Address 3" formControlName="address3">
+            <input pInputText placeholder="Enter here" formControlName="address3">
           </div>
         </div>
         <div class="col-sm-6">
@@ -112,7 +112,7 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label for="">City</label>
-            <input pInputText placeholder="City" formControlName="city">
+            <input pInputText placeholder="Enter here" formControlName="city">
             <p class="msgError text-danger">
               <small
                 *ngIf="profileForm.get(['address', 'city']).hasError('required') && (profileForm.get(['address', 'city']).dirty || submitted)">
@@ -124,7 +124,7 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label for="">Zip/Postal Code</label>
-            <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
+            <input pInputText placeholder="Enter here" formControlName="zipCode">
             <p class="msgError text-danger">
               <small
                 *ngIf="profileForm.get(['address', 'zipCode']).hasError('required') && (profileForm.get(['address', 'zipCode']).dirty || submitted)">
@@ -172,7 +172,7 @@
       <div class="col-sm-6" *ngIf="isGeneralUser">
         <div class="form-group">
           <label for="">Referral ID</label>
-          <input pInputText placeholder="Referral ID" formControlName="referralID" class="disabled">
+          <input pInputText placeholder="Enter here" formControlName="referralID" class="disabled">
         </div>
       </div>
     </div>
