@@ -19,8 +19,10 @@ import { TrainingUrlComponent } from './view/training-url/training-url.component
 import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
 import { DialogService } from 'primeng/api';
 import { ConfirmationDialogComponent } from './_shared/confirmation-dialog/confirmation-dialog.component';
-import {RequestListComponent} from './training-request/request-list/request-list.component';
+import { RequestListComponent } from './training-request/request-list/request-list.component';
 import { RequestComponent } from './training-request/request.component';
+import { MyRequestComponent } from './training-request/my-request/my-request.component';
+import { MyResponseComponent } from './training-request/my-response/my-response.component';
 
 
 @NgModule({
@@ -34,8 +36,9 @@ import { RequestComponent } from './training-request/request.component';
     TrainerUrlComponent,
     ConfirmationDialogComponent,
     RequestComponent,
-    RequestListComponent
-
+    RequestListComponent,
+    MyRequestComponent,
+    MyResponseComponent
   ],
   imports: [
     BrowserModule,
@@ -47,21 +50,11 @@ import { RequestComponent } from './training-request/request.component';
   ],
   entryComponents: [ConfirmationDialogComponent],
   providers: [DialogService, SharedService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: interceptor.EncodeHttpParamsInterceptor,
-    //   multi: true
-    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: interceptor.HeaderInterceptor,
       multi: true
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: interceptor.HttpErrorInterceptor,
-    //   multi: true
-    // }
   ],
   exports: [],
   bootstrap: [AppComponent]

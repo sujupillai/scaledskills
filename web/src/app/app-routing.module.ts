@@ -6,10 +6,11 @@ import { TrainingUrlComponent } from './view/training-url/training-url.component
 import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
 import { RequestListComponent } from './training-request/request-list/request-list.component';
 import { RequestComponent } from './training-request/request.component';
+import { AuthGuard } from './_guards';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'trainingRequest', component: RequestComponent },
-  { path: 'trainingRequestList', component: RequestListComponent },
+  { path: 'trainingRequest/:id', component: RequestComponent, canActivate: [AuthGuard] },
+  { path: 'trainingRequests', component: RequestListComponent, canActivate: [AuthGuard] },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)
