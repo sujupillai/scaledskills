@@ -28,11 +28,9 @@ export class CategoryComponent implements OnInit {
       "pageSize": this.pageSize,
       "page": this.page
     }
-    let params = {
-      auth: false
-    }
+
     let url = ApiPath.homeRunningTraining
-    this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.RTList = [];
       this.RTList = res.result.results;
       this.currentLength = this.RTList.length;

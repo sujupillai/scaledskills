@@ -57,10 +57,8 @@ export class RegisterComponent implements OnInit {
   }
   get formControl() { return this.registerForm.controls }
   getMaster = (url, masterCollection) => {
-    let params = {
-      auth: false
-    }
-    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.responseCode == 200) {
         this[masterCollection] = res.result;
         if (masterCollection == 'countryList') {

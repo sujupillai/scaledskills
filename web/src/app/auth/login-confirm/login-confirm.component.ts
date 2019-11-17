@@ -21,10 +21,8 @@ export class LoginConfirmComponent implements OnInit {
   handleConfirmLogin = () => {
     let postObj = this.validateObj;
     let url = ApiPath.confirmEmail;
-    let params = {
-      auth: false
-    }
-    this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
+
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.isEmailVerify = true;
         this.message = res && res.result ? res.result : 'Email Confirm Successfully';
