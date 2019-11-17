@@ -20,6 +20,11 @@ export class CategoryComponent implements OnInit {
   constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router, private _AuthenticationService: AuthenticationService) { }
   ngOnInit() {
     this.getData();
+    this.getUserInfo();
+  }
+  getUserInfo = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue
+    this.isLoggedIn = this.userInfo ? true : false;
   }
   getData = () => {
     let postObj = {
@@ -28,7 +33,6 @@ export class CategoryComponent implements OnInit {
       "pageSize": this.pageSize,
       "page": this.page
     }
-
     let url = ApiPath.homeRunningTraining
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.RTList = [];
@@ -50,9 +54,7 @@ export class CategoryComponent implements OnInit {
     this.page = 0;
     this.currentLength = 0;
   }
-  fetchUserInfo = (item) => {
-    this.userInfo = this._AuthenticationService.currentUserValue
-    this.isLoggedIn = this.userInfo ? true : false;
+  handleInterest = (item) => {
     if (this.isLoggedIn) {
       let url = ApiPath.interest;
       url = url.replace('{TrainingId}', item.trainingId.toString())
@@ -62,8 +64,8 @@ export class CategoryComponent implements OnInit {
             { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Success')
-          item.interestCount=res['result'];
-          item.isInterested=true;
+          item.interestCount = res['result'];
+          item.isInterested = true;
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
@@ -72,11 +74,16 @@ export class CategoryComponent implements OnInit {
         }
       })
     } else {
-      localStorage.setItem('returnurl', this._Router.url);
-      this._Router.navigate(['/auth/login']);
+      let msgArray = [
+        { mgs: 'You sould login first to send interest for this training.', class: 'confirmMsg' },
+        { mgs: 'Do you want to login ?', class: 'subMsg' },
+      ]
+      this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+        if (res) {
+          localStorage.setItem('returnurl', this._Router.url);
+          this._Router.navigate(['/auth/login']);
+        }
+      })
     }
-  }
-  handleInterest = (item) => {
-    this.fetchUserInfo(item)
   }
 }
