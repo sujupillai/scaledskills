@@ -8,8 +8,8 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="">First Name *</label>
-                <input type="text" placeholder="First Name" pInputText formControlName="firstName" />
+                <label for="">First Name <span class="text-required">*</span></label>
+                <input type="text" placeholder="Enter Here" pInputText formControlName="firstName" />
                 <p class="msgError text-danger"
                   *ngIf="formControl.firstName.invalid && (formControl.firstName.dirty || submitted)">
                   <small *ngIf="formControl.firstName.hasError('required')">
@@ -20,8 +20,8 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="">Last Name *</label>
-                <input class="width_100" type="text" placeholder="Last Name" pInputText formControlName="lastName" />
+                <label for="">Last Name <span class="text-required">*</span></label>
+                <input class="width_100" type="text" placeholder="Enter Here" pInputText formControlName="lastName" />
                 <p class="msgError text-danger"
                   *ngIf="formControl.lastName.invalid && (formControl.lastName.dirty || submitted)">
                   <small *ngIf="formControl.lastName.hasError('required')">
@@ -32,8 +32,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="">Email address *</label>
-            <input class="width_100" type="text" placeholder="Email address" pInputText formControlName="email" />
+            <label for="">Email address <span class="text-required">*</span></label>
+            <input class="width_100" type="text" placeholder="Enter Here" pInputText formControlName="email" />
             <p class="msgError text-danger" *ngIf="formControl.email.invalid && (formControl.email.dirty || submitted)">
               <small *ngIf="formControl.email.hasError('email') &&
                     !formControl.email.hasError('required')">
@@ -45,7 +45,7 @@
             </p>
           </div>
           <div class="form-group">
-            <label for="">Mobile Number *</label>
+            <label for="">Mobile Number <span class="text-required">*</span></label>
             <div class="row">
               <div class="col-sm-4" style="padding-right: 0">
                 <angular2-multiselect [data]="countryList" [(ngModel)]="selectedCountry" [settings]="countrySettings"
@@ -65,7 +65,7 @@
               </div>
 
               <div class="col-sm-8" [ngClass]="{disabled: formControl.countryCode.value==null}">
-                <input type="text" placeholder="Mobile Number" pInputText formControlName="phoneNumber" digitOnly />
+                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" digitOnly />
               </div>
             </div>
             <p class="msgError text-danger"
@@ -84,8 +84,8 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="">Password *</label>
-                <input class="width_100" type="password" placeholder="Password" pInputText formControlName="password" />
+                <label for="">Password <span class="text-required">*</span></label>
+                <input class="width_100" type="password" placeholder="Enter Here" pInputText formControlName="password" />
                 <p class="msgError text-danger"
                   *ngIf="formControl.password.invalid && (formControl.password.dirty || submitted)">
                   <small *ngIf="formControl.password.hasError('minlength')">
@@ -99,8 +99,8 @@
             </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="">Confirm Password *</label>
-                <input class="width_100" type="password" placeholder="Confirm Password" pInputText
+                <label for="">Confirm Password <span class="text-required">*</span></label>
+                <input class="width_100" type="password" placeholder="Enter Here" pInputText
                   formControlName="confirmPassword" />
                 <p class="msgError text-danger"
                   *ngIf="formControl.confirmPassword.invalid && (formControl.confirmPassword.dirty || submitted)">
