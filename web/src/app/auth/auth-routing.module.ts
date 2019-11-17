@@ -4,6 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginConfirmComponent } from './login-confirm/login-confirm.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 const authRoutes = [
   {
     path: '',
@@ -12,7 +13,8 @@ const authRoutes = [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'userValidate', component: LoginConfirmComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'forgot', component: ForgotPasswordComponent },
     ]
   }
 ];
