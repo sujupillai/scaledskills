@@ -130,7 +130,7 @@ export class GeneralBasicComponent implements OnInit {
             }
           }
         });
-        let currentDate = new Date(dataObj.dateOfBirth)
+        let currentDate = dataObj.dateOfBirth?new Date(dataObj.dateOfBirth):''
         this.dateOfBirth.setValue(currentDate);
         var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
         if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
@@ -141,7 +141,7 @@ export class GeneralBasicComponent implements OnInit {
           var dateStr = this.convertDateString(this.dateOfBirth.value, 'date')
         }
         this.profileForm.get('referralID').setValue(nameStr + dateStr + monthStr);
-        this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth);
+        this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth?dataObj.dateOfBirth:'');
         this.profileForm.get(['address', 'address1']).setValue(dataObj.address && dataObj.address.address1 ? dataObj.address.address1 : '');
         this.profileForm.get(['address', 'address2']).setValue(dataObj.address && dataObj.address.address2 ? dataObj.address.address2 : '');
         this.profileForm.get(['address', 'address3']).setValue(dataObj.address && dataObj.address.address3 ? dataObj.address.address3 : '');
