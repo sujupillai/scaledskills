@@ -43,14 +43,12 @@ export class CredentialsComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
         }
         else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         }
       },
@@ -58,14 +56,12 @@ export class CredentialsComponent implements OnInit {
           let msgArray = [
             { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });
     } else {
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
-      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
       this.submitted = true;
     }
@@ -84,7 +80,6 @@ export class CredentialsComponent implements OnInit {
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
-    // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.credentialForm)
