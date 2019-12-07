@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Organization Name *</label>
+          <label for="">Organization Name <span class="text-required">*</span></label>
           <input type="text" pInputText placeholder="Organization Name" formControlName="name" (change)="upateUrl()" />
           <p class="msgError text-danger"
             *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
@@ -13,7 +13,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Contact Person or Owner Name *</label>
+          <label for="">Contact Person or Owner Name <span class="text-required">*</span></label>
           <input type="text" pInputText placeholder="Contact Person or Owner Name" formControlName="ownerName" />
           <p class="msgError text-danger"
             *ngIf="formControl.ownerName.hasError('required') && (formControl.ownerName.dirty || submitted)">
@@ -83,7 +83,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Email *</label>
+          <label for="">Email <span class="text-required">*</span></label>
           <input pInputText placeholder="Email" formControlName="email">
           <p class="msgError text-danger" *ngIf="formControl.email.hasError('email') &&
                         !formControl.email.hasError('required')">
@@ -97,7 +97,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Mobile Number *</label>
+          <label for="">Mobile Number <span class="text-required">*</span></label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber">
           <p class="msgError" *ngIf="formControl.phoneNumber.hasError('minlength')">
             Atleast 10 numbers.

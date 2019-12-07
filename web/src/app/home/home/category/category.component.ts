@@ -28,11 +28,8 @@ export class CategoryComponent implements OnInit {
       "pageSize": this.pageSize,
       "page": this.page
     }
-    let params = {
-      auth: false
-    }
     let url = ApiPath.homeRunningTraining
-    this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.RTList = [];
       this.RTList = res.result.results;
       this.currentLength = this.RTList.length;
@@ -51,34 +48,5 @@ export class CategoryComponent implements OnInit {
     this.searchText = searchValue;
     this.page = 0;
     this.currentLength = 0;
-  }
-  fetchUserInfo = (item) => {
-    this.userInfo = this._AuthenticationService.currentUserValue
-    this.isLoggedIn = this.userInfo ? true : false;
-    if (this.isLoggedIn) {
-      let url = ApiPath.interest;
-      url = url.replace('{TrainingId}', item.trainingId.toString())
-      this._HttpService.httpCall(url, 'POST', item.trainingId, null).subscribe(res => {
-        if (res && res.responseCode == 200) {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Success')
-          item.interestCount=res['result'];
-          item.isInterested=true;
-        } else {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-        }
-      })
-    } else {
-      localStorage.setItem('returnurl', this._Router.url);
-      this._Router.navigate(['/auth/login']);
-    }
-  }
-  handleInterest = (item) => {
-    this.fetchUserInfo(item)
   }
 }

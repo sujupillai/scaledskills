@@ -66,7 +66,7 @@
         <div class="col-sm-12">
           <label for="">Address <span class="required">*</span></label>
           <div class="form-group">
-            <input pInputText placeholder="Address 1" formControlName="address1">
+            <input pInputText placeholder="Enter Here" formControlName="address1">
             <p class="msgError text-danger"
               *ngIf="profileForm.get(['address', 'address1']).invalid && (profileForm.get(['address', 'address1']).dirty || submitted)">
               <small *ngIf="profileForm.get(['address', 'address1']).hasError('required')">
@@ -75,10 +75,10 @@
             </p>
           </div>
           <div class="form-group">
-            <input pInputText placeholder="Address 2" formControlName="address2">
+            <input pInputText placeholder="Enter Here" formControlName="address2">
           </div>
           <div class="form-group">
-            <input pInputText placeholder="Address 3" formControlName="address3">
+            <input pInputText placeholder="Enter Here" formControlName="address3">
           </div>
         </div>
         <div class="col-sm-6">
@@ -172,14 +172,14 @@
       <div class="col-sm-6" *ngIf="isGeneralUser">
         <div class="form-group">
           <label for="">Referral ID</label>
-          <input pInputText placeholder="Referral ID" formControlName="referralID" class="disabled">
+          <input pInputText placeholder="Enter Here" formControlName="referralID" class="disabled">
         </div>
       </div>
     </div>
     <div class="form-group button-group text-right">
       <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
         (click)="handleCancel()"></button>
-      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
     </div>
   </div>
 </form>

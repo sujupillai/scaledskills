@@ -19,11 +19,9 @@ export class HomeBannerComponent implements OnInit {
   }
   getData = () => {
     let url = ApiPath.headerTraining;
-    let params = {
-      auth: false
-    }
+
     url = url.replace('{urlName}', ' ')
-    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       this.bannerItems = res.result.topHeaders;
     })
   }

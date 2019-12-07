@@ -7,9 +7,10 @@ import { AuthComponent } from './auth/auth.component';
 import { SharedService } from '../_service/shared.service';
 import { SharedModule } from '../_shared/shared.module';
 import { LoginConfirmComponent } from './login-confirm/login-confirm.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, AuthComponent, LoginConfirmComponent],
+  declarations: [RegisterComponent, LoginComponent, AuthComponent, LoginConfirmComponent, ForgotPasswordComponent],
   imports: [
     AuthRoutingModule, NgPrimeModule, SharedModule
   ],

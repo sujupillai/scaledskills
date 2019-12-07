@@ -5,10 +5,10 @@ import { MustMatch } from '../../_helpers/_validators/must-match.validator';
 import { ApiPath } from '../../_helpers/_constants/api'
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html'
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
 })
-export class RegisterComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
   registerForm: FormGroup;
   error = '';
   submitted: boolean = false;
@@ -57,6 +57,7 @@ export class RegisterComponent implements OnInit {
   }
   get formControl() { return this.registerForm.controls }
   getMaster = (url, masterCollection) => {
+
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.responseCode == 200) {
         this[masterCollection] = res.result;
@@ -103,10 +104,9 @@ export class RegisterComponent implements OnInit {
             { mgs: res.responseMessege, class: 'confirmMsg' },
             { mgs: 'Please check your registered email id for verify your account.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
-          setTimeout(() => {
-            this._Router.navigate(['/'])
-          }, 500)
+          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+            this._Router.navigate(['/']);
+          })
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
