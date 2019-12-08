@@ -43,7 +43,8 @@ export class TrainerUrlComponent implements OnInit {
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.userId = res['user'] && res['user']['id'] > 0 ? res['user']['id'] : 0;
+        debugger
+        this.userId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.userId > 0) {
           this.entity = res.result ? res.result : null;
           this.fetchPastTraining();

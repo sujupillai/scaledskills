@@ -134,8 +134,6 @@ export class TrainerBasicComponent implements OnInit {
         } else {
           this.isUrl = false
         }
-        // let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
-        // this.formControl['profileUrl'].setValue(urlStr)
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
         var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
@@ -239,10 +237,8 @@ export class TrainerBasicComponent implements OnInit {
     })
   }
   upateUrl = () => {
-    if(!this.isUrl){
-      let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
+    let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)
-    }
   }
   copyText() {
     let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;

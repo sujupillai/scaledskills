@@ -1237,6 +1237,14 @@ textarea.ui-inputtext {
   .ui-carousel-dropdown {
     display: none !important
   }
+  img{
+    max-height: 362px;
+  }
+}
+li.ui-carousel-item.ui-widget-content.ui-corner-all{
+  img{
+    max-height: 350px;
+  }
 }
 .banner_no_header {
   .ui-carousel-header {
