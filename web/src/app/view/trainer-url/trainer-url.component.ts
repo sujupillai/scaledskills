@@ -12,20 +12,23 @@ export class TrainerUrlComponent implements OnInit {
   isSendMesage: boolean = false;
   cities = [];
   carouselitems = [];
+  userId = 0;
   regUsers = [];
+  reviews = [];
   upcommingTrainings = [];
+  fbUrl: string = 'www.fb.com'
   pastTrainings = [];
   relatedTrainings = [];
   noRecord = [];
   urlString: string = '';
-  entity = {};
+  entity = null;
   constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService) {
   }
   ngOnInit() {
     this.noRecord = [
       { msg: 'No records to display' }
     ];
-    this.cars=this.noRecord;
+    this.cars = this.noRecord;
     let url = ApiPath.generalUrl
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.url;
@@ -41,7 +44,36 @@ export class TrainerUrlComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.entity = res.result;
+        this.userId = this.entity['user']['id'];
+        if (this.userId > 0) {
+          this.fetchPastTraining();
+          this.fetchUpcomingTraining();
+        }
       }
+    })
+  }
+  fetchPastTraining = () => {
+    let postObj = {
+      "userId": this.userId,
+      "searchText": "",
+      "pageSize": 1000,
+      "page": 0
+    }
+    let url = ApiPath.pastTraining;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      this.pastTrainings = res.result.results;
+    })
+  }
+  fetchUpcomingTraining = () => {
+    let postObj = {
+      "userId": this.userId,
+      "searchText": "",
+      "pageSize": 1000,
+      "page": 0
+    }
+    let url = ApiPath.upcomingTraining;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      this.upcommingTrainings = res.result.results;
     })
   }
   showDialog() {
@@ -49,5 +81,13 @@ export class TrainerUrlComponent implements OnInit {
   }
   showSendMesage() {
     this.isSendMesage = true;
+  }
+  openUrl(urlToOpen) {
+    let url: string = '';
+    if (!/^http[s]?:\/\//.test(urlToOpen)) {
+      url += 'http://';
+    }
+    url += urlToOpen;
+    window.open(url, '_blank');
   }
 }

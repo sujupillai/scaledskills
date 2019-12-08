@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="entity">
   <div class="">
     <div class="header_detail">
       <div class="userThumbWrap">
@@ -6,29 +6,41 @@
           <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
         </div>
         <div class="text-desc">
-          <h3>Ryan Scalf
+          <h3>{{entity.user && entity.user.firstName?entity.user.firstName:'N/A'}}
+            {{entity.user && entity.user.lastName?entity.user.lastName:'N/A'}}
             &nbsp;
             <button type="button" class="btn btn-gradient bookBtn">
               4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
             </button></h3>
-          <div><strong>Email:</strong> ryan@egurus.com</div>
-          <div><strong>Website:</strong> <a href="" target="_blank">http://ryanprofileegurus</a></div>
+          <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
+          <div><strong>Website:</strong>
+            <span *ngIf="entity.social && entity.social.length>0">
+              <a target="_blank" *ngFor="let item of entity.social"
+                href="{{item.websiteUrls?item.websiteUrls:'javascript:void(0)'}}">
+                {{item.websiteUrls?item.websiteUrls:'N/A'}}
+              </a>
+            </span>
+          </div>
           <div>
             <strong>Connect with me:</strong>
             <div class="trainingActions inline-block ml15">
               <div class="flex feed-row">
-                <div class="item cursor-pointer round">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                <div class="item round"
+                  [ngClass]="(entity.social.length>0 && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
+                  <i class="fa fa-linkedin" aria-hidden="true" (click)="openUrl(entity.social[0].linkedInUrls)"></i>
                 </div>
-                <div class="item cursor-pointer round">
-                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                <div class="item round"
+                  [ngClass]="(entity.social.length>0 && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
+                  <i class="fa fa-facebook-square" aria-hidden="true"
+                    (click)="openUrl(entity.social[0].facebookUrls)"></i>
                 </div>
-                <div class="item cursor-pointer round">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                <div class="item round"
+                  [ngClass]="(entity.social.length>0 && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
+                  <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
-                <div class="item cursor-pointer round">
-                  <i class="fa fa-youtube-play" aria-hidden="true"></i>
-                </div>
+                <!-- <div class="item cursor-pointer round">
+                    <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                  </div> -->
               </div>
             </div>
           </div>
@@ -84,153 +96,67 @@
     </ul>
     <div class="tab-content">
       <div>
-        <p>
-          Ryan Scalf has over fifteen years of experience in developing and delivering software solutions for different
-          domains such as finance, healthcare, retail and shipping. He has enjoyed different project roles, doing
-          whatever
-          it needs to ensure successful customer delivery – client interaction, requirements analysis, architecture and
-          design, code development or project management.
-        </p>
+        <h3>About</h3>
+        <p [innerHTML]="entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>
       </div>
       <div class="border-line top bottom"></div>
       <div>
         <h3>Courses</h3>
-        <p>
-          Ryan Scalf has over fifteen years of experience in developing and delivering software solutions for different
-          domains such as finance, healthcare, retail and shipping. He has enjoyed different project roles, doing
-          whatever
-          it needs to ensure successful customer delivery – client interaction, requirements analysis, architecture and
-          design, code development or project management.
-        </p>
-        <p>
-          Ryan Scalf has been practicing Agile software development best practices for almost a decade – including
-          automated
-          testing, limiting work in progress, incremental delivery, faster feedback cycle and continuous improvement.
-          Sanjay
-          carries a strong technical foundation in object-oriented programming (Java/J2EE) and database design, and
-          believes
-          ‘working software’ is an essential yet a lower-level goal; it is ‘maintainable and testable software’ that
-          truly
-          classifies someone as a good programmer.
-        </p>
+        <p [innerHTML]="entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'"></p>
       </div>
       <div class="border-line top bottom"></div>
       <div>
         <h3>Certifications</h3>
         <ul class="list-li">
-          <li>
-            <strong>AKT</strong> – Accredited Kanban Trainer from Lean Kanban University
+          <li *ngFor="let item of entity.certificate">
+            <strong>{{item.name}}</strong> – {{item.authority}} {{item.from}} to {{item.to}}
+            {{item.isExpired?'Expired':''}}
           </li>
-          <li>
-            <strong>ICP-ACC</strong> – Accredited Kanban Trainer from Lean Kanban University
-          </li>
-          <li>
-            <strong>CSP</strong> – Accredited Kanban Trainer from Lean Kanban University
-          </li>
-          <li>
-            <strong>ICP-ATF</strong> – Accredited Kanban Trainer from Lean Kanban University
-          </li>
-          <li>
-            <strong>KMP</strong> – Accredited Kanban Trainer from Lean Kanban University
-          </li>
-          <li>
-            <strong>PMI-ACP</strong> – Accredited Kanban Trainer from Lean Kanban University
-          </li>
-          <li>
-            <strong>CSD</strong> – Accredited Kanban Trainer from Lean Kanban University
-          </li>
+          <li *ngIf="entity.certificate.length==0">No records to display.</li>
         </ul>
       </div>
       <div class="border-line top bottom"></div>
       <div class="form-group">
-        <p-carousel headerText="Upcoming Trainings by Ryan Scalf" [value]="cars">
-          <ng-template let-car pTemplate="item">
+        <p-carousel headerText="Upcoming Trainings ({{upcommingTrainings.length}})" [value]="upcommingTrainings"
+          numVisible="5" circular="true" autoplayInterval="5000" *ngIf="upcommingTrainings.length>0">
+          <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">
-              <p-card header="Card Title" subheader="Card Subheader" styleClass="ui-card-shadow">
-                <div>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p>
-                      <i class="pi pi-map-marker"></i>New Delhi
-                    </p>
-                  </div>
-                  <div class="col-sm-6 text-right">
-                    <p class="label-price">
-                      Rs. 1200
-                    </p>
-                  </div>
-                </div>
-                <p-footer>
-                  <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
-                  <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
-                  <button pButton type="button" label="Tag" icon="pi pi-tag" class="ui-button-secondary"></button>
-                </p-footer>
+              <app-training-card [item]="item"></app-training-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Upcoming Trainings  ({{upcommingTrainings.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="upcommingTrainings.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
               </p-card>
             </div>
           </ng-template>
         </p-carousel>
       </div>
       <div class="border-line top bottom"></div>
+      <!-- past training -->
       <div class="form-group">
-        <div class="width_100">
-          <p-carousel headerText="Past Training ({{pastTrainings.length}})" [value]="pastTrainings"
-            autoplayInterval="5000" *ngIf="pastTrainings.length>0">
-            <ng-template let-item pTemplate="item">
-              <div class="ui-grid ui-grid-responsive">
-                <p-card styleClass="ui-card-shadow">
-                  <p-header>
-                    <img src="Card" src="{{item.imageUrl}}" alt="image">
-                  </p-header>
-                  <div class="card-inner">
-                    <div class="date">
-                      <span class="month">{{item.startDate | date: 'MMM'}}</span>
-                      <br>
-                      {{item.startDate | date: 'dd'}}
-                    </div>
-                    <div class="card-desc">
-                      <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                        class="event">{{item.name?item.name:'NA'}}</a>
-                      <p class="text-right">
-                        <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
-                      </p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="card-desc flex_c_c">
-                    <p class="label-price">
-                      {{item.mode?item.mode:'NA'}}
-                    </p>
-                    <p class="label-price border">
-                      Rs. {{item.amount?item.amount:'NA'}}
-                    </p>
-                  </div>
-                  <hr>
-                  <div class="card-desc flex_c_c">
-                    <p class="label-price border">
-                      <i class="fa fa-star" aria-hidden="true"></i> interested
-                    </p>
-                    <p class="label-price">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
-                    </p>
-                  </div>
-                </p-card>
-              </div>
-            </ng-template>
-          </p-carousel>
-          <p-carousel headerText="Past Training ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
-            *ngIf="pastTrainings.length==0">
-            <ng-template let-item pTemplate="item">
-              <div class="ui-grid ui-grid-responsive">
-                <p-card>
-                  {{item.msg}}
-                </p-card>
-              </div>
-            </ng-template>
-          </p-carousel>
-        </div>
+        <p-carousel headerText="Past Trainings ({{pastTrainings.length}})" [value]="pastTrainings" numVisible="5"
+          circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <app-training-card [item]="item"></app-training-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Past Trainings  ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="pastTrainings.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
       </div>
       <div class="border-line top bottom"></div>
       <div class="rewiew-wrap">
@@ -241,67 +167,9 @@
                 <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
               </div>
               <div class="text-desc">
-                <h3>Ryan Scalf</h3>
-                <p>attended Web Development Programme</p>
-                <p>posted on 24 Oct, 2018</p>
-              </div>
-            </div>
-            <div class="description">
-              "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead in
-              your
-              life and do your best. I had improved my communication skills, confidence level and technical skills. I
-              recommend. "
-            </div>
-          </p-card>
-        </div>
-        <div class="form-group">
-          <p-card class="training-reviews">
-            <div class="userThumbWrap">
-              <div class="thumb">
-                <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
-              </div>
-              <div class="text-desc">
-                <h3>Ryan Scalf</h3>
-                <p>attended Web Development Programme</p>
-                <p>posted on 24 Oct, 2018</p>
-              </div>
-            </div>
-            <div class="description">
-              "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead in
-              your
-              life and do your best. I had improved my communication skills, confidence level and technical skills. I
-              recommend. "
-            </div>
-          </p-card>
-        </div>
-        <div class="form-group">
-          <p-card class="training-reviews">
-            <div class="userThumbWrap">
-              <div class="thumb">
-                <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
-              </div>
-              <div class="text-desc">
-                <h3>Ryan Scalf</h3>
-                <p>attended Web Development Programme</p>
-                <p>posted on 24 Oct, 2018</p>
-              </div>
-            </div>
-            <div class="description">
-              "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead in
-              your
-              life and do your best. I had improved my communication skills, confidence level and technical skills. I
-              recommend. "
-            </div>
-          </p-card>
-        </div>
-        <div class="form-group">
-          <p-card class="training-reviews">
-            <div class="userThumbWrap">
-              <div class="thumb">
-                <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
-              </div>
-              <div class="text-desc">
-                <h3>Ryan Scalf</h3>
+                <h3>{{entity.user && entity.user.firstName?entity.user.firstName:''}}
+                  {{entity.user && entity.user.lastName?entity.user.lastName:''}}
+                </h3>
                 <p>attended Web Development Programme</p>
                 <p>posted on 24 Oct, 2018</p>
               </div>

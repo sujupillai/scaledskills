@@ -21,6 +21,7 @@ export class AttendeeViewComponent implements OnInit {
   upcomingTraining = () => {
     let postObj = {
       "userId": 0,
+      'pageType': 'p',
       "searchText": "",
       "pageSize": 16,
       "page": 0
@@ -33,6 +34,7 @@ export class AttendeeViewComponent implements OnInit {
   pastTraining = () => {
     let postObj = {
       "userId": 0,
+      'pageType': 'p',
       "searchText": "",
       "pageSize": 16,
       "page": 0
@@ -45,6 +47,7 @@ export class AttendeeViewComponent implements OnInit {
   cancelTraining = () => {
     let postObj = {
       "userId": 0,
+      'pageType': 'p',
       "searchText": "",
       "pageSize": 16,
       "page": 0

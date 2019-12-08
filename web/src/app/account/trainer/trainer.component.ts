@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 @Component({
   selector: 'app-account-trainer',
-  templateUrl: '/trainer.component.html'
+  templateUrl: './trainer.component.html'
 })
 export class TrainerComponent implements OnInit {
   activeProfileTab: number = 0;
