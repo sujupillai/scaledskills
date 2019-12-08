@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label>Training Need <span class="text-required">*</span></label>
+          <label>Training Need <span class="required">*</span></label>
           <p-dropdown [options]="trainingNeedDDL" formControlName="needTypeObj" placeholder="Select" optionLabel="text"
             optionValue="value" [showClear]="true" (onChange)="handleOnChangeId($event, 'needType')">
           </p-dropdown>
@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label>Training Type <span class="text-required">*</span></label>
+          <label>Training Type <span class="required">*</span></label>
           <p-dropdown [options]="trainingTypeDDL" formControlName="trainingTypeObj" placeholder="Select"
             optionLabel="text" optionValue="value" [showClear]="true"
             (onChange)="handleOnChangeId($event, 'trainingType')">
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label>Company Name <span class="text-required">*</span></label>
+          <label>Company Name <span class="required">*</span></label>
           <input type="text" pInputText placeholder="Company Name" formControlName="companyName" />
           <p class="msgError"
             *ngIf="formControl.companyName.hasError('required') && (formControl.companyName.dirty || submitted)">
@@ -48,7 +48,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-          <label>Training Summary <span class="text-required">*</span></label>
+          <label>Training Summary <span class="required">*</span></label>
           <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
           <p class="msgError"
             *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submitted)">
@@ -60,7 +60,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-          <label>Description <span class="text-required">*</span></label>
+          <label>Description <span class="required">*</span></label>
           <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
           <p class="msgError"
             *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">

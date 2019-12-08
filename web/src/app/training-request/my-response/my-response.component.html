@@ -112,7 +112,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label>Description <span class="text-required">*</span></label>
+                    <label>Description <span class="required">*</span></label>
                     <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
                     <p class="msgError"
                         *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">
@@ -135,7 +135,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label>Status Comment <span class="text-required">*</span></label>
+                    <label>Status Comment <span class="required">*</span></label>
                     <textarea pInputTextarea autoResize="autoResize" formControlName="summery"></textarea>
                     <p class="msgError"
                         *ngIf="formControl.summery.hasError('required') && (formControl.summery.dirty || submitted)">

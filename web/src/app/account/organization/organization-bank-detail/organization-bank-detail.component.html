@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Account Holder Name <span class="text-required">*</span></label>
+          <label for="">Account Holder Name <span class="required">*</span></label>
           <input type="text" pInputText placeholder="Account Holder Name" formControlName="name" />
           <p class="msgError text-danger"
             *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">Required
@@ -12,7 +12,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Account Number <span class="text-required">*</span></label>
+          <label for="">Account Number <span class="required">*</span></label>
           <input type="text" pInputText placeholder="Account Number" formControlName="accountNumber" />
           <p class="msgError text-danger"
             *ngIf="formControl.accountNumber.hasError('required') && (formControl.accountNumber.dirty || submitted)">
@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Bank Name <span class="text-required">*</span></label>
+          <label for="">Bank Name <span class="required">*</span></label>
           <input type="text" pInputText placeholder="Bank Name" formControlName="bankName" />
           <p class="msgError text-danger"
             *ngIf="formControl.bankName.hasError('required') && (formControl.bankName.dirty || submitted)">
@@ -34,7 +34,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">Branch <span class="text-required">*</span></label>
+          <label for="">Branch <span class="required">*</span></label>
           <input type="text" pInputText placeholder="Branch" formControlName="branchName" />
           <p class="msgError text-danger"
             *ngIf="formControl.branchName.hasError('required') && (formControl.branchName.dirty || submitted)">
@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">IFSC <span class="text-required">*</span></label>
+          <label for="">IFSC <span class="required">*</span></label>
           <input type="text" pInputText placeholder="IFSC" formControlName="ifscCode" />
           <p class="msgError text-danger"
             *ngIf="formControl.ifscCode.hasError('required') && (formControl.ifscCode.dirty || submitted)">
@@ -56,7 +56,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">GST Number <span class="text-required">*</span></label>
+          <label for="">GST Number <span class="required">*</span></label>
           <input type="text" pInputText placeholder="GST Number" formControlName="gstNum" />
           <p class="msgError text-danger"
             *ngIf="formControl.gstNum.hasError('required') && (formControl.gstNum.dirty || submitted)">
@@ -121,7 +121,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="form-group">
-          <label>Account Type <span class="text-required">*</span></label>
+          <label>Account Type <span class="required">*</span></label>
           <div>
             <p-radioButton name="accountType" value="1" label="Current" formControlName="accountType" inputId="opt1">
             </p-radioButton>
