@@ -58,7 +58,7 @@
       </div>
       <div class="text-right">
           <a href="javascript:void(0)" (click)="copyText()" *ngIf="!isUrl"> Validate</a>
-          <a href="javascript:void(0)" class="ml15" (click)="copyText()">Copy</a>
+          <a href="javascript:void(0)" class="ml15" (click)="copyText()" *ngIf="isUrl">Detail</a>
       </div>
       <p class="msgError text-success" *ngIf="isCopied">Url Copied to clipboard.</p>
     </div>

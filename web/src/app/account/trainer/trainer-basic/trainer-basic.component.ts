@@ -245,8 +245,6 @@ export class TrainerBasicComponent implements OnInit {
     }
   }
   copyText() {
-    let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
-    this.formControl['profileUrl'].setValue(urlStr)
     let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
