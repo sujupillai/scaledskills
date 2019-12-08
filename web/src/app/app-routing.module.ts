@@ -6,6 +6,7 @@ import { TrainingUrlComponent } from './view/training-url/training-url.component
 import { TrainerUrlComponent } from './view/trainer-url/trainer-url.component';
 import { RequestListComponent } from './training-request/request-list/request-list.component';
 import { RequestComponent } from './training-request/request.component';
+import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.component';
 import { AuthGuard } from './_guards';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'report', component: ReportComponent },
   { path: 'view/t/:url', component: TrainingUrlComponent },
   { path: 'view/p/:url', component: TrainerUrlComponent },
+  { path: 'view/o/:url', component: OrganizerUrlComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
 @NgModule({

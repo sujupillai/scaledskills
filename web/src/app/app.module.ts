@@ -23,8 +23,7 @@ import { RequestListComponent } from './training-request/request-list/request-li
 import { RequestComponent } from './training-request/request.component';
 import { MyRequestComponent } from './training-request/my-request/my-request.component';
 import { MyResponseComponent } from './training-request/my-response/my-response.component';
-
-
+import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +37,8 @@ import { MyResponseComponent } from './training-request/my-response/my-response.
     RequestComponent,
     RequestListComponent,
     MyRequestComponent,
-    MyResponseComponent
+    MyResponseComponent,
+    OrganizerUrlComponent,
   ],
   imports: [
     BrowserModule,

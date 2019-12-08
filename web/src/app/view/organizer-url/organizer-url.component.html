@@ -1,0 +1,248 @@
+<div class="container" *ngIf="entity!=null">
+  <div class="">
+    <div class="header_detail">
+      <div class="userThumbWrap">
+        <div class="thumb trainer">
+          <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+        </div>
+        <div class="text-desc">
+          <h3>{{entity.user && entity.user.firstName?entity.user.firstName:'N/A'}}
+            {{entity.user && entity.user.lastName?entity.user.lastName:'N/A'}}
+            &nbsp;
+            <button type="button" class="btn btn-gradient bookBtn">
+              4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
+            </button></h3>
+          <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
+          <div><strong>Website:</strong>
+            <span *ngIf="entity.social && entity.social.length>0">
+              <a target="_blank" *ngFor="let item of entity.social"
+                href="{{item.websiteUrls?item.websiteUrls:'javascript:void(0)'}}">
+                {{item.websiteUrls?item.websiteUrls:'N/A'}}
+              </a>
+            </span>
+          </div>
+          <div>
+            <strong>Connect with me:</strong>
+            <div class="trainingActions inline-block ml15">
+              <div class="flex feed-row">
+                <div class="item round"
+                  [ngClass]="(entity.social.length>0 && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
+                  <i class="fa fa-linkedin" aria-hidden="true" (click)="openUrl(entity.social[0].linkedInUrls)"></i>
+                </div>
+                <div class="item round"
+                  [ngClass]="(entity.social.length>0 && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
+                  <i class="fa fa-facebook-square" aria-hidden="true"
+                    (click)="openUrl(entity.social[0].facebookUrls)"></i>
+                </div>
+                <div class="item round"
+                  [ngClass]="(entity.social.length>0 && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
+                  <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
+                </div>
+                <!-- <div class="item cursor-pointer round">
+                          <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                        </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="trainingActions">
+        <div class="inline-block">
+          <div class="flex feed-row">
+            <div class="item cursor-pointer"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</div>
+            <div class="item cursor-pointer" (click)="showDialog()">
+              <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Favourite
+            </div>
+            <div class="item cursor-pointer" (click)="showDialog()">
+              <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Send Message</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border-line top bottom invisible"></div>
+  <div class="training-page-content">
+    <ul class="tab-menu">
+      <li>
+        <a href="javascript:void(0)" class="active">
+          About
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          Courses Offered
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          Certification
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          Upcoming Trainings
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          Past Trainings
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          Reviews
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div>
+        <h3>About</h3>
+        <p [innerHTML]="entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>
+      </div>
+      <div class="border-line top bottom"></div>
+      <div>
+        <h3>Courses</h3>
+        <p [innerHTML]="entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'"></p>
+      </div>
+      <div class="border-line top bottom"></div>
+      <div>
+        <h3>Certifications</h3>
+        <ul class="list-li">
+          <li *ngFor="let item of entity.certificate">
+            <strong>{{item.name}}</strong> – {{item.authority}} {{item.from}} to {{item.to}}
+            {{item.isExpired?'Expired':''}}
+          </li>
+          <li *ngIf="entity.certificate.length==0">No records to display.</li>
+        </ul>
+      </div>
+      <div class="border-line top bottom"></div>
+      <div class="form-group">
+        <p-carousel headerText="Upcoming Trainings ({{upcommingTrainings.length}})" [value]="upcommingTrainings"
+          numVisible="5" circular="true" autoplayInterval="5000" *ngIf="upcommingTrainings.length>0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <app-training-card [item]="item"></app-training-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Upcoming Trainings  ({{upcommingTrainings.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="upcommingTrainings.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <div class="border-line top bottom"></div>
+      <!-- past training -->
+      <div class="form-group">
+        <p-carousel headerText="Past Trainings ({{pastTrainings.length}})" [value]="pastTrainings" numVisible="5"
+          circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <app-training-card [item]="item"></app-training-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Past Trainings  ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="pastTrainings.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <div class="border-line top bottom"></div>
+      <div class="rewiew-wrap">
+        <div class="form-group">
+          <p-card class="training-reviews">
+            <div class="userThumbWrap">
+              <div class="thumb">
+                <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+              </div>
+              <div class="text-desc">
+                <h3>{{entity.user && entity.user.firstName?entity.user.firstName:''}}
+                  {{entity.user && entity.user.lastName?entity.user.lastName:''}}
+                </h3>
+                <p>attended Web Development Programme</p>
+                <p>posted on 24 Oct, 2018</p>
+              </div>
+            </div>
+            <div class="description">
+              "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead in
+              your
+              life and do your best. I had improved my communication skills, confidence level and technical skills. I
+              recommend. "
+            </div>
+          </p-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog header="Feedback" [(visible)]="display" [modal]="true" [responsive]="true"
+  [style]="{width: '80%', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+  <form autocomplete="off" novalidate>
+    <div class="form-goup">
+      <label>How satisfied were you with the training</label>
+      <div>
+        <p-rating></p-rating>
+      </div>
+    </div>
+    <div class="form-goup">
+      <label>What you like about the training</label>
+      <textarea style="height: 150px" placeholder="What you like about the training" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-goup">
+      <label>How we can improve the training</label>
+      <textarea style="height: 150px" placeholder="How we can improve the training" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-goup">
+      <label>Training you need in future</label>
+      <textarea style="height: 150px" placeholder="Training you need in future" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="submit" label="Submit" class="ui-button-raised"
+        (click)="handleSubmit(); display=false"></button>
+      <button pButton type="button" label="Cancel" (click)="display=false"
+        class="ui-button-raised ui-button-danger"></button>
+    </div>
+  </form>
+</p-dialog>
+<p-dialog header="SEND MESSAGE" [(visible)]="isSendMesage" [modal]="true" [responsive]="true"
+  [style]="{width: '80%', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+  <form autocomplete="off" novalidate>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" pInputText placeholder="Full Name" />
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" pInputText placeholder="Email" />
+    </div>
+    <div class="form-group">
+      <label>Phone No</label>
+      <input type="text" pInputText placeholder="Phone No" />
+    </div>
+    <div class="form-goup">
+      <label>Message</label>
+      <textarea style="height: 150px" placeholder="Message" pInputTextarea autoResize="autoResize"></textarea>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="submit" label="Submit" class="ui-button-raised"
+        (click)="handleSubmit(); display=false"></button>
+      <button pButton type="button" label="Cancel" (click)="display=false"
+        class="ui-button-raised ui-button-danger"></button>
+    </div>
+  </form>
+</p-dialog>
+<app-error *ngIf="entity==null && isError"></app-error>
