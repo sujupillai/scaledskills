@@ -21,6 +21,7 @@ export class GeneralBasicComponent implements OnInit {
   minDate: Date = new Date();
   basicApi = '';
   isGeneralUser: boolean = true;
+  isReferralID = false;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createprofileForm(() => {
@@ -130,18 +131,15 @@ export class GeneralBasicComponent implements OnInit {
             }
           }
         });
-        let currentDate = dataObj.dateOfBirth?new Date(dataObj.dateOfBirth):''
+        let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
-        var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
-        if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
-          var monthStr = '00';
-          var dateStr = '00'
+        this.profileForm.get('referralID').setValue(dataObj.referralID);
+        if (dataObj.referralID) {
+          this.isReferralID = true
         } else {
-          var monthStr = this.convertDateString(this.dateOfBirth.value, 'month');
-          var dateStr = this.convertDateString(this.dateOfBirth.value, 'date')
+          this.isReferralID = false
         }
-        this.profileForm.get('referralID').setValue(nameStr + dateStr + monthStr);
-        this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth?dataObj.dateOfBirth:'');
+        this.profileForm.get('dateOfBirth').setValue(dataObj.dateOfBirth ? dataObj.dateOfBirth : '');
         this.profileForm.get(['address', 'address1']).setValue(dataObj.address && dataObj.address.address1 ? dataObj.address.address1 : '');
         this.profileForm.get(['address', 'address2']).setValue(dataObj.address && dataObj.address.address2 ? dataObj.address.address2 : '');
         this.profileForm.get(['address', 'address3']).setValue(dataObj.address && dataObj.address.address3 ? dataObj.address.address3 : '');
@@ -213,15 +211,17 @@ export class GeneralBasicComponent implements OnInit {
     this.getProfileData()
   }
   changeDate = (event) => {
-    var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
-    if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
-      var monthStr = '00';
-      var dateStr = '00'
-    } else {
-      var monthStr = this.convertDateString(this.dateOfBirth.value, 'month');
-      var dateStr = this.convertDateString(this.dateOfBirth.value, 'date')
+    if (!this.isReferralID) {
+      var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
+      if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
+        var monthStr = '00';
+        var dateStr = '00'
+      } else {
+        var monthStr = this.convertDateString(this.dateOfBirth.value, 'month');
+        var dateStr = this.convertDateString(this.dateOfBirth.value, 'date')
+      }
+      this.profileForm.get('referralID').setValue(nameStr + dateStr + monthStr);
     }
-    this.profileForm.get('referralID').setValue(nameStr + dateStr + monthStr);
   }
   handleCancel = () => {
     let msgArray = [
