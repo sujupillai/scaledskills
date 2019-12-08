@@ -13,6 +13,7 @@ export class TrainerUrlComponent implements OnInit {
   cities = [];
   carouselitems = [];
   userId = 0;
+  isError = false;
   regUsers = [];
   reviews = [];
   upcommingTrainings = [];
@@ -40,14 +41,17 @@ export class TrainerUrlComponent implements OnInit {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
   getData = (url) => {
-
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.entity = res.result;
-        this.userId = this.entity['user']['id'];
+        this.userId = res['user'] && res['user']['id'] > 0 ? res['user']['id'] : 0;
         if (this.userId > 0) {
+          this.entity = res.result ? res.result : null;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
+        }
+        else {
+          this.entity = null;
+          this.isError = true;
         }
       }
     })

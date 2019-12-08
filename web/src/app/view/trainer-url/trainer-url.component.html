@@ -1,4 +1,4 @@
-<div class="container" *ngIf="entity">
+<div class="container" *ngIf="entity!=null">
   <div class="">
     <div class="header_detail">
       <div class="userThumbWrap">
@@ -39,8 +39,8 @@
                   <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
                 <!-- <div class="item cursor-pointer round">
-                    <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                  </div> -->
+                            <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                          </div> -->
               </div>
             </div>
           </div>
@@ -245,3 +245,4 @@
     </div>
   </form>
 </p-dialog>
+<app-error *ngIf="entity==null && isError"></app-error>
