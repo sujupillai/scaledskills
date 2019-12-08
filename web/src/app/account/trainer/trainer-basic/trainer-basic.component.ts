@@ -15,6 +15,7 @@ export class TrainerBasicComponent implements OnInit {
   submitted: boolean = false;
   dateOfBirth = new FormControl();
   selectedCountry = [];
+  isUrl = false;
   selectedState = [];
   settings = {};
   defaultList = [];
@@ -128,9 +129,14 @@ export class TrainerBasicComponent implements OnInit {
             }
           }
         });
-        let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
-        this.formControl['profileUrl'].setValue(urlStr)
-        let currentDate = new Date(dataObj.dateOfBirth)
+        if (dataObj.profileUrl) {
+          this.isUrl = true
+        } else {
+          this.isUrl = false
+        }
+        // let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
+        // this.formControl['profileUrl'].setValue(urlStr)
+        let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
         var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
         if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
@@ -148,7 +154,6 @@ export class TrainerBasicComponent implements OnInit {
         this.profileForm.get(['address', 'city']).setValue(dataObj.address && dataObj.address.city ? dataObj.address.city : 'NA');
         this.profileForm.get(['address', 'zipCode']).setValue(dataObj.address && dataObj.address.zipCode ? dataObj.address.zipCode : '');
         this.profileForm.get(['address', 'street']).setValue(dataObj.address && dataObj.address.street ? dataObj.address.street : 'NA');
-        debugger
         this.profileForm.get(['address', 'countryId']).setValue(dataObj.address && dataObj.address.countryId ? dataObj.address.countryId : 0);
         this.profileForm.get(['address', 'stateId']).setValue(dataObj.address && dataObj.address.stateId ? dataObj.address.stateId : 0);
         this.profileForm.get(['address', 'countryObj']).setValue(dataObj.address && dataObj.address.countryObj ? dataObj.address.countryObj : '');
@@ -234,8 +239,10 @@ export class TrainerBasicComponent implements OnInit {
     })
   }
   upateUrl = () => {
-    let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
+    if(!this.isUrl){
+      let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)
+    }
   }
   copyText() {
     let urlStr = (this.formControl['firstName'].value).split(' ').join('_')
