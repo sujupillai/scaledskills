@@ -15,9 +15,8 @@
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
           <div><strong>Website:</strong>
             <span *ngIf="entity.social && entity.social.length>0">
-              <a target="_blank" *ngFor="let item of entity.social"
-                href="{{item.websiteUrls?item.websiteUrls:'javascript:void(0)'}}">
-                {{item.websiteUrls?item.websiteUrls:'N/A'}}
+              <a class="cursor-pointer" (click)="openUrl(entity.social[0].websiteUrls)">
+                {{entity.social[0].websiteUrls?entity.social[0].websiteUrls:'N/A'}}
               </a>
             </span>
           </div>
