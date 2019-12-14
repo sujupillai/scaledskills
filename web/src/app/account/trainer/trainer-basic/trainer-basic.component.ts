@@ -14,14 +14,15 @@ export class TrainerBasicComponent implements OnInit {
   stateList = [];
   submitted: boolean = false;
   dateOfBirth = new FormControl();
+  urlValidationMsg;
   selectedCountry = [];
   isUrl = false;
+  isValidateUrl = false;
   selectedState = [];
   settings = {};
   defaultList = [];
   baseUrl: string = ''
   minDate: Date = new Date();
-  isCopied = false;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     this.baseUrl = window.location.origin + 'p/';
@@ -130,9 +131,11 @@ export class TrainerBasicComponent implements OnInit {
           }
         });
         if (dataObj.profileUrl) {
-          this.isUrl = true
+          this.isUrl = true;
+          this.isValidateUrl = true;
         } else {
-          this.isUrl = false
+          this.isUrl = false;
+          this.isValidateUrl = false;
         }
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
@@ -170,38 +173,43 @@ export class TrainerBasicComponent implements OnInit {
     if (this.profileForm.invalid) {
       this.submitted = true;
     } else {
-      this.submitted = false;
-      let postObj = {
-        ...this.profileForm.value,
-      }
-      postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
-      postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
-      postObj.dateOfBirth = this.dateOfBirth.value;
-      let url = ApiPath.trainer;
-      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        if (res.result) {
+      if (this.isValidateUrl) {
+        this.submitted = false;
+        let postObj = {
+          ...this.profileForm.value,
+        }
+        postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
+        postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
+        postObj.dateOfBirth = this.dateOfBirth.value;
+        let url = ApiPath.trainer;
+        this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+          if (res.result) {
+            let msgArray = [
+              {
+                mgs: res.responseMessege ? res.responseMessege : 'Success',
+                class: 'confirmMsg'
+              },
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+            this.getProfileData()
+          } else {
+            let msgArray = [
+              { mgs: 'Something went wrong', class: 'confirmMsg' }
+            ]
+            // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          }
+        }, error => {
           let msgArray = [
-            {
-              mgs: res.responseMessege ? res.responseMessege : 'Success',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-          this.getProfileData()
-        } else {
-          let msgArray = [
-            { mgs: 'Something went wrong', class: 'confirmMsg' }
+            { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-        }
-      }, error => {
-        let msgArray = [
-          { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
-        ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-      })
+        })
+      }
+      else {
+        this.urlValidationMsg = 'Please Validate url';
+      }
     }
   }
   resetForm(formGroup: FormGroup) {
@@ -237,11 +245,27 @@ export class TrainerBasicComponent implements OnInit {
     })
   }
   upateUrl = () => {
+    this.urlValidationMsg = '';
     let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)
   }
   copyText() {
     let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
+  }
+  validateUrl = () => {
+    const url = ApiPath.trainerVU;
+    let params = {
+      url: this.formControl['profileUrl'].value
+    }
+    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+      debugger
+      if (res.responseCode == 200 && res.result) {
+        this.isValidateUrl = true;
+      } else {
+        this.isValidateUrl = false
+      }
+      this.urlValidationMsg = this.isValidateUrl ? 'Url is available.' : 'Url is already used with other.';
+    })
   }
 }
