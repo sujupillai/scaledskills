@@ -25,7 +25,7 @@
       {{item.mode?item.mode:'NA'}}
     </p>
     <p class="label-price border">
-      Rs. {{item.amount?item.amount:'NA'}}
+      Rs. {{item.amount?item.amount:'FREE'}}
     </p>
   </div>
   <hr>
@@ -34,9 +34,7 @@
       <i class="fa fa-star" aria-hidden="true"></i>{{item.isInterest?' Interested':' Send interest'}}
     </p>
     <p class="label-price">
-      <i class="fa fa-star" aria-hidden="true"></i>
-
-      {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+      {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
     </p>
   </div>
 </p-card>

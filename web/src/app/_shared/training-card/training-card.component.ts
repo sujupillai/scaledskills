@@ -25,14 +25,10 @@ export class TrainingCardComponent implements OnInit {
       let url = ApiPath.interest;
       url = url.replace('{TrainingId}', item.trainingId.toString())
       let postData = {
-        IsInterest: !item.isInterest,
+        isInterest: !item.isInterest
       }
       this._HttpService.httpCall(url, 'POST', postData, null).subscribe(res => {
         if (res && res.responseCode == 200) {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Success')
           item.interestCount = res['result'];
           item.isInterest = !item.isInterest;
         } else {
