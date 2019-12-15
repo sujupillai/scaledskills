@@ -23,6 +23,13 @@ export class OrganizerUrlComponent implements OnInit {
   noRecord = [];
   urlString: string = '';
   entity = null;
+  shareOptions=[
+    {label: 'Google', icon: 'fa fa-google-plus'},
+    {label: 'Facebook', icon: 'fa fa-facebook'},
+    {label: 'Whatsapp', icon: 'fa fa-whatsapp'},
+    {label: 'Instagram', icon: 'fa fa-instagram'},
+    {label: 'Linkedin', icon: 'fa fa-linkedin'},
+];
   constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
