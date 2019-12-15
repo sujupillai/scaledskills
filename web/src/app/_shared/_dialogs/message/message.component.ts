@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/api';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { HttpService, SharedService } from '../../../_service'
+import { HttpService } from '../../../_service'
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 @Component({
   selector: 'app-message',
