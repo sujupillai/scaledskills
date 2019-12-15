@@ -25,16 +25,16 @@
             <div class="trainingActions inline-block ml15">
               <div class="flex feed-row">
                 <div class="item round"
-                  [ngClass]="(entity.social.length>0 && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-linkedin" aria-hidden="true" (click)="openUrl(entity.social[0].linkedInUrls)"></i>
                 </div>
                 <div class="item round"
-                  [ngClass]="(entity.social.length>0 && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-facebook-square" aria-hidden="true"
                     (click)="openUrl(entity.social[0].facebookUrls)"></i>
                 </div>
                 <div class="item round"
-                  [ngClass]="(entity.social.length>0 && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
                 <!-- <div class="item cursor-pointer round">
@@ -111,7 +111,7 @@
             <strong>{{item.name}}</strong> – {{item.authority}} {{item.from}} to {{item.to}}
             {{item.isExpired?'Expired':''}}
           </li>
-          <li *ngIf="entity.certificate.length==0">No records to display.</li>
+          <li *ngIf="entity.certificate && entity.certificate.length==0">No records to display.</li>
         </ul>
       </div>
       <div class="border-line top bottom"></div>
@@ -125,7 +125,7 @@
           </ng-template>
         </p-carousel>
         <p-carousel headerText="Upcoming Trainings  ({{upcommingTrainings.length}})" [value]="noRecord" numVisible="1"
-          *ngIf="upcommingTrainings.length==0">
+          *ngIf="upcommingTrainings && upcommingTrainings.length==0">
           <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">
               <p-card>

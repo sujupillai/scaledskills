@@ -1,3 +1,4 @@
+<!-- <pre>{{entity|json}}</pre> -->
 <div class="container" *ngIf="entity!=null">
   <div class="">
     <div class="header_detail">
@@ -6,17 +7,27 @@
           <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
         </div>
         <div class="text-desc">
-          <h3>{{entity.user && entity.user.firstName?entity.user.firstName:'N/A'}}
-            {{entity.user && entity.user.lastName?entity.user.lastName:'N/A'}}
+          <h3>{{entity.user && entity.user.name?entity.user.name:'N/A'}}
             &nbsp;
             <button type="button" class="btn btn-gradient bookBtn">
               4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
             </button></h3>
+          <div>
+            <strong>Address:</strong> 
+            {{entity.user.address.address1 +', '}} 
+            {{entity.user.address.address2 +', '}} 
+            {{entity.user.address.address3 +', '}} 
+            {{entity.user.address.city +', '}} 
+            {{entity.user.address.stateObj.text +', '}} 
+            {{entity.user.address.countryObj.text}} 
+          </div>
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
+          <div><strong>Phone:</strong> {{entity.user && entity.user.phoneNumber?entity.user.phoneNumber:'N/A'}}</div>
           <div><strong>Website:</strong>
-            <span *ngIf="entity.social && entity.social.length>0">
-              <a class="cursor-pointer" (click)="openUrl(entity.social[0].websiteUrls)">
-                {{entity.social[0].websiteUrls?entity.social[0].websiteUrls:'N/A'}}
+            <span>
+              <a class="cursor-pointer" [ngClass]="entity.social && entity.social[0].websiteUrls?'':'disabled'"
+                (click)="openUrl(entity.social[0].websiteUrls)">
+                {{entity.social && entity.social[0].websiteUrls?entity.social[0].websiteUrls:'N/A'}}
               </a>
             </span>
           </div>
@@ -25,16 +36,16 @@
             <div class="trainingActions inline-block ml15">
               <div class="flex feed-row">
                 <div class="item round"
-                  [ngClass]="(entity.social.length>0 && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-linkedin" aria-hidden="true" (click)="openUrl(entity.social[0].linkedInUrls)"></i>
                 </div>
                 <div class="item round"
-                  [ngClass]="(entity.social.length>0 && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-facebook-square" aria-hidden="true"
                     (click)="openUrl(entity.social[0].facebookUrls)"></i>
                 </div>
                 <div class="item round"
-                  [ngClass]="(entity.social.length>0 && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
                 <!-- <div class="item cursor-pointer round">
@@ -74,17 +85,17 @@
       </li>
       <li>
         <a href="javascript:void(0)">
-          Certification
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
           Upcoming Trainings
         </a>
       </li>
       <li>
         <a href="javascript:void(0)">
           Past Trainings
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          Members
         </a>
       </li>
       <li>
@@ -102,17 +113,6 @@
       <div>
         <h3>Courses</h3>
         <p [innerHTML]="entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'"></p>
-      </div>
-      <div class="border-line top bottom"></div>
-      <div>
-        <h3>Certifications</h3>
-        <ul class="list-li">
-          <li *ngFor="let item of entity.certificate">
-            <strong>{{item.name}}</strong> – {{item.authority}} {{item.from}} to {{item.to}}
-            {{item.isExpired?'Expired':''}}
-          </li>
-          <li *ngIf="entity.certificate.length==0">No records to display.</li>
-        </ul>
       </div>
       <div class="border-line top bottom"></div>
       <div class="form-group">
@@ -147,6 +147,27 @@
           </ng-template>
         </p-carousel>
         <p-carousel headerText="Past Trainings  ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="pastTrainings.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <!-- past trainings ends -->
+      <div class="form-group">
+        <p-carousel headerText="Members ({{pastTrainings.length}})" [value]="pastTrainings" numVisible="5"
+          circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <app-training-card [item]="item"></app-training-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Members  ({{pastTrainings.length}})" [value]="noRecord" numVisible="1"
           *ngIf="pastTrainings.length==0">
           <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">

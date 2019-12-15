@@ -30,7 +30,7 @@ export class OrganizerUrlComponent implements OnInit {
       { msg: 'No records to display' }
     ];
     this.cars = this.noRecord;
-    let url = ApiPath.generalUrl
+    let url = ApiPath.orgUrl
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.url;
       url = url.replace('{urlName}', this.urlString)
