@@ -14,6 +14,9 @@ export class OrgBasicComponent implements OnInit {
   selectedCountry = [];
   selectedState = [];
   settings = {};
+  isUrl = false;
+  isValidateUrl = false;
+  urlValidationMsg;
   defaultList = [{
     "text": "Select",
     "value": "0",
@@ -82,6 +85,7 @@ export class OrgBasicComponent implements OnInit {
   fetchData = () => {
     let url = ApiPath.Organization;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
+      debugger
       if (res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -91,8 +95,13 @@ export class OrgBasicComponent implements OnInit {
             }
           }
         });
-        let urlStr = (this.formControl['name'].value).split(' ').join('_')
-        this.formControl['profileUrl'].setValue(urlStr)
+        if (dataObj.profileUrl) {
+          this.isUrl = true;
+          this.isValidateUrl = true;
+        } else {
+          this.isUrl = false;
+          this.isValidateUrl = false;
+        }
         this.setAddress(dataObj)
       }
     })
@@ -136,16 +145,6 @@ export class OrgBasicComponent implements OnInit {
     this.formElement.get(['address', 'city']).setValue('');
     this.formElement.get(['address', 'zipCode']).setValue('');
     this.selectedState = this.defaultList;
-  }
-  upateUrl = () => {
-    let urlStr = (this.formControl['name'].value).split(' ').join('_')
-    this.formControl['profileUrl'].setValue(urlStr)
-  }
-  copyText() {
-    let urlStr = (this.formControl['name'].value).split(' ').join('_')
-    this.formControl['profileUrl'].setValue(urlStr)
-    let val = window.location.origin + '/#/view/o/' + this.formControl['profileUrl'].value;
-    window.open(val, "_blank");
   }
   myUploader = (event, control) => {
     this.fileData = <File>event.files[0];
@@ -202,5 +201,30 @@ export class OrgBasicComponent implements OnInit {
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     }
+  }
+  upateUrl = () => {
+    debugger;
+    this.urlValidationMsg = '';
+    let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
+    this.formControl['profileUrl'].setValue(urlStr)
+  }
+  viewProfile() {
+    let val = window.location.origin + '/#/view/o/' + this.formControl['profileUrl'].value;
+    window.open(val, "_blank");
+  }
+
+  validateUrl = () => {
+    const url = ApiPath.trainerVU;
+    let params = {
+      url: this.formControl['profileUrl'].value
+    }
+    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+      if (res.responseCode == 200 && res.result) {
+        this.isValidateUrl = true;
+      } else {
+        this.isValidateUrl = false
+      }
+      this.urlValidationMsg = this.isValidateUrl ? 'Url is available.' : 'Url is already used with other.';
+    })
   }
 }

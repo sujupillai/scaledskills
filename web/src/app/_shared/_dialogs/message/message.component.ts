@@ -42,7 +42,6 @@ export class MessageComponent implements OnInit {
     } else {
       const url =ApiPath.trainerEmail
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        debugger
         if (res && res.responseCode == 200) {
           this.resetForm(this.formElement)
           }

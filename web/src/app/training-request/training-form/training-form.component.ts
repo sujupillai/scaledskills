@@ -173,7 +173,6 @@ export class TrainingFormComponent implements OnInit {
     })
   }
   activateMenu(item) {
-    debugger
     this.activeItem = this.menu['activeItem'];
 
   }

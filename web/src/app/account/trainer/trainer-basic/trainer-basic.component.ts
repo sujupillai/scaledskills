@@ -249,7 +249,7 @@ export class TrainerBasicComponent implements OnInit {
     let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)
   }
-  copyText() {
+  viewProfile() {
     let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
@@ -259,7 +259,6 @@ export class TrainerBasicComponent implements OnInit {
       url: this.formControl['profileUrl'].value
     }
     this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
-      debugger
       if (res.responseCode == 200 && res.result) {
         this.isValidateUrl = true;
       } else {

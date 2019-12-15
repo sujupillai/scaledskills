@@ -174,7 +174,6 @@ export class MyRequestComponent implements OnInit {
     })
   }
   activateMenu(item) {
-    debugger
     this.activeItem = this.menu['activeItem'];
 
   }

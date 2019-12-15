@@ -179,7 +179,6 @@ export class MyResponseComponent implements OnInit {
     })
   }
   activateMenu(item) {
-    debugger
     this.activeItem = this.menu['activeItem'];
 
   }

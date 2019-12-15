@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService } from '../../_service';
+import { HttpService, SharedService } from '../../_service';
 @Component({
   selector: 'app-organizer-url',
   templateUrl: './organizer-url.component.html'
@@ -23,7 +23,7 @@ export class OrganizerUrlComponent implements OnInit {
   noRecord = [];
   urlString: string = '';
   entity = null;
-  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService) {
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.noRecord = [
@@ -43,7 +43,7 @@ export class OrganizerUrlComponent implements OnInit {
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.userId = res['user'] && res['user']['id'] > 0 ? res['user']['id'] : 0;
+        this.userId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.userId > 0) {
           this.entity = res.result ? res.result : null;
           this.fetchPastTraining();
@@ -80,11 +80,32 @@ export class OrganizerUrlComponent implements OnInit {
       this.upcommingTrainings = res.result.results;
     })
   }
-  showDialog() {
-    this.display = true;
+  showDialog(collection) {
+    this[collection] = true;
+
   }
   showSendMesage() {
-    this.isSendMesage = true;
+    let data = {
+      toEmail: this.entity.user.email ? this.entity.user.email : ''
+    }
+    this._SharedService.messageDialogConfig(data, 'Send Email').subscribe(res => {
+      if (res != undefined) {
+        if (res && res.responseCode == 200) {
+          let msgArray = [
+            {
+              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+              class: 'confirmMsg'
+            },
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+        } else {
+          let msgArray = [
+            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        }
+      }
+    })
   }
   openUrl(urlToOpen) {
     let url: string = '';

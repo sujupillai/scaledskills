@@ -68,7 +68,7 @@
             <strong>{{urlValidationMsg}} &nbsp; &nbsp;</strong></p>
           <a href="javascript:void(0)" (click)="validateUrl()"
             *ngIf="!isUrl && !isValidateUrl && formControl['profileUrl'].value">Validate Url</a>
-          <a href="javascript:void(0)" (click)="copyText()" *ngIf="isUrl">View Profile</a>
+          <a href="javascript:void(0)" (click)="viewProfile()" *ngIf="isUrl">View Profile</a>
         </div>
       </div>
     </div>

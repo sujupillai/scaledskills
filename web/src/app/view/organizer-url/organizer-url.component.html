@@ -15,9 +15,8 @@
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
           <div><strong>Website:</strong>
             <span *ngIf="entity.social && entity.social.length>0">
-              <a target="_blank" *ngFor="let item of entity.social"
-                href="{{item.websiteUrls?item.websiteUrls:'javascript:void(0)'}}">
-                {{item.websiteUrls?item.websiteUrls:'N/A'}}
+              <a class="cursor-pointer" (click)="openUrl(entity.social[0].websiteUrls)">
+                {{entity.social[0].websiteUrls?entity.social[0].websiteUrls:'N/A'}}
               </a>
             </span>
           </div>
@@ -39,8 +38,8 @@
                   <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
                 <!-- <div class="item cursor-pointer round">
-                          <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                        </div> -->
+                            <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                          </div> -->
               </div>
             </div>
           </div>
@@ -50,10 +49,10 @@
         <div class="inline-block">
           <div class="flex feed-row">
             <div class="item cursor-pointer"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;Share</div>
-            <div class="item cursor-pointer" (click)="showDialog()">
+            <div class="item cursor-pointer" (click)="showDialog('display')">
               <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Favourite
             </div>
-            <div class="item cursor-pointer" (click)="showDialog()">
+            <div class="item cursor-pointer" (click)="showSendMesage()">
               <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Send Message</div>
           </div>
         </div>
@@ -209,33 +208,6 @@
       <label>Training you need in future</label>
       <textarea style="height: 150px" placeholder="Training you need in future" pInputTextarea
         autoResize="autoResize"></textarea>
-    </div>
-    <div class="form-group button-group text-right">
-      <button pButton type="submit" label="Submit" class="ui-button-raised"
-        (click)="handleSubmit(); display=false"></button>
-      <button pButton type="button" label="Cancel" (click)="display=false"
-        class="ui-button-raised ui-button-danger"></button>
-    </div>
-  </form>
-</p-dialog>
-<p-dialog header="SEND MESSAGE" [(visible)]="isSendMesage" [modal]="true" [responsive]="true"
-  [style]="{width: '80%', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
-  <form autocomplete="off" novalidate>
-    <div class="form-group">
-      <label>Full Name</label>
-      <input type="text" pInputText placeholder="Full Name" />
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" pInputText placeholder="Email" />
-    </div>
-    <div class="form-group">
-      <label>Phone No</label>
-      <input type="text" pInputText placeholder="Phone No" />
-    </div>
-    <div class="form-goup">
-      <label>Message</label>
-      <textarea style="height: 150px" placeholder="Message" pInputTextarea autoResize="autoResize"></textarea>
     </div>
     <div class="form-group button-group text-right">
       <button pButton type="submit" label="Submit" class="ui-button-raised"
