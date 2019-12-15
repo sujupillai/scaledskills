@@ -19,7 +19,6 @@ export class MessageComponent implements OnInit {
     this.createForm(() => {
       this.formControl['toEmail'].setValue(this.data.data && this.data.data.toEmail ? this.data.data.toEmail:'')
   })
-     
   }
   createForm = (callback) => {
     this.formElement = this._FormBuilder.group({
@@ -40,7 +39,6 @@ export class MessageComponent implements OnInit {
     }
     if (this.formElement.invalid) {
       this.submitted = true;
-      
     } else {
       const url =ApiPath.trainerEmail
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
