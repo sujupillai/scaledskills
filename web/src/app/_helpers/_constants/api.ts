@@ -3,13 +3,12 @@ export const ApiPath = {
   'userEducation': 'api/User/Education',
   'userBasic': 'api/User',
   /* General */
-
-
   /* trainer api path starts */
   'trainerUserTag': 'api/Trainer/UserTag',
   'trainer': 'api/Trainer',
   'trainerCertificate': 'api/Trainer/Certificate',
-
+  'trainerVU': 'api/Trainer/VU',
+  'trainerEmail': 'api/Trainer/Email',
   /* trainer api path ends */
   /* organization */
   'Organization': 'api/Organization',
@@ -26,8 +25,6 @@ export const ApiPath = {
   'globalDropdown': 'api/Global/GlobalDropdown',
   'trainingRequest': 'api/Training/Request',
   'documentUpload': 'api/Document/Upload',
-  'trainerVU':'api/Trainer/VU',
-
   /* training */
   'training': 'api/Training',
   'trainingLocation': 'api/Training/{TrainingId}/Location',
@@ -38,19 +35,15 @@ export const ApiPath = {
   'trainingReview': 'api/Training/{TrainingId}/Review',
   'trainingAbout': 'api/Training/{TrainingId}/About',
   'trainingImage': 'api/Training/{TrainingId}/Image',
-
-
   /* home */
   'homeRunningTraining': 'api/Home/RT',
   'headerTraining': 'api/Home/h/{urlName}',
   'upcomingTraining': 'api/Home/UCT',
   'pastTraining': 'api/Home/PT',
-
   /* urls */
   'trainingUrl': 'api/Home/T/{urlName}',
   'generalUrl': 'api/Home/P/{urlName}',
   'orgUrl': 'api/Home/O/{urlName}',
-
   /* interest */
-  'interest':'api/Training/{TrainingId}/Interest'
+  'interest': 'api/Training/{TrainingId}/Interest'
 }

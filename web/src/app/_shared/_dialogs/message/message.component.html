@@ -1,0 +1,38 @@
+<form [formGroup]="formElement" autocomplete="off" novalidate>
+  <div class="form-group">
+    <label>To Email <span class="required">*</span></label>
+    <input pInputText placeholder="Email" formControlName="toEmail" class="disabled">
+    <p class="msgError text-danger" *ngIf="formControl.toEmail.invalid && (formControl.toEmail.dirty || submitted)">
+      <small *ngIf="formControl.toEmail.hasError('email') &&
+                  !formControl.toEmail.hasError('required')">
+        Please enter a valid email address
+      </small>
+      <small *ngIf="formControl.toEmail.hasError('required')">
+        Required Field.
+      </small>
+    </p>
+
+  </div>
+  <div class="form-group">
+    <label>Subject <span class="required">*</span></label>
+    <input type="text" pInputText placeholder="Subject" formControlName="subject" />
+    <p class="msgError text-danger"
+      *ngIf="formControl.subject.hasError('required') && (formControl.subject.dirty || submitted)">
+      Required Field.
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Message <span class="required">*</span></label>
+    <textarea pInputTextarea autoResize="autoResize" placeholder="Message" formControlName="body"></textarea>
+    <p class="msgError text-danger"
+      *ngIf="formControl.body.hasError('required') && (formControl.body.dirty || submitted)">
+      Required Field.
+    </p>
+  </div>
+  <div class="form-group button-group text-right">
+    <button pButton type="submit" label="Submit" class="ui-button-raised"
+      (click)="handleSubmit(); display=false"></button>
+    <button pButton type="button" label="Cancel" (click)="display=false"
+      class="ui-button-raised ui-button-danger"></button>
+  </div>
+</form>

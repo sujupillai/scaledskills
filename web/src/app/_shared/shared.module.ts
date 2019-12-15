@@ -5,6 +5,7 @@ import {DigitOnlyDirective} from '../_shared/digit-only.directive';
 import { TrainingCardComponent } from './training-card/training-card.component';
 import {ExternalUrlDirective} from './ExternalUrlDirective ';
 
+
 @NgModule({
   declarations: [LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective],
   exports: [

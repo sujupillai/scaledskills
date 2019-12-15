@@ -24,6 +24,8 @@ import { RequestComponent } from './training-request/request.component';
 import { MyRequestComponent } from './training-request/my-request/my-request.component';
 import { MyResponseComponent } from './training-request/my-response/my-response.component';
 import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.component';
+import { MessageComponent } from './_shared/_dialogs/message/message.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.compon
     MyRequestComponent,
     MyResponseComponent,
     OrganizerUrlComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.compon
     NgPrimeModule,
     SharedModule
   ],
-  entryComponents: [ConfirmationDialogComponent],
+  
   providers: [DialogService, SharedService,
     {
       provide: HTTP_INTERCEPTORS,
@@ -57,6 +60,7 @@ import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.compon
     },
   ],
   exports: [],
+  entryComponents: [ConfirmationDialogComponent, MessageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
