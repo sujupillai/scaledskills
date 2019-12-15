@@ -1,6 +1,6 @@
 <form [formGroup]="formElement" autocomplete="off" novalidate>
   <div class="form-group">
-    <label>To Email <span class="required">*</span></label>
+    <label>To<span class="required">*</span></label>
     <input pInputText placeholder="Email" formControlName="toEmail" class="disabled">
     <p class="msgError text-danger" *ngIf="formControl.toEmail.invalid && (formControl.toEmail.dirty || submitted)">
       <small *ngIf="formControl.toEmail.hasError('email') &&
