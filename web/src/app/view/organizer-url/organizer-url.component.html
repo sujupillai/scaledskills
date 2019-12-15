@@ -13,13 +13,13 @@
               4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
             </button></h3>
           <div>
-            <strong>Address:</strong> 
-            {{entity.user.address.address1 +', '}} 
-            {{entity.user.address.address2 +', '}} 
-            {{entity.user.address.address3 +', '}} 
-            {{entity.user.address.city +', '}} 
-            {{entity.user.address.stateObj.text +', '}} 
-            {{entity.user.address.countryObj.text}} 
+            <strong>Address:</strong>
+            {{entity.user.address.address1 +', '}}
+            {{entity.user.address.address2 +', '}}
+            {{entity.user.address.address3 +', '}}
+            {{entity.user.address.city +', '}}
+            {{entity.user.address.stateObj.text +', '}}
+            {{entity.user.address.countryObj.text}}
           </div>
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
           <div><strong>Phone:</strong> {{entity.user && entity.user.phoneNumber?entity.user.phoneNumber:'N/A'}}</div>
@@ -60,10 +60,11 @@
         <div class="inline-block">
           <div class="flex feed-row">
             <div class="item">
-              <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt" [model]="shareOptions"></p-splitButton>
+              <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt" [model]="shareOptions">
+              </p-splitButton>
             </div>
             <div class="item cursor-pointer" (click)="showDialog('display')">
-              <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;Favourite
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;Follow
             </div>
             <div class="item cursor-pointer" (click)="showSendMesage()">
               <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Send Message</div>
