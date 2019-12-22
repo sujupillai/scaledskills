@@ -20,10 +20,13 @@ export class AddTrainingBasicComponent implements OnInit {
   endDate = new FormControl();
   settings = {};
   trainingId = 0;
-  isUrl = false;
-  isValidateUrl = false;
-  urlValidationMsg = '';
   trainingData = null;
+  urlConfig = {
+    isUrl: false,
+    isUrlValid: false,
+    vrlValidationMsg: '',
+    urlSubmitted: false
+  }
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
       { text: 'Individual', value: '1' },
@@ -37,7 +40,6 @@ export class AddTrainingBasicComponent implements OnInit {
       if (this.trainingId > 0) {
         this.getData()
       } else {
-
         this.resetForm(this.trainingBasicForm)
         this.trainingData = {};
       }
@@ -84,11 +86,9 @@ export class AddTrainingBasicComponent implements OnInit {
         var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
         this.formControl['hostedByObj'].setValue(hostedBy);
         if (this.trainingData.url) {
-          this.isUrl = true;
-          this.isValidateUrl = true;
+          this.urlConfig.isUrl = true;
         } else {
-          this.isUrl = false;
-          this.isValidateUrl = false;
+          this.urlConfig.isUrl = false;
         }
       } else {
         this.resetForm(this.trainingBasicForm)
@@ -96,7 +96,9 @@ export class AddTrainingBasicComponent implements OnInit {
     })
   }
   updateUrl = () => {
-    this.urlValidationMsg = '';
+    this.urlConfig.isUrlValid = false;
+    this.urlConfig.vrlValidationMsg = 'Please validate url';
+    this.urlConfig.urlSubmitted = false;
     let urlStr = (this.formControl['url'].value).split(' ').join('_')
     this.formControl['url'].setValue(urlStr)
   }
@@ -105,17 +107,19 @@ export class AddTrainingBasicComponent implements OnInit {
     window.open(val, "_blank");
   }
   validateUrl = () => {
+    this.urlConfig.vrlValidationMsg = '';
+    this.urlConfig.urlSubmitted = true;
     const url = ApiPath.trainingVU;
     let params = {
       url: this.formControl['url'].value
     }
     this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
       if (res.responseCode == 200 && res.result) {
-        this.isValidateUrl = true;
+        this.urlConfig.isUrlValid = true;
       } else {
-        this.isValidateUrl = false
+        this.urlConfig.isUrlValid = false
       }
-      this.urlValidationMsg = this.isValidateUrl ? 'Url is available.' : 'Url is already used with other.';
+      this.urlConfig.vrlValidationMsg = this.urlConfig.isUrlValid ? 'Url is available.' : 'Url is already used with other.';
     })
   }
   onChangeHostedBy(event) {
@@ -138,7 +142,7 @@ export class AddTrainingBasicComponent implements OnInit {
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
-      if (this.isValidateUrl) {
+      if (this.urlConfig.isUrlValid) {
         this.submitted = false;
         let url = ApiPath.training;
         this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
@@ -166,10 +170,9 @@ export class AddTrainingBasicComponent implements OnInit {
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         })
       }
-      else{
-        this.urlValidationMsg = 'Please Validate url';
+      else {
+        this.urlConfig.vrlValidationMsg = 'Please Validate url';
       }
-
     }
   }
   resetForm(formGroup: FormGroup) {
