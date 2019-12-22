@@ -14,15 +14,18 @@ export class TrainerBasicComponent implements OnInit {
   stateList = [];
   submitted: boolean = false;
   dateOfBirth = new FormControl();
-  urlValidationMsg;
   selectedCountry = [];
-  isUrl = false;
-  isValidateUrl = false;
   selectedState = [];
   settings = {};
   defaultList = [];
   baseUrl: string = ''
   minDate: Date = new Date();
+  urlConfig = {
+    isUrl: false,
+    isUrlValid: false,
+    vrlValidationMsg: '',
+    urlSubmitted: false
+  }
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     this.baseUrl = window.location.origin + 'p/';
@@ -131,11 +134,9 @@ export class TrainerBasicComponent implements OnInit {
           }
         });
         if (dataObj.profileUrl) {
-          this.isUrl = true;
-          this.isValidateUrl = true;
+          this.urlConfig.isUrl = true;
         } else {
-          this.isUrl = false;
-          this.isValidateUrl = false;
+          this.urlConfig.isUrl = false;
         }
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
@@ -178,7 +179,7 @@ export class TrainerBasicComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
 
     } else {
-      if (this.isValidateUrl) {
+      if (this.urlConfig.isUrlValid) {
         this.submitted = false;
         let postObj = {
           ...this.profileForm.value,
@@ -213,7 +214,7 @@ export class TrainerBasicComponent implements OnInit {
         })
       }
       else {
-        this.urlValidationMsg = 'Please Validate url';
+        this.urlConfig.vrlValidationMsg = 'Please Validate url';
       }
     }
   }
@@ -249,27 +250,31 @@ export class TrainerBasicComponent implements OnInit {
       }
     })
   }
-  upateUrl = () => {
+  updateUrl = () => {
+    this.urlConfig.isUrlValid = false;
+    this.urlConfig.vrlValidationMsg = 'Please validate url';
+    this.urlConfig.urlSubmitted = false;
     let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr);
-    this.urlValidationMsg = 'Please Validate url';
   }
   viewProfile() {
     let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
   validateUrl = () => {
+    this.urlConfig.vrlValidationMsg = '';
+    this.urlConfig.urlSubmitted = true;
     const url = ApiPath.trainerVU;
     let params = {
       url: this.formControl['profileUrl'].value
     }
     this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
       if (res.responseCode == 200 && res.result) {
-        this.isValidateUrl = true;
+        this.urlConfig.isUrlValid = true;
       } else {
-        this.isValidateUrl = false
+        this.urlConfig.isUrlValid = false;
       }
-      this.urlValidationMsg = this.isValidateUrl ? 'Url is available.' : 'Url is already used with other.';
+      this.urlConfig.vrlValidationMsg = this.urlConfig.isUrlValid ? 'Url is available.' : 'Url is already used with other.';
     })
   }
 }

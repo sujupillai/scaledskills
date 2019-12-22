@@ -64,10 +64,10 @@
           </small>
         </p>
         <div class="text-right msgError">
-          <p class="inline-block" *ngIf="!isUrl" [ngClass]="isValidateUrl?'text-success':'text-danger'">
-            <strong>{{urlValidationMsg}} &nbsp; &nbsp;</strong></p>
+          <p class="inline-block" *ngIf="!urlConfig.isUrl && formControl['profileUrl'].value && urlConfig.urlSubmitted" [ngClass]="urlConfig.isUrlValid?'text-success':'text-danger'">
+            <strong>{{urlConfig.vrlValidationMsg}} &nbsp; &nbsp;</strong></p>
           <a href="javascript:void(0)" (click)="validateUrl()"
-            *ngIf="!isUrl && !isValidateUrl && formControl['profileUrl'].value">Validate Url</a>
+            *ngIf="formControl['profileUrl'].value && !urlConfig.isUrl && !urlConfig.isUrlValid">Validate Url</a>
           <a href="javascript:void(0)" (click)="viewProfile()" *ngIf="isUrl">View Profile</a>
         </div>
       </div>
