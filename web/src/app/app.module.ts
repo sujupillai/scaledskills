@@ -41,7 +41,6 @@ import { MessageComponent } from './_shared/_dialogs/message/message.component';
     MyRequestComponent,
     MyResponseComponent,
     OrganizerUrlComponent,
-    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +59,7 @@ import { MessageComponent } from './_shared/_dialogs/message/message.component';
     },
   ],
   exports: [],
-  entryComponents: [ConfirmationDialogComponent, MessageComponent],
+  entryComponents: [ConfirmationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

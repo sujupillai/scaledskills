@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, SharedService } from '../../_service';
+import { DialogService } from 'primeng/api';
+import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 @Component({
   selector: 'app-trainer-url',
   templateUrl: './trainer-url.component.html'
@@ -31,7 +33,8 @@ export class TrainerUrlComponent implements OnInit {
     { label: 'Twitter', icon: 'fa fa-twitter' },
     { label: 'Copy Url', icon: 'fa fa-clone' },
   ];
-  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
+  constructor(public dialogService: DialogService,
+    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.noRecord = [
@@ -92,11 +95,30 @@ export class TrainerUrlComponent implements OnInit {
     this[collection] = true;
 
   }
+  openMessageDialog = (dialogConfig, dialogHeader) => {
+    return this.dialogService.open(MessageComponent, {
+      data: {
+        ...dialogConfig
+      },
+      header: dialogHeader,
+      width: '80%'
+    });
+  }
+
+  messageDialogConfig = (data, header) => {
+    let tempRes;
+    let dialogConfig = {
+      data: data,
+    };
+    let dialogHeader = header;
+    let ref = this.openMessageDialog(dialogConfig, dialogHeader);
+    return ref.onClose;
+  }
   showSendMesage() {
     let data = {
       toEmail: this.entity.user.email ? this.entity.user.email : ''
     }
-    this._SharedService.messageDialogConfig(data, 'Send Email').subscribe(res => {
+    this.messageDialogConfig(data, 'Send Email').subscribe(res => {
       if (res != undefined) {
         if (res && res.responseCode == 200) {
           let msgArray = [

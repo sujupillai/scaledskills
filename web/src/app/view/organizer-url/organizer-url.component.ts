@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, SharedService } from '../../_service';
+import { DialogService } from 'primeng/api';
+import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 @Component({
   selector: 'app-organizer-url',
   templateUrl: './organizer-url.component.html'
@@ -22,6 +24,12 @@ export class OrganizerUrlComponent implements OnInit {
   relatedTrainings = [];
   noRecord = [];
   urlString: string = '';
+  trainingEntity = {
+    "userId": this.orgId,
+    "searchText": "",
+    "pageSize": 1000,
+    "page": 0
+  }
   entity = null;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook' },
@@ -31,7 +39,8 @@ export class OrganizerUrlComponent implements OnInit {
     { label: 'Twitter', icon: 'fa fa-twitter' },
     { label: 'Copy Url', icon: 'fa fa-clone' },
   ];
-  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
+  constructor(public dialogService: DialogService,
+    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.noRecord = [
@@ -64,53 +73,71 @@ export class OrganizerUrlComponent implements OnInit {
       }
     })
   }
+  httpFetch = (url, postObj, masterCollection) => {
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      this[masterCollection] = res.result.results;
+    })
+  }
   fetchPastTraining = () => {
     let postObj = {
-      "userId": this.orgId,
-      "searchText": "",
-      "pageSize": 1000,
-      "page": 0
+      ...this.trainingEntity
     }
     let url = ApiPath.pastTraining;
-    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this.pastTrainings = res.result.results;
-    })
+    this.httpFetch(url, postObj, 'pastTrainings');
   }
   fetchUpcomingTraining = () => {
     let postObj = {
-      "userId": this.orgId,
-      "searchText": "",
-      "pageSize": 1000,
-      "page": 0
+      ...this.trainingEntity
     }
     let url = ApiPath.upcomingTraining;
-    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this.upcommingTrainings = res.result.results;
-    })
+    this.httpFetch(url, postObj, 'upcommingTrainings');
   }
   showDialog(collection) {
     this[collection] = true;
-
+  }
+  openMessageDialog = (dialogConfig, dialogHeader) => {
+    return this.dialogService.open(MessageComponent, {
+      data: {
+        ...dialogConfig
+      },
+      header: dialogHeader,
+      width: '80%'
+    });
+  }
+  messageDialogConfig = (data, header) => {
+    let tempRes;
+    let dialogConfig = {
+      data: data,
+    };
+    let dialogHeader = header;
+    let ref = this.openMessageDialog(dialogConfig, dialogHeader);
+    return ref.onClose;
+  }
+  successMsg = (res) => {
+    let msgArray = [
+      {
+        mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+        class: 'confirmMsg'
+      },
+    ]
+    this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+  }
+  errorMsg = (res) => {
+    let msgArray = [
+      { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+    ]
+    this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
   }
   showSendMesage() {
     let data = {
       toEmail: this.entity.user.email ? this.entity.user.email : ''
     }
-    this._SharedService.messageDialogConfig(data, 'Send Email').subscribe(res => {
+    this.messageDialogConfig(data, 'Send Email').subscribe(res => {
       if (res != undefined) {
         if (res && res.responseCode == 200) {
-          let msgArray = [
-            {
-              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+          this.successMsg(res);
         } else {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this.errorMsg(res);
         }
       }
     })
