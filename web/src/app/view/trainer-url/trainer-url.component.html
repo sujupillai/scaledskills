@@ -52,8 +52,8 @@
               <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt" [model]="shareOptions">
               </p-splitButton>
             </div>
-            <div class="item cursor-pointer" (click)="hendleFollowMe()">
-              <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;Follow
+            <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity.isFollow?'no-cursor':''">
+              <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity.isFollow?'Following':'Follow'}}
             </div>
             <div class="item cursor-pointer" (click)="showSendMesage()">
               <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Send Message</div>
