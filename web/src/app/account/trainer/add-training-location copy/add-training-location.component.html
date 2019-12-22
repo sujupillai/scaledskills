@@ -1,0 +1,86 @@
+<div class="form-group">
+  <p-radioButton name="modeType" value="1" label="Physical" inputId="Physical" [(ngModel)]="modeType">
+  </p-radioButton>
+  <p-radioButton name="modeType" value="2" label="Online" inputId="Online" [(ngModel)]="modeType">
+  </p-radioButton>
+</div>
+<form [formGroup]="trainingLocationForm" autocomplete="off" novalidate>
+  <div class="clearfix">
+    <div *ngIf="formControl.modeType.value==1">
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <input type="text" pInputText placeholder="Enter Address Manually" />
+            <div class="row">
+              <div class="col-sm-6">
+                <i class="pi pi-map-marker"></i> Enter Location Manually
+              </div>
+              <div class="col-sm-6">
+                Vanue not decided.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="row">
+        <div formGroupName="addressModel">
+          <div class="col-sm-12">
+            <label for="">Address</label>
+            <div class="form-group">
+              <input pInputText placeholder="Address 1" formControlName="address1">
+            </div>
+            <div class="form-group">
+              <input pInputText placeholder="Address 2" formControlName="address2">
+            </div>
+            <div class="form-group">
+              <input pInputText placeholder="Address 3" formControlName="address3">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Country</label>
+              <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
+                [settings]="settings" formControlName="countryObj" (onSelect)="onChangeCountry($event)">
+              </angular2-multiselect>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">State</label>
+              <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
+                [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)">
+              </angular2-multiselect>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">City</label>
+              <input pInputText placeholder="City" formControlName="city">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="">Zip/Postal Code</label>
+              <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="formControl.modeType.value==2">
+      <div class="form-group">
+        <label for="">Location URL</label>
+        <input type="text" pInputText placeholder="Location" formControlName="onlineLocation" />
+      </div>
+      <div class="form-group">
+        <label for="">Location Detail</label>
+        <textarea pInputTextarea autoResize="autoResize" formControlName="onlineLocationDetail"></textarea>
+      </div>
+    </div>
+    <div class="form-group button-group text-right">
+      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger" (click)="handleCancel()"></button>
+      <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+    </div>
+  </div>
+</form>
