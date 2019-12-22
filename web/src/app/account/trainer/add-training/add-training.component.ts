@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddTrainingComponent implements OnInit {
   routeLinks = [];
-  active:boolean=true;
+  active: boolean = true;
   constructor(private _ActivatedRoute: ActivatedRoute) { }
   ngOnInit() {
     this.routeLinks = [
@@ -28,9 +28,6 @@ export class AddTrainingComponent implements OnInit {
       }, {
         label: 'Custom Questions',
         link: 'questions',
-      }, {
-        label: 'Feedback',
-        link: 'feedback',
       }, {
         label: 'Promotions',
         link: 'promotions',
