@@ -9,11 +9,13 @@ export const ApiPath = {
   'trainerCertificate': 'api/Trainer/Certificate',
   'trainerVU': 'api/Trainer/VU',
   'trainerEmail': 'api/Trainer/Email',
+  'trainerFollow': 'api/Home/P/f',
   /* trainer api path ends */
   /* organization */
   'Organization': 'api/Organization',
   'organizationUserTag': 'api/Organization/UserTag',
   'organizationUserCertificate': 'api/Organization/Certificate',
+  'organizationFollow': 'api/Home/O/f',
   /* auth */
   'register': 'api/Account',
   'Accountlogin': 'api/Account/login',
@@ -36,6 +38,7 @@ export const ApiPath = {
   'trainingAbout': 'api/Training/{TrainingId}/About',
   'trainingImage': 'api/Training/{TrainingId}/Image',
   'trainingVU': 'api/Training/VU',
+  'trainingFollow': 'api/Home/T/f',
   /* home */
   'homeRunningTraining': 'api/Home/RT',
   'headerTraining': 'api/Home/h/{urlName}',

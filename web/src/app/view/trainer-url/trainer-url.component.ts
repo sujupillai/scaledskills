@@ -12,7 +12,7 @@ export class TrainerUrlComponent implements OnInit {
   isSendMesage: boolean = false;
   cities = [];
   carouselitems = [];
-  userId = 0;
+  trainerId = 0;
   isError = false;
   regUsers = [];
   reviews = [];
@@ -51,8 +51,8 @@ export class TrainerUrlComponent implements OnInit {
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.userId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
-        if (this.userId > 0) {
+        this.trainerId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
+        if (this.trainerId > 0) {
           this.entity = res.result ? res.result : null;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
@@ -66,7 +66,7 @@ export class TrainerUrlComponent implements OnInit {
   }
   fetchPastTraining = () => {
     let postObj = {
-      "userId": this.userId,
+      "userId": this.trainerId,
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -78,7 +78,7 @@ export class TrainerUrlComponent implements OnInit {
   }
   fetchUpcomingTraining = () => {
     let postObj = {
-      "userId": this.userId,
+      "userId": this.trainerId,
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -122,5 +122,13 @@ export class TrainerUrlComponent implements OnInit {
     }
     url += urlToOpen;
     window.open(url, '_blank');
+  }
+  hendleFollowMe = () => {
+    let url = ApiPath.trainerFollow;
+    let postObj = {
+      typeId: this.trainerId
+    }
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+    })
   }
 }

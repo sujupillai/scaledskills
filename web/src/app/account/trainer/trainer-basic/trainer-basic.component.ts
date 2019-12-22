@@ -138,6 +138,7 @@ export class TrainerBasicComponent implements OnInit {
         } else {
           this.urlConfig.isUrl = false;
         }
+        
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
         var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
