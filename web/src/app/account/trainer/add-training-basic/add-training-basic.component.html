@@ -10,13 +10,27 @@
     </div>
     <div class="form-group">
       <label>Training Url <span class="required">*</span></label>
-      <div class="flex vMiddle urlBox" [ngClass]="{disabled: !formControl.name.value}">
+      <div class="flex vMiddle urlBox">
         <div class="fixed-input">{{formControl.baseUrl.value}}</div>
-        <input type="text" formControlName="url" pInputText placeholder="Enter Here" class="disabled">
-        <i class="pi pi-copy cursor-pointer" [ngClass]="isCopied?'pi-check':'pi-copy'" style="font-size: 2em"
-          (click)="copyText()"></i>
+        <input type="text" formControlName="url" pInputText placeholder="Enter Here" 
+        [ngClass]="isUrl?'disabled':''" (keyup)="updateUrl()">
+        <p class="msgError text-danger"
+          *ngIf="formControl.url.invalid && (formControl.url.dirty || submitted)">
+          <small *ngIf="formControl.url.hasError('required')">
+            Required Field.
+          </small>
+        </p>
+        <div class="text-right msgError">
+          <p class="inline-block" *ngIf="!isUrl" [ngClass]="isValidateUrl?'text-success':'text-danger'">
+            <strong>{{urlValidationMsg}} &nbsp; &nbsp;</strong></p>
+          <a href="javascript:void(0)" (click)="validateUrl()"
+            *ngIf="!isUrl && !isValidateUrl && formControl['url'].value">Validate Url</a>
+          <a href="javascript:void(0)" (click)="viewProfile()" *ngIf="isUrl">View Profile</a>
+        </div>
+        <!-- <i class="pi pi-copy cursor-pointer" [ngClass]="isCopied?'pi-check':'pi-copy'" style="font-size: 2em"
+          (click)="copyText()"></i> -->
       </div>
-      <p class="msgError text-success" *ngIf="isCopied">Url Copied to clipboard.</p>
+      <!-- <p class="msgError text-success" *ngIf="isCopied">Url Copied to clipboard.</p> -->
     </div>
     <div class="form-group">
       <div class="row">

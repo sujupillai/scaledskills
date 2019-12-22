@@ -19,7 +19,10 @@ export class AddTrainingBasicComponent implements OnInit {
   startDate = new FormControl();
   endDate = new FormControl();
   settings = {};
-  trainingId = 0
+  trainingId = 0;
+  isUrl = false;
+  isValidateUrl = false;
+  urlValidationMsg = '';
   trainingData = null;
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
@@ -35,8 +38,8 @@ export class AddTrainingBasicComponent implements OnInit {
         this.getData()
       } else {
 
-       this.resetForm(this.trainingBasicForm)
-       this.trainingData={};
+        this.resetForm(this.trainingBasicForm)
+        this.trainingData = {};
       }
     });
     // this.getAllData();
@@ -71,7 +74,6 @@ export class AddTrainingBasicComponent implements OnInit {
   getData = () => {
     let url = this.trainingId.toString();
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-
       if (res.result) {
         this.trainingData = res.result;
         Object.keys(this.trainingData).forEach(name => {
@@ -81,22 +83,40 @@ export class AddTrainingBasicComponent implements OnInit {
         });
         var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
         this.formControl['hostedByObj'].setValue(hostedBy);
-        let urlStr = (this.formControl['name'].value).split(' ').join('_')
-        this.formControl['url'].setValue(urlStr)
+        if (this.trainingData.url) {
+          this.isUrl = true;
+          this.isValidateUrl = true;
+        } else {
+          this.isUrl = false;
+          this.isValidateUrl = false;
+        }
       } else {
         this.resetForm(this.trainingBasicForm)
       }
     })
   }
-  upateUrl = () => {
-    let urlStr = (this.formControl['name'].value).split(' ').join('_')
+  updateUrl = () => {
+    this.urlValidationMsg = '';
+    let urlStr = (this.formControl['url'].value).split(' ').join('_')
     this.formControl['url'].setValue(urlStr)
   }
-  copyText() {
-    let urlStr = (this.formControl['name'].value).split(' ').join('_')
-    this.formControl['url'].setValue(urlStr)
+  viewProfile() {
     let val = window.location.origin + '/#/view/t/' + this.formControl['url'].value;
     window.open(val, "_blank");
+  }
+  validateUrl = () => {
+    const url = ApiPath.trainingVU;
+    let params = {
+      url: this.formControl['url'].value
+    }
+    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
+      if (res.responseCode == 200 && res.result) {
+        this.isValidateUrl = true;
+      } else {
+        this.isValidateUrl = false
+      }
+      this.urlValidationMsg = this.isValidateUrl ? 'Url is available.' : 'Url is already used with other.';
+    })
   }
   onChangeHostedBy(event) {
     let id = event.value
@@ -118,32 +138,38 @@ export class AddTrainingBasicComponent implements OnInit {
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
-      this.submitted = false;
-      let url = ApiPath.training;
-      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        if (res.result) {
+      if (this.isValidateUrl) {
+        this.submitted = false;
+        let url = ApiPath.training;
+        this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+          if (res.result) {
+            let msgArray = [
+              {
+                mgs: res.responseMessege ? res.responseMessege : 'Success',
+                class: 'confirmMsg'
+              },
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+            this.getData()
+          } else {
+            let msgArray = [
+              { mgs: 'Something went wrong', class: 'confirmMsg' }
+            ]
+            // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          }
+        }, error => {
           let msgArray = [
-            {
-              mgs: res.responseMessege ? res.responseMessege : 'Success',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-          this.getData()
-        } else {
-          let msgArray = [
-            { mgs: 'Something went wrong', class: 'confirmMsg' }
+            { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-        }
-      }, error => {
-        let msgArray = [
-          { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
-        ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-      })
+        })
+      }
+      else{
+        this.urlValidationMsg = 'Please Validate url';
+      }
+
     }
   }
   resetForm(formGroup: FormGroup) {

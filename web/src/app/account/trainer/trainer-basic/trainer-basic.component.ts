@@ -172,6 +172,11 @@ export class TrainerBasicComponent implements OnInit {
   handleSubmit = () => {
     if (this.profileForm.invalid) {
       this.submitted = true;
+      let msgArray = [
+        { mgs: 'Please complete form', class: 'confirmMsg' },
+      ]
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+
     } else {
       if (this.isValidateUrl) {
         this.submitted = false;
@@ -245,9 +250,9 @@ export class TrainerBasicComponent implements OnInit {
     })
   }
   upateUrl = () => {
-    this.urlValidationMsg = '';
     let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
-    this.formControl['profileUrl'].setValue(urlStr)
+    this.formControl['profileUrl'].setValue(urlStr);
+    this.urlValidationMsg = 'Please Validate url';
   }
   viewProfile() {
     let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
