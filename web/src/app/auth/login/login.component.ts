@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
       },
         error => {
           let msgArray = [
-            { mgs: error['error'], class: 'confirmMsg' },
+            { mgs: error['message']?error['message']:'Server Error', class: 'confirmMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         });

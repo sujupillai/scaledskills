@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as service from '../../_service';
 import { MustMatch } from '../../_helpers/_validators/must-match.validator';
 import { ApiPath } from '../../_helpers/_constants/api'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-setpassword',
   templateUrl: './setpassword.component.html',
@@ -12,43 +12,30 @@ export class SetpasswordComponent implements OnInit {
   registerForm: FormGroup;
   error = '';
   submitted: boolean = false;
-  countryList = [];
-  selectedCountry = [];
-  defaultList = [{
-    "text": "Select",
-    "value": "0",
-    "isSelect": false
-  }];
-  settings = {};
-  countrySettings = {};
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
+
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService,
+    private _SharedService: service.SharedService, private _Router: Router, private _ActivatedRoute: ActivatedRoute) { }
   ngOnInit() {
     this.createForm(() => {
-      this.settings = {
-        singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
-      };
-      this.countrySettings = {
-        singleSelection: true, text: "Select", labelKey: "text", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
-      };
-      this.getCountryList();
+      this._ActivatedRoute.queryParams.subscribe(queryParams => {
+        let paramObj = queryParams;
+        this.formControl.code.setValue(queryParams.code)
+        this.formControl.userId.setValue(queryParams.usr)
+        this.formControl.usr.setValue(queryParams.usr)
+      })
     })
   }
   createForm = (callback: any): void => {
     this.registerForm = this._FormBuilder.group(
       {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-        userName: '',
-        password: ['', [Validators.required, Validators.minLength(5)]],
+        newPassword: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
-        id: 0,
-        countryObj: [''],
-        countryCode: [],
+        code: "",
+        userId: "",
+        usr: ''
       },
       {
-        validator: MustMatch('password', 'confirmPassword'),
+        validator: MustMatch('newPassword', 'confirmPassword'),
       }
     )
     if (callback) {
@@ -56,44 +43,17 @@ export class SetpasswordComponent implements OnInit {
     }
   }
   get formControl() { return this.registerForm.controls }
-  getMaster = (url, masterCollection) => {
 
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      if (res.responseCode == 200) {
-        this[masterCollection] = res.result;
-        if (masterCollection == 'countryList') {
-          this[masterCollection].map(x => {
-            x.countryCode = "+91"
-          })
-        }
-      }
-    })
-  }
-  getCountryList = () => {
-    let url = ApiPath.globalCountry;
-    this.getMaster(url, 'countryList')
-  }
-  OnCountrySelect(event) {
-    this.registerForm.get('countryCode').setValue(event.countryCode)
-  }
-  OnCountryDeSelect(event) {
-    this.registerForm.get('countryCode').setValue(null)
-    this.registerForm.get('countryObj').setValue([])
-  }
+
   handleSubmitForm = () => {
     if (this.registerForm.invalid) {
       this.submitted = true;
       return
     } else {
       this.submitted = false;
-      let url = ApiPath.register;
-      let postObj = {
-        ...this.registerForm.value
-      };
-      let params = {
-        auth: false
-      }
-      this._HttpService.httpCall(url, 'POST', postObj, params).subscribe(res => {
+      let url = ApiPath.AccountForgotPassword;
+      let postObj = this.registerForm.value;
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res && res.responseCode == 406) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' }
@@ -102,24 +62,28 @@ export class SetpasswordComponent implements OnInit {
         } else if (res && res.responseCode == 200) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
-            { mgs: 'Please check your registered email id for verify your account.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
-            this._Router.navigate(['/']);
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess').subscribe(res => {
+            console.log('ddd')
+            this._Router.navigate(['/auth/login']);
           })
+          setTimeout(() => {
+            this._Router.navigate(['/auth/login']);
+          }, 3000)
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         }
       },
         error => {
           let msgArray = [
-            { mgs: error['error'], class: 'confirmMsg' },
+            { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         });
     }
   }
 }
+

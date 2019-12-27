@@ -71,7 +71,7 @@ export class ForgotPasswordComponent implements OnInit {
       },
         error => {
           let msgArray = [
-            { mgs: error['error'], class: 'confirmMsg' },
+            { mgs: error['message'], class: 'confirmMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
         })

@@ -85,7 +85,6 @@ export class OrgBasicComponent implements OnInit {
   fetchData = () => {
     let url = ApiPath.Organization;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
-      debugger
       if (res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -203,7 +202,6 @@ export class OrgBasicComponent implements OnInit {
     }
   }
   upateUrl = () => {
-    debugger;
     this.urlValidationMsg = '';
     let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)

@@ -16,7 +16,7 @@ const authRoutes = [
       { path: 'userValidate', component: LoginConfirmComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot', component: ForgotPasswordComponent },
-      { path: 'setpassword', component: SetpasswordComponent },
+      { path: 'resetPassword', component: SetpasswordComponent },
     ]
   }
 ];
