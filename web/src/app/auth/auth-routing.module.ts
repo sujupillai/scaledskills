@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginConfirmComponent } from './login-confirm/login-confirm.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { SetpasswordComponent } from './setpassword/setpassword.component';
 const authRoutes = [
   {
     path: '',
@@ -15,6 +16,7 @@ const authRoutes = [
       { path: 'userValidate', component: LoginConfirmComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot', component: ForgotPasswordComponent },
+      { path: 'setpassword', component: SetpasswordComponent },
     ]
   }
 ];
