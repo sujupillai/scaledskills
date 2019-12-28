@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   error = '';
   submitted: boolean = false;
   countryList = [];
-  selectedCountry = [];
+  selectedCountry =  [ { "text": "INDIA", "value": "1", "isSelect": true, "countryCode": "+91" } ];
   defaultList = [{
     "text": "Select",
     "value": "0",
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
         confirmPassword: ['', Validators.required],
         id: 0,
         countryObj: [''],
-        countryCode: [],
+        countryCode: ['+91'],
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
