@@ -9,6 +9,7 @@ import { HttpService, AuthenticationService, SharedService } from '../../_servic
 export class TrainingUrlComponent implements OnInit {
   carouselitems = [];
   regUsers = [];
+  trainingId=0;
   upcommingTrainings = [];
   pastTrainings = [];
   relatedTrainings = [];
@@ -21,6 +22,7 @@ export class TrainingUrlComponent implements OnInit {
   canEdit: boolean = false;
   userInfo: any = {};
   isLoggedIn: boolean = false;
+  isError:boolean=false;
   constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
   }
   ngOnInit() {
@@ -71,9 +73,14 @@ export class TrainingUrlComponent implements OnInit {
         this.entity = res.result;
         this.userId = this.entity['userId'];
         this.canEdit = res.result.canEdit;
-        if (this.userId > 0) {
+        this.trainingId=this.entity['trainingId']
+        if (this.trainingId > 0) {
+          this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
+        }else {
+          this.entity = null;
+          this.isError = true;
         }
       }
     })

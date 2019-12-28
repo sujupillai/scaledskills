@@ -57,6 +57,7 @@ export class TrainerUrlComponent implements OnInit {
         this.trainerId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.trainerId > 0) {
           this.entity = res.result ? res.result : null;
+          this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
         }

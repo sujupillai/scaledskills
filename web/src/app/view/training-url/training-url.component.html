@@ -1,3 +1,4 @@
+<pre>{{entity|json}}</pre>
 <div class="container">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
@@ -11,9 +12,9 @@
             4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
           </button>
           <p class="hostedBy">
-            {{entity.name?entity.name:'NA'}}
+            {{entity.name?entity.name:'N/A'}}
           </p>
-          <div *ngIf="entity.mode=='Online'">
+          <div>
             <p class="hostedBy">Online</p>
           </div>
           <div *ngIf="entity.mode!='Online'">
@@ -44,7 +45,7 @@
                 {{entity.countryName?entity.countryName + ' , ':''}}
               </div>
               <div *ngIf="entity.mode=='Online'">
-                {{entity.onlineLocation?entity.onlineLocation:'NA'}}
+                {{entity.onlineLocation?entity.onlineLocation:'N/A'}}
               </div>
             </div>
           </div>
@@ -74,9 +75,9 @@
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item">Views <br>{{!entity.viewCount?'NA':entity.viewCount|number}}</div>
-              <div class="item">Interested <br>{{!entity.interestCount?'NA':entity.interestCount|number}}</div>
-              <div class="item">Registered <br>{{!entity.registerCount?'NA':entity.registerCount|number}}</div>
+              <div class="item">Views <br>{{!entity.viewCount?'N/A':entity.viewCount|number}}</div>
+              <div class="item">Interested <br>{{!entity.interestCount?'N/A':entity.interestCount|number}}</div>
+              <div class="item">Registered <br>{{!entity.registerCount?'N/A':entity.registerCount|number}}</div>
             </div>
           </div>
         </li>
@@ -157,19 +158,19 @@
               </div>
               <div class="card-desc">
                 <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                  class="event">{{item.name?item.name:'NA'}}</a>
+                  class="event">{{item.name?item.name:'N/A'}}</a>
                 <p class="text-right">
-                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
+                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'N/A'}}
                 </p>
               </div>
             </div>
             <hr>
             <div class="card-desc flex_c_c">
               <p class="label-price">
-                {{item.mode?item.mode:'NA'}}
+                {{item.mode?item.mode:'N/A'}}
               </p>
               <p class="label-price border">
-                Rs. {{item.amount?item.amount:'NA'}}
+                Rs. {{item.amount?item.amount:'N/A'}}
               </p>
             </div>
             <hr>
@@ -179,7 +180,7 @@
               </p>
               <p class="label-price">
                 <i class="fa fa-star" aria-hidden="true"></i>
-                {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+                {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
               </p>
             </div>
           </p-card>
@@ -215,19 +216,19 @@
               </div>
               <div class="card-desc">
                 <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                  class="event">{{item.name?item.name:'NA'}}</a>
+                  class="event">{{item.name?item.name:'N/A'}}</a>
                 <p class="text-right">
-                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
+                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'N/A'}}
                 </p>
               </div>
             </div>
             <hr>
             <div class="card-desc flex_c_c">
               <p class="label-price">
-                {{item.mode?item.mode:'NA'}}
+                {{item.mode?item.mode:'N/A'}}
               </p>
               <p class="label-price border">
-                Rs. {{item.amount?item.amount:'NA'}}
+                Rs. {{item.amount?item.amount:'N/A'}}
               </p>
             </div>
             <hr>
@@ -239,7 +240,7 @@
               </p>
               <p class="label-price">
                 <i class="fa fa-star" aria-hidden="true"></i>
-                {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+                {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
               </p>
             </div>
           </p-card>
@@ -275,19 +276,19 @@
               </div>
               <div class="card-desc">
                 <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                  class="event">{{item.name?item.name:'NA'}}</a>
+                  class="event">{{item.name?item.name:'N/A'}}</a>
                 <p class="text-right">
-                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
+                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'N/A'}}
                 </p>
               </div>
             </div>
             <hr>
             <div class="card-desc flex_c_c">
               <p class="label-price">
-                {{item.mode?item.mode:'NA'}}
+                {{item.mode?item.mode:'N/A'}}
               </p>
               <p class="label-price border">
-                Rs. {{item.amount?item.amount:'NA'}}
+                Rs. {{item.amount?item.amount:'N/A'}}
               </p>
             </div>
             <hr>
@@ -297,7 +298,7 @@
               </p>
               <p class="label-price">
                 <i class="fa fa-star" aria-hidden="true"></i>
-                {{item.interestCount?item.interestCount+'&nbsp; People interested':'NA'}}
+                {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
               </p>
             </div>
           </p-card>
@@ -316,3 +317,4 @@
     </p-carousel>
   </div>
 </div>
+<app-error *ngIf="entity==null && isError"></app-error>
