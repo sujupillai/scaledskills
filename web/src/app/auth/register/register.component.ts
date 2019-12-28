@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     "isSelect": false
   }];
   settings = {};
+  inputType='password'
   countrySettings = {};
   constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
   ngOnInit() {
@@ -78,6 +79,9 @@ export class RegisterComponent implements OnInit {
   OnCountryDeSelect(event) {
     this.registerForm.get('countryCode').setValue(null)
     this.registerForm.get('countryObj').setValue([])
+  }
+  handleEyeType=()=>{
+    this.inputType=this.inputType=='text'?'password':'text'
   }
   handleSubmitForm = () => {
     if (this.registerForm.invalid) {

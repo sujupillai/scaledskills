@@ -85,7 +85,12 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="">Password <span class="required">*</span></label>
-                <input class="width_100" type="password" placeholder="Enter Here" pInputText formControlName="password" />
+                <div class="ui-inputgroup">
+                  <input class="width_100" type="{{inputType}}" placeholder="Enter Here" pInputText formControlName="password" />
+                  <span class="ui-inputgroup-addon cursor-pointer">
+                    <i class="fa fa-eye" aria-hidden="true" (click)="handleEyeType()"></i>
+                  </span>
+                </div>
                 <p class="msgError text-danger"
                   *ngIf="formControl.password.invalid && (formControl.password.dirty || submitted)">
                   <small *ngIf="formControl.password.hasError('minlength')">
@@ -100,8 +105,13 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="">Confirm Password <span class="required">*</span></label>
-                <input class="width_100" type="password" placeholder="Enter Here" pInputText
+                <div class="ui-inputgroup">
+                  <input class="width_100" type="{{inputType}}" placeholder="Enter Here" pInputText
                   formControlName="confirmPassword" />
+                  <span class="ui-inputgroup-addon cursor-pointer">
+                    <i class="fa fa-eye" aria-hidden="true" (click)="handleEyeType()"></i>
+                  </span>
+                </div>
                 <p class="msgError text-danger"
                   *ngIf="formControl.confirmPassword.invalid && (formControl.confirmPassword.dirty || submitted)">
                   <small *ngIf="formControl.confirmPassword.hasError('mustMatch')">
@@ -128,7 +138,7 @@
             </div>
             <div class="col-sm-6 text-right">
               <span class="mar-r-15">
-                Aleady registered?
+                Already registered?
               </span>
               <button pButton type="button" label="LOGIN" class="ui-button-raised"
                 [routerLink]="['/auth/login']"></button>
