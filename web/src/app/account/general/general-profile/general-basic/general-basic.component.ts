@@ -56,7 +56,7 @@ export class GeneralBasicComponent implements OnInit {
         address1: ['', Validators.required],
         address2: [''],
         address3: [''],
-        zipCode: ['', Validators.required],
+        zipCode: ['', [Validators.required, Validators.minLength(6)]],
         street: [''],
         countryId: ['', Validators.required],
         countryObj: [],
@@ -94,6 +94,7 @@ export class GeneralBasicComponent implements OnInit {
   }
   OnCountryDeSelect(event) {
     this.profileForm.get(['address', 'countryId']).setValue('')
+    this.profileForm.get(['address', 'countryObj']).setValue('')
     this.profileForm.get(['address', 'stateId']).setValue('')
     this.profileForm.get(['address', 'stateObj']).setValue('')
     this.profileForm.get(['address', 'city']).setValue('');

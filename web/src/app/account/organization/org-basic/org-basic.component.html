@@ -25,9 +25,15 @@
     <div class="row">
       <div formGroupName="address">
         <div class="col-sm-12">
-          <label for="">Address</label>
+          <label for="">Address <span class="required">*</span></label>
           <div class="form-group">
             <input pInputText placeholder="Address 1" formControlName="address1">
+            <p class="msgError text-danger"
+              *ngIf="formElement.get(['address', 'address1']).invalid && (formElement.get(['address', 'address1']).dirty || submitted)">
+              <small *ngIf="formElement.get(['address', 'address1']).hasError('required')">
+                Required Field.
+              </small>
+            </p>
           </div>
           <div class="form-group">
             <input pInputText placeholder="Address 2" formControlName="address2">
@@ -38,37 +44,64 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">Country</label>
+            <label for="">Country <span class="required">*</span></label>
             <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
               [settings]="settings" formControlName="countryObj" (onSelect)="OnCountrySelect($event)"
               (onDeSelect)="OnCountryDeSelect($event)"></angular2-multiselect>
+              <p class="msgError text-danger"
+              *ngIf="formElement.get(['address', 'countryId']).invalid && (formElement.get(['address', 'countryId']).dirty || submitted)">
+              <small *ngIf="formElement.get(['address', 'countryId']).hasError('required')">
+                Required Field.
+              </small>
+            </p>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">State</label>
+            <label for="">State <span class="required">*</span></label>
             <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
               [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)"
               (onDeSelect)="OnStateDeSelect($event)"></angular2-multiselect>
+              <p class="msgError text-danger"
+              *ngIf="formElement.get(['address', 'stateId']).invalid && (formElement.get(['address', 'stateId']).dirty || submitted)">
+              <small *ngIf="formElement.get(['address', 'stateId']).hasError('required')">
+                Required Field.
+              </small>
+            </p>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">City</label>
+            <label for="">City <span class="required">*</span></label>
             <input pInputText placeholder="City" formControlName="city">
+            <p class="msgError text-danger">
+              <small
+                *ngIf="formElement.get(['address', 'city']).hasError('required') && (formElement.get(['address', 'city']).dirty || submitted)">
+                Required Field.
+              </small>
+            </p>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">Zip/Postal Code</label>
+            <label for="">Zip/Postal Code <span class="required">*</span></label>
             <input pInputText placeholder="Zip/Postal Code" formControlName="zipCode">
+            <p class="msgError text-danger"
+              *ngIf="formElement.get(['address', 'zipCode']).invalid && (formElement.get(['address', 'zipCode']).dirty || submitted)">
+              <small *ngIf="formElement.get(['address', 'zipCode']).hasError('required')">
+                Required Field.
+              </small>
+              <small *ngIf="formElement.get(['address', 'zipCode']).hasError('minlength')">
+                Minimum 6 digits.
+              </small>
+            </p>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <label for="">Profile Url</label>
+        <label for="">Profile Url <span class="required">*</span></label>
         <div class="form-group">
           <div class="flex vMiddle urlBox">
             <div class="fixed-input">{{formControl.baseUrl.value}}</div>

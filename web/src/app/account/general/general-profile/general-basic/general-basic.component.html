@@ -125,10 +125,13 @@
           <div class="form-group">
             <label for="">Zip/Postal Code <span class="required">*</span></label>
             <input pInputText placeholder="Zip/Postal" formControlName="zipCode">
-            <p class="msgError text-danger">
-              <small
-                *ngIf="profileForm.get(['address', 'zipCode']).hasError('required') && (profileForm.get(['address', 'zipCode']).dirty || submitted)">
+            <p class="msgError text-danger"
+              *ngIf="profileForm.get(['address', 'zipCode']).invalid && (profileForm.get(['address', 'zipCode']).dirty || submitted)">
+              <small *ngIf="profileForm.get(['address', 'zipCode']).hasError('required')">
                 Required Field.
+              </small>
+              <small *ngIf="profileForm.get(['address', 'zipCode']).hasError('minlength')">
+                Minimum 6 digits.
               </small>
             </p>
           </div>

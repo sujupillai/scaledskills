@@ -49,16 +49,16 @@ export class OrgBasicComponent implements OnInit {
       panNumber: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       idProof: [''],
       address: this._FormBuilder.group({
-        address1: [''],
+        address1: ['', Validators.required],
         address2: [''],
         address3: [''],
-        zipCode: [''],
+        zipCode: ['', [Validators.required, Validators.minLength(6)]],
         street: [''],
-        countryId: [''],
-        countryObj: [''],
-        stateId: [''],
+        countryId: ['', Validators.required],
+        countryObj: [],
+        stateId: ['', Validators.required],
         stateObj: [''],
-        city: ['']
+        city: ['', Validators.required],
       }),
     })
     if (callback) {
@@ -129,6 +129,7 @@ export class OrgBasicComponent implements OnInit {
   }
   OnCountryDeSelect(event) {
     this.formElement.get(['address', 'countryId']).setValue('')
+    this.formElement.get(['address', 'countryObj']).setValue('')
     this.formElement.get(['address', 'stateId']).setValue('')
     this.formElement.get(['address', 'stateObj']).setValue('')
     this.formElement.get(['address', 'city']).setValue('');
