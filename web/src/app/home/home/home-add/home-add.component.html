@@ -1,7 +1,7 @@
 <section class="section-padding clearfix homeBanner">
   <div class="container">
     <!-- (onPage)="setPage($event)" -->
-    <p-carousel headerText="Promotion" [value]="carouselItems" *ngIf="carouselItems.length>0">
+    <p-carousel headerText="Promotion" [value]="carouselItems" *ngIf="carouselItems && carouselItems.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <app-training-card [item]="item"></app-training-card>

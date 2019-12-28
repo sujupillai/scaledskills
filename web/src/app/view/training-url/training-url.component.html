@@ -142,7 +142,7 @@
   <div class="form-group">
     <p-carousel headerText="Upcoming Trainings from Organizer ({{upcommingTrainings.length}})"
       [value]="upcommingTrainings" numVisible="5" circular="true" autoplayInterval="5000"
-      *ngIf="upcommingTrainings.length>0">
+      *ngIf="upcommingTrainings && upcommingTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -187,7 +187,7 @@
       </ng-template>
     </p-carousel>
     <p-carousel headerText="Upcoming Trainings from Organizer ({{upcommingTrainings.length}})" [value]="noRecord"
-      numVisible="1" *ngIf="upcommingTrainings.length==0">
+      numVisible="1" *ngIf="upcommingTrainings && upcommingTrainings.length==0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card>

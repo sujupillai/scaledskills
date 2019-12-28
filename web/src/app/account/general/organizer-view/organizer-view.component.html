@@ -1,7 +1,7 @@
 <div class="form-group">
   <div class="width_100">
     <p-carousel headerText="Upcoming Training ({{upcomingTrainings.length}})" [value]="upcomingTrainings"
-      (onPage)="setPage($event)" autoplayInterval="5000" *ngIf="upcomingTrainings.length>0">
+      (onPage)="setPage($event)" autoplayInterval="5000" *ngIf="upcomingTrainings && upcomingTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -60,7 +60,7 @@
 <div class="form-group">
   <div class="width_100">
     <p-carousel headerText="Past Training ({{pastTrainings.length}})" [value]="pastTrainings" autoplayInterval="5000"
-      *ngIf="pastTrainings.length>0">
+      *ngIf="pastTrainings && pastTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
@@ -119,7 +119,7 @@
 <div class="form-group">
   <div class="width_100">
     <p-carousel headerText="Cancel Training ({{cancelTrainings.length}})" [value]="cancelTrainings"
-      autoplayInterval="5000" *ngIf="cancelTrainings.length>0">
+      autoplayInterval="5000" *ngIf="cancelTrainings && cancelTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">

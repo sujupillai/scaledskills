@@ -120,7 +120,7 @@
       <div class="border-line top bottom"></div>
       <div class="form-group">
         <p-carousel headerText="Upcoming Trainings ({{upcommingTrainings.length}})" [value]="upcommingTrainings"
-          numVisible="5" circular="true" autoplayInterval="5000" *ngIf="upcommingTrainings.length>0">
+          numVisible="5" circular="true" autoplayInterval="5000" *ngIf="upcommingTrainings && upcommingTrainings.length>0">
           <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">
               <app-training-card [item]="item"></app-training-card>
