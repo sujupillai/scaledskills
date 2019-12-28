@@ -28,6 +28,7 @@ export const ApiPath = {
   'globalDropdown': 'api/Global/GlobalDropdown',
   'trainingRequest': 'api/Training/Request',
   'documentUpload': 'api/Document/Upload',
+  'globalZone': 'api/Global/Zone',
   /* training */
   'training': 'api/Training',
   'trainingLocation': 'api/Training/{TrainingId}/Location',

@@ -20,6 +20,8 @@ export class AddTrainingBasicComponent implements OnInit {
   endDate = new FormControl();
   settings = {};
   trainingId = 0;
+  zoneList=[];
+  selectedZone=[];
   trainingData = null;
   urlConfig = {
     isUrl: false,
@@ -43,6 +45,7 @@ export class AddTrainingBasicComponent implements OnInit {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param['id'];
       if (this.trainingId > 0) {
+        this.getTimeZone();
         this.getData()
       } else {
         this.resetForm(this.trainingBasicForm)
@@ -66,6 +69,7 @@ export class AddTrainingBasicComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       timeZone: 0,
+      timeZoneObj: [],
       organizationList: [],
       organizationListObj: [],
       hostedBy: [0, Validators.required],
@@ -89,6 +93,10 @@ export class AddTrainingBasicComponent implements OnInit {
         });
         var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
         this.formControl['hostedByObj'].setValue(hostedBy);
+        var zone=this.zoneList.filter(x=>x.value==this.trainingData.timeZone)
+        this.formControl['timeZoneObj'].setValue(zone);
+        this.selectedZone=zone;
+        
         if (this.trainingData.url) {
           this.urlConfig.isUrl = true;
           this.urlConfig.isUrlValid = true;
@@ -97,6 +105,14 @@ export class AddTrainingBasicComponent implements OnInit {
         }
       } else {
         this.resetForm(this.trainingBasicForm)
+      }
+    })
+  }
+  getTimeZone=()=>{
+    let url =ApiPath.globalZone;
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res=>{
+      if(res && res.responseCode==200){
+        this.zoneList=res.result;
       }
     })
   }
@@ -202,5 +218,13 @@ export class AddTrainingBasicComponent implements OnInit {
         this.resetForm(this.trainingBasicForm)
       }
     })
+  }
+  OnZoneSelect(event) {
+    let id = event.value
+    this.formControl.timeZone.setValue(id)
+    
+  }
+  OnZoneDeSelect(event) {
+    this.formControl.timeZone.setValue(0)
   }
 }
