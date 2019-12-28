@@ -25,26 +25,26 @@
             <div class="flex">
               <i class="pi pi-clock" style="margin:5px 10px 0 0"></i>
               <span>
-                {{entity.startDate | date:'EEE'}}, {{entity.startDate | date:'MMM d, y | h:mm:ss a'}}
+                {{entity['startDate'] | date:'EEE'}}, {{entity['startDate'] | date:'MMM d, y | h:mm:ss a'}}
                 to
-                {{entity.endDate | date:'EEE'}}, {{entity.endDate | date:'MMM d, y | h:mm:ss a'}}</span>
+                {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm:ss a'}}</span>
             </div>
             <br>
           </div>
           <div class="sub_links">
             <div class="flex">
               <i class="pi pi-map-marker" style="margin:5px 10px 0 0"></i>
-              <div *ngIf="entity.mode!='Online'">
-                {{entity.address1?entity.address1 + ' , ':'Address1 : NA, '}}
-                {{entity.address2?entity.address2 + ' , ':'Address2 : NA, '}}
-                {{entity.address3?entity.address3 + ' , ':''}}
-                {{entity.city?entity.city + ' , ':'City : NA, '}}
-                {{entity.stateName?entity.stateName + ' , ':'State : NA, '}}
-                {{entity.zipCode?entity.zipCode + ' , ':'Zip : NA, '}}
-                {{entity.countryName?entity.countryName + ' , ':''}}
+              <div *ngIf="entity['mode']!='Online'">
+                {{entity['address1']?entity['address1'] + ' , ':'Address1 : NA, '}}
+                {{entity['address2']?entity['address2'] + ' , ':'Address2 : NA, '}}
+                {{entity['address3']?entity['address3'] + ' , ':''}}
+                {{entity['city']?entity['city'] + ' , ':'City : NA, '}}
+                {{entity['stateName']?entity['stateName'] + ' , ':'State : NA, '}}
+                {{entity['zipCode']?entity['zipCode'] + ' , ':'Zip : NA, '}}
+                {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
-              <div *ngIf="entity.mode=='Online'">
-                {{entity.onlineLocation?entity.onlineLocation:'N/A'}}
+              <div *ngIf="entity['mode']=='Online'">
+                {{entity['onlineLocation']?entity['onlineLocation']:'N/A'}}
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@
             <button type="button" class="btn btn-gradient bookBtn">Register</button>
           </div>
           <p class="hostedBy">
-            By {{entity.userName}}
+            By {{entity['userName']}}
             <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
                 aria-hidden="true"></i>&nbsp;Join</span>
           </p>
