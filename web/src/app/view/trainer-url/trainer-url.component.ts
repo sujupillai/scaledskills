@@ -34,7 +34,8 @@ export class TrainerUrlComponent implements OnInit {
     { label: 'Copy Url', icon: 'fa fa-clone' },
   ];
   constructor(public dialogService: DialogService,
-    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
+    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, 
+    private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.noRecord = [
