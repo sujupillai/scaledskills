@@ -34,7 +34,7 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
-    this.baseUrl = window.location.origin + 't/';
+    this.baseUrl = window.location.origin + '/t/';
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param['id'];
       if (this.trainingId > 0) {

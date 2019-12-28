@@ -7,7 +7,7 @@ export class HttpService {
   constructor(private _HttpClient: HttpClient) {
   }
   apiUrlName() {
-    let url: string='http://testapi.scaledskills.com';
+    let url: string='http://testapi.scaledskills.com/';
     // const origin = window.location.origin;
     // if (origin.indexOf("localhost") > -1) {
     //   // url = 'http://hajorel712-001-site1.ftempurl.com/';

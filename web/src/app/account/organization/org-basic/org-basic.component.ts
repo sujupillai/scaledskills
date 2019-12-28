@@ -25,8 +25,10 @@ export class OrgBasicComponent implements OnInit {
   countryList = [];
   stateList = [];
   isCopied: boolean = false;
+  baseUrl;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   ngOnInit() {
+    this.baseUrl = window.location.origin + '/o/';
     this.createForm(() => {
       this.getCountryList();
       this.settings = {
@@ -39,7 +41,7 @@ export class OrgBasicComponent implements OnInit {
     this.formElement = this._FormBuilder.group({
       name: ['', Validators.required],
       ownerName: ['', Validators.required],
-      baseUrl: [window.location.origin + '/o/'],
+      baseUrl: this.baseUrl,
       profileUrl: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],

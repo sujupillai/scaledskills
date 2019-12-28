@@ -28,7 +28,7 @@ export class TrainerBasicComponent implements OnInit {
   }
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
-    this.baseUrl = window.location.origin + 'p/';
+    this.baseUrl = window.location.origin + '/p/';
     this.createprofileForm(() => {
       this.defaultList = [{
         "text": "Select",
