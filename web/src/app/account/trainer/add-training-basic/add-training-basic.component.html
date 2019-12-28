@@ -1,3 +1,4 @@
+<!-- {{trainingData|json}} -->
 <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
   <div class="clearfix">
     <div class="form-group">
@@ -12,16 +13,16 @@
       <label>Training Url <span class="required">*</span></label>
       <div class="flex vMiddle urlBox">
         <div class="fixed-input">{{formControl.baseUrl.value}}</div>
-        <input type="text" formControlName="url" pInputText placeholder="Enter Here" 
-        [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="updateUrl()">
-        <p class="msgError text-danger"
-          *ngIf="formControl.url.invalid && (formControl.url.dirty || submitted)">
+        <input type="text" formControlName="url" pInputText placeholder="Enter Here"
+          [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="updateUrl()">
+        <p class="msgError text-danger" *ngIf="formControl.url.invalid && (formControl.url.dirty || submitted)">
           <small *ngIf="formControl.url.hasError('required')">
             Required Field.
           </small>
         </p>
         <div class="text-right msgError">
-          <p class="inline-block" *ngIf="!urlConfig.isUrl && formControl['url'].value && urlConfig.urlSubmitted" [ngClass]="urlConfig.isUrlValid?'text-success':'text-danger'">
+          <p class="inline-block" *ngIf="!urlConfig.isUrl && formControl['url'].value && urlConfig.urlSubmitted"
+            [ngClass]="urlConfig.isUrlValid?'text-success':'text-danger'">
             <strong>{{urlConfig.vrlValidationMsg}} &nbsp; &nbsp;</strong></p>
           <a href="javascript:void(0)" (click)="validateUrl()"
             *ngIf="formControl['url'].value && !urlConfig.isUrl && !urlConfig.isUrlValid">Validate Url</a>
@@ -29,23 +30,27 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="clearfix">
       <div class="row">
         <div class="col-sm-6">
-          <label for="">Training For</label>
-          <angular2-multiselect class="form-control" [data]="trainingForList" [(ngModel)]="trainingForValue"
-            [settings]="settings" formControlName="hostedByObj" (onSelect)="onChangeHostedBy($event, hostedBy)">
-          </angular2-multiselect>
-          <p class="msgError text-danger"
-            *ngIf="formControl.hostedBy.hasError('required') && (formControl.hostedBy.dirty || submitted)">
-            Required
-            Field.</p>
+          <div class="form-group">
+            <label for="">Training For</label>
+            <angular2-multiselect class="form-control" [data]="trainingForList" [(ngModel)]="trainingForValue"
+              [settings]="settings" formControlName="hostedByObj" (onSelect)="onChangeHostedBy($event, hostedBy)"
+              (onDeSelect)="OnDeSelect($event)">
+            </angular2-multiselect>
+            <p class="msgError text-danger"
+              *ngIf="formControl.hostedBy.hasError('required') && (formControl.hostedBy.dirty || submitted)">Required
+              Field.</p>
+          </div>
         </div>
         <div class="col-sm-6" *ngIf="formControl.hostedBy.value==2">
-          <label>Search</label>
-          <angular2-multiselect class="form-control" [data]="organizationListMaster" [(ngModel)]="organizationListValue"
+          <div class="form-group">
+            <label>Search</label>
+            <!-- <angular2-multiselect class="form-control" [data]="organizationListMaster" [(ngModel)]="organizationListValue"
             [settings]="settings" formControlName="organizationListObj" (onSelect)="onChangeHostedBy($event, hostedBy)">
-          </angular2-multiselect>
+          </angular2-multiselect> -->
+          </div>
         </div>
       </div>
     </div>

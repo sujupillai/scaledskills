@@ -27,6 +27,11 @@ export class AddTrainingBasicComponent implements OnInit {
     vrlValidationMsg: '',
     urlSubmitted: false
   }
+  defaultList = [{
+    "text": "Select",
+    "value": "0",
+    "isSelect": false
+  }]
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
       { text: 'Individual', value: '1' },
@@ -57,7 +62,6 @@ export class AddTrainingBasicComponent implements OnInit {
       name: ['', Validators.required],
       baseUrl: [this.baseUrl],
       url: ['', Validators.required],
-      trainingFor: [''],
       description: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
@@ -87,6 +91,7 @@ export class AddTrainingBasicComponent implements OnInit {
         this.formControl['hostedByObj'].setValue(hostedBy);
         if (this.trainingData.url) {
           this.urlConfig.isUrl = true;
+          this.urlConfig.isUrlValid = true;
         } else {
           this.urlConfig.isUrl = false;
         }
@@ -123,11 +128,17 @@ export class AddTrainingBasicComponent implements OnInit {
     })
   }
   onChangeHostedBy(event) {
+    debugger
     let id = event.value
     if (id == 2) {
       /* display organization */
     }
     this.trainingBasicForm.get('hostedBy').setValue(event.value)
+  }
+  OnDeSelect(event) {
+    this.formControl.hostedBy.setValue('');
+    this.formControl.hostedByObj.setValue('');
+    this.trainingForValue = this.defaultList;
   }
   handleSubmit = () => {
     this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value : '');
@@ -137,10 +148,6 @@ export class AddTrainingBasicComponent implements OnInit {
     }
     if (this.trainingBasicForm.invalid) {
       this.submitted = true;
-      let msgArray = [
-        { mgs: 'Please complete form', class: 'confirmMsg' },
-      ]
-      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
     } else {
       if (this.urlConfig.isUrlValid) {
         this.submitted = false;
