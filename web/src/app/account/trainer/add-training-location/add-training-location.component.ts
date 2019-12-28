@@ -42,7 +42,7 @@ export class AddTrainingLocationComponent implements OnInit {
         return
       } else {
         this.createPhysicalForm(() => {
-          this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
+          this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true,};
           this.getCountryList();
         })
         this.createOnlineForm(() => {
@@ -120,8 +120,25 @@ export class AddTrainingLocationComponent implements OnInit {
     this.physicalLocationForm.get(['addressModel', 'countryId']).setValue(event.value)
     this.getStateList(id)
   }
+  OnCountryDeSelect(event) {
+    this.physicalLocationForm.get(['addressModel', 'countryId']).setValue('')
+    this.physicalLocationForm.get(['addressModel', 'stateId']).setValue('')
+    this.physicalLocationForm.get(['addressModel', 'stateObj']).setValue('')
+    this.physicalLocationForm.get(['addressModel', 'city']).setValue('');
+    this.physicalLocationForm.get(['addressModel', 'zipCode']).setValue('');
+    this.selectedState = this.defaultList;
+    this.selectedState = this.defaultList;
+    this.stateList = [];
+  }
   onChangeState(event) {
     this.physicalLocationForm.get(['addressModel', 'stateId']).setValue(event.value)
+  }
+  OnStateDeSelect(event) {
+    this.physicalLocationForm.get(['addressModel', 'stateId']).setValue('')
+    this.physicalLocationForm.get(['addressModel', 'stateObj']).setValue('')
+    this.physicalLocationForm.get(['addressModel', 'city']).setValue('');
+    this.physicalLocationForm.get(['addressModel', 'zipCode']).setValue('');
+    this.selectedState = this.defaultList;
   }
   setAddress = (dataObj, formElement) => {
     this[formElement].get(['addressModel', 'address1']).setValue(dataObj.addressModel && dataObj.addressModel.address1 ? dataObj.addressModel.address1 : 'NA');
@@ -183,7 +200,6 @@ export class AddTrainingLocationComponent implements OnInit {
         this.submitHttpReq(postObj, 'onlineFormControl', 'onlineLocationForm')
       }
     } else if (this.modeType == 1) {
-      debugger
       let postObj = {
         ...this.physicalLocationForm.value
       }

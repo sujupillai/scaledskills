@@ -30,7 +30,7 @@
           <div class="form-group">
             <label for="">Country <span class="required">*</span></label>
             <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
-              [settings]="settings" formControlName="countryObj" (onSelect)="onChangeCountry($event)">
+              [settings]="settings" formControlName="countryObj" (onSelect)="onChangeCountry($event)" (onDeSelect)="OnCountryDeSelect($event)">
             </angular2-multiselect>
             <p class="msgError text-danger"
               *ngIf="physicalLocationForm.get(['addressModel', 'countryId']).invalid && (physicalLocationForm.get(['addressModel', 'countryId']).dirty || submitted)">
@@ -44,7 +44,7 @@
           <div class="form-group">
             <label for="">State <span class="required">*</span></label>
             <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
-              [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)">
+              [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)" (onDeSelect)="OnStateDeSelect($event)">
             </angular2-multiselect>
             <p class="msgError text-danger"
               *ngIf="physicalLocationForm.get(['addressModel', 'stateId']).invalid && (physicalLocationForm.get(['addressModel', 'stateId']).dirty || submitted)">
