@@ -9,7 +9,7 @@
       </ng-template>
     </p-carousel>
     <p-carousel headerText="Promotion ({{carouselItems.length}})" [value]="noRecord" numVisible="1"
-      *ngIf="carouselItems.length==0">
+      *ngIf="carouselItems && carouselItems.length==0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card>

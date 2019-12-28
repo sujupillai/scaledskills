@@ -32,7 +32,7 @@ export class CategoryComponent implements OnInit {
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.RTList = [];
       this.RTList = res.result.results;
-      this.currentLength = this.RTList.length;
+      this.currentLength = this.RTList?this.RTList.length:0;
       this.totalTraining = res.result.totalCount;
     })
   }
