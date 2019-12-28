@@ -59,8 +59,7 @@
       <p-editor formControlName="description" [style]="{'height':'200px'}"></p-editor>
       <p class="msgError text-danger"
         *ngIf="formControl.description.hasError('required') && (formControl.description.dirty || submitted)">
-        Required
-        Field.</p>
+        Required Field.</p>
     </div>
     <div class="row">
       <div class="col-sm-6">
@@ -90,11 +89,15 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <label>Time Zone</label>
-        {{selectedZone|json}}
-        <angular2-multiselect class="form-control" [data]="zoneList" [(ngModel)]="selectedZone"
-              [settings]="settings" formControlName="timeZoneObj" (onSelect)="OnZoneSelect($event)"
-              (onDeSelect)="OnZoneDeSelect($event)"></angular2-multiselect>
+        <div class="form-group">
+          <label>Time Zone</label>
+          <angular2-multiselect class="form-control" [data]="zoneList" [(ngModel)]="selectedZone" [settings]="settings"
+            formControlName="timeZoneObj" (onSelect)="OnZoneSelect($event)" (onDeSelect)="OnZoneDeSelect($event)">
+          </angular2-multiselect>
+          <p class="msgError text-danger"
+            *ngIf="formControl.timeZone.hasError('required') && (formControl.timeZone.dirty || submitted)">
+            Required Field.</p>
+        </div>
       </div>
     </div>
     <div class="form-group button-group text-right">

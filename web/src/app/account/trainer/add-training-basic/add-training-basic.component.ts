@@ -20,8 +20,8 @@ export class AddTrainingBasicComponent implements OnInit {
   endDate = new FormControl();
   settings = {};
   trainingId = 0;
-  zoneList=[];
-  selectedZone=[];
+  zoneList = [];
+  selectedZone = [];
   trainingData = null;
   urlConfig = {
     isUrl: false,
@@ -68,7 +68,7 @@ export class AddTrainingBasicComponent implements OnInit {
       description: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
-      timeZone: 0,
+      timeZone: ['', Validators.required],
       timeZoneObj: [],
       organizationList: [],
       organizationListObj: [],
@@ -91,28 +91,29 @@ export class AddTrainingBasicComponent implements OnInit {
             this.formControl[name].setValue(this.trainingData[name]);
           }
         });
-        var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
-        this.formControl['hostedByObj'].setValue(hostedBy);
-        var zone=this.zoneList.filter(x=>x.value==this.trainingData.timeZone)
-        this.formControl['timeZoneObj'].setValue(zone);
-        this.selectedZone=zone;
-        
         if (this.trainingData.url) {
           this.urlConfig.isUrl = true;
           this.urlConfig.isUrlValid = true;
         } else {
           this.urlConfig.isUrl = false;
         }
+        setTimeout(() => {
+          var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
+          this.formControl['hostedByObj'].setValue(hostedBy);
+          var zone = this.zoneList.filter(x => x.value == this.trainingData.timeZone)
+          this.formControl['timeZoneObj'].setValue(zone);
+          this.selectedZone = zone;
+        }, 200)
       } else {
         this.resetForm(this.trainingBasicForm)
       }
     })
   }
-  getTimeZone=()=>{
-    let url =ApiPath.globalZone;
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res=>{
-      if(res && res.responseCode==200){
-        this.zoneList=res.result;
+  getTimeZone = () => {
+    let url = ApiPath.globalZone;
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.zoneList = res.result;
       }
     })
   }
@@ -222,9 +223,10 @@ export class AddTrainingBasicComponent implements OnInit {
   OnZoneSelect(event) {
     let id = event.value
     this.formControl.timeZone.setValue(id)
-    
+
   }
   OnZoneDeSelect(event) {
-    this.formControl.timeZone.setValue(0)
+    this.formControl.timeZone.setValue('')
+    this.formControl.timeZoneObj.setValue('')
   }
 }
