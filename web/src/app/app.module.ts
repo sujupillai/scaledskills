@@ -24,7 +24,8 @@ import { RequestComponent } from './training-request/request.component';
 import { MyRequestComponent } from './training-request/my-request/my-request.component';
 import { MyResponseComponent } from './training-request/my-response/my-response.component';
 import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.component';
-import { MessageComponent } from './_shared/_dialogs/message/message.component';
+import {TrainingFormComponent} from './training-request/training-form/training-form.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MessageComponent } from './_shared/_dialogs/message/message.component';
     MyRequestComponent,
     MyResponseComponent,
     OrganizerUrlComponent,
+    TrainingFormComponent
   ],
   imports: [
     BrowserModule,

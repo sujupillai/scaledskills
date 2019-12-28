@@ -1,7 +1,7 @@
 <div class="container">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
-      <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity.trainingId)"></i>
+      <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
     </div>
     <img src="../../../assets/images/event.png" alt="headerImg" class="img-responsive">
     <div class="event-detail-wrap">
@@ -11,14 +11,14 @@
             4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
           </button>
           <p class="hostedBy">
-            {{entity.name?entity.name:'N/A'}}
+            {{entity['name']?entity['name']:'N/A'}}
           </p>
           <div>
             <p class="hostedBy">Online</p>
           </div>
-          <div *ngIf="entity.mode!='Online'">
+          <div *ngIf="entity['mode']!='Online'">
             <p class="hostedBy">
-              {{entity.address1?entity.address1 + ' - ':''}} {{entity.stateName?entity.stateName:'location: NA'}}
+              {{entity['address1']?entity['address1'] + ' - ':''}} {{entity['stateName']?entity['stateName']:'location: NA'}}
             </p>
           </div>
           <div class="sub_links">
@@ -74,9 +74,9 @@
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item">Views <br>{{!entity.viewCount?'N/A':entity.viewCount|number}}</div>
-              <div class="item">Interested <br>{{!entity.interestCount?'N/A':entity.interestCount|number}}</div>
-              <div class="item">Registered <br>{{!entity.registerCount?'N/A':entity.registerCount|number}}</div>
+              <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div>
+              <div class="item">Interested <br>{{!entity['interestCount']?'N/A':entity['interestCount']|number}}</div>
+              <div class="item">Registered <br>{{!entity['registerCount']?'N/A':entity['registerCount']|number}}</div>
             </div>
           </div>
         </li>
@@ -111,7 +111,7 @@
   </div>
   <div class="form-group">
     <label>About</label>
-    <div [innerHTML]="entity.description"></div>
+    <div [innerHTML]="entity['description']"></div>
   </div>
   <div class="border-line"></div>
   <div class="form-group">
