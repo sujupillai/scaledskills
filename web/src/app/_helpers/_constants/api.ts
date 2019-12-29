@@ -51,5 +51,11 @@ export const ApiPath = {
   'generalUrl': 'api/Home/P/{urlName}',
   'orgUrl': 'api/Home/O/{urlName}',
   /* interest */
-  'interest': 'api/Training/{TrainingId}/Interest'
+  'interest': 'api/Training/{TrainingId}/Interest',
+
+  /* order placement */
+  'getTrainingTickets':'api/Home/T/Tickets/{urlName}',
+  'orderTicket':'api/Order/T',
+  'orderDetail':'api/Order/{orderId}',
+  'placeOrder':'api/Order/P/{orderId}'
 }

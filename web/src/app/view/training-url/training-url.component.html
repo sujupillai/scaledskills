@@ -51,7 +51,7 @@
         </li>
         <li class="text-center">
           <div *ngIf="!canEdit">
-            <button type="button" class="btn btn-gradient bookBtn">Register</button>
+            <button type="button" class="btn btn-gradient bookBtn" [routerLink]="['/placeOrder', trainingId]">Register</button>
           </div>
           <p class="hostedBy">
             By {{entity['userName']}}

@@ -25,6 +25,8 @@ import { MyRequestComponent } from './training-request/my-request/my-request.com
 import { MyResponseComponent } from './training-request/my-response/my-response.component';
 import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.component';
 import {TrainingFormComponent} from './training-request/training-form/training-form.component';
+import { OrderTicketComponent } from './view/training-url/order-ticket/order-ticket.component';
+import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {TrainingFormComponent} from './training-request/training-form/training-f
     MyRequestComponent,
     MyResponseComponent,
     OrganizerUrlComponent,
-    TrainingFormComponent
+    TrainingFormComponent,
+    OrderTicketComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
