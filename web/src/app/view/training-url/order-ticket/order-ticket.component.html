@@ -11,12 +11,13 @@
               (click)="addItem(item)"></i>
           </div>
           <div class="order-status m0" [ngClass]="item.qty == 0 ?'expire':'success'">
-            {{item.name}}  ({{item.qty}})
+            {{item.name}} ({{item.qty}})
           </div>
           <div class="mb-5">
             Max Booking : {{item.maxBooking}}, Min Booking : {{item.minBooking}}
             <div class="inline-block">
-              <p class="label-price border" [ngClass]="item.paymentCharge > 0 ?'':'free'">Rs. {{item.paymentCharge?item.paymentCharge:'FREE'}}</p>
+              <p class="label-price border" [ngClass]="item.paymentCharge > 0 ?'':'free'">Rs.
+                {{item.paymentCharge?item.paymentCharge:'FREE'}}</p>
             </div>
           </div>
           <div class="mb-5">
@@ -45,6 +46,7 @@
   <div class="form-group clearfix button-group text-right">
     <button *ngIf="selectedTickets.length>0" pButton type="button" label="Submit" class="ui-button-raised"
       (click)="handleSubmit()"></button>
-    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+    <button pButton type="button" (click)="backClicked()" label="Cancel"
+      class="ui-button-raised ui-button-danger"></button>
   </div>
 </div>

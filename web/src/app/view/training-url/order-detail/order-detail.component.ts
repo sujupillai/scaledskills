@@ -43,7 +43,8 @@ export class OrderDetailComponent implements OnInit {
           },
         ]
         this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
-          this._Router.navigate(['/'])
+          let returnUrl = localStorage.getItem('returnurl')  || '/';
+          this._Router.navigate([returnUrl]);
         })
       } else {
         /* any other error */

@@ -11,7 +11,7 @@ import { HttpService, AuthenticationService, SharedService } from '../../_servic
 export class TrainingUrlComponent implements OnInit {
   carouselitems = [];
   regUsers = [];
-  trainingId=0;
+  trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
   relatedTrainings = [];
@@ -24,7 +24,7 @@ export class TrainingUrlComponent implements OnInit {
   canEdit: boolean = false;
   userInfo: any = {};
   isLoggedIn: boolean = false;
-  isError:boolean=false;
+  isError: boolean = false;
   constructor(public dialogService: DialogService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
   }
@@ -36,8 +36,10 @@ export class TrainingUrlComponent implements OnInit {
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.url;
       url = url.replace('{urlName}', this.urlString)
+      this.getUser()
       this.getData(url)
     });
+    localStorage.removeItem('returnurl');
   }
   getUser = () => {
     this.userInfo = this._AuthenticationService.currentUserValue
@@ -76,12 +78,12 @@ export class TrainingUrlComponent implements OnInit {
         this.entity = res.result;
         this.userId = this.entity['userId'];
         this.canEdit = res.result.canEdit;
-        this.trainingId=this.entity['trainingId']
+        this.trainingId = this.entity['trainingId']
         if (this.trainingId > 0) {
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
-        }else {
+        } else {
           this.entity = null;
           this.isError = true;
         }
@@ -161,4 +163,21 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
+  registerForTraining = () => {
+    localStorage.setItem('returnurl', this._Router.url);
+    if (this.isLoggedIn) {
+      this._Router.navigate(['/placeOrder', this.trainingId])
+    } else {
+      let msgArray = [
+        { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+        { mgs: 'Do you want to login ?', class: 'subMsg' },
+      ]
+      this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
+        if (res) {
+          this._Router.navigate(['/auth/login']);
+        }
+      })
+    }
+  }
+
 }

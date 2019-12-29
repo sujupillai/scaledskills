@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- <pre>{{entity|json}}</pre> -->
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
       <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
@@ -51,7 +52,7 @@
         </li>
         <li class="text-center">
           <div *ngIf="!canEdit">
-            <button type="button" class="btn btn-gradient bookBtn" [routerLink]="['/placeOrder', trainingId]">Register</button>
+            <button type="button" class="btn btn-gradient bookBtn" (click)="registerForTraining()">Register</button>
           </div>
           <p class="hostedBy">
             By {{entity['userName']}}
