@@ -156,6 +156,9 @@ export class OrganizerUrlComponent implements OnInit {
       typeId: this.orgId
     }
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if(res && res.responseCode == 200){
+        this.entity['isFollow']=true;
+      } 
     })
   }
 }

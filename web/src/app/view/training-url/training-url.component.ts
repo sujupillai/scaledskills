@@ -25,6 +25,14 @@ export class TrainingUrlComponent implements OnInit {
   userInfo: any = {};
   isLoggedIn: boolean = false;
   isError: boolean = false;
+  shareOptions = [
+    { label: 'Facebook', icon: 'fa fa-facebook' },
+    { label: 'Whatsapp', icon: 'fa fa-whatsapp' },
+    { label: 'Instagram', icon: 'fa fa-instagram' },
+    { label: 'Linkedin', icon: 'fa fa-linkedin' },
+    { label: 'Twitter', icon: 'fa fa-twitter' },
+    { label: 'Copy Url', icon: 'fa fa-clone' },
+  ];
   constructor(public dialogService: DialogService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
   }
@@ -163,21 +171,38 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
+  goToLogin = () => {
+    localStorage.setItem('returnurl', this._Router.url); let msgArray = [
+      { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+      { mgs: 'Do you want to login ?', class: 'subMsg' },
+    ]
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
+      if (res) {
+        this._Router.navigate(['/auth/login']);
+      }
+    })
+  }
   registerForTraining = () => {
     localStorage.setItem('returnurl', this._Router.url);
     if (this.isLoggedIn) {
       this._Router.navigate(['/placeOrder', this.trainingId])
     } else {
-      let msgArray = [
-        { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
-        { mgs: 'Do you want to login ?', class: 'subMsg' },
-      ]
-      this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
-        if (res) {
-          this._Router.navigate(['/auth/login']);
-        }
-      })
+      this.goToLogin();
     }
   }
-
+  hendleFollowMe = () => {
+    if (this.isLoggedIn) {
+      let url = ApiPath.trainingFollow;
+      let postObj = {
+        typeId: this.trainingId
+      }
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        if (res && res.responseCode == 200) {
+          this.entity['isFollow'] = true;
+        }
+      })
+    } else {
+      this.goToLogin();
+    }
+  }
 }

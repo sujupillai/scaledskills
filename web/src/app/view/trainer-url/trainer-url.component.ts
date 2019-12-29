@@ -153,6 +153,9 @@ export class TrainerUrlComponent implements OnInit {
       typeId: this.trainerId
     }
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if(res && res.responseCode == 200){
+        this.entity['isFollow']=true;
+      }
     })
   }
 }
