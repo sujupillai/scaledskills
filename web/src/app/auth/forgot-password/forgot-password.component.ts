@@ -47,7 +47,6 @@ export class ForgotPasswordComponent implements OnInit {
       let param = {
         email: this.formControl.email.value
       }
-      prompt('param', JSON.stringify(param))
       this._HttpService.httpCall(url, 'GET', null, param).subscribe(res => {
         if (res && res.responseCode == 406) {
           let msgArray = [

@@ -65,7 +65,7 @@
               </div>
 
               <div class="col-sm-8" [ngClass]="{disabled: formControl.countryCode.value==null}">
-                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" digitOnly />
+                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" max="10" digitOnly  />
               </div>
             </div>
             <p class="msgError text-danger"
@@ -94,7 +94,7 @@
                 <p class="msgError text-danger"
                   *ngIf="formControl.password.invalid && (formControl.password.dirty || submitted)">
                   <small *ngIf="formControl.password.hasError('minlength')">
-                    Password should be atleast 5 characters.
+                    Password should be atleast 6 characters.
                   </small>
                   <small *ngIf="formControl.password.hasError('required')">
                     Required Field.
