@@ -16,7 +16,7 @@ export class AttendeeViewComponent implements OnInit {
   ngOnInit() {
     this.upcomingTraining();
     this.pastTraining();
-    this.cancelTraining()
+    //this.cancelTraining()
   }
   upcomingTraining = () => {
     let postObj = {
@@ -52,7 +52,7 @@ export class AttendeeViewComponent implements OnInit {
       "pageSize": 16,
       "page": 0
     }
-    let url = ApiPath.pastTraining;
+    let url = ApiPath.cancelTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.cancelTrainings = res.result.results;
     })
