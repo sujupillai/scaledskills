@@ -16,7 +16,7 @@ export class LoginConfirmComponent implements OnInit {
   ngOnInit() {
     this._ActivatedRoute.queryParams.subscribe(queryParams => {
       this.validateObj = queryParams;
-      this.validateObj()
+      this.handleConfirmLogin()
     })
   }
   handleConfirmLogin = () => {
