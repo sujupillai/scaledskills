@@ -8,7 +8,7 @@
       <ng-template pTemplate="content">
         <ul *ngIf="prevState.headerUrl && header">
           <li>
-            <img src="{{prevState.headerUrl}}" alt="" class="img-responsive">
+            <img src="{{prevState.headerUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="" class="img-responsive">
           </li>
         </ul>
       </ng-template>
@@ -26,7 +26,7 @@
       <ng-template pTemplate="content">
         <ul *ngIf="prevState.cardUrl && card">
           <li>
-            <img src="{{prevState.cardUrl}}" alt="" class="img-responsive">
+            <img src="{{prevState.cardUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="" class="img-responsive">
           </li>
         </ul>
       </ng-template>
