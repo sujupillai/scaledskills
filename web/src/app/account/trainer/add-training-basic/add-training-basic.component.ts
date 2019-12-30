@@ -41,16 +41,17 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
+    this.getTimeZone();
     this.baseUrl = window.location.origin + '/t/';
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param['id'];
       if (this.trainingId > 0) {
-        this.getTimeZone();
         this.getData()
       } else {
         this.resetForm(this.trainingBasicForm)
         this.trainingData = {};
       }
+      
     });
     // this.getAllData();
     this.createForm(() => {

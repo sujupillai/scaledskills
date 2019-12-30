@@ -52,6 +52,9 @@ export class MessageComponent implements OnInit {
     }
     // this.ref.close(data);
   }
+  handleCancel=()=>{
+    this.ref.close();
+  }
   resetForm(formGroup: FormGroup) {
     let control: AbstractControl = null;
     formGroup.reset();
