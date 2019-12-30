@@ -87,7 +87,6 @@ export class OrderTicketComponent implements OnInit {
     if (postObj.items.length > 0) {
       let url = ApiPath.orderTicket
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        debugger
         if (res && res.responseCode == 406) {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }

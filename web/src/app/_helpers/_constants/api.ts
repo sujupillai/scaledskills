@@ -31,6 +31,7 @@ export const ApiPath = {
   'globalZone': 'api/Global/Zone',
   /* training */
   'training': 'api/Training',
+  'getTraining': '{id}',
   'trainingLocation': 'api/Training/{TrainingId}/Location',
   'trainingPromotions': 'api/Training/{TrainingId}/Promotions',
   'trainingSettings': 'api/Training/{TrainingId}/Settings',

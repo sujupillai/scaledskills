@@ -46,7 +46,7 @@ export class AddTrainingBasicComponent implements OnInit {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param['id'];
       if (this.trainingId > 0) {
-        this.getData()
+        this.getData(this.trainingId)
       } else {
         this.resetForm(this.trainingBasicForm)
         this.trainingData = {};
@@ -82,8 +82,9 @@ export class AddTrainingBasicComponent implements OnInit {
     }
   }
   get formControl() { return this.trainingBasicForm.controls }
-  getData = () => {
-    let url = this.trainingId.toString();
+  getData = (id) => {
+    let url =ApiPath.getTraining
+    url = url.replace('{id}', id())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.result) {
         this.trainingData = res.result;
@@ -146,7 +147,6 @@ export class AddTrainingBasicComponent implements OnInit {
     })
   }
   onChangeHostedBy(event) {
-    debugger
     let id = event.value
     if (id == 2) {
       /* display organization */
@@ -171,7 +171,12 @@ export class AddTrainingBasicComponent implements OnInit {
         this.submitted = false;
         let url = ApiPath.training;
         this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-          if (res.result) {
+          if (res && res.responseCode == 406) {
+            let msgArray = [
+              { mgs: res.responseMessege, class: 'confirmMsg' }
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
+          }else if (res && res.responseCode == 200) {
             let msgArray = [
               {
                 mgs: res.responseMessege ? res.responseMessege : 'Success',
@@ -179,12 +184,12 @@ export class AddTrainingBasicComponent implements OnInit {
               },
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-            this.getData()
+            this.trainingId=res['result'];
+            this.getData(this.trainingId)
           } else {
             let msgArray = [
-              { mgs: 'Something went wrong', class: 'confirmMsg' }
+              { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
             ]
-            // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
           }
         }, error => {
@@ -208,14 +213,14 @@ export class AddTrainingBasicComponent implements OnInit {
       control = formGroup.controls[name];
       control.setErrors(null);
     });
-    this.getData()
+    this.getData(this.trainingId)
   }
   handleCancel = () => {
     let msgArray = [
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
-    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Alert!!').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.trainingBasicForm)
       }
