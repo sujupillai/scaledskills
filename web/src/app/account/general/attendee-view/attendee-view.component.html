@@ -6,7 +6,10 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <p-header>
-              <img src="Card" src="{{item.imageUrl}}" alt="image">
+              <a href="{{item.fullUrl}}">
+                <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                  alt="image">
+              </a>
             </p-header>
             <div class="card-inner">
               <div class="date">
@@ -15,7 +18,7 @@
                 {{item.startDate | date: 'dd'}}
               </div>
               <div class="card-desc">
-                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
+                <a href="{{item.fullUrl}}" tooltipPosition="top" pTooltip="{{item.name}}"
                   class="event">{{item.name?item.name:'NA'}}</a>
                 <p class="text-right">
                   <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
@@ -65,7 +68,10 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <p-header>
-              <img src="Card" src="{{item.imageUrl}}" alt="image">
+              <a href="{{item.fullUrl}}">
+                <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                  alt="image">
+              </a>
             </p-header>
             <div class="card-inner">
               <div class="date">
@@ -74,7 +80,7 @@
                 {{item.startDate | date: 'dd'}}
               </div>
               <div class="card-desc">
-                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
+                <a href="{{item.fullUrl}}" tooltipPosition="top" pTooltip="{{item.name}}"
                   class="event">{{item.name?item.name:'NA'}}</a>
                 <p class="text-right">
                   <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
@@ -124,7 +130,10 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <p-header>
-              <img src="Card" src="{{item.imageUrl}}" alt="image">
+              <a href="{{item.fullUrl}}">
+                <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                  alt="image">
+              </a>
             </p-header>
             <div class="card-inner">
               <div class="date">
@@ -133,7 +142,7 @@
                 {{item.startDate | date: 'dd'}}
               </div>
               <div class="card-desc">
-                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
+                <a href="{{item.fullUrl}}" tooltipPosition="top" pTooltip="{{item.name}}"
                   class="event">{{item.name?item.name:'NA'}}</a>
                 <p class="text-right">
                   <i class="pi pi-map-marker"></i>{{item.city?item.city:'NA'}}
