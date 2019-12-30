@@ -14,7 +14,7 @@
             </button></h3>
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
           <div><strong>Website:</strong>
-            <span *ngIf="entity.social && entity.social.length>0">
+            <span *ngIf="entity.social.length>0">
               <a class="cursor-pointer" (click)="openUrl(entity.social[0].websiteUrls)">
                 {{entity.social[0].websiteUrls?entity.social[0].websiteUrls:'N/A'}}
               </a>
@@ -25,16 +25,16 @@
             <div class="trainingActions inline-block ml15">
               <div class="flex feed-row">
                 <div class="item round"
-                  [ngClass]="(entity.social && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social.length>0 && entity.social[0].linkedInUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-linkedin" aria-hidden="true" (click)="openUrl(entity.social[0].linkedInUrls)"></i>
                 </div>
                 <div class="item round"
-                  [ngClass]="(entity.social && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social.length>0 && entity.social[0].facebookUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-facebook-square" aria-hidden="true"
                     (click)="openUrl(entity.social[0].facebookUrls)"></i>
                 </div>
                 <div class="item round"
-                  [ngClass]="(entity.social && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
+                  [ngClass]="(entity.social.length>0 && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
                 <!-- <div class="item cursor-pointer round">
@@ -52,8 +52,8 @@
               <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt" [model]="shareOptions">
               </p-splitButton>
             </div>
-            <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity.isFollow?'no-cursor':''">
-              <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity.isFollow?'Following':'Follow'}}
+            <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
+              <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
             </div>
             <div class="item cursor-pointer" (click)="showSendMesage()">
               <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Send Message</div>

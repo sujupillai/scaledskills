@@ -105,7 +105,7 @@ export class RegisterComponent implements OnInit {
         } else if (res && res.responseCode == 200) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
-            { mgs: 'Please check your registered email id for verify your account.', class: 'subMsg' },
+            { mgs: 'Please check your registered email id for verify your account after two minutes.', class: 'subMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
           setTimeout(() => {

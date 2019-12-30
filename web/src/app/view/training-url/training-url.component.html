@@ -1,5 +1,5 @@
 <div class="container">
-  <pre>{{entity|json}}</pre>
+  <!-- <pre>{{entity|json}}</pre> -->
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
       <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
@@ -66,8 +66,8 @@
                 <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt" [model]="shareOptions">
                 </p-splitButton>
               </div>
-              <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity.isFollow?'no-cursor':''">
-                <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity.isFollow?'Following':'Follow'}}
+              <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
+                <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
               </div>
               <div class="item cursor-pointer" (click)="showDialog()"><i class="fa fa-pencil-square-o"
                   aria-hidden="true"></i>&nbsp;Feedback</div>

@@ -11,7 +11,7 @@ export class LoginConfirmComponent implements OnInit {
   validateObj;
   isEmailVerify: boolean = false;
   reValidateEmail=false;
-  message: string = "Validating email address..."
+  message: string = "Validating your email address. Please waith for "
   constructor(private _SharedService: SharedService,
     public dialogService: DialogService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute, private _Router:Router) { }
   ngOnInit() {
@@ -27,7 +27,7 @@ export class LoginConfirmComponent implements OnInit {
       if (res && res.responseCode == 200) {
         this.isEmailVerify = true;
         this.reValidateEmail=false;
-        this.message = res && res.result ? res.result : 'Email Activated Successfully';
+        this.message = res && res.result ? res.result : 'Email activated successfully.';
         setTimeout(() => {
           this._Router.navigate(['/']);
         }, 3000)
