@@ -1,5 +1,4 @@
 <div class="container">
-  <!-- <pre>{{entity|json}}</pre> -->
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
       <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
@@ -15,7 +14,7 @@
             {{entity['name']?entity['name']:'N/A'}}
           </p>
           <div>
-            <p class="hostedBy">Online</p>
+            <p class="hostedBy">{{entity['mode']}}</p>
           </div>
           <div *ngIf="entity['mode']!='Online'">
             <p class="hostedBy">
