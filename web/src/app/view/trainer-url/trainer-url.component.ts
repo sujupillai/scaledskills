@@ -67,7 +67,8 @@ export class TrainerUrlComponent implements OnInit {
     this.openUrl(url)
   }
   copyToClipboard=()=> {
-    let url=origin+'/t/'+this.entity['url'];
+    let url=origin+this._Router.url;
+    
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();
