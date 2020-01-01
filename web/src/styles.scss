@@ -1210,32 +1210,37 @@ p-footer {
     vertical-align: top;
   }
 }
-.profile-wrap{
+
+.display-profile-wrap {
   margin-top: 20px;
-  .event-banner{
+
+  .event-banner {
     height: 362px;
     text-align: center;
-    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
-    border-radius: .25rem!important;
-    padding: 5px;  
-    border:1px #ddd solid;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    border-radius: .25rem !important;
+    padding: 1px;
+    border: 1px #ddd solid;
     display: flex;
     align-items: center;
     justify-content: center;
-    img{
-      width:auto;
+
+    img {
+      width: 100%;
       height: auto;
       max-height: 100%;
       max-width: 100%;
       display: inline-block;
-      
+
     }
   }
 }
+
 .event-detail-wrap {
-  
+
   border: 1px transparent solid;
   margin-top: 20px;
+
   &>ul {
     display: flex;
     justify-content: space-between;
@@ -1761,6 +1766,6 @@ body .ui-button {
   max-width: 200px;
 }
 
-.mb10{
+.mb10 {
   margin-bottom: 10px;
 }
