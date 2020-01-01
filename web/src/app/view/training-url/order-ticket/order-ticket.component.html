@@ -1,10 +1,6 @@
 <div class="container">
   <div class="ticket-cart-grid">
     <h2 class="text-center">Ticket List</h2>
-    <pre>
-      {{ticketList[0]|json}}
-    </pre>
-    <pre>{{selectedTickets|json}}</pre>
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
       <div class="relative">
         <div class="left circle"></div>

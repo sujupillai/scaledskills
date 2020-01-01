@@ -44,16 +44,16 @@ export class AddTrainingBasicComponent implements OnInit {
     // this.getAllData();
     this.getTimeZone();
     this.createForm(() => {
-      this.startDate.setValue(new Date());
-      this.endDate.setValue(new Date());
+      this.startDate.setValue('');
+      this.endDate.setValue('');
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.trainingForValue = [{ text: 'Individual', value: '1' }]
       this._ActivatedRoute.parent.params.subscribe((param: any) => {
-        this.trainingId = param['id']?param['id']:0;
+        this.trainingId = param['id'] ? param['id'] : 0;
         if (this.trainingId > 0) {
           this.getData(this.trainingId)
         }
-        
+
       });
     })
   }
@@ -79,7 +79,8 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   get formControl() { return this.trainingBasicForm.controls }
   getData = (id) => {
-    let url =ApiPath.getTraining
+    debugger
+    let url = ApiPath.getTraining
     url = url.replace('{id}', id)
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.result) {
@@ -89,6 +90,8 @@ export class AddTrainingBasicComponent implements OnInit {
             this.formControl[name].setValue(this.trainingData[name]);
           }
         });
+        this.startDate.setValue(res.result.startDate ? new Date(res.result.startDate) : '');
+        this.endDate.setValue(res.result.endDate ? new Date(res.result.endDate) : '');
         if (this.trainingData.url) {
           this.urlConfig.isUrl = true;
           this.urlConfig.isUrlValid = true;
@@ -101,6 +104,7 @@ export class AddTrainingBasicComponent implements OnInit {
           var zone = this.zoneList.filter(x => x.value == this.trainingData.timeZone)
           this.formControl['timeZoneObj'].setValue(zone);
           this.selectedZone = zone;
+
         }, 200)
       } else {
         this.resetForm(this.trainingBasicForm)
@@ -173,16 +177,16 @@ export class AddTrainingBasicComponent implements OnInit {
               { mgs: res.responseMessege, class: 'confirmMsg' }
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
-          }else if (res && res.responseCode == 200) {
+          } else if (res && res.responseCode == 200) {
             debugger
-            this.trainingId=res.result;
+            this.trainingId = res.result;
             let msgArray = [
               {
                 mgs: res.responseMessege ? res.responseMessege : 'Success',
                 class: 'confirmMsg'
               },
             ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
               this.getData(this.trainingId)
             });
           } else {
