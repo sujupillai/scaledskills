@@ -15,7 +15,7 @@
             {{item.name}} ({{item.qty}})
           </div>
           <div class="mb-5">
-            Max Booking : {{item.maxBooking}}, Min Booking : {{item.minBooking}}
+            <span *ngIf="item.minBooking">Min Booking : {{item.minBooking}}</span> <span *ngIf="item.maxBooking">, Max Booking : {{item.maxBooking}}</span>
             <div class="inline-block">
               <p class="label-price border" [ngClass]="item.paymentCharge > 0 ?'':'free'">Rs.
                 {{item.paymentCharge?item.paymentCharge:'FREE'}}</p>
@@ -37,7 +37,7 @@
               <input type="text" pInputText placeholder="Qty" digitOnly (blur)="onBlurMethod(item)"
                 [(ngModel)]="item.orderQty" max="{{item.qty}}" style="max-width:100px" />
               <span class="ui-inputgroup-addon" (click)="handleQty(2, item)"
-                [ngClass]="item.orderQty==item.qty || item.orderQty==item.maxBooking?'disabled':''">+</span>
+                [ngClass]="(item.orderQty==item.maxBooking || item.orderQty==item.qty)?'disabled':''">+</span>
             </div>
           </div>
         </p-card>

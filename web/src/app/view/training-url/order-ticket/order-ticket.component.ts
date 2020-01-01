@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, AuthenticationService, SharedService } from '../../../_service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-order-ticket',
   templateUrl: './order-ticket.component.html'
@@ -13,9 +13,7 @@ export class OrderTicketComponent implements OnInit {
   selectedTickets = [];
   orderId = 'ORD-1229-TL-000000005';
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
-
   ngOnInit() {
-
     let url = ApiPath.trainingTicket;
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.url;
@@ -30,6 +28,7 @@ export class OrderTicketComponent implements OnInit {
         this.ticketList.map((x) => {
           x.orderQty = 0;
           x.isAdded = false;
+          x.maxBooking = x.maxBooking ? x.maxBooking : x.qty
         })
       }
     })
@@ -71,8 +70,8 @@ export class OrderTicketComponent implements OnInit {
     tempItem = selectedTickets;
     return tempItem
   }
-  backClicked=()=> {
-    let returnUrl = localStorage.getItem('returnurl')  || '/';
+  backClicked = () => {
+    let returnUrl = localStorage.getItem('returnurl') || '/';
     this._Router.navigate([returnUrl]);
     // this._location.back();
   }
@@ -97,7 +96,7 @@ export class OrderTicketComponent implements OnInit {
           this.orderId = res['result']
           let msgArray = [
             {
-              mgs: res && res.responseMessege ? res.responseMessege+' Now you can check your ordetail' : 'Order generated successfully. Now you can check your ordetail.',
+              mgs: res && res.responseMessege ? res.responseMessege + ' Now you can check your ordetail' : 'Order generated successfully. Now you can check your ordetail.',
               class: 'confirmMsg'
             },
           ]
