@@ -78,7 +78,7 @@
           </div>
         </li>
         <li class="text-right">
-          <button type="button" class="btn btn-gradient bookBtn mb10" (click)="showSendMesage()">Send Enquiry</button>
+          <button type="button" class="btn btn-gradient bookBtn mb10" [routerLink]="['/home/contact']">Send Enquiry</button>
           <p class="hostedBy">
             Ticket Left : {{entity.qtyTotal-entity.avilableQtyTotal}}/{{entity.qtyTotal}}
           </p>
