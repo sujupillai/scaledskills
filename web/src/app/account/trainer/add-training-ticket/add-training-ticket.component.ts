@@ -51,8 +51,8 @@ export class AddTrainingTicketComponent implements OnInit {
     this.createForm(() => {
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.selectedTicketType = this.defaultList;
-      this.startDate.setValue(new Date());
-      this.endDate.setValue(new Date());
+      this.startDate.setValue('');
+      this.endDate.setValue('');
       this.getCountryList();
     })
   }

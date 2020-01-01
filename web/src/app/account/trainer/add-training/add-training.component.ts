@@ -30,10 +30,10 @@ export class AddTrainingComponent implements OnInit {
       //   label: 'Custom Questions',
       //   link: 'questions',
       // }
-      , {
-        label: 'Promotions',
-        link: 'promotions',
-      }
+      // , {
+      //   label: 'Promotions',
+      //   link: 'promotions',
+      // }
       // , {
       //   label: 'Settings',
       //   link: 'settings',
