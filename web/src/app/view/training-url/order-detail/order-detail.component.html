@@ -19,7 +19,7 @@
                   {{item.qty}} TICKET {{item.qty>1?'s':''}}
                 </button>
                 <div class="inline-block ml-20">
-                  <p class="label-price border">Rs. {{item.totalPrice?item.totalPrice:'FREE'}}</p>
+                  <p class="label-price border">{{item.totalPrice?'Rs. '+item.totalPrice:'FREE'}}</p>
                 </div>
               </div>
               <div>
