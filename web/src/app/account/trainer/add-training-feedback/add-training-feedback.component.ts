@@ -90,7 +90,7 @@ export class AddTrainingFeedbackComponent implements OnInit {
       }
     }, error => {
       let msgArray = [
-        { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
+        { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
     });

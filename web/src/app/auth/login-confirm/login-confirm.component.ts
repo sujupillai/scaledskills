@@ -32,13 +32,14 @@ export class LoginConfirmComponent implements OnInit {
           this._Router.navigate(['/']);
         }, 3000)
       } else {
-        this.isEmailVerify = false;
-        this.message='Please validate your email address again.'
-        this.reValidateEmail=true;
         let msgArray = [
           { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error').subscribe(res=>{
+          this.isEmailVerify = false;
+          this.message='Please validate your email address again.'
+          this.reValidateEmail=true;
+        })
       }
     },
       error => {

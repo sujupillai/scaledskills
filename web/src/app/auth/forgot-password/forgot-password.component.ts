@@ -56,7 +56,7 @@ export class ForgotPasswordComponent implements OnInit {
         } else if (res && res.responseCode == 200) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
-            { mgs: 'Please check your registered email id for rest password link.', class: 'subMsg' },
+            { mgs: 'Please check your registered email id for reset password link.', class: 'subMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
             this._Router.navigate(['/']);
@@ -70,7 +70,7 @@ export class ForgotPasswordComponent implements OnInit {
       },
         error => {
           let msgArray = [
-            { mgs: error['message'], class: 'confirmMsg' },
+            { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         })

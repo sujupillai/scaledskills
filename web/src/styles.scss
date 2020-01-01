@@ -11,9 +11,16 @@ body {
   outline: none !important;
   text-decoration: none !important;
 }
-h1, h2, h3, h4, h5, h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
+
 ul,
 li,
 ul li {
@@ -129,7 +136,7 @@ p+p {
   .section_title {
     color: #fff;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 20px;
   }
 
   .footer-list {
@@ -530,10 +537,11 @@ textarea {
     border-radius: 4px;
     font-size: 11px;
   }
-  &.free{
+
+  &.free {
     background: #28a745 !important;
-    border:1px transparent solid;
-    color:#fff
+    border: 1px transparent solid;
+    color: #fff
   }
 }
 
@@ -659,6 +667,7 @@ textarea {
 .bgPurple {
   background: rgba(118, 33, 199, 0.92);
 }
+
 .clrPurple {
   color: rgba(118, 33, 199, 0.92);
 }
@@ -666,6 +675,7 @@ textarea {
 .bgBlue {
   background: rgba(92, 116, 241, 0.92);
 }
+
 .clrBlue {
   color: rgba(92, 116, 241, 0.92);
 }
@@ -1650,9 +1660,12 @@ body .ui-button {
     font-size: 30px;
   }
 }
-.ticket-cart-grid, .order-detail-wrap{
+
+.ticket-cart-grid,
+.order-detail-wrap {
   margin-top: 30px;
 }
+
 .order-status {
   font-size: 20px;
   color: white;
@@ -1660,9 +1673,10 @@ body .ui-button {
   border-radius: 8px;
   padding: 3px 10px;
   margin-left: 15px;
-  &.normal{
+
+  &.normal {
     margin-left: 0;
-    color:black;
+    color: black;
   }
 
   &.success {
@@ -1679,11 +1693,48 @@ body .ui-button {
 }
 
 .form-group {
-  p{
-    margin:0px 0px 5px 0!important;
+  p {
+    margin: 0px 0px 5px 0 !important;
     line-height: normal;
   }
 }
-.font-big{
-  font-size: 18px;
+
+.font-big {
+  font-size: 18px !important;
+}
+
+.font-bold {
+  font-weight: bold !important;
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  padding: 9px 0;
+
+  .fa-user-circle {
+    font-size: 30px;
+    margin-right: 5px;
+  }
+
+  .fa,
+  .caret {
+    color: white;
+  }
+}
+
+.navbar-right {
+  margin-right: 0px !important;
+}
+
+.welcome-user {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  max-width: 50px;
+}
+
+.menu-dropdown {
+  max-width: 200px;
 }

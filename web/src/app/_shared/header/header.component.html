@@ -13,10 +13,10 @@
       </li>
       <li routerLinkActive="active">
         <a [routerLink]="['/home/contact']">
-          Contact Us: <strong>+919599350701</strong> 
+          Contact Us: <strong>+919599350701</strong>
         </a>
       </li>
-      
+
       <li routerLinkActive="active" *ngIf="!isLoggedIn">
         <a [routerLink]="['auth/register']">
           <span class="glyphicon glyphicon-user"></span> Sign Up
@@ -29,10 +29,15 @@
       </li>
       <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log Out</a>
       </li>
-      <li class="dropdown" *ngIf="isLoggedIn">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-          <span class="caret"></span></a>
+      <li class="dropdown menu-dropdown" *ngIf="isLoggedIn">
+        <div class="dropdown-toggle profile-link" data-toggle="dropdown" href="javascript:void(0)">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <span class="caret"></span></div>
         <ul class="dropdown-menu">
+          <li>
+            <a
+              class="welcome-user no-cursor clrPurple font-big font-bold">{{userInfo['firstName']?'Welcome '+ userInfo['firstName']:'Welcome User'}}</a>
+          </li>
           <li><a [routerLink]="['account']">Portfolio</a></li>
           <li><a [routerLink]="['account/trainer/training/0/basic']">Create Training</a></li>
         </ul>
