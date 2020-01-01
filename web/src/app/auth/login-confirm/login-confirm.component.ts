@@ -29,8 +29,8 @@ export class LoginConfirmComponent implements OnInit {
         this.reValidateEmail=false;
         this.message = res && res.result ? res.result : 'Email activated successfully.';
         setTimeout(() => {
-          this._Router.navigate(['/']);
-        }, 3000)
+          this._Router.navigate(['/auth/login']);
+        }, 1000)
       } else {
         let msgArray = [
           { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
