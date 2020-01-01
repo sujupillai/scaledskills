@@ -32,12 +32,12 @@ export class OrganizerUrlComponent implements OnInit {
   }
   entity = null;
   shareOptions = [
-    { label: 'Facebook', icon: 'fa fa-facebook' },
-    { label: 'Whatsapp', icon: 'fa fa-whatsapp' },
-    { label: 'Instagram', icon: 'fa fa-instagram' },
-    { label: 'Linkedin', icon: 'fa fa-linkedin' },
-    { label: 'Twitter', icon: 'fa fa-twitter' },
-    { label: 'Copy Url', icon: 'fa fa-clone' },
+    { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
+    { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
+    { label: 'Instagram', icon: 'fa fa-instagram', command: () => { this.shareAction(3); } },
+    { label: 'Linkedin', icon: 'fa fa-linkedin', command: () => { this.shareAction(4); } },
+    { label: 'Twitter', icon: 'fa fa-twitter', command: () => { this.shareAction(5); } },
+    { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.shareAction(6); } },
   ];
   constructor(public dialogService: DialogService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
@@ -141,6 +141,22 @@ export class OrganizerUrlComponent implements OnInit {
         }
       }
     })
+  }
+  shareAction = (type) => {
+    let url;
+    if (type == 1) {
+      url = 'https://www.facebook.com/share.php?u=' + origin
+    } else if (type == 2) {
+      url = 'https://web.whatsapp.com/send?text=' + origin
+    } else if (type == 3) {
+      url = 'https://www.instagram.com/?url=' + origin
+    } else if (type == 4) {
+      url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + origin
+    } else if (type == 5) {
+      url = 'http://twitter.com/home?status=' + origin
+    }
+
+    this.openUrl(url)
   }
   openUrl(urlToOpen) {
     let url: string = '';

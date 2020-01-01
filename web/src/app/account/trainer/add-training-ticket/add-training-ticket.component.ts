@@ -23,9 +23,6 @@ export class AddTrainingTicketComponent implements OnInit {
   ticketTypeList = [{
     "text": "Free",
     "value": "1",
-  }, {
-    "text": "Paid",
-    "value": "2",
   }];
   prevState;
   settings;

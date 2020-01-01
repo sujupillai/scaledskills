@@ -19,16 +19,17 @@
           </div>
           <div *ngIf="entity['mode']!='Online'">
             <p class="hostedBy">
-              {{entity['address1']?entity['address1'] + ' - ':''}} {{entity['stateName']?entity['stateName']:'location: NA'}}
+              {{entity['address1']?entity['address1'] + ' - ':''}}
+              {{entity['stateName']?entity['stateName']:'location: NA'}}
             </p>
           </div>
           <div class="sub_links">
             <div class="flex">
               <i class="pi pi-clock" style="margin:5px 10px 0 0"></i>
               <span>
-                {{entity['startDate'] | date:'EEE'}}, {{entity['startDate'] | date:'MMM d, y | h:mm:ss a'}}
+                {{entity['startDate'] | date:'EEE'}}, {{entity['startDate'] | date:'MMM d, y | h:mm a'}}
                 to
-                {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm:ss a'}}</span>
+                {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm a'}}</span>
             </div>
             <br>
           </div>
@@ -61,9 +62,11 @@
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item cursor-pointer" (click)="handleInterest(item)"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Interested</div>
+              <div class="item cursor-pointer" (click)="handleInterest(item)"><i class="fa fa-star"
+                  aria-hidden="true"></i>&nbsp;Interested</div>
               <div class="item cursor-pointer">
-                <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt" [model]="shareOptions">
+                <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt"
+                  [model]="shareOptions">
                 </p-splitButton>
               </div>
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
@@ -239,8 +242,7 @@
             </div>
             <hr>
             <div class="card-desc flex_c_c">
-              <p class="label-price border"
-                (click)="handleInterest(item)">
+              <p class="label-price border" (click)="handleInterest(item)">
                 <i class="fa fa-star" aria-hidden="true"></i> interested
               </p>
               <p class="label-price">
