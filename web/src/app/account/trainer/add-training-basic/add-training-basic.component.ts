@@ -36,8 +36,8 @@ export class AddTrainingBasicComponent implements OnInit {
   }]
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
     this.trainingForList = [
-      { text: 'Individual', value: '1' },
-      { text: 'Organization', value: '2' },
+      { text: 'Individual', value: '1' }
+      // { text: 'Organization', value: '2' },
     ]
   }
   ngOnInit() {
