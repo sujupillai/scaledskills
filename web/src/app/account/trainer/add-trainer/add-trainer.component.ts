@@ -30,7 +30,7 @@ export class AddTrainerComponent implements OnInit {
 
     this.settings = {
       singleSelection: true, text: "Select", labelKey: "firstName", classes: "myclass custom-class",
-      enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
+      enableSearchFilter: true, searchBy: ['firstName'], searchPlaceholderText: 'Search by name'
     };
 
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
