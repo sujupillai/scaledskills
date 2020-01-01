@@ -174,6 +174,8 @@ export class AddTrainingBasicComponent implements OnInit {
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
           }else if (res && res.responseCode == 200) {
+            debugger
+            this.trainingId=res.result;
             let msgArray = [
               {
                 mgs: res.responseMessege ? res.responseMessege : 'Success',
@@ -181,8 +183,7 @@ export class AddTrainingBasicComponent implements OnInit {
               },
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
-              this.trainingId=res['result']?res['result']:0;
-            this.getData(this.trainingId)
+              this.getData(this.trainingId)
             });
           } else {
             let msgArray = [

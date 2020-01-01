@@ -1815,3 +1815,9 @@ body .ui-button {
   padding: 0;
   margin: 10px 0;
 }
+.close-icon{
+  position: absolute;
+  right:10px;
+  top:0;
+  z-index: 10;
+}

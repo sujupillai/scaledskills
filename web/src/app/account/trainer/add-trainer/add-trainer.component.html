@@ -1,9 +1,9 @@
-<!-- <pre>{{regTrainers|json}}</pre> -->
 <div class="form-group">
   <div class="row">
     <div class="col-sm-10">
-
-      <angular2-multiselect [data]="regTrainers" [(ngModel)]="selectedTrainer" [settings]="settings">
+      <label>Select Trainer</label>
+      <angular2-multiselect [data]="regTrainers" [(ngModel)]="selectedTrainer" [settings]="settings"
+        (onSelect)="OnSelect($event)" (onDeSelect)="OnDeSelect($event)">
         <c-badge>
           <ng-template let-item="item">
             {{item.firstName}} {{item.lastName}}
@@ -17,23 +17,27 @@
       </angular2-multiselect>
     </div>
     <div class="col-sm-2 text-right">
-      <button pButton type="button" label="Add" class="ui-button-raised width_100"></button>
+      <label class="invisible">placeholder</label>
+      <button pButton type="button" label="Add" class="ui-button-raised width_100" (click)="handleAddUser()"></button>
+    </div>
+  </div>
+  <p class="msgError text-danger" *ngIf="msg">
+    <small>
+      {{msg}}
+    </small>
+  </p>
+</div>
+<div>
+  <div class="ui-grid ui-grid-responsive row">
+    <div *ngFor="let item of trainerList" class="col-sm-4">
+      <p-card styleClass="ui-card-shadow cursor-pointer relative">
+        <span class="close-icon" (click)="handleDeleteUser(item)">X</span>
+        <div class="userThumb text-center cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
+          <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+            alt="user profile">
+          <h3>{{item.firstName}} {{item.lastName}}</h3>
+        </div>
+      </p-card>
     </div>
   </div>
 </div>
-<p-table [columns]="cols" [value]="cars">
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-      <th *ngFor="let col of columns">
-        {{col.header}}
-      </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-rowData let-columns="columns">
-    <tr>
-      <td *ngFor="let col of columns">
-        {{rowData[col.field]}}
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
