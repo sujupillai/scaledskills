@@ -28,6 +28,7 @@ export class AddTrainingLocationComponent implements OnInit {
   settings
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
+    debugger
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param.id;
       if (this.trainingId == 0) {
@@ -191,6 +192,8 @@ export class AddTrainingLocationComponent implements OnInit {
     url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.resetForm(this[formElement], formCtrl)
+      this.getData();
+      
     })
   }
   handleSubmit = () => {
