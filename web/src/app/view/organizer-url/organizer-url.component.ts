@@ -120,7 +120,7 @@ export class OrganizerUrlComponent implements OnInit {
         class: 'confirmMsg'
       },
     ]
-    this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+    this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess');
   }
   errorMsg = (res) => {
     let msgArray = [

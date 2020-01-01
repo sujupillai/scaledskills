@@ -175,7 +175,7 @@ export class AddTrainingBasicComponent implements OnInit {
             let msgArray = [
               { mgs: res.responseMessege, class: 'confirmMsg' }
             ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
           }else if (res && res.responseCode == 200) {
             let msgArray = [
               {
@@ -183,9 +183,10 @@ export class AddTrainingBasicComponent implements OnInit {
                 class: 'confirmMsg'
               },
             ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-            this.trainingId=res['result'];
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+              this.trainingId=res['result'];
             this.getData(this.trainingId)
+            });
           } else {
             let msgArray = [
               { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },

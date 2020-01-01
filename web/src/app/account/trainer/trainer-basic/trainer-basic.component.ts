@@ -195,8 +195,9 @@ export class TrainerBasicComponent implements OnInit {
                 class: 'confirmMsg'
               },
             ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-            this.getProfileData()
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+              this.getProfileData()
+            });
           } else {
             let msgArray = [
               { mgs: 'Something went wrong', class: 'confirmMsg' }

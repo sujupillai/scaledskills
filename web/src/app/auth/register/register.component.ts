@@ -101,16 +101,15 @@ export class RegisterComponent implements OnInit {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' }
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
         } else if (res && res.responseCode == 200) {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
             { mgs: 'Please check your registered email id for verify your account after two minutes.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
-          setTimeout(() => {
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
             this._Router.navigate(['/'])
-          }, 500)
+          })
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },

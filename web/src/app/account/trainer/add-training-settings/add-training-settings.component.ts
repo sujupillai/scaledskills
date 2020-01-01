@@ -87,8 +87,9 @@ export class AddTrainingSettingsComponent implements OnInit {
           },
         ]
         // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess')
-        this.getData()
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+          this.getData()
+        })
       }
       else {
         let msgArray = [

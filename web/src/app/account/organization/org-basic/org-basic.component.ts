@@ -172,7 +172,7 @@ export class OrgBasicComponent implements OnInit {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Message')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
         } else if (res && res.responseCode == 200) {
           /* success  */
           let msgArray = [
@@ -181,8 +181,10 @@ export class OrgBasicComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-          this.fetchData();
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+            this.fetchData();
+          });
+          
         } else {
           /* any other error */
           let msgArray = [

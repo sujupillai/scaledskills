@@ -98,7 +98,6 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
-
   showDialog() {
     debugger
     this.display = true;
@@ -134,7 +133,7 @@ export class TrainingUrlComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess');
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
@@ -187,9 +186,10 @@ export class TrainingUrlComponent implements OnInit {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Success')
-          item.interestCount = item.interestCount + 1;
-          item.isInterested = true;
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
+            item.interestCount = item.interestCount + 1;
+            item.isInterested = true;
+          })
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
@@ -201,6 +201,4 @@ export class TrainingUrlComponent implements OnInit {
       this.goToLogin();
     }
   };
-
-
 }

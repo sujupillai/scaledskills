@@ -99,8 +99,9 @@ export class AddTrainingImagesComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-          this.getData()
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+            this.getData()
+          });
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }

@@ -65,7 +65,7 @@
               </div>
 
               <div class="col-sm-8" [ngClass]="{disabled: formControl.countryCode.value==null}">
-                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" max="10" digitOnly  />
+                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" maxlength="10" digitOnly  />
               </div>
             </div>
             <p class="msgError text-danger"

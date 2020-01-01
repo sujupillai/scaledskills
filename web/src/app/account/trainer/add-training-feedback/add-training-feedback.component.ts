@@ -77,20 +77,21 @@ export class AddTrainingFeedbackComponent implements OnInit {
             class: 'confirmMsg'
           },
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-        this.getData()
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+          this.resetForm(this.traineeReviewForm);
+          this.getData()
+        });
+        
       } else {
         let msgArray = [
           { mgs: 'Something went wrong', class: 'confirmMsg' }
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       }
     }, error => {
       let msgArray = [
         { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
       ]
-      // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
     });
   }

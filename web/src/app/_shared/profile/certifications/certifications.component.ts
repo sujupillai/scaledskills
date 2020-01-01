@@ -95,9 +95,11 @@ export class CertificationsComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Sucess');
-          this.resetForm(this.certificatesForm)
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+            this.resetForm(this.certificatesForm)
           this.getCertificationData()
+          });
+          
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }

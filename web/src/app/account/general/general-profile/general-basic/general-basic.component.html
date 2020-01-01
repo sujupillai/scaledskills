@@ -45,7 +45,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Mobile Number <span class="required">*</span></label>
-          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber" digitOnly>
+          <input pInputText placeholder="Mobile Number" formControlName="phoneNumber" maxlength="10" digitOnly>
           <p class="msgError text-danger"
             *ngIf="formControl.phoneNumber.invalid && (formControl.phoneNumber.dirty || submitted)">
             <small *ngIf="formControl.phoneNumber.hasError('maxlength')">
