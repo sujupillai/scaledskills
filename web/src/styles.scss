@@ -235,9 +235,11 @@ p+p {
 .ml-20 {
   margin-left: 20px;
 }
+
 .ml-15 {
   margin-left: 15px;
 }
+
 .ml-10 {
   margin-left: 10px;
 }
@@ -1721,6 +1723,7 @@ body .ui-button {
   color: white;
   display: inline-block;
   margin-left: 15px;
+
   &.normal {
     margin-left: 0;
     color: black;
@@ -1808,6 +1811,7 @@ body .ui-button {
 .text-expire {
   color: red !important;
 }
+
 .hostedBy {
   font-weight: bold;
   font-size: 18px;
@@ -1815,9 +1819,30 @@ body .ui-button {
   padding: 0;
   margin: 10px 0;
 }
-.close-icon{
+
+.close-icon {
   position: absolute;
-  right:10px;
-  top:0;
+  right: 10px;
+  top: 0;
   z-index: 10;
+}
+
+.card-image {
+  display: flex;
+  height: 180px;
+  align-items: flex-end;
+
+  a {
+    display: block;
+    height: 100%;
+
+    img {
+      height: 100%;
+      vertical-align: bottom;
+    }
+  }
+}
+
+.block {
+  display: block;
 }

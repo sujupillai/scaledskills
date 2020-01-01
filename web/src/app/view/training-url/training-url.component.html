@@ -12,7 +12,7 @@
       <ul>
         <li>
           <button type="button" class="btn btn-gradient bookBtn mb10">
-            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalTrainer?totalTrainer:0}} Users
+            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalTrainer?totalTrainer:0}} Registered
           </button>
           <p class="hostedBy">
             {{entity['name']?entity['name']:'N/A'}}
@@ -66,13 +66,9 @@
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item cursor-pointer" (click)="handleInterest(item)"><i class="fa fa-star"
-                  aria-hidden="true"></i>&nbsp;Interested</div>
-              <div class="item cursor-pointer">
-                <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt"
-                  [model]="shareOptions">
-                </p-splitButton>
-              </div>
+              <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)"><i class="fa fa-star"
+                  aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Send interest'}}</div>
+              
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
               </div> -->
@@ -84,13 +80,18 @@
         <li class="text-right">
           <button type="button" class="btn btn-gradient bookBtn mb10" (click)="showSendMesage()">Send Enquiry</button>
           <p class="hostedBy">
-            Ticket Left : 12/200
+            Ticket Left : {{entity.qtyTotal-entity.avilableQtyTotal}}/{{entity.qtyTotal}}
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div>
+              <div class="item cursor-pointer">
+                <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt"
+                  [model]="shareOptions">
+                </p-splitButton>
+              </div>
+              <!-- <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div>
               <div class="item">Interested <br>{{!entity['interestCount']?'N/A':entity['interestCount']|number}}</div>
-              <div class="item">Registered <br>{{totalUser?totalUser:'N/A'}}</div>
+              <div class="item">Registered <br>{{totalUser?totalUser:'N/A'}}</div> -->
             </div>
           </div>
         </li>
@@ -164,7 +165,12 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <p-header>
-              <img src="Card" src="{{item.imageUrl}}" alt="image">
+              <div class="card-image">
+                <a href="{{item.fullUrl}}">
+                  <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                    alt="image">
+                </a>
+              </div>
             </p-header>
             <div class="card-inner">
               <div class="date">
@@ -222,7 +228,12 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <p-header>
-              <img src="Card" src="{{item.imageUrl}}" alt="image">
+              <div class="card-image">
+                <a href="{{item.fullUrl}}">
+                  <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                    alt="image">
+                </a>
+              </div>
             </p-header>
             <div class="card-inner">
               <div class="date">
@@ -280,7 +291,12 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <p-header>
-              <img src="Card" src="{{item.imageUrl}}" alt="image">
+              <div class="card-image">
+                <a href="{{item.fullUrl}}">
+                  <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                    alt="image">
+                </a>
+              </div>
             </p-header>
             <div class="card-inner">
               <div class="date">

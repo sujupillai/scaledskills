@@ -244,18 +244,17 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   handleInterest = (item) => {
+    debugger
     if (this.isLoggedIn) {
       let url = ApiPath.interest;
       url = url.replace('{TrainingId}', item.trainingId.toString())
-      this._HttpService.httpCall(url, 'POST', item.trainingId, null).subscribe(res => {
+      let postData = {
+        isInterest: !item.isInterest
+      }
+      this._HttpService.httpCall(url, 'POST', postData, null).subscribe(res => {
         if (res && res.responseCode == 200) {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
-            item.interestCount = item.interestCount + 1;
-            item.isInterested = true;
-          })
+          item.interestCount = res['result'];
+          item.isInterest = !item.isInterest;
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }

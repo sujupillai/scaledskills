@@ -1,9 +1,11 @@
 <p-card styleClass="ui-card-shadow">
   <p-header>
-    <a href="{{item.fullUrl}}">
-      <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-        alt="image">
-    </a>
+    <div class="card-image">
+      <a href="{{item.fullUrl}}">
+        <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+          alt="image">
+      </a>
+    </div>
   </p-header>
   <div class="card-inner">
     <div class="date">
