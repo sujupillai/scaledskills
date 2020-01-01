@@ -49,12 +49,9 @@ export class AddTrainingBasicComponent implements OnInit {
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.trainingForValue = [{ text: 'Individual', value: '1' }]
       this._ActivatedRoute.parent.params.subscribe((param: any) => {
-        this.trainingId = param['id'];
+        this.trainingId = param['id']?param['id']:0;
         if (this.trainingId > 0) {
           this.getData(this.trainingId)
-        } else {
-          this.resetForm(this.trainingBasicForm)
-          this.trainingData = {};
         }
         
       });
@@ -158,6 +155,7 @@ export class AddTrainingBasicComponent implements OnInit {
     this.trainingForValue = this.defaultList;
   }
   handleSubmit = () => {
+    debugger
     this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value : '');
     this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value : '');
     let postObj = {
@@ -183,7 +181,7 @@ export class AddTrainingBasicComponent implements OnInit {
               },
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
-              this.trainingId=res['result'];
+              this.trainingId=res['result']?res['result']:0;
             this.getData(this.trainingId)
             });
           } else {

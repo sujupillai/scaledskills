@@ -25,16 +25,20 @@ export class AddTrainingComponent implements OnInit {
       }, {
         label: 'Ticket',
         link: 'ticket',
-      }, {
-        label: 'Custom Questions',
-        link: 'questions',
-      }, {
+      }
+      // , {
+      //   label: 'Custom Questions',
+      //   link: 'questions',
+      // }
+      , {
         label: 'Promotions',
         link: 'promotions',
-      }, {
-        label: 'Settings',
-        link: 'settings',
-      }, {
+      }
+      // , {
+      //   label: 'Settings',
+      //   link: 'settings',
+      // }
+      , {
         label: 'Add Trainer',
         link: 'addTrainer',
       }

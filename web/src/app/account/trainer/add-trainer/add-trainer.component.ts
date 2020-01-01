@@ -1,28 +1,57 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiPath } from 'src/app/_helpers/_constants/api';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService, AuthenticationService, SharedService } from 'src/app/_service';
 
 @Component({
   selector: 'app-add-trainer',
   templateUrl: './add-trainer.component.html'
 })
 export class AddTrainerComponent implements OnInit {
+  regTrainers = [];
+  totalTrainer;
+  selectedTrainer = [];
   cars = [];
-
+  trainingId = 0;
+  settings = {};
   cols = [];
-  constructor() { }
+  defaultList = [{
+    "text": "Select",
+    "value": "0",
+    "isSelect": false
+  }]
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
+    private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
+  }
 
   ngOnInit() {
-    this.cars = [
-      { "brand": "VW", "year": 2012, "color": "Orange", "vin": "dsad231ff" },
-      { "brand": "Audi", "year": 2011, "color": "Black", "vin": "gwregre345" },
-      { "brand": "Renault", "year": 2005, "color": "Gray", "vin": "h354htr" },
-      { "brand": "BMW", "year": 2003, "color": "Blue", "vin": "j6w54qgh" },
-      { "brand": "Mercedes", "year": 1995, "color": "Orange", "vin": "hrtwy34" },
-      { "brand": "Volvo", "year": 2005, "color": "Black", "vin": "jejtyj" },
-      { "brand": "Honda", "year": 2012, "color": "Yellow", "vin": "g43gr" },
-      { "brand": "Jaguar", "year": 2013, "color": "Orange", "vin": "greg34" },
-      { "brand": "Ford", "year": 2000, "color": "Black", "vin": "h54hw5" },
-      { "brand": "Fiat", "year": 2013, "color": "Red", "vin": "245t2s" }
-    ]
+    
+    this.settings = {
+      singleSelection: true, text: "Select", labelKey: "firstName", classes: "myclass custom-class", 
+      enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
+    };
+
+    this._ActivatedRoute.parent.params.subscribe((param: any) => {
+      this.trainingId = param.id;
+      if (this.trainingId == 0) {
+        this.trainingId = 1;
+        this.fetchTrainingMemberTrainer()
+      }
+      // if (this.trainingId == 0) {
+      //   let msgArray = [
+      //     { mgs: 'Sorry! You have to create a training first', class: 'confirmMsg' },
+      //   ]
+      //   this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
+      //     if (res == 1) {
+      //       this._Router.navigate(['account/trainer/training/0/basic']);
+      //     }
+      //   })
+      //   return
+      // } else {
+
+      // }
+    });
+    this.cars = []
     this.cols = [
       { field: 'vin', header: 'Vin' },
       { field: 'year', header: 'Year' },
@@ -31,4 +60,20 @@ export class AddTrainerComponent implements OnInit {
     ];
   }
 
+  fetchTrainingMemberTrainer = () => {
+    let url = ApiPath.trainingMemberTrainer;
+    let postObj = {
+      "trainingId": this.trainingId,
+      "pageType": "",
+      "searchText": "",
+      "pageSize": 500,
+      "page": 0
+    }
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.totalTrainer = res.result.totalCount;
+        this.regTrainers = res['result']['results'];
+      }
+    })
+  }
 }
