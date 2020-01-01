@@ -11,7 +11,7 @@
     <div class="form-group">
       <label>Training Url <span class="required">*</span></label>
       <div class="flex vMiddle urlBox">
-        <div class="fixed-input">{{formControl.baseUrl.value}}</div>
+        <div class="fixed-input">{{baseUrl}}</div>
         <input type="text" formControlName="url" pInputText placeholder="Enter Here"
           [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="updateUrl()">
         <p class="msgError text-danger" *ngIf="formControl.url.invalid && (formControl.url.dirty || submitted)">

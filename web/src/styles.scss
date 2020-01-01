@@ -1644,6 +1644,21 @@ li.ui-carousel-item.ui-widget-content.ui-corner-all {
   }
 }
 
+.error-wrap-alt {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+
+  h1 {
+    font-size: 15px;
+  }
+}
+
 .error-wrap {
   position: fixed;
   top: 0;
@@ -1768,4 +1783,11 @@ body .ui-button {
 
 .mb10 {
   margin-bottom: 10px;
+}
+
+.ui-fileupload-choose input[type=file] {
+  left: 0 !important;
+  max-width: 100px !important;
+  min-height: 0px;
+  max-height: 30px !important;
 }

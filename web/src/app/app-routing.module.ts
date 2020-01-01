@@ -9,6 +9,7 @@ import { RequestComponent } from './training-request/request.component';
 import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.component';
 import { OrderTicketComponent } from './view/training-url/order-ticket/order-ticket.component';
 import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { AuthGuard } from './_guards';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'o/:url', component: OrganizerUrlComponent },
   { path: 'placeOrder/:url', component: OrderTicketComponent },
   { path: 'orderDetail/:orderId', component: OrderDetailComponent },
+  { path: 'maintenance', component: MaintenanceComponent},
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
 @NgModule({

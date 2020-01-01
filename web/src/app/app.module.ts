@@ -27,6 +27,7 @@ import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.compon
 import {TrainingFormComponent} from './training-request/training-form/training-form.component';
 import { OrderTicketComponent } from './view/training-url/order-ticket/order-ticket.component';
 import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { OrderDetailComponent } from './view/training-url/order-detail/order-det
     OrganizerUrlComponent,
     TrainingFormComponent,
     OrderTicketComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule,

@@ -6,9 +6,10 @@
     <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
       (uploadHandler)="myUploader($event, 'header')">
       <ng-template pTemplate="content">
-        <ul *ngIf="prevState.headerUrl && header">
+        <ul *ngIf="prevState && prevState['headerUrl'] && header">
           <li>
-            <img src="{{prevState.headerUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="" class="img-responsive">
+            <img src="{{prevState['headerUrl']}}"
+              onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="" class="img-responsive">
           </li>
         </ul>
       </ng-template>
@@ -24,9 +25,10 @@
     <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
       (uploadHandler)="myUploader($event, 'card')">
       <ng-template pTemplate="content">
-        <ul *ngIf="prevState.cardUrl && card">
+        <ul *ngIf="prevState && prevState['cardUrl'] && card">
           <li>
-            <img src="{{prevState.cardUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="" class="img-responsive">
+            <img src="{{prevState['cardUrl']}}"
+              onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="" class="img-responsive">
           </li>
         </ul>
       </ng-template>

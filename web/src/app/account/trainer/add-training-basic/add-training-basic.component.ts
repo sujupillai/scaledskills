@@ -11,7 +11,7 @@ export class AddTrainingBasicComponent implements OnInit {
   trainingBasicForm: FormGroup;
   isCopied = false;
   organizationListMaster = [];
-  baseUrl: string = ''
+  baseUrl: string = window.location.origin + '/t/'
   trainingForList = []
   trainingForValue = [];
   organizationListValue = [];
@@ -41,30 +41,29 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
-    this.getTimeZone();
-    this.baseUrl = window.location.origin + '/t/';
-    this._ActivatedRoute.parent.params.subscribe((param: any) => {
-      this.trainingId = param['id'];
-      if (this.trainingId > 0) {
-        this.getData(this.trainingId)
-      } else {
-        this.resetForm(this.trainingBasicForm)
-        this.trainingData = {};
-      }
-      
-    });
     // this.getAllData();
+    this.getTimeZone();
     this.createForm(() => {
       this.startDate.setValue(new Date());
       this.endDate.setValue(new Date());
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.trainingForValue = [{ text: 'Individual', value: '1' }]
+      this._ActivatedRoute.parent.params.subscribe((param: any) => {
+        this.trainingId = param['id'];
+        if (this.trainingId > 0) {
+          this.getData(this.trainingId)
+        } else {
+          this.resetForm(this.trainingBasicForm)
+          this.trainingData = {};
+        }
+        
+      });
     })
   }
   createForm = (callback: any): void => {
     this.trainingBasicForm = this._FormBuilder.group({
       name: ['', Validators.required],
-      baseUrl: [this.baseUrl],
+      baseUrl: [window.location.origin + '/t/'],
       url: ['', Validators.required],
       description: ['', Validators.required],
       startDate: ['', Validators.required],
