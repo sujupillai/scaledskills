@@ -27,15 +27,15 @@ const routes: Routes = [
     loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule),
   },
   { path: 'report', component: ReportComponent },
-  { path: 'view/t/:url', component: TrainingUrlComponent },
-  { path: 'view/p/:url', component: TrainerUrlComponent },
-  { path: 'view/o/:url', component: OrganizerUrlComponent },
+  { path: 't/:url', component: TrainingUrlComponent },
+  { path: 'p/:url', component: TrainerUrlComponent },
+  { path: 'o/:url', component: OrganizerUrlComponent },
   { path: 'placeOrder/:url', component: OrderTicketComponent },
   { path: 'orderDetail/:orderId', component: OrderDetailComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

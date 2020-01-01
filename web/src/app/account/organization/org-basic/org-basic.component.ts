@@ -210,7 +210,7 @@ export class OrgBasicComponent implements OnInit {
     this.formControl['profileUrl'].setValue(urlStr)
   }
   viewProfile() {
-    let val = window.location.origin + '/#/view/o/' + this.formControl['profileUrl'].value;
+    let val = window.location.origin + '/o/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
 

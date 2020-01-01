@@ -138,7 +138,6 @@ export class TrainerBasicComponent implements OnInit {
         } else {
           this.urlConfig.isUrl = false;
         }
-        
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
         var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
@@ -178,7 +177,6 @@ export class TrainerBasicComponent implements OnInit {
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
-
     } else {
       if (this.urlConfig.isUrlValid) {
         this.submitted = false;
@@ -259,7 +257,7 @@ export class TrainerBasicComponent implements OnInit {
     this.formControl['profileUrl'].setValue(urlStr);
   }
   viewProfile() {
-    let val = window.location.origin + '/#/view/p/' + this.formControl['profileUrl'].value;
+    let val = window.location.origin + '/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
   validateUrl = () => {

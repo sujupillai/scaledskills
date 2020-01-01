@@ -127,7 +127,7 @@ export class AddTrainingBasicComponent implements OnInit {
     this.formControl['url'].setValue(urlStr)
   }
   viewProfile() {
-    let val = window.location.origin + '/#/view/t/' + this.formControl['url'].value;
+    let val = window.location.origin + '/t/' + this.formControl['url'].value;
     window.open(val, "_blank");
   }
   validateUrl = () => {
