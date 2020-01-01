@@ -12,7 +12,7 @@ export class HttpService {
     if (origin.indexOf("localhost") > -1) {
       url = 'http://scaledskills.com/';
     } else {
-      url = window.location.origin;
+      url = window.location.origin+'/';
     }
     return url;
   }

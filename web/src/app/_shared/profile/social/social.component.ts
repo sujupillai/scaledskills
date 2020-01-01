@@ -47,14 +47,14 @@ export class SocialComponent implements OnInit {
         let msgArray = [
           { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       }
     },
       error => {
         let msgArray = [
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       });
   }
   handleSubmit = () => {
@@ -77,14 +77,14 @@ export class SocialComponent implements OnInit {
         let msgArray = [
           { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       }
     },
       error => {
         let msgArray = [
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       });
   }
   resetForm(formGroup: FormGroup) {

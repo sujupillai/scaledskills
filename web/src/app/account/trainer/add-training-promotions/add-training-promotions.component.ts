@@ -64,7 +64,7 @@ export class AddTrainingPromotionsComponent implements OnInit {
           { mgs: 'Something went wrong', class: 'confirmMsg' }
         ]
         // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       }
     },
       error => {
@@ -72,7 +72,7 @@ export class AddTrainingPromotionsComponent implements OnInit {
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
         // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       });
   }
 }

@@ -88,7 +88,7 @@ export class AddTrainingImagesComponent implements OnInit {
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
-      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
     } else {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
@@ -106,14 +106,14 @@ export class AddTrainingImagesComponent implements OnInit {
             { mgs: 'Something went wrong', class: 'confirmMsg' }
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         }
       }, error => {
         let msgArray = [
           { mgs: error['error'] ? error['error'] : 'Something went wrong', class: 'confirmMsg' }
         ]
         // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       });
     }
 

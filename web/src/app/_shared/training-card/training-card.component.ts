@@ -35,7 +35,7 @@ export class TrainingCardComponent implements OnInit {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         }
       })
     } else {

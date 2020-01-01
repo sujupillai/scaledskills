@@ -22,7 +22,6 @@ export class ContactUsComponent implements OnInit {
           this.getProfileData()
         }
       })
-
     })
   }
   createForm = (callback) => {
@@ -62,21 +61,20 @@ export class ContactUsComponent implements OnInit {
     })
   }
   handleSubmit = () => {
-    let postObj = {
-      ...this.formElement.value
-    }
-    if (this.formElement.invalid) {
-      this.submitted = true;
-    } else {
-      const url = ApiPath.trainerEmail
-      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        if (res && res.responseCode == 200) {
-          this.resetForm(this.formElement)
-        }
-      }, error => {
-      })
-    }
-    // this.ref.close(data);
+    // let postObj = {
+    //   ...this.formElement.value
+    // }
+    // if (this.formElement.invalid) {
+    //   this.submitted = true;
+    // } else {
+    //   const url = ApiPath.trainerEmail
+    //   this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+    //     if (res && res.responseCode == 200) {
+    //       this.resetForm(this.formElement)
+    //     }
+    //   }, error => {
+    //   })
+    // }
   }
   handleCancel = () => {
   }

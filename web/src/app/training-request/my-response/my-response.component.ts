@@ -122,7 +122,7 @@ export class MyResponseComponent implements OnInit {
         { mgs: 'Please complete form', class: 'confirmMsg' },
       ]
       // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       this.submitted = true;
       return
     } else {
@@ -143,7 +143,7 @@ export class MyResponseComponent implements OnInit {
             { mgs: 'Something went wrong', class: 'confirmMsg' },
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         }
       },
         error => {
@@ -151,7 +151,7 @@ export class MyResponseComponent implements OnInit {
             { mgs: error['message']?error['message']:'Server Error', class: 'confirmMsg' },
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, true, 'Error')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         });
     }
   }
