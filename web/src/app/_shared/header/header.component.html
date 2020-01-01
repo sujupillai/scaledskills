@@ -12,10 +12,11 @@
         </a>
       </li>
       <li routerLinkActive="active">
-        <a [routerLink]="['/home/about']">
-          About Us
+        <a [routerLink]="['/home/contact']">
+          Contact Us: <strong>+919599350701</strong> 
         </a>
       </li>
+      
       <li routerLinkActive="active" *ngIf="!isLoggedIn">
         <a [routerLink]="['auth/register']">
           <span class="glyphicon glyphicon-user"></span> Sign Up

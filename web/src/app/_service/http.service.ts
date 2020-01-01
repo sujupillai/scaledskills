@@ -7,18 +7,17 @@ export class HttpService {
   constructor(private _HttpClient: HttpClient) {
   }
   apiUrlName() {
-    let url: string='http://testapi.scaledskills.com/';
-    // const origin = window.location.origin;
-    // if (origin.indexOf("localhost") > -1) {
-    //   // url = 'http://hajorel712-001-site1.ftempurl.com/';
-    //   url = 'http://testapi.scaledskills.com/';
-    // } else  {
-    //   /* if (origin.indexOf("scaledskills") > -1) */
-    //   url = 'http://testapi.scaledskills.com/';
-    // }
+    let url = ''
+    const origin = window.location.origin;
+    if (origin.indexOf("localhost") > -1) {
+      // url = 'http://hajorel712-001-site1.ftempurl.com/';
+      url = 'http://testapi.scaledskills.com/';
+    } else {
+      /* if (origin.indexOf("scaledskills") > -1) */
+      url = window.location.origin;
+    }
     return url;
   }
-
   httpCall(url: string, method: string, data: any, params: any) {
     let apiUrl = this.apiUrlName() + url;
     switch (method) {

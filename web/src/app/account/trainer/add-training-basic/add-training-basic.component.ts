@@ -84,7 +84,7 @@ export class AddTrainingBasicComponent implements OnInit {
   get formControl() { return this.trainingBasicForm.controls }
   getData = (id) => {
     let url =ApiPath.getTraining
-    url = url.replace('{id}', id())
+    url = url.replace('{id}', id)
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.result) {
         this.trainingData = res.result;

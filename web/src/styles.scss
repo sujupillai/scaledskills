@@ -11,7 +11,9 @@ body {
   outline: none !important;
   text-decoration: none !important;
 }
-
+h1, h2, h3, h4, h5, h6{
+  font-weight: bold;
+}
 ul,
 li,
 ul li {
@@ -657,9 +659,15 @@ textarea {
 .bgPurple {
   background: rgba(118, 33, 199, 0.92);
 }
+.clrPurple {
+  color: rgba(118, 33, 199, 0.92);
+}
 
 .bgBlue {
   background: rgba(92, 116, 241, 0.92);
+}
+.clrBlue {
+  color: rgba(92, 116, 241, 0.92);
 }
 
 .myPoint {
@@ -1668,4 +1676,14 @@ body .ui-button {
   &.expire {
     background: red !important;
   }
+}
+
+.form-group {
+  p{
+    margin:0px 0px 5px 0!important;
+    line-height: normal;
+  }
+}
+.font-big{
+  font-size: 18px;
 }

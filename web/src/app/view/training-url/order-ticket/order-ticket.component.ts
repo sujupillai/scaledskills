@@ -62,7 +62,7 @@ export class OrderTicketComponent implements OnInit {
         selectedTickets.push({
           "item": {},
           "itemId": x.id,
-          "qty": x.qty,
+          "qty": x.orderQty,
           "unitPrice": x.paymentCharge,
           "totalPrice": x.paymentCharge * x.qty
         })
