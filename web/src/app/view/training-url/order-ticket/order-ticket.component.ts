@@ -28,7 +28,7 @@ export class OrderTicketComponent implements OnInit {
         this.ticketList.map((x) => {
           x.orderQty = 0;
           x.isAdded = false;
-          x.maxBooking = x.maxBooking ? x.maxBooking : x.qty
+          x.maxBooking = x.maxBooking ? x.maxBooking : x.availableQty
         })
       }
     })
@@ -43,8 +43,8 @@ export class OrderTicketComponent implements OnInit {
   onBlurMethod = (item) => {
     if (!item.orderQty) {
       item.orderQty = item.minBooking
-    } else if (item.orderQty > item.qty) {
-      item.orderQty = item.qty
+    } else if (item.orderQty > item.availableQty) {
+      item.orderQty = item.availableQty
     } else if (item.orderQty < item.minBooking) {
       item.orderQty = item.minBooking
     }

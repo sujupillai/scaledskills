@@ -235,6 +235,12 @@ p+p {
 .ml-20 {
   margin-left: 20px;
 }
+.ml-15 {
+  margin-left: 15px;
+}
+.ml-10 {
+  margin-left: 10px;
+}
 
 .btn {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -1714,10 +1720,7 @@ body .ui-button {
   font-size: 20px;
   color: white;
   display: inline-block;
-  border-radius: 8px;
-  padding: 3px 10px;
   margin-left: 15px;
-
   &.normal {
     margin-left: 0;
     color: black;
@@ -1792,4 +1795,23 @@ body .ui-button {
   max-width: 100px !important;
   min-height: 0px;
   max-height: 30px !important;
+}
+
+.text-success {
+  color: #28a745 !important
+}
+
+.text-open {
+  color: #ffc107 !important
+}
+
+.text-expire {
+  color: red !important;
+}
+.hostedBy {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: normal;
+  padding: 0;
+  margin: 10px 0;
 }

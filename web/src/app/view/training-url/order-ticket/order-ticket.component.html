@@ -1,24 +1,33 @@
 <div class="container">
   <div class="ticket-cart-grid">
-    <h2 class="text-center">Tickets List</h2>
+    <h2 class="text-center">Ticket List</h2>
+    <pre>
+      {{ticketList[0]|json}}
+    </pre>
+    <pre>{{selectedTickets|json}}</pre>
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
       <div class="relative">
         <div class="left circle"></div>
         <div class="right circle"></div>
         <p-card>
-          <!-- {{item|json}} -->
-          <div class="radio-box" *ngIf="item.qty>0" [ngClass]="item.orderQty < item.minBooking ?'disabled':''">
+          <div class="radio-box" *ngIf="item.availableQty>0" [ngClass]="item.orderQty < item.minBooking ?'disabled':''">
             <i class="fa cursor-pointer" [ngClass]="item.isAdded==true?'fa-circle':'fa-circle-thin'"
               (click)="addItem(item)"></i>
           </div>
-          <div class="order-status m0" [ngClass]="item.qty == 0 ?'expire':'success'">
-            {{item.name}} ({{item.qty}})
+          <div class="order-status m0" [ngClass]="item.availableQty == 0 ?'text-expire':'text-success'">
+            {{item.name}} ({{item.availableQty}})
+          </div>
+          <div class="inline-block ml-10">
+            <p class="label-price border" [ngClass]="item.paymentCharge > 0 ?'':'free'">
+              {{item.paymentCharge?'Rs. '+item.paymentCharge:'FREE'}}</p>
           </div>
           <div class="mb-5">
-            <span *ngIf="item.minBooking">Min Booking : {{item.minBooking}}</span> <span *ngIf="item.maxBooking">, Max Booking : {{item.maxBooking}}</span>
-            <div class="inline-block">
-              <p class="label-price border" [ngClass]="item.paymentCharge > 0 ?'':'free'">Rs.
-                {{item.paymentCharge?item.paymentCharge:'FREE'}}</p>
+            <span *ngIf="item.minBooking">Min Booking : {{item.minBooking}}</span> <span *ngIf="item.maxBooking">, Max
+              Booking : {{item.maxBooking}}</span>
+            <div class="inline-block ml-10">
+              <p class="hostedBy">
+                Ticket Left : {{item.availableQty}}/{{item.qty}}
+              </p>
             </div>
           </div>
           <div class="mb-5">
@@ -35,17 +44,18 @@
               <span class="ui-inputgroup-addon" (click)="handleQty(1, item)"
                 [ngClass]="item.orderQty==0 || item.orderQty==item.minBooking?'disabled':''">-</span>
               <input type="text" pInputText placeholder="Qty" digitOnly (blur)="onBlurMethod(item)"
-                [(ngModel)]="item.orderQty" max="{{item.qty}}" style="max-width:100px" />
+                [(ngModel)]="item.orderQty" max="{{item.availableQty}}" style="max-width:100px" />
               <span class="ui-inputgroup-addon" (click)="handleQty(2, item)"
-                [ngClass]="(item.orderQty==item.maxBooking || item.orderQty==item.qty)?'disabled':''">+</span>
+                [ngClass]="(item.orderQty==item.maxBooking || item.orderQty==item.availableQty)?'disabled':''">+</span>
             </div>
+
           </div>
         </p-card>
       </div>
     </div>
   </div>
   <div class="form-group clearfix button-group text-right">
-    <button *ngIf="selectedTickets.length>0" pButton type="button" label="Submit" class="ui-button-raised"
+    <button disabled="selectedTickets.length==0" pButton type="button" label="Submit" class="ui-button-raised"
       (click)="handleSubmit()"></button>
     <button pButton type="button" (click)="backClicked()" label="Cancel"
       class="ui-button-raised ui-button-danger"></button>

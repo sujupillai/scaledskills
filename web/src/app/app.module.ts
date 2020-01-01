@@ -28,6 +28,7 @@ import {TrainingFormComponent} from './training-request/training-form/training-f
 import { OrderTicketComponent } from './view/training-url/order-ticket/order-ticket.component';
 import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { TitleService } from './title.service';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
     SharedModule
   ],
   
-  providers: [DialogService, SharedService,
+  providers: [DialogService, SharedService, TitleService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: interceptor.HeaderInterceptor,
