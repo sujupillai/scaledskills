@@ -1,4 +1,3 @@
-<!-- {{entity|json}} -->
 <div class="container display-profile-wrap">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
@@ -80,7 +79,7 @@
         <li class="text-right">
           <button type="button" class="btn btn-gradient bookBtn mb10" [routerLink]="['/home/contact']">Send Enquiry</button>
           <p class="hostedBy">
-            Ticket Left : {{entity.qtyTotal-entity.avilableQtyTotal}}/{{entity.qtyTotal}}
+            Ticket Left : {{entity.avilableQtyTotal}}/{{entity.qtyTotal}}
           </p>
           <div class="inline-block">
             <div class="flex feed-row">

@@ -51,7 +51,7 @@
     </div>
   </div>
   <div class="form-group clearfix button-group text-right">
-    <button disabled="selectedTickets.length==0" pButton type="button" label="Submit" class="ui-button-raised"
+    <button [ngClass]="selectedTickets.length==0?'disabled':''" pButton type="button" label="Submit" class="ui-button-raised"
       (click)="handleSubmit()"></button>
     <button pButton type="button" (click)="backClicked()" label="Cancel"
       class="ui-button-raised ui-button-danger"></button>
