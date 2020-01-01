@@ -1,3 +1,4 @@
+<!-- {{entity|json}} -->
 <div class="container display-profile-wrap">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
@@ -11,7 +12,7 @@
       <ul>
         <li>
           <button type="button" class="btn btn-gradient bookBtn mb10">
-            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
+            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalTrainer?totalTrainer:0}} Users
           </button>
           <p class="hostedBy">
             {{entity['name']?entity['name']:'N/A'}}
@@ -61,7 +62,7 @@
           <p class="hostedBy">
             By {{entity['userName']}}
             <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
-                aria-hidden="true"></i>&nbsp;Join</span>
+                aria-hidden="true"></i>&nbsp;Follow</span>
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
@@ -81,7 +82,7 @@
           </div>
         </li>
         <li class="text-right">
-          <button type="button" class="btn btn-gradient bookBtn mb10" (click)="showSendMesage()">Send Enqiry</button>
+          <button type="button" class="btn btn-gradient bookBtn mb10" (click)="showSendMesage()">Send Enquiry</button>
           <p class="hostedBy">
             Ticket Left : 12/200
           </p>
@@ -89,7 +90,7 @@
             <div class="flex feed-row">
               <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div>
               <div class="item">Interested <br>{{!entity['interestCount']?'N/A':entity['interestCount']|number}}</div>
-              <div class="item">Registered <br>{{!entity['registerCount']?'N/A':entity['registerCount']|number}}</div>
+              <div class="item">Registered <br>{{totalUser?totalUser:'N/A'}}</div>
             </div>
           </div>
         </li>
@@ -98,21 +99,22 @@
   </div>
   <div class="border-line top"></div>
   <div class="form-group">
-    <p-carousel headerText="Trainers ({{carouselitems.length}})" [value]="carouselitems" numVisible="5" circular="true"
-      autoplayInterval="5000" *ngIf="carouselitems.length>0">
+    <p-carousel headerText="Trainers ({{regTrainers.length}})" [value]="regTrainers" numVisible="5" circular="true"
+      autoplayInterval="5000" *ngIf="regTrainers.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <p-card styleClass="ui-card-shadow">
-            <div class="userThumb text-center">
-              <img src="https://secure.meetupstatic.com/photos/member/7/3/b/3/member_292289619.jpeg" alt="">
-              <h3>FirstName</h3>
+          <p-card styleClass="ui-card-shadow cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
+            <div class="userThumb text-center cursor-pointer">
+              <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                alt="user profile">
+              <h3>{{item.firstName}} {{item.lastName}}</h3>
             </div>
           </p-card>
         </div>
       </ng-template>
     </p-carousel>
-    <p-carousel headerText="Trainers ({{carouselitems.length}})" [value]="noRecord" numVisible="1"
-      *ngIf="carouselitems.length==0">
+    <p-carousel headerText="Trainers ({{regTrainers.length}})" [value]="noRecord" numVisible="1"
+      *ngIf="regTrainers.length==0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card>
@@ -128,14 +130,16 @@
   </div>
   <div class="border-line"></div>
   <div class="form-group">
+
     <p-carousel headerText="Registered Users ({{regUsers.length}})" [value]="regUsers" numVisible="5" circular="true"
       autoplayInterval="5000" *ngIf="regUsers.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <div class="userThumb text-center">
-              <img src="https://secure.meetupstatic.com/photos/member/7/3/b/3/member_292289619.jpeg" alt="">
-              <h3>FirstName</h3>
+              <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                alt="user profile">
+              <h3>{{item.firstName}} {{item.lastName}}</h3>
             </div>
           </p-card>
         </div>

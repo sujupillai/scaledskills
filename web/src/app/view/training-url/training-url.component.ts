@@ -10,8 +10,10 @@ import { HttpService, AuthenticationService, SharedService } from '../../_servic
   templateUrl: './training-url.component.html',
 })
 export class TrainingUrlComponent implements OnInit {
-  carouselitems = [];
+  regTrainers = [];
+  totalTrainer;
   regUsers = [];
+  totalUser;
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
@@ -92,6 +94,8 @@ export class TrainingUrlComponent implements OnInit {
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
+          this.fetchTrainingMemberRegister();
+           this.fetchTrainingMemberTrainer();
         } else {
           this.entity = null;
           this.isError = true;
@@ -99,6 +103,40 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
+  fetchTrainingMemberRegister=()=>{
+    let url=ApiPath.trainingMemberRegister;
+    let postObj={
+      "trainingId": this.trainingId,
+      "pageType": "P",
+      "searchText": "",
+      "pageSize": 500,
+      "page": 0
+    }
+    this._HttpService.httpCall(url, 'POST',postObj, null).subscribe(res=>{
+      if(res && res.responseCode==200){
+        this.totalUser=res.result.totalCount;
+        this.regUsers=res['result']['results'];
+      }
+    })
+  }
+ 
+  fetchTrainingMemberTrainer=()=>{
+    let url=ApiPath.trainingMemberTrainer;
+    let postObj={
+      "trainingId": this.trainingId,
+      "pageType": "P",
+      "searchText": "",
+      "pageSize": 500,
+      "page": 0
+    }
+    this._HttpService.httpCall(url, 'POST',postObj, null).subscribe(res=>{
+      if(res && res.responseCode==200){
+        this.totalTrainer=res.result.totalCount;
+        this.regTrainers=res['result']['results'];
+      }
+    })
+  }
+ 
   showDialog() {
     this.display = true;
   }
@@ -260,5 +298,9 @@ export class TrainingUrlComponent implements OnInit {
       document.removeEventListener('copy', null);
     });
     document.execCommand('copy');
+  }
+  viewProfile(prefix, url) {
+    let val = window.location.origin +'/'+ prefix +'/'+ url;
+    window.open(val, "_blank");
   }
 }

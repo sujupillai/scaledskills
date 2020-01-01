@@ -42,6 +42,8 @@ export const ApiPath = {
   'trainingImage': 'api/Training/{TrainingId}/Image',
   'trainingVU': 'api/Training/VU',
   'trainingFollow': 'api/Home/T/f',
+  'trainingMemberRegister':'api/Home/T/M/R',
+  'trainingMemberTrainer':'api/Home/T/M/T',
   /* home */
   'homeRunningTraining': 'api/Home/RT',
   'headerTraining': 'api/Home/h/{urlName}',
