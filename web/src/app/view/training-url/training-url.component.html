@@ -1,13 +1,16 @@
-<div class="container">
+<div class="container profile-wrap">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
       <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
     </div>
-    <img src="../../../assets/images/event.png" alt="headerImg" class="img-responsive">
+    <div class="event-banner">
+      <img src="{{entity.headerUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+        alt="headerImg" class="img-responsive">
+    </div>
     <div class="event-detail-wrap">
       <ul>
         <li>
-          <button type="button" class="btn btn-gradient bookBtn">
+          <button type="button" class="btn btn-gradient bookBtn mb10">
             4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
           </button>
           <p class="hostedBy">
@@ -52,7 +55,8 @@
         </li>
         <li class="text-center">
           <div *ngIf="!canEdit">
-            <button type="button" class="btn btn-gradient bookBtn" (click)="registerForTraining()">Register</button>
+            <button type="button" class="btn btn-gradient bookBtn mb10"
+              (click)="registerForTraining()">Register</button>
           </div>
           <p class="hostedBy">
             By {{entity['userName']}}
@@ -77,7 +81,7 @@
           </div>
         </li>
         <li class="text-right">
-          <button type="button" class="btn btn-gradient bookBtn" (click)="showSendMesage()">Send Enqiry</button>
+          <button type="button" class="btn btn-gradient bookBtn mb10" (click)="showSendMesage()">Send Enqiry</button>
           <p class="hostedBy">
             Ticket Left : 12/200
           </p>

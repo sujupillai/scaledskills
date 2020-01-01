@@ -47,7 +47,6 @@ export class ReviewComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.listData = res.result;
-        
       }
     })
   }

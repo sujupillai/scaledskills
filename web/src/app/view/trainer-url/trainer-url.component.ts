@@ -31,7 +31,7 @@ export class TrainerUrlComponent implements OnInit {
     { label: 'Instagram', icon: 'fa fa-instagram', command: () => { this.shareAction(3); } },
     { label: 'Linkedin', icon: 'fa fa-linkedin', command: () => { this.shareAction(4); } },
     { label: 'Twitter', icon: 'fa fa-twitter', command: () => { this.shareAction(5); } },
-    { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.shareAction(6); } },
+    { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
   origin = window.location.origin;
   constructor(public dialogService: DialogService,
@@ -65,6 +65,15 @@ export class TrainerUrlComponent implements OnInit {
     }
 
     this.openUrl(url)
+  }
+  copyToClipboard=()=> {
+    let url=origin+'/t/'+this.entity['url'];
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', (url));
+      e.preventDefault();
+      document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
   }
   goToLink = (trainingId) => {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);

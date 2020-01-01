@@ -37,7 +37,7 @@ export class OrganizerUrlComponent implements OnInit {
     { label: 'Instagram', icon: 'fa fa-instagram', command: () => { this.shareAction(3); } },
     { label: 'Linkedin', icon: 'fa fa-linkedin', command: () => { this.shareAction(4); } },
     { label: 'Twitter', icon: 'fa fa-twitter', command: () => { this.shareAction(5); } },
-    { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.shareAction(6); } },
+    { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
   constructor(public dialogService: DialogService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
@@ -142,6 +142,15 @@ export class OrganizerUrlComponent implements OnInit {
       }
     })
   }
+  copyToClipboard = () => {
+    let url = origin + '/t/' + this.entity['url'];
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', (url));
+      e.preventDefault();
+      document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
+  }
   shareAction = (type) => {
     let url;
     if (type == 1) {
@@ -155,7 +164,6 @@ export class OrganizerUrlComponent implements OnInit {
     } else if (type == 5) {
       url = 'http://twitter.com/home?status=' + origin
     }
-
     this.openUrl(url)
   }
   openUrl(urlToOpen) {
@@ -172,9 +180,9 @@ export class OrganizerUrlComponent implements OnInit {
       typeId: this.orgId
     }
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      if(res && res.responseCode == 200){
-        this.entity['isFollow']=true;
-      } 
+      if (res && res.responseCode == 200) {
+        this.entity['isFollow'] = true;
+      }
     })
   }
 }
