@@ -46,7 +46,8 @@ export class ReviewComponent implements OnInit {
     url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.listData = res.result
+        this.listData = res.result;
+        
       }
     })
   }

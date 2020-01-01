@@ -1,6 +1,6 @@
 <form [formGroup]="traineeReviewForm" autocomplete="off" novalidate>
   <div class="form-group">
-    <label>How satisfied were you with the training 1</label>
+    <label>How satisfied were you with the training</label>
     <div>
       <p-rating formControlName="rateOfSatisfied" (onRate)="handleRate($event)" (onCancel)="handleCancelRate($event)">
       </p-rating>
