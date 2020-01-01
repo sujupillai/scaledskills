@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
+import { ReviewComponent } from '../../_shared/_dialogs/review/review.component';
 import { HttpService, AuthenticationService, SharedService } from '../../_service';
 @Component({
   selector: 'app-training-url',
@@ -99,11 +100,10 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   showDialog() {
-    debugger
     this.display = true;
   }
-  openMessageDialog = (dialogConfig, dialogHeader) => {
-    return this.dialogService.open(MessageComponent, {
+  openMessageDialog = (dialogConfig, dialogHeader, component) => {
+    return this.dialogService.open(component, {
       data: {
         ...dialogConfig
       },
@@ -111,20 +111,48 @@ export class TrainingUrlComponent implements OnInit {
       width: '80%'
     });
   }
-  messageDialogConfig = (data, header) => {
-    let tempRes;
+  messageDialogConfig = (data, header, type) => {
     let dialogConfig = {
       data: data,
     };
     let dialogHeader = header;
-    let ref = this.openMessageDialog(dialogConfig, dialogHeader);
+    let component
+    if (type == 1) {
+      component = MessageComponent
+    } else if (type == 2) {
+      component = ReviewComponent
+    }
+    let ref = this.openMessageDialog(dialogConfig, dialogHeader, component);
     return ref.onClose;
   }
   showSendMesage() {
     let data = {
       toEmail: this.entity['email'] ? this.entity['email'] : ''
     }
-    this.messageDialogConfig(data, 'Send Email').subscribe(res => {
+    this.messageDialogConfig(data, 'Send Email', 1).subscribe(res => {
+      if (res != undefined) {
+        if (res && res.responseCode == 200) {
+          let msgArray = [
+            {
+              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+              class: 'confirmMsg'
+            },
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess');
+        } else {
+          let msgArray = [
+            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        }
+      }
+    })
+  }
+  handleFeedback = () => {
+    let data = {
+      trainingId: this.trainingId
+    }
+    this.messageDialogConfig(data, 'Send Email', 2).subscribe(res => {
       if (res != undefined) {
         if (res && res.responseCode == 200) {
           let msgArray = [
@@ -222,7 +250,6 @@ export class TrainingUrlComponent implements OnInit {
     } else if (type == 5) {
       url = 'http://twitter.com/home?status=' + origin
     }
-
     this.openUrl(url)
   }
 }
