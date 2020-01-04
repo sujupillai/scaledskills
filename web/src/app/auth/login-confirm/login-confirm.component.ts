@@ -10,14 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginConfirmComponent implements OnInit {
   validateObj;
   isEmailVerify: boolean = false;
-  reValidateEmail=false;
-  message: string = "Validating your email address. Please waith for "
+  reValidateEmail=true;
+  message: string = "Validate your email address."
   constructor(private _SharedService: SharedService,
     public dialogService: DialogService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute, private _Router:Router) { }
   ngOnInit() {
     this._ActivatedRoute.queryParams.subscribe(queryParams => {
       this.validateObj = queryParams;
-      this.handleConfirmLogin()
+      // this.handleConfirmLogin()
     })
   }
   handleConfirmLogin = () => {

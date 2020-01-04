@@ -11,7 +11,7 @@
       <ul>
         <li>
           <button type="button" class="btn btn-gradient bookBtn mb10">
-            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalTrainer?totalTrainer:0}} Registered
+            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalUser?totalUser:0}} Registered
           </button>
           <p class="hostedBy">
             {{entity['name']?entity['name']:'N/A'}}
@@ -60,8 +60,8 @@
           </div>
           <p class="hostedBy">
             By {{entity['userName']}}
-            <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
-                aria-hidden="true"></i>&nbsp;Follow</span>
+            <!-- <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
+                aria-hidden="true"></i>&nbsp;Follow</span> -->
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
