@@ -11,13 +11,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class GeneralBasicComponent implements OnInit {
   profileForm: FormGroup;
   countryList = [];
+  entity;
   stateList = [];
+  imgBaseUrl='http://scaledskills.com/'+'/api/Document/p/';
   submitted: boolean = false;
   dateOfBirth = new FormControl();
   uploadedFiles: any[] = [];
   uplo: File;
   selectedCountry = [];
   selectedState = [];
+  noImage=true;
   settings = {};
   defaultList = [];
   minDate: Date = new Date();
@@ -25,6 +28,7 @@ export class GeneralBasicComponent implements OnInit {
   isGeneralUser: boolean = true;
   isReferralID = false;
   documentUpload: string = '';
+  prevData={};
   fileData = null;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
@@ -108,7 +112,12 @@ export class GeneralBasicComponent implements OnInit {
     this.selectedState = this.defaultList;
     this.stateList = [];
   }
+  removeProfileFile=(event, control)=>{
+    this.formControl[control].setValue(this.prevData['image']);
+    this.entity.image=this.formControl[control].value;
+  }
   myUploader = (event, control) => {
+    this.noImage=true;
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
     const formData = new FormData();
@@ -116,6 +125,8 @@ export class GeneralBasicComponent implements OnInit {
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
       this.formControl[control].setValue(res.result);
       this[control] = false;
+      this.noImage=false;
+      this.entity.image='http://scaledskills.com/api/Document/p/'+res.result;
     })
   }
   onChangeState(event) {
@@ -140,6 +151,8 @@ export class GeneralBasicComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
+        this.entity={...dataObj};
+        
         Object.keys(dataObj).forEach(name => {
           if (this.formControl[name]) {
             if (name != 'address') {
@@ -147,9 +160,17 @@ export class GeneralBasicComponent implements OnInit {
             }
           }
         });
+        if(!this.entity.image){
+          this.noImage=true;
+        }else{
+          this.entity.image='http://scaledskills.com/api/Document/p/'+dataObj.image;
+          this.noImage=false;
+        }
+        
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
         this.profileForm.get('referralID').setValue(dataObj.referralID);
+        
         if (dataObj.referralID) {
           this.isReferralID = true
         } else {
@@ -173,6 +194,7 @@ export class GeneralBasicComponent implements OnInit {
           this.getStateList(id)
         }
       }
+      this.prevData={...this.entity};
     })
   }
   get formControl() { return this.profileForm.controls }

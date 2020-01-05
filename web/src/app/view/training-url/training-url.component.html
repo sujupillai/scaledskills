@@ -68,7 +68,6 @@
               <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)">
                 <i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}
               </div>
-
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
               </div> -->
@@ -131,7 +130,6 @@
   </div>
   <div class="border-line"></div>
   <div class="form-group">
-
     <p-carousel headerText="Registered Users ({{regUsers.length}})" [value]="regUsers" numVisible="5" circular="true"
       autoplayInterval="5000" *ngIf="regUsers.length>0">
       <ng-template let-item pTemplate="item">

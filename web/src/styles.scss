@@ -1853,3 +1853,24 @@ body .ui-button {
 .ui-carousel .ui-carousel-dropdown, .ui-carousel .ui-carousel-mobiledropdown{
   color: black!important;
 }
+.profile-dp{
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+  }
+}
+.profile-pic-wap{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  .upload-control{
+    width: 100%;
+  }
+}
+.profile-img-wap{
+  padding-top: 15px;
+}
