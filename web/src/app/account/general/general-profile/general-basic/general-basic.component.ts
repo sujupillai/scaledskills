@@ -211,11 +211,9 @@ export class GeneralBasicComponent implements OnInit {
       let postObj = {
         ...this.profileForm.value,
       }
-      debugger
       postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
       postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
       postObj.dateOfBirth = this.dateOfBirth.value;
-      debugger
       this._HttpService.httpCall(this.basicApi, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
@@ -253,7 +251,6 @@ export class GeneralBasicComponent implements OnInit {
     this.getProfileData(this.basicApi);
   }
   changeDate = (event) => {
-    debugger
     this.formControl.dateOfBirth.setValue(this.dateOfBirth.value)
     if (!this.isReferralID) {
       var nameStr = this.profileForm.get('firstName').value.substring(0, 4);

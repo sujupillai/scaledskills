@@ -53,9 +53,9 @@
       <div class="form-group">
         <label>Trainer Url <span class="required">*</span></label>
         <div class="flex vMiddle urlBox">
-          <div class="fixed-input">{{formControl.baseUrl.value}}</div>
+          <div class="fixed-input">{{baseUrl}}</div>
           <input type="text" formControlName="profileUrl" pInputText placeholder="Enter Here"
-            [ngClass]="isUrl?'disabled':''" (keyup)="upateUrl()">
+          [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="upateUrl()">
         </div>
         <p class="msgError text-danger"
           *ngIf="formControl.profileUrl.invalid && (formControl.profileUrl.dirty || submitted)">
@@ -64,11 +64,12 @@
           </small>
         </p>
         <div class="text-right msgError">
-          <p class="inline-block" *ngIf="!urlConfig.isUrl && formControl['profileUrl'].value && urlConfig.urlSubmitted" [ngClass]="urlConfig.isUrlValid?'text-success':'text-danger'">
+          <p class="inline-block" *ngIf="!urlConfig.isUrl && formControl['profileUrl'].value && urlConfig.urlSubmitted"
+            [ngClass]="urlConfig.isUrlValid?'text-success':'text-danger'">
             <strong>{{urlConfig.vrlValidationMsg}} &nbsp; &nbsp;</strong></p>
           <a href="javascript:void(0)" (click)="validateUrl()"
             *ngIf="formControl['profileUrl'].value && !urlConfig.isUrl && !urlConfig.isUrlValid">Validate Url</a>
-          <a href="javascript:void(0)" (click)="viewProfile()" *ngIf="urlConfig.isUrl">View Profile</a>
+          <a href="javascript:void(0)" (click)="viewProfile()" *ngIf="urlConfig.isUrl">View Detail</a>
         </div>
       </div>
     </div>

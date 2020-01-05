@@ -199,7 +199,6 @@ export class TrainerUrlComponent implements OnInit {
     }
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        debugger
         this.totalMember = res.result.totalCount;
         this.memberList = res['result']['results'];
       }
