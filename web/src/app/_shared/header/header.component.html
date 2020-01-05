@@ -16,7 +16,6 @@
           Contact Us: <strong>+919599350701</strong>
         </a>
       </li>
-
       <li routerLinkActive="active" *ngIf="!isLoggedIn">
         <a [routerLink]="['auth/register']">
           <span class="glyphicon glyphicon-user"></span> Sign Up
@@ -26,8 +25,6 @@
         <a [routerLink]="['auth/login']">
           <span class="glyphicon glyphicon-log-in"></span> Login
         </a>
-      </li>
-      <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log Out</a>
       </li>
       <li class="dropdown menu-dropdown" *ngIf="isLoggedIn">
         <div class="dropdown-toggle profile-link" data-toggle="dropdown" href="javascript:void(0)">
@@ -40,6 +37,9 @@
           </li>
           <li><a [routerLink]="['account']">Portfolio</a></li>
           <li><a [routerLink]="['account/trainer/training/0/basic']">Create Training</a></li>
+          <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log
+              Out</a>
+          </li>
         </ul>
       </li>
     </ul>
