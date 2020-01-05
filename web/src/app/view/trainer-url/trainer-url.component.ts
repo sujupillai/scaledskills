@@ -52,23 +52,23 @@ export class TrainerUrlComponent implements OnInit {
   }
   shareAction = (type) => {
     let url;
+    let urlPostFix = origin + this._Router.url;
     if (type == 1) {
-      url = 'https://www.facebook.com/share.php?u=' + origin
+      url = ApiPath.social.fb
     } else if (type == 2) {
-      url = 'https://web.whatsapp.com/send?text=' + origin
+      url = ApiPath.social.whatsapp
     } else if (type == 3) {
-      url = 'https://www.instagram.com/?url=' + origin
+      url = ApiPath.social.insta
     } else if (type == 4) {
-      url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + origin
+      url = ApiPath.social.linkdin
     } else if (type == 5) {
-      url = 'http://twitter.com/home?status=' + origin
+      url = ApiPath.social.twitter
     }
-
-    this.openUrl(url)
+    this.openUrl(url + urlPostFix)
   }
-  copyToClipboard=()=> {
-    let url=origin+this._Router.url;
-    
+  copyToClipboard = () => {
+    let url = origin + this._Router.url;
+
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();

@@ -95,7 +95,7 @@ export class TrainingUrlComponent implements OnInit {
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
           this.fetchTrainingMemberRegister();
-           this.fetchTrainingMemberTrainer();
+          this.fetchTrainingMemberTrainer();
         } else {
           this.entity = null;
           this.isError = true;
@@ -103,40 +103,38 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
-  fetchTrainingMemberRegister=()=>{
-    let url=ApiPath.trainingMemberRegister;
-    let postObj={
+  fetchTrainingMemberRegister = () => {
+    let url = ApiPath.trainingMemberRegister;
+    let postObj = {
       "trainingId": this.trainingId,
       "pageType": "P",
       "searchText": "",
       "pageSize": 500,
       "page": 0
     }
-    this._HttpService.httpCall(url, 'POST',postObj, null).subscribe(res=>{
-      if(res && res.responseCode==200){
-        this.totalUser=res.result.totalCount;
-        this.regUsers=res['result']['results'];
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.totalUser = res.result.totalCount;
+        this.regUsers = res['result']['results'];
       }
     })
   }
- 
-  fetchTrainingMemberTrainer=()=>{
-    let url=ApiPath.trainingMemberTrainer;
-    let postObj={
+  fetchTrainingMemberTrainer = () => {
+    let url = ApiPath.trainingMemberTrainer;
+    let postObj = {
       "trainingId": this.trainingId,
       "pageType": "P",
       "searchText": "",
       "pageSize": 500,
       "page": 0
     }
-    this._HttpService.httpCall(url, 'POST',postObj, null).subscribe(res=>{
-      if(res && res.responseCode==200){
-        this.totalTrainer=res.result.totalCount;
-        this.regTrainers=res['result']['results'];
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.totalTrainer = res.result.totalCount;
+        this.regTrainers = res['result']['results'];
       }
     })
   }
- 
   showDialog() {
     this.display = true;
   }
@@ -275,21 +273,22 @@ export class TrainingUrlComponent implements OnInit {
   }
   shareAction = (type) => {
     let url;
+    let urlPostFix = origin + this._Router.url;
     if (type == 1) {
-      url = 'https://www.facebook.com/share.php?u=' + origin
+      url = ApiPath.social.fb
     } else if (type == 2) {
-      url = 'https://web.whatsapp.com/send?text=' + origin
+      url = ApiPath.social.whatsapp
     } else if (type == 3) {
-      url = 'https://www.instagram.com/?url=' + origin
+      url = ApiPath.social.insta
     } else if (type == 4) {
-      url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + origin
+      url = ApiPath.social.linkdin
     } else if (type == 5) {
-      url = 'http://twitter.com/home?status=' + origin
+      url = ApiPath.social.twitter
     }
-    this.openUrl(url)
+    this.openUrl(url + urlPostFix)
   }
-  copyToClipboard=()=> {
-    let url=origin+this._Router.url;
+  copyToClipboard = () => {
+    let url = origin + this._Router.url;
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();
@@ -298,7 +297,7 @@ export class TrainingUrlComponent implements OnInit {
     document.execCommand('copy');
   }
   viewProfile(prefix, url) {
-    let val = window.location.origin +'/'+ prefix +'/'+ url;
+    let val = window.location.origin + '/' + prefix + '/' + url;
     window.open(val, "_blank");
   }
 }

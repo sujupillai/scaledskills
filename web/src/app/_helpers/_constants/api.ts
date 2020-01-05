@@ -20,7 +20,7 @@ export const ApiPath = {
   'register': 'api/Account',
   'Accountlogin': 'api/Account/login',
   'confirmEmail': 'api/Account/confirmEmail',
-  'AccountForgotPassword':'api/Account/forgotPassword',
+  'AccountForgotPassword': 'api/Account/forgotPassword',
   /* global */
   'globalCountry': 'api/Global/Country',
   'globalState': 'api/Global/State',
@@ -29,6 +29,13 @@ export const ApiPath = {
   'trainingRequest': 'api/Training/Request',
   'documentUpload': 'api/Document/Upload',
   'globalZone': 'api/Global/Zone',
+  'social': {
+    'fb': 'https://www.facebook.com/share.php?u=',
+    'whatsapp': 'https://web.whatsapp.com/send?text=',
+    'insta': 'https://www.instagram.com/?url=',
+    'linkdin': 'https://www.linkedin.com/shareArticle?mini=true&url=',
+    'twitter': 'http://twitter.com/home?status=',
+  },
   /* training */
   'training': 'api/Training',
   'getTraining': '{id}',
@@ -42,8 +49,8 @@ export const ApiPath = {
   'trainingImage': 'api/Training/{TrainingId}/Image',
   'trainingVU': 'api/Training/VU',
   'trainingFollow': 'api/Home/T/f',
-  'trainingMemberRegister':'api/Home/T/M/R',
-  'trainingMemberTrainer':'api/Home/T/M/T',
+  'trainingMemberRegister': 'api/Home/T/M/R',
+  'trainingMemberTrainer': 'api/Home/T/M/T',
   /* home */
   'homeRunningTraining': 'api/Home/RT',
   'headerTraining': 'api/Home/h/{urlName}',
@@ -58,8 +65,9 @@ export const ApiPath = {
   'interest': 'api/Training/{TrainingId}/Interest',
 
   /* order placement */
-  'getTrainingTickets':'api/Home/T/Tickets/{urlName}',
-  'orderTicket':'api/Order/T',
-  'orderDetail':'api/Order/{orderId}',
-  'placeOrder':'api/Order/P/{orderId}'
+  'getTrainingTickets': 'api/Home/T/Tickets/{urlName}',
+  'orderTicket': 'api/Order/T',
+  'orderDetail': 'api/Order/{orderId}',
+  'placeOrder': 'api/Order/P/{orderId}',
+
 }
