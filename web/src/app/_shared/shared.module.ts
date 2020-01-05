@@ -7,12 +7,14 @@ import {ExternalUrlDirective} from './ExternalUrlDirective ';
 import {MessageComponent} from './_dialogs/message/message.component';
 import { ReviewComponent } from './_dialogs/review/review.component';
 import { MembersTempComponent } from './members-temp/members-temp.component';
+import { ReviewTempComponent } from './review-temp/review-temp.component';
 
 
 @NgModule({
-  declarations: [LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, ReviewComponent, MembersTempComponent],
+  declarations: [LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, ReviewComponent, MembersTempComponent, ReviewTempComponent],
   exports: [
-    LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, ReviewComponent
+    LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, ReviewComponent, MembersTempComponent,
+    ReviewTempComponent
   ],
   imports: [
     NgPrimeModule,

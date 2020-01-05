@@ -28,7 +28,10 @@
       </li>
       <li class="dropdown menu-dropdown" *ngIf="isLoggedIn">
         <div class="dropdown-toggle profile-link" data-toggle="dropdown" href="javascript:void(0)">
-          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <img *ngIf="!userInfo.image" src="../../../../assets/images/user.png" alt="image" class="dp-img"
+            class="dp-img">
+          <img *ngIf="userInfo.image" src="{{imageBaseUrl}}{{userInfo.image}}"
+            onError="this.src='../../../../assets/images/user.png';" alt="image" class="dp-img">
           <span class="caret"></span></div>
         <ul class="dropdown-menu">
           <li>

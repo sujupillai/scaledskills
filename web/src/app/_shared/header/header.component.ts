@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../_service/authentication.service';
 export class HeaderComponent implements OnInit {
   userInfo: any = {};
   isLoggedIn: boolean = false;
+  imageBaseUrl='http://scaledskills.com/api/Document/p/';
   constructor(private _AuthenticationService: AuthenticationService) { }
 
   ngOnInit() {
