@@ -13,7 +13,7 @@
       <ul>
         <li>
           <button type="button" class="btn btn-gradient bookBtn mb10">
-            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalUser?totalUser:0}} Registered
+            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{'0'}} Reviews
           </button>
           <p class="hostedBy">
             {{entity['name']?entity['name']:'N/A'}}
@@ -35,7 +35,6 @@
                 to
                 {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm a'}}</span>
             </div>
-            <br>
           </div>
           <div class="sub_links">
             <div class="flex">
@@ -65,7 +64,7 @@
               (click)="registerForTraining()">{{entity && entity.isRegister?'Registered':'Register'}}</button>
           </div>
           <p class="hostedBy">
-            By {{entity['userName']}}
+            Hosted By {{entity['userName']}}
             <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus" aria-hidden="true"
                 (click)="hendleFollowMe()"></i>&nbsp;Follow</span>
           </p>
@@ -73,6 +72,7 @@
             <div class="flex feed-row">
               <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)">
                 <i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}
+                ({{!entity['interestCount']?'N/A':entity['interestCount']|number}})
               </div>
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
@@ -98,11 +98,10 @@
                   [model]="shareOptions">
                 </p-splitButton>
               </div>
-              <!-- <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div>
-              <div class="item">Interested <br>{{!entity['interestCount']?'N/A':entity['interestCount']|number}}</div>
-              <div class="item">Registered <br>{{totalUser?totalUser:'N/A'}}</div> -->
             </div>
           </div>
+          <!-- <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div> -->
+          <div class="item">Registered : {{totalUser?totalUser:'N/A'}}</div>
         </li>
       </ul>
     </div>
