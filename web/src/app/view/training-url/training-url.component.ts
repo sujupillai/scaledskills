@@ -12,6 +12,7 @@ import { HttpService, AuthenticationService, SharedService } from '../../_servic
 export class TrainingUrlComponent implements OnInit {
   regTrainers = [];
   totalTrainer;
+  avgRating=0;
   regUsers = [];
   totalUser;
   trainingId = 0;
@@ -29,6 +30,8 @@ export class TrainingUrlComponent implements OnInit {
   userInfo: any = {};
   isLoggedIn: boolean = false;
   isError: boolean = false;
+  reviewList=[];
+  totalReview=0;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -71,12 +74,28 @@ export class TrainingUrlComponent implements OnInit {
       "userId": this.trainingId,
       "pageType": "",
       "searchText": "",
-      "pageSize": 0,
+      "pageSize": 1000,
       "page": 0
     }
     let url = ApiPath.relatedTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.relatedTrainings = res.result.results;
+    })
+  }
+  fetchTrainingReview = () => {
+    let postObj = {
+      "userId": this.trainingId,
+      "pageType": "",
+      "searchText": "",
+      "pageSize": 1000,
+      "page": 0
+    }
+    let url = ApiPath.getTrainingReview;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      debugger
+      this.reviewList=res.result.results
+      this.totalReview=res.result.totalCount;
+      this.avgRating =res.result.avgRating
     })
   }
   fetchUpcomingTraining = () => {
@@ -106,7 +125,8 @@ export class TrainingUrlComponent implements OnInit {
           this.fetchTrainingMemberRegister();
           this.fetchTrainingMemberTrainer();
           this.FetchRelatedTraining();
-          this.getTrainingSeting()
+          this.getTrainingSeting();
+          this.fetchTrainingReview()
         } else {
           this.entity = null;
           this.isError = true;

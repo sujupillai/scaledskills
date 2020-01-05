@@ -13,7 +13,7 @@
       <ul>
         <li>
           <button type="button" class="btn btn-gradient bookBtn mb10">
-            4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{'0'}} Reviews
+            {{avgRating}}&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalReview}} Reviews
           </button>
           <p class="hostedBy">
             {{entity['name']?entity['name']:'N/A'}}
@@ -226,5 +226,40 @@
       </ng-template>
     </p-carousel>
   </div>
+  <div class="form-group">
+    <div class="border-line top bottom"></div>
+    <div class="rewiew-wrap">
+      <div class="form-group">
+        <p-carousel headerText="Reviews  ({{reviewList.length}})" [value]="reviewList" numVisible="4"
+          *ngIf="reviewList.length>0">
+          <ng-template let-item pTemplate="item">
+            <p-card class="training-reviews">
+              <div>
+                <span class="fa fa-star clrBlue"
+                  *ngFor="let dummy of ' '.repeat(item.rateOfSatisfied).split(''), let x = index"></span>
+                <span class="fa fa-star"
+                  *ngFor="let dummy of ' '.repeat(5-item.rateOfSatisfied).split(''), let x = index"></span>
+              </div>
+              <div class="text-desc">
+                <p>{{item.likeAbout?item.likeAbout:''}}</p>
+              </div>
+              <h3 class="review-by">{{item.firstName}} {{item.lastName}}</h3>
+            </p-card>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Reviews  ({{reviewList.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="reviewList.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </div>
 </div>
+
 <app-error *ngIf="entity==null && isError"></app-error>
