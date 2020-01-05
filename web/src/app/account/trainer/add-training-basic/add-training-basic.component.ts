@@ -158,8 +158,8 @@ export class AddTrainingBasicComponent implements OnInit {
     this.trainingForValue = this.defaultList;
   }
   handleSubmit = () => {
-    this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value : '');
-    this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value : '');
+    this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value.toLocaleString() : '');
+    this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value.toLocaleString() : '');
     let postObj = {
       ...this.trainingBasicForm.value,
     }
@@ -176,7 +176,7 @@ export class AddTrainingBasicComponent implements OnInit {
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
           } else if (res && res.responseCode == 200) {
-            let trainingId=res.result;
+            let newTraining=this.trainingId==0?true:false;
             this.trainingId = res.result;
             let msgArray = [
               {
@@ -185,7 +185,11 @@ export class AddTrainingBasicComponent implements OnInit {
               },
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
-              this._Router.navigate(['account/trainer/training/'+this.trainingId+'/basic']);
+              if(newTraining){
+                this._Router.navigate(['account/trainer/training/'+this.trainingId+'/basic']);
+              }else{
+                this.getData(this.trainingId)
+              }
             });
           } else {
             let msgArray = [
