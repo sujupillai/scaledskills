@@ -19,6 +19,7 @@ export class TrainingUrlComponent implements OnInit {
   pastTrainings = [];
   relatedTrainings = [];
   noRecord = [];
+  trainingSetting;
   display: boolean = false;
   isSendMesage: boolean = false;
   urlString: string = '';
@@ -52,10 +53,7 @@ export class TrainingUrlComponent implements OnInit {
     });
     localStorage.removeItem('returnurl');
   }
-  getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
-    this.isLoggedIn = this.userInfo ? true : false;
-  }
+
   fetchPastTraining = () => {
     let postObj = {
       "userId": this.userId,
@@ -80,9 +78,7 @@ export class TrainingUrlComponent implements OnInit {
       this.upcommingTrainings = res.result.results;
     })
   }
-  goToLink = (trainingId) => {
-    this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
-  }
+
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
@@ -96,12 +92,27 @@ export class TrainingUrlComponent implements OnInit {
           this.fetchUpcomingTraining();
           this.fetchTrainingMemberRegister();
           this.fetchTrainingMemberTrainer();
+          this.getTrainingSeting()
         } else {
           this.entity = null;
           this.isError = true;
         }
       }
     })
+  }
+  getTrainingSeting = () => {
+    let url = ApiPath.trainingSettings;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      this.trainingSetting=res.result
+    })
+  }
+  getUser = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue
+    this.isLoggedIn = this.userInfo ? true : false;
+  }
+  goToLink = (trainingId) => {
+    this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
   fetchTrainingMemberRegister = () => {
     let url = ApiPath.trainingMemberRegister;

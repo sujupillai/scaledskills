@@ -54,6 +54,7 @@ export class AddTrainingLocationComponent implements OnInit {
   createOnlineForm = (callback) => {
     this.onlineLocationForm = this._FormBuilder.group({
       id: 0,
+      isOnlineDetailsVisible:false,
       onlineLocation: ['', Validators.required],
       locationDetail: [''],
       modeType: [2, Validators.required],
@@ -80,6 +81,7 @@ export class AddTrainingLocationComponent implements OnInit {
       id: 0,
       onlineLocation: [''],
       locationDetail: [''],
+      isOnlineDetailsVisible:false,
       modeType: [1],
       addressModel: this._FormBuilder.group({
         address1: ['', Validators.required],

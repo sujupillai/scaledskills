@@ -64,7 +64,17 @@ export class AddTrainingSettingsComponent implements OnInit {
       this.prevState = {
         ...res.result
       };
-      let resObj = res.result;
+      let resObj = {
+        ...res.result,
+        isPublicCustomQuestion: false,
+        isPublicSetReminder: false,
+        isPublicAffiliatePromoterLink: false,
+        isPublicPageViews: false,
+        isPublicAddToCalendar: false,
+        isPublicXSpotsLeft: false,
+        isPublicComments: false,
+        isPublicAboutOrganizer: false,
+      };
       Object.keys(resObj).forEach(name => {
         if (this.formControl[name]) {
           this.formControl[name].setValue(resObj[name]);
@@ -87,7 +97,7 @@ export class AddTrainingSettingsComponent implements OnInit {
           },
         ]
         // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
           this.getData()
         })
       }

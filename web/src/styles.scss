@@ -1847,30 +1847,42 @@ body .ui-button {
   display: block;
 }
 
-.ui-carousel .ui-carousel-dropdown, .ui-carousel .ui-carousel-mobiledropdown{
-  color: black!important;
+.ui-carousel .ui-carousel-dropdown,
+.ui-carousel .ui-carousel-mobiledropdown {
+  color: black !important;
 }
-.ui-carousel .ui-carousel-dropdown, .ui-carousel .ui-carousel-mobiledropdown{
-  color: black!important;
+
+.ui-carousel .ui-carousel-dropdown,
+.ui-carousel .ui-carousel-mobiledropdown {
+  color: black !important;
 }
-.profile-dp{
+
+.profile-dp {
   width: 80px;
   height: 80px;
   display: inline-block;
-  img{
+
+  img {
     width: 100%;
     height: 100%;
     border-radius: 100%;
   }
 }
-.profile-pic-wap{
+
+.profile-pic-wap {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  .upload-control{
+
+  .upload-control {
     width: 100%;
   }
 }
-.profile-img-wap{
+
+.profile-img-wap {
   padding-top: 15px;
+}
+
+.mr-10 {
+  margin-right: 10px;
 }
