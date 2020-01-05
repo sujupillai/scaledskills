@@ -72,7 +72,7 @@
             <div class="flex feed-row">
               <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)">
                 <i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}
-                ({{!entity['interestCount']?'N/A':entity['interestCount']|number}})
+                ({{!entity['interestCount']?'':entity['interestCount']|number}})
               </div>
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
@@ -101,7 +101,7 @@
             </div>
           </div>
           <!-- <div class="item">Views <br>{{!entity['viewCount']?'N/A':entity['viewCount']|number}}</div> -->
-          <div class="item">Registered : {{totalUser?totalUser:'N/A'}}</div>
+          <div class="item">Registered : {{totalUser?totalUser:'0'}}</div>
         </li>
       </ul>
     </div>
