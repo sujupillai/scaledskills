@@ -12,8 +12,8 @@ export class GeneralBasicComponent implements OnInit {
   profileForm: FormGroup;
   countryList = [];
   entity;
+  imageBaseHref=window.location.origin + '/api/Document/p/';
   stateList = [];
-  imgBaseUrl='http://scaledskills.com/'+'/api/Document/p/';
   submitted: boolean = false;
   dateOfBirth = new FormControl();
   uploadedFiles: any[] = [];
@@ -126,7 +126,7 @@ export class GeneralBasicComponent implements OnInit {
       this.formControl[control].setValue(res.result);
       this[control] = false;
       this.noImage=false;
-      this.entity.image='http://scaledskills.com/api/Document/p/'+res.result;
+      this.entity.image=this.imageBaseHref+res.result;
     })
   }
   onChangeState(event) {
