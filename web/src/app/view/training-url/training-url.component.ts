@@ -311,4 +311,5 @@ export class TrainingUrlComponent implements OnInit {
     let val = window.location.origin + '/' + prefix + '/' + url;
     window.open(val, "_blank");
   }
+  
 }

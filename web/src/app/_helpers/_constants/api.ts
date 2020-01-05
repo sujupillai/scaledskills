@@ -9,7 +9,6 @@ export const ApiPath = {
   'trainerCertificate': 'api/Trainer/Certificate',
   'trainerVU': 'api/Trainer/VU',
   'trainerEmail': 'api/Trainer/Email',
-  'trainerFollow': 'api/Home/P/f',
   /* trainer api path ends */
   /* organization */
   'Organization': 'api/Organization',
@@ -29,6 +28,7 @@ export const ApiPath = {
   'trainingRequest': 'api/Training/Request',
   'documentUpload': 'api/Document/Upload',
   'globalZone': 'api/Global/Zone',
+  'contact': "api/Home/Contact",
   'social': {
     'fb': 'https://www.facebook.com/share.php?u=',
     'whatsapp': 'https://web.whatsapp.com/send?text=',
@@ -63,11 +63,12 @@ export const ApiPath = {
   'orgUrl': 'api/Home/O/{urlName}',
   /* interest */
   'interest': 'api/Training/{TrainingId}/Interest',
-
   /* order placement */
   'getTrainingTickets': 'api/Home/T/Tickets/{urlName}',
   'orderTicket': 'api/Order/T',
   'orderDetail': 'api/Order/{orderId}',
   'placeOrder': 'api/Order/P/{orderId}',
-
+  /* follow /member */
+  'trainerFollow': 'api/Home/P/f',
+  'generalMemberFollow': 'api/Home/P/M/f'
 }

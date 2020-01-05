@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, AuthenticationService } from 'src/app/_service';
+import { HttpService, AuthenticationService, SharedService } from 'src/app/_service';
 import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-contact-us',
@@ -13,7 +13,7 @@ export class ContactUsComponent implements OnInit {
   isLoggedIn: boolean = false;
   submitted = false;
   constructor(private _FormBuilder: FormBuilder, private _AuthenticationService: AuthenticationService,
-    private _HttpService: HttpService) { }
+    private _HttpService: HttpService, private _SharedService: SharedService) { }
   data;
   ngOnInit() {
     this.createForm(() => {
@@ -30,8 +30,7 @@ export class ContactUsComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      body: ['', Validators.required],
-      seperator: [''],
+      msg: ['', Validators.required],
       id: ['0'],
     })
     if (callback) {
@@ -60,30 +59,36 @@ export class ContactUsComponent implements OnInit {
     })
   }
   handleSubmit = () => {
-    // let postObj = {
-    //   ...this.formElement.value
-    // }
-    // if (this.formElement.invalid) {
-    //   this.submitted = true;
-    // } else {
-    //   const url = ApiPath.trainerEmail
-    //   this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-    //     if (res && res.responseCode == 200) {
-    //       this.resetForm(this.formElement)
-    //     }
-    //   }, error => {
-    //   })
-    // }
-  }
-  handleCancel = () => {
-  }
-  resetForm(formGroup: FormGroup) {
-    let control: AbstractControl = null;
-    formGroup.reset();
-    formGroup.markAsUntouched();
-    Object.keys(formGroup.controls).forEach((name) => {
-      control = formGroup.controls[name];
-      control.setErrors(null);
-    });
+    let postObj = {
+      ...this.formElement.value
+    }
+    if (this.formElement.invalid) {
+      this.submitted = true;
+    } else {
+      const url = ApiPath.contact
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        if (res && res.responseCode == 200) {
+          let msgArray = [
+            {
+              mgs: res.responseMessege ? res.responseMessege : 'Success',
+              class: 'confirmMsg'
+            },
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+            this.formControl['msg'].setValue('')
+          });
+        } else {
+          let msgArray = [
+            { mgs: res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        }
+      }, error => {
+        let msgArray = [
+          { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+      })
+    }
   }
 }

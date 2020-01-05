@@ -10,6 +10,8 @@ import { MessageComponent } from '../../_shared/_dialogs/message/message.compone
 })
 export class TrainerUrlComponent implements OnInit {
   cars = [];
+  memberList = [];
+  totalMember = 0;
   display: boolean = false;
   isSendMesage: boolean = false;
   cities = [];
@@ -88,6 +90,7 @@ export class TrainerUrlComponent implements OnInit {
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
+          this.fetchMembers()
         }
         else {
           this.entity = null;
@@ -182,6 +185,23 @@ export class TrainerUrlComponent implements OnInit {
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.entity['isFollow'] = true;
+      }
+    })
+  }
+  fetchMembers = () => {
+    let url = ApiPath.generalMemberFollow;
+    let postObj = {
+      "trainingId": this.trainerId,
+      "pageType": "P",
+      "searchText": "",
+      "pageSize": 500,
+      "page": 0
+    }
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        debugger
+        this.totalMember = res.result.totalCount;
+        this.memberList = res['result']['results'];
       }
     })
   }

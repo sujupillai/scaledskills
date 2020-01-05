@@ -10,7 +10,7 @@
             {{entity.user && entity.user.lastName?entity.user.lastName:'N/A'}}
             &nbsp;
             <button type="button" class="btn btn-gradient bookBtn">
-              4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;0 Followers
+              4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalMember}} Followers
             </button></h3>
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
           <div><strong>Website:</strong>
@@ -112,7 +112,8 @@
         <h3>Certifications</h3>
         <ul class="list-li">
           <li *ngFor="let item of entity.certificate">
-            <strong>{{item.name}}</strong> – {{item.authority}} {{item.from}} to {{item.to}}
+            <strong>{{item.name}}</strong> – {{item.authority}} {{item.from | date : 'MM/dd/yyyy'}} to
+            {{item.to | date : 'MM/dd/yyyy'}}
             {{item.isExpired?'Expired':''}}
           </li>
           <li *ngIf="entity.certificate && entity.certificate.length==0">No records to display.</li>
@@ -162,11 +163,38 @@
           </ng-template>
         </p-carousel>
       </div>
+      <div class="border-line top"></div>
+      <div class="form-group">
+        <p-carousel headerText="Members ({{memberList.length}})" [value]="memberList" numVisible="5" circular="true"
+          autoplayInterval="5000" *ngIf="memberList.length>0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card styleClass="ui-card-shadow cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
+                <div class="userThumb text-center cursor-pointer">
+                  <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+                    alt="user profile">
+                  <h3>{{item.firstName}} {{item.lastName}}</h3>
+                </div>
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel headerText="Members ({{memberList.length}})" [value]="noRecord" numVisible="1"
+          *ngIf="memberList.length==0">
+          <ng-template let-item pTemplate="item">
+            <div class="ui-grid ui-grid-responsive">
+              <p-card>
+                {{item.msg}}
+              </p-card>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
       <div class="border-line top bottom"></div>
       <div class="rewiew-wrap">
         <div class="form-group">
           <p-carousel headerText="Reviews  ({{reviews.length}})" [value]="reviews" numVisible="1"
-          *ngIf="reviews.length>0">
+            *ngIf="reviews.length>0">
             <ng-template let-item pTemplate="item">
               <p-card class="training-reviews">
                 <div class="userThumbWrap">
@@ -202,11 +230,9 @@
               </div>
             </ng-template>
           </p-carousel>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <app-error *ngIf="entity==null && isError"></app-error>

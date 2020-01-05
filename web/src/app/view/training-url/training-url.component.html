@@ -1,3 +1,4 @@
+<pre>{{entity|json}}</pre>
 <div class="container display-profile-wrap">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
@@ -60,8 +61,8 @@
           </div>
           <p class="hostedBy">
             By {{entity['userName']}}
-            <!-- <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
-                aria-hidden="true"></i>&nbsp;Follow</span> -->
+            <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
+                aria-hidden="true" (click)="hendleFollowMe()"></i>&nbsp;Follow</span>
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
