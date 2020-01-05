@@ -3,14 +3,15 @@
     <div class="header_detail">
       <div class="userThumbWrap">
         <div class="thumb trainer">
-          <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+          <img src="{{imageBaseUrl}}{{entity.image}}"
+            onError="this.src='../../../../assets/images/user.png';" alt="image" class="img-responsive">
         </div>
         <div class="text-desc">
           <h3>{{entity.user && entity.user.firstName?entity.user.firstName:'N/A'}}
             {{entity.user && entity.user.lastName?entity.user.lastName:'N/A'}}
             &nbsp;
             <button type="button" class="btn btn-gradient bookBtn">
-              4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalMember}} Followers
+              {{avgRating}}&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalReview}} Reviews
             </button></h3>
           <div><strong>Email:</strong> {{entity.user && entity.user.email?entity.user.email:'N/A'}}</div>
           <div><strong>Website:</strong>

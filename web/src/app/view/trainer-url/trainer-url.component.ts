@@ -27,6 +27,7 @@ export class TrainerUrlComponent implements OnInit {
   noRecord = [];
   urlString: string = '';
   entity = null;
+  imageBaseUrl='http://scaledskills.com/api/Document/p/';
   reviewList=[];
   totalReview=0;
   avgRating
