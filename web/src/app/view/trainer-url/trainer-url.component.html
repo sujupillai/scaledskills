@@ -165,28 +165,42 @@
       <div class="border-line top bottom"></div>
       <div class="rewiew-wrap">
         <div class="form-group">
-          <p-carousel headerText="Review" [value]="[1,2,3,4,5,6]" numVisible="1"
-            circular="true" autoplayInterval="5000">
-            <p-card class="training-reviews">
-              <div class="userThumbWrap">
-                <div class="thumb">
-                  <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+          <p-carousel headerText="Reviews  ({{reviews.length}})" [value]="reviews" numVisible="1"
+          *ngIf="reviews.length>0">
+            <ng-template let-item pTemplate="item">
+              <p-card class="training-reviews">
+                <div class="userThumbWrap">
+                  <div class="thumb">
+                    <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+                  </div>
+                  <div class="text-desc">
+                    <h3>{{entity.user && entity.user.firstName?entity.user.firstName:''}}
+                      {{entity.user && entity.user.lastName?entity.user.lastName:''}}
+                    </h3>
+                    <p>attended Web Development Programme</p>
+                    <p>posted on 24 Oct, 2018</p>
+                  </div>
                 </div>
-                <div class="text-desc">
-                  <h3>{{entity.user && entity.user.firstName?entity.user.firstName:''}}
-                    {{entity.user && entity.user.lastName?entity.user.lastName:''}}
-                  </h3>
-                  <p>attended Web Development Programme</p>
-                  <p>posted on 24 Oct, 2018</p>
+                <div class="description">
+                  "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead
+                  in
+                  your
+                  life and do your best. I had improved my communication skills, confidence level and technical skills.
+                  I
+                  recommend. "
                 </div>
+              </p-card>
+            </ng-template>
+          </p-carousel>
+          <p-carousel headerText="Reviews  ({{reviews.length}})" [value]="noRecord" numVisible="1"
+            *ngIf="reviews.length==0">
+            <ng-template let-item pTemplate="item">
+              <div class="ui-grid ui-grid-responsive">
+                <p-card>
+                  {{item.msg}}
+                </p-card>
               </div>
-              <div class="description">
-                "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead in
-                your
-                life and do your best. I had improved my communication skills, confidence level and technical skills. I
-                recommend. "
-              </div>
-            </p-card>
+            </ng-template>
           </p-carousel>
 
         </div>
