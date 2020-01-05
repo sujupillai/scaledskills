@@ -40,7 +40,7 @@ export class TrainingCardComponent implements OnInit {
       })
     } else {
       let msgArray = [
-        { mgs: 'You should login first to send interest for this training.', class: 'confirmMsg' },
+        { mgs: 'You should login first to show interest for this training.', class: 'confirmMsg' },
         { mgs: 'Do you want to login ?', class: 'subMsg' },
       ]
       this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {

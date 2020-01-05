@@ -65,9 +65,10 @@
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
-              <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)"><i class="fa fa-star"
-                  aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}</div>
-              
+              <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)">
+                <i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}
+              </div>
+
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
               </div> -->
@@ -77,7 +78,8 @@
           </div>
         </li>
         <li class="text-right">
-          <button type="button" class="btn btn-gradient bookBtn mb10" [routerLink]="['/home/contact']">Send Enquiry</button>
+          <button type="button" class="btn btn-gradient bookBtn mb10" [routerLink]="['/home/contact']">Send
+            Enquiry</button>
           <p class="hostedBy">
             Ticket Left : {{entity.avilableQtyTotal}}/{{entity.qtyTotal}}
           </p>
@@ -162,49 +164,7 @@
       *ngIf="upcommingTrainings && upcommingTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <p-card styleClass="ui-card-shadow">
-            <p-header>
-              <div class="card-image">
-                <a href="{{item.fullUrl}}">
-                  <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-                    alt="image">
-                </a>
-              </div>
-            </p-header>
-            <div class="card-inner">
-              <div class="date">
-                <span class="month">{{item.startDate | date: 'MMM'}}</span>
-                <br>
-                {{item.startDate | date: 'dd'}}
-              </div>
-              <div class="card-desc">
-                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                  class="event">{{item.name?item.name:'N/A'}}</a>
-                <p class="text-right">
-                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'N/A'}}
-                </p>
-              </div>
-            </div>
-            <hr>
-            <div class="card-desc flex_c_c">
-              <p class="label-price">
-                {{item.mode?item.mode:'N/A'}}
-              </p>
-              <p class="label-price border">
-                {{item.amount?'Rs. '+item.amount:'N/A'}}
-              </p>
-            </div>
-            <hr>
-            <div class="card-desc flex_c_c">
-              <p class="label-price border" (click)="handleInterest(item)">
-                <i class="fa fa-star" aria-hidden="true"></i> interested
-              </p>
-              <p class="label-price">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
-              </p>
-            </div>
-          </p-card>
+          <app-training-card [item]="item"></app-training-card>
         </div>
       </ng-template>
     </p-carousel>
@@ -225,49 +185,7 @@
       numVisible="5" circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <p-card styleClass="ui-card-shadow">
-            <p-header>
-              <div class="card-image">
-                <a href="{{item.fullUrl}}">
-                  <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-                    alt="image">
-                </a>
-              </div>
-            </p-header>
-            <div class="card-inner">
-              <div class="date">
-                <span class="month">{{item.startDate | date: 'MMM'}}</span>
-                <br>
-                {{item.startDate | date: 'dd'}}
-              </div>
-              <div class="card-desc">
-                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                  class="event">{{item.name?item.name:'N/A'}}</a>
-                <p class="text-right">
-                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'N/A'}}
-                </p>
-              </div>
-            </div>
-            <hr>
-            <div class="card-desc flex_c_c">
-              <p class="label-price">
-                {{item.mode?item.mode:'N/A'}}
-              </p>
-              <p class="label-price border">
-                {{item.amount?'Rs. '+item.amount:'N/A'}}
-              </p>
-            </div>
-            <hr>
-            <div class="card-desc flex_c_c">
-              <p class="label-price border" (click)="handleInterest(item)">
-                <i class="fa fa-star" aria-hidden="true"></i> interested
-              </p>
-              <p class="label-price">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
-              </p>
-            </div>
-          </p-card>
+          <app-training-card [item]="item"></app-training-card>
         </div>
       </ng-template>
     </p-carousel>
@@ -288,49 +206,7 @@
       numVisible="5" circular="true" autoplayInterval="5000" *ngIf="relatedTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
-          <p-card styleClass="ui-card-shadow">
-            <p-header>
-              <div class="card-image">
-                <a href="{{item.fullUrl}}">
-                  <img src="{{item.imageUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-                    alt="image">
-                </a>
-              </div>
-            </p-header>
-            <div class="card-inner">
-              <div class="date">
-                <span class="month">{{item.startDate | date: 'MMM'}}</span>
-                <br>
-                {{item.startDate | date: 'dd'}}
-              </div>
-              <div class="card-desc">
-                <a class="javascript:void(0)" tooltipPosition="top" pTooltip="{{item.name}}"
-                  class="event">{{item.name?item.name:'N/A'}}</a>
-                <p class="text-right">
-                  <i class="pi pi-map-marker"></i>{{item.city?item.city:'N/A'}}
-                </p>
-              </div>
-            </div>
-            <hr>
-            <div class="card-desc flex_c_c">
-              <p class="label-price">
-                {{item.mode?item.mode:'N/A'}}
-              </p>
-              <p class="label-price border">
-                {{item.amount?'Rs. '+item.amount:'N/A'}}
-              </p>
-            </div>
-            <hr>
-            <div class="card-desc flex_c_c">
-              <p class="label-price border" (click)="handleInterest(item)">
-                <i class="fa fa-star" aria-hidden="true"></i> interested
-              </p>
-              <p class="label-price">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                {{item.interestCount?item.interestCount+'&nbsp; People interested':'N/A'}}
-              </p>
-            </div>
-          </p-card>
+          <app-training-card [item]="item"></app-training-card>
         </div>
       </ng-template>
     </p-carousel>
@@ -347,35 +223,3 @@
   </div>
 </div>
 <app-error *ngIf="entity==null && isError"></app-error>
-<p-dialog header="Feedback" [(visible)]="display" [modal]="true" [responsive]="true"
-  [style]="{width: '80%', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
-  <form autocomplete="off" novalidate>
-    <div class="form-goup">
-      <label>How satisfied were you with the training</label>
-      <div>
-        <p-rating></p-rating>
-      </div>
-    </div>
-    <div class="form-goup">
-      <label>What you like about the training</label>
-      <textarea style="height: 150px" placeholder="What you like about the training" pInputTextarea
-        autoResize="autoResize"></textarea>
-    </div>
-    <div class="form-goup">
-      <label>How we can improve the training</label>
-      <textarea style="height: 150px" placeholder="How we can improve the training" pInputTextarea
-        autoResize="autoResize"></textarea>
-    </div>
-    <div class="form-goup">
-      <label>Training you need in future</label>
-      <textarea style="height: 150px" placeholder="Training you need in future" pInputTextarea
-        autoResize="autoResize"></textarea>
-    </div>
-    <div class="form-group button-group text-right">
-      <button pButton type="submit" label="Submit" class="ui-button-raised"
-        (click)="handleSubmit(); display=false"></button>
-      <button pButton type="button" label="Cancel" (click)="display=false"
-        class="ui-button-raised ui-button-danger"></button>
-    </div>
-  </form>
-</p-dialog>
