@@ -61,6 +61,21 @@
         </div>
       </div>
     </div>
+    <div class="clearfix form-group">
+      <label for="">Profile Image</label>
+      <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+        (uploadHandler)="myUploader($event, 'image')">
+        <ng-template pTemplate="content">
+          <!-- <ul *ngIf="prevState && prevState['img'] && img">
+            <li>
+              <img src="{{prevState['headerUrl']}}"
+                onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt=""
+                class="img-responsive">
+            </li>
+          </ul> -->
+        </ng-template>
+      </p-fileUpload>
+    </div>
     <div class="row" *ngIf="isGeneralUser">
       <div formGroupName="address">
         <div class="col-sm-12">

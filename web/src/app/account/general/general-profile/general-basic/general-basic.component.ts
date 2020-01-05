@@ -14,6 +14,8 @@ export class GeneralBasicComponent implements OnInit {
   stateList = [];
   submitted: boolean = false;
   dateOfBirth = new FormControl();
+  uploadedFiles: any[] = [];
+  uplo: File;
   selectedCountry = [];
   selectedState = [];
   settings = {};
@@ -22,6 +24,8 @@ export class GeneralBasicComponent implements OnInit {
   basicApi = '';
   isGeneralUser: boolean = true;
   isReferralID = false;
+  documentUpload: string = '';
+  fileData = null;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createprofileForm(() => {
@@ -41,13 +45,14 @@ export class GeneralBasicComponent implements OnInit {
         this.basicApi = ApiPath.userBasic
         this.isGeneralUser = true;
       }
-      this.getProfileData();
+      this.getProfileData(this.basicApi);
     })
   }
   createprofileForm = (callback) => {
     this.profileForm = this._FormBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      image: [''],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       gender: ['', Validators.required],
@@ -103,6 +108,16 @@ export class GeneralBasicComponent implements OnInit {
     this.selectedState = this.defaultList;
     this.stateList = [];
   }
+  myUploader = (event, control) => {
+    this.fileData = <File>event.files[0];
+    let url = ApiPath.documentUpload
+    const formData = new FormData();
+    formData.append('file', this.fileData);
+    this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
+      this.formControl[control].setValue(res.result);
+      this[control] = false;
+    })
+  }
   onChangeState(event) {
     this.profileForm.get(['address', 'stateId']).setValue(event.value)
   }
@@ -121,8 +136,8 @@ export class GeneralBasicComponent implements OnInit {
     }
     return x < 10 ? '0' + x : '' + x;
   }
-  getProfileData = () => {
-    this._HttpService.httpCall(this.basicApi, 'GET', null, null).pipe(first()).subscribe(res => {
+  getProfileData = (url) => {
+    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {
@@ -174,9 +189,11 @@ export class GeneralBasicComponent implements OnInit {
       let postObj = {
         ...this.profileForm.value,
       }
+      debugger
       postObj.address.countryObj = postObj.address && postObj.address.countryObj ? postObj.address.countryObj[0] : this.defaultList[0];
       postObj.address.stateObj = postObj.address && postObj.address.stateObj ? postObj.address.stateObj[0] : this.defaultList[0];
       postObj.dateOfBirth = this.dateOfBirth.value;
+      debugger
       this._HttpService.httpCall(this.basicApi, 'PUT', postObj, null).subscribe(res => {
         if (res.result) {
           let msgArray = [
@@ -185,10 +202,10 @@ export class GeneralBasicComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
-            this.getProfileData()
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+            this.getProfileData(this.basicApi);
           });
-          
+
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }
@@ -211,9 +228,11 @@ export class GeneralBasicComponent implements OnInit {
       control = formGroup.controls[name];
       control.setErrors(null);
     });
-    this.getProfileData()
+    this.getProfileData(this.basicApi);
   }
   changeDate = (event) => {
+    debugger
+    this.formControl.dateOfBirth.setValue(this.dateOfBirth.value)
     if (!this.isReferralID) {
       var nameStr = this.profileForm.get('firstName').value.substring(0, 4);
       if (this.dateOfBirth.value == null || this.dateOfBirth.value == '') {
