@@ -66,6 +66,19 @@ export class TrainingUrlComponent implements OnInit {
       this.pastTrainings = res.result.results;
     })
   }
+  FetchRelatedTraining = () => {
+    let postObj = {
+      "userId": this.trainingId,
+      "pageType": "",
+      "searchText": "",
+      "pageSize": 0,
+      "page": 0
+    }
+    let url = ApiPath.relatedTraining;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      this.relatedTrainings = res.result.results;
+    })
+  }
   fetchUpcomingTraining = () => {
     let postObj = {
       "userId": this.userId,
@@ -92,6 +105,7 @@ export class TrainingUrlComponent implements OnInit {
           this.fetchUpcomingTraining();
           this.fetchTrainingMemberRegister();
           this.fetchTrainingMemberTrainer();
+          this.FetchRelatedTraining();
           this.getTrainingSeting()
         } else {
           this.entity = null;
@@ -104,7 +118,7 @@ export class TrainingUrlComponent implements OnInit {
     let url = ApiPath.trainingSettings;
     url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      this.trainingSetting=res.result
+      this.trainingSetting = res.result
     })
   }
   getUser = () => {
@@ -311,5 +325,5 @@ export class TrainingUrlComponent implements OnInit {
     let val = window.location.origin + '/' + prefix + '/' + url;
     window.open(val, "_blank");
   }
-  
+
 }

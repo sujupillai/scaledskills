@@ -70,5 +70,6 @@ export const ApiPath = {
   'placeOrder': 'api/Order/P/{orderId}',
   /* follow /member */
   'trainerFollow': 'api/Home/P/f',
-  'generalMemberFollow': 'api/Home/P/M/f'
+  'generalMemberFollow': 'api/Home/P/M/f',
+  'relatedTraining':'api/Home/RelatedT'
 }
