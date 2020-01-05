@@ -3,7 +3,7 @@
 <div class="container display-profile-wrap" *ngIf="entity">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
-      <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
+      <div class="inner"><i class="fa fa-pencil" (click)="goToLink(entity['trainingId'])"></i></div>
     </div>
     <div class="event-banner">
       <img src="{{entity.headerUrl}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"

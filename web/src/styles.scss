@@ -1642,15 +1642,22 @@ li.ui-carousel-item.ui-widget-content.ui-corner-all {
 
 .verticaltoolbar {
   position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  padding-top: 55px;
+  top: 100px;
+  right: 15px;
 
-  .pi-pencil {
-    border: 1px #ddd solid;
-    border-radius: 8px;
+  .inner {
+    border: 1px rgba(92, 116, 241, 0.92) solid;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .fa-pencil {
+    font-size: 22px;
     cursor: pointer;
+    @extend .clrBlue;
   }
 }
 
