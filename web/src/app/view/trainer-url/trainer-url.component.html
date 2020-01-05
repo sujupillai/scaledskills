@@ -190,46 +190,38 @@
           </ng-template>
         </p-carousel>
       </div>
-      <div class="border-line top bottom"></div>
-      <div class="rewiew-wrap">
-        <div class="form-group">
-          <p-carousel headerText="Reviews  ({{reviews.length}})" [value]="reviews" numVisible="1"
-            *ngIf="reviews.length>0">
-            <ng-template let-item pTemplate="item">
-              <p-card class="training-reviews">
-                <div class="userThumbWrap">
-                  <div class="thumb">
-                    <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+      <div class="form-group">
+        <div class="border-line top bottom"></div>
+        <div class="rewiew-wrap">
+          <div class="form-group">
+            <p-carousel headerText="Reviews  ({{reviewList.length}})" [value]="reviewList" numVisible="4"
+              *ngIf="reviewList.length>0">
+              <ng-template let-item pTemplate="item">
+                <p-card class="training-reviews">
+                  <div>
+                    <span class="fa fa-star clrBlue"
+                      *ngFor="let dummy of ' '.repeat(item.rateOfSatisfied).split(''), let x = index"></span>
+                    <span class="fa fa-star"
+                      *ngFor="let dummy of ' '.repeat(5-item.rateOfSatisfied).split(''), let x = index"></span>
                   </div>
                   <div class="text-desc">
-                    <h3>{{entity.user && entity.user.firstName?entity.user.firstName:''}}
-                      {{entity.user && entity.user.lastName?entity.user.lastName:''}}
-                    </h3>
-                    <p>attended Web Development Programme</p>
-                    <p>posted on 24 Oct, 2018</p>
+                    <p>{{item.likeAbout?item.likeAbout:''}}</p>
                   </div>
-                </div>
-                <div class="description">
-                  "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead
-                  in
-                  your
-                  life and do your best. I had improved my communication skills, confidence level and technical skills.
-                  I
-                  recommend. "
-                </div>
-              </p-card>
-            </ng-template>
-          </p-carousel>
-          <p-carousel headerText="Reviews  ({{reviews.length}})" [value]="noRecord" numVisible="1"
-            *ngIf="reviews.length==0">
-            <ng-template let-item pTemplate="item">
-              <div class="ui-grid ui-grid-responsive">
-                <p-card>
-                  {{item.msg}}
+                  <h3 class="review-by">{{item.firstName}} {{item.lastName}}</h3>
                 </p-card>
-              </div>
-            </ng-template>
-          </p-carousel>
+              </ng-template>
+            </p-carousel>
+            <p-carousel headerText="Reviews  ({{reviewList.length}})" [value]="noRecord" numVisible="1"
+              *ngIf="reviewList.length==0">
+              <ng-template let-item pTemplate="item">
+                <div class="ui-grid ui-grid-responsive">
+                  <p-card>
+                    {{item.msg}}
+                  </p-card>
+                </div>
+              </ng-template>
+            </p-carousel>
+          </div>
         </div>
       </div>
     </div>

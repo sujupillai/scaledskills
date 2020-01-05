@@ -31,6 +31,9 @@ export class OrganizerUrlComponent implements OnInit {
     "page": 0
   }
   entity = null;
+  reviewList=[];
+  totalReview=0;
+  avgRating=0;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -65,6 +68,7 @@ export class OrganizerUrlComponent implements OnInit {
           this.entity = res.result ? res.result : null;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
+          this.fetchTrainingReview();
         }
         else {
           this.entity = null;
@@ -184,6 +188,22 @@ export class OrganizerUrlComponent implements OnInit {
       if (res && res.responseCode == 200) {
         this.entity['isFollow'] = true;
       }
+    })
+  }
+  fetchTrainingReview = () => {
+    let postObj = {
+      "userId": this.orgId,
+      "pageType": "O",
+      "searchText": "",
+      "pageSize": 1000,
+      "page": 0
+    }
+    let url = ApiPath.getTrainingReview;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      debugger
+      this.reviewList=res.result.results
+      this.totalReview=res.result.totalCount;
+      this.avgRating =res.result.avgRating
     })
   }
 }

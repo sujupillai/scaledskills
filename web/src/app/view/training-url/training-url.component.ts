@@ -85,7 +85,7 @@ export class TrainingUrlComponent implements OnInit {
   fetchTrainingReview = () => {
     let postObj = {
       "userId": this.trainingId,
-      "pageType": "",
+      "pageType": "T",
       "searchText": "",
       "pageSize": 1000,
       "page": 0

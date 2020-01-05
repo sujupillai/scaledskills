@@ -27,6 +27,9 @@ export class TrainerUrlComponent implements OnInit {
   noRecord = [];
   urlString: string = '';
   entity = null;
+  reviewList=[];
+  totalReview=0;
+  avgRating
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -90,7 +93,8 @@ export class TrainerUrlComponent implements OnInit {
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
-          this.fetchMembers()
+          this.fetchMembers();
+          this.fetchTrainingReview();
         }
         else {
           this.entity = null;
@@ -202,6 +206,22 @@ export class TrainerUrlComponent implements OnInit {
         this.totalMember = res.result.totalCount;
         this.memberList = res['result']['results'];
       }
+    })
+  }
+  fetchTrainingReview = () => {
+    let postObj = {
+      "userId": this.trainerId,
+      "pageType": "P",
+      "searchText": "",
+      "pageSize": 1000,
+      "page": 0
+    }
+    let url = ApiPath.getTrainingReview;
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      debugger
+      this.reviewList=res.result.results
+      this.totalReview=res.result.totalCount;
+      this.avgRating =res.result.avgRating
     })
   }
 }
