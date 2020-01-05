@@ -28,7 +28,6 @@ export class AddTrainingLocationComponent implements OnInit {
   settings
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
-    debugger
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
       this.trainingId = param.id;
       if (this.trainingId == 0) {

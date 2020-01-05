@@ -49,7 +49,6 @@ export class ContactUsComponent implements OnInit {
   getProfileData = () => {
     let url = ApiPath.userBasic;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
-      debugger
       if (res.responseCode == 200) {
         let dataObj = res.result;
         Object.keys(dataObj).forEach(name => {

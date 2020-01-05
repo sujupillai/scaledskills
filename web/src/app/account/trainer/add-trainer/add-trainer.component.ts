@@ -91,7 +91,6 @@ export class AddTrainerComponent implements OnInit {
     }
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        debugger
         this.totalTrainer = res.result.totalCount;
         this.trainerList = res['result']['results'];
       }
@@ -124,7 +123,6 @@ export class AddTrainerComponent implements OnInit {
         TrainingId: this.trainingId
       }
       this._HttpService.httpCall(url, 'POST', null, params).subscribe(res => {
-        debugger
         if (res && res.responseCode == 200) {
           this.getTrainers()
         }

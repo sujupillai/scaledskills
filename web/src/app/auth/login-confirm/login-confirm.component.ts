@@ -43,6 +43,7 @@ export class LoginConfirmComponent implements OnInit {
       }
     },
       error => {
+        this.reValidateEmail=true;
         let msgArray = [
           { mgs: error['message']?error['message']:'Server Error', class: 'confirmMsg' },
         ]

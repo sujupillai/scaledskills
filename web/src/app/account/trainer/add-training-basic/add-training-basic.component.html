@@ -2,7 +2,7 @@
   <div class="clearfix">
     <div class="form-group">
       <label>Training Name <span class="required">*</span></label>
-      <input type="text" pInputText placeholder="Enter Here" formControlName="name" (change)="upateUrl()">
+      <input type="text" pInputText placeholder="Enter Here" formControlName="name">
       <p class="msgError text-danger"
         *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
         Required

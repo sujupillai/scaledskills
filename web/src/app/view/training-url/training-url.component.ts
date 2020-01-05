@@ -244,7 +244,6 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   handleInterest = (item) => {
-    debugger
     if (this.isLoggedIn) {
       let url = ApiPath.interest;
       url = url.replace('{TrainingId}', item.trainingId.toString())

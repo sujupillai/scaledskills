@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { SharedService, HttpService } from '../../../_service';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 @Component({
   selector: 'app-add-training-basic',
   templateUrl: './add-training-basic.component.html',
@@ -34,7 +34,7 @@ export class AddTrainingBasicComponent implements OnInit {
     "value": "0",
     "isSelect": false
   }]
-  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute) {
+  constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) {
     this.trainingForList = [
       { text: 'Individual', value: '1' }
       // { text: 'Organization', value: '2' },
@@ -79,7 +79,6 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   get formControl() { return this.trainingBasicForm.controls }
   getData = (id) => {
-    debugger
     let url = ApiPath.getTraining
     url = url.replace('{id}', id)
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -159,7 +158,6 @@ export class AddTrainingBasicComponent implements OnInit {
     this.trainingForValue = this.defaultList;
   }
   handleSubmit = () => {
-    debugger
     this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value : '');
     this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value : '');
     let postObj = {
@@ -178,7 +176,7 @@ export class AddTrainingBasicComponent implements OnInit {
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
           } else if (res && res.responseCode == 200) {
-            debugger
+            let trainingId=res.result;
             this.trainingId = res.result;
             let msgArray = [
               {
@@ -187,7 +185,7 @@ export class AddTrainingBasicComponent implements OnInit {
               },
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
-              this.getData(this.trainingId)
+              this._Router.navigate(['account/trainer/training/'+this.trainingId+'/basic']);
             });
           } else {
             let msgArray = [
