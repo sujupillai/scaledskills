@@ -23,7 +23,7 @@ export class TrainingUrlComponent implements OnInit {
   display: boolean = false;
   isSendMesage: boolean = false;
   urlString: string = '';
-  entity = {};
+  entity = null;
   userId = 0;
   canEdit: boolean = false;
   userInfo: any = {};

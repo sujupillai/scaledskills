@@ -1,5 +1,6 @@
-<!-- <pre>{{entity|json}}</pre> -->
-<div class="container display-profile-wrap">
+<!-- <pre>{{entity|json}}</pre>
+<pre>{{trainingSetting|json}}</pre> -->
+<div class="container display-profile-wrap" *ngIf="entity">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
       <i class="pi pi-pencil" style="font-size: 3em" (click)="goToLink(entity['trainingId'])"></i>
@@ -38,7 +39,7 @@
           </div>
           <div class="sub_links">
             <div class="flex">
-              <i class="pi pi-map-marker" style="margin:5px 10px 0 0"></i>
+              <i class="pi pi-map-marker" style="margin:0px 10px 0 0"></i>
               <div *ngIf="entity['mode']!='Online'">
                 {{entity['address1']?entity['address1'] + ' , ':'Address1 : NA, '}}
                 {{entity['address2']?entity['address2'] + ' , ':'Address2 : NA, '}}
@@ -48,8 +49,12 @@
                 {{entity['zipCode']?entity['zipCode'] + ' , ':'Zip : NA, '}}
                 {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
-              <div *ngIf="entity['mode']=='Online'">
-                {{entity['onlineLocation']?entity['onlineLocation']:'N/A'}}
+              <div *ngIf="entity && entity['mode']=='Online' && entity.isOnlineDetailsVisible && entity.isRegister">
+                <p *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
+                <p *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
+              </div>
+              <div *ngIf="entity && entity['mode']=='Online' && !(entity.isOnlineDetailsVisible && entity.isRegister)">
+                <p>Kindly register to view webinar details</p>
               </div>
             </div>
           </div>
@@ -57,12 +62,12 @@
         <li class="text-center">
           <div *ngIf="!canEdit">
             <button type="button" class="btn btn-gradient bookBtn mb10"
-              (click)="registerForTraining()">Register</button>
+              (click)="registerForTraining()">{{entity && entity.isRegister?'Registered':'Register'}}</button>
           </div>
           <p class="hostedBy">
             By {{entity['userName']}}
-            <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus"
-                aria-hidden="true" (click)="hendleFollowMe()"></i>&nbsp;Follow</span>
+            <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus" aria-hidden="true"
+                (click)="hendleFollowMe()"></i>&nbsp;Follow</span>
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
@@ -72,8 +77,11 @@
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
               </div> -->
-              <div class="item cursor-pointer" (click)="handleFeedback()"><i class="fa fa-pencil-square-o"
-                  aria-hidden="true"></i>&nbsp;Feedback</div>
+              <div pTooltip="Kindly register to give the feedback." tooltipPosition="bottom">
+                <div class="item" (click)="handleFeedback()"
+                  [ngClass]="entity['isRegister']?'cursor-pointer':'disabled'">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
+              </div>
             </div>
           </div>
         </li>
@@ -101,7 +109,7 @@
   </div>
   <div class="border-line top"></div>
   <div class="form-group">
-    <p-carousel headerText="Trainers ({{regTrainers.length}})" [value]="regTrainers" numVisible="5" circular="true"
+    <p-carousel headerText="Trainers ({{regTrainers.length}})" [value]="regTrainers" numVisible="4" circular="true"
       autoplayInterval="5000" *ngIf="regTrainers.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
@@ -131,7 +139,7 @@
   </div>
   <div class="border-line"></div>
   <div class="form-group">
-    <p-carousel headerText="Registered Users ({{regUsers.length}})" [value]="regUsers" numVisible="5" circular="true"
+    <p-carousel headerText="Registered Users ({{regUsers.length}})" [value]="regUsers" numVisible="4" circular="true"
       autoplayInterval="5000" *ngIf="regUsers.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
@@ -158,7 +166,7 @@
   </div>
   <div class="form-group">
     <p-carousel headerText="Upcoming Trainings from Organizer ({{upcommingTrainings.length}})"
-      [value]="upcommingTrainings" numVisible="5" circular="true" autoplayInterval="5000"
+      [value]="upcommingTrainings" numVisible="4" circular="true" autoplayInterval="5000"
       *ngIf="upcommingTrainings && upcommingTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
@@ -180,7 +188,7 @@
   <!-- past training -->
   <div class="form-group">
     <p-carousel headerText="Past Trainings from Organizer ({{pastTrainings.length}})" [value]="pastTrainings"
-      numVisible="5" circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
+      numVisible="4" circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <app-training-card [item]="item"></app-training-card>
@@ -201,7 +209,7 @@
   <!-- other related trainings -->
   <div class="form-group">
     <p-carousel headerText="Other Related Trainings ({{relatedTrainings.length}})" [value]="relatedTrainings"
-      numVisible="5" circular="true" autoplayInterval="5000" *ngIf="relatedTrainings.length>0">
+      numVisible="4" circular="true" autoplayInterval="5000" *ngIf="relatedTrainings.length>0">
       <ng-template let-item pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
           <app-training-card [item]="item"></app-training-card>
