@@ -48,11 +48,11 @@
                 {{entity['zipCode']?entity['zipCode'] + ' , ':'Zip : NA, '}}
                 {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
-              <div *ngIf="entity && entity['mode']=='Online' && entity.isOnlineDetailsVisible && entity.isRegister">
+              <div *ngIf="entity && entity['mode']=='Online' && !entity.isOnlineDetailsVisible">
                 <p *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
                 <p *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
               </div>
-              <div *ngIf="entity && entity['mode']=='Online' && !(entity.isOnlineDetailsVisible && entity.isRegister)">
+              <div *ngIf="entity && entity['mode']=='Online' && (entity.isOnlineDetailsVisible && !entity.isRegister)">
                 <p>Kindly register to view webinar details</p>
               </div>
             </div>
@@ -114,8 +114,7 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
             <div class="userThumb text-center cursor-pointer">
-              <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-                alt="user profile">
+              <img src="{{imageBaseUrl}}{{item['image']}}" onError="this.src='../../../../assets/images/user.png';" alt="image" class="img-responsive">
               <h3>{{item.firstName}} {{item.lastName}}</h3>
             </div>
           </p-card>
@@ -144,8 +143,8 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <div class="userThumb text-center">
-              <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-                alt="user profile">
+              <img src="{{imageBaseUrl}}{{item['image']}}"
+            onError="this.src='../../../../assets/images/user.png';" alt="image" class="img-responsive">
               <h3>{{item.firstName}} {{item.lastName}}</h3>
             </div>
           </p-card>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService } from '../../_service';
+import { HttpService, SharedService, AuthenticationService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 @Component({
@@ -30,7 +30,9 @@ export class TrainerUrlComponent implements OnInit {
   imageBaseUrl='http://scaledskills.com/api/Document/p/';
   reviewList=[];
   totalReview=0;
-  avgRating
+  avgRating;
+  userInfo: any = {};
+  isLoggedIn: boolean = false;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -42,7 +44,7 @@ export class TrainerUrlComponent implements OnInit {
   origin = window.location.origin;
   constructor(public dialogService: DialogService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
-    private _SharedService: SharedService) {
+    private _SharedService: SharedService, private _AuthenticationService: AuthenticationService) {
   }
   ngOnInit() {
     this.noRecord = [
@@ -55,6 +57,10 @@ export class TrainerUrlComponent implements OnInit {
       url = url.replace('{urlName}', this.urlString)
       this.getData(url)
     });
+  }
+  getUser = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue
+    this.isLoggedIn = this.userInfo ? true : false;
   }
   shareAction = (type) => {
     let url;
@@ -108,6 +114,7 @@ export class TrainerUrlComponent implements OnInit {
     let postObj = {
       "userId": this.trainerId,
       "searchText": "",
+      "pageType":'P',
       "pageSize": 1000,
       "page": 0
     }
@@ -120,6 +127,7 @@ export class TrainerUrlComponent implements OnInit {
     let postObj = {
       "userId": this.trainerId,
       "searchText": "",
+      "pageType":'P',
       "pageSize": 1000,
       "page": 0
     }
@@ -174,26 +182,7 @@ export class TrainerUrlComponent implements OnInit {
       }
     })
   }
-  openUrl(urlToOpen) {
-    let url: string = '';
-    if (!/^http[s]?:\/\//.test(urlToOpen)) {
-      url += 'http://';
-    }
-    url += urlToOpen;
-    window.open(url, '_blank');
-  }
-  hendleFollowMe = () => {
-    let url = ApiPath.trainerFollow;
-    let postObj = {
-      typeId: this.trainerId
-    }
-    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      if (res && res.responseCode == 200) {
-        this.entity['isFollow'] = true;
-        this.fetchMembers();
-      }
-    })
-  }
+  
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;
     let postObj = {
@@ -224,6 +213,26 @@ export class TrainerUrlComponent implements OnInit {
       this.reviewList=res.result.results
       this.totalReview=res.result.totalCount;
       this.avgRating =res.result.avgRating
+    })
+  }
+  openUrl(urlToOpen) {
+    let url: string = '';
+    if (!/^http[s]?:\/\//.test(urlToOpen)) {
+      url += 'http://';
+    }
+    url += urlToOpen;
+    window.open(url, '_blank');
+  }
+  hendleFollowMe = () => {
+    let url = ApiPath.trainerFollow;
+    let postObj = {
+      typeId: this.trainerId
+    }
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.entity['isFollow'] = true;
+        this.fetchMembers();
+      }
     })
   }
 }

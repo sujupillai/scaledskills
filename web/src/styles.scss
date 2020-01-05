@@ -1318,6 +1318,7 @@ p-footer {
     height: 72px;
     border-radius: 50%;
     border: 1px #ddd solid;
+    display: inline-block;
   }
 
   h3 {
@@ -1894,12 +1895,13 @@ body .ui-button {
   margin-right: 10px;
 }
 
-.dp-img{
-  width:30px;
+.dp-img {
+  width: 30px;
   height: 30px;
   border-radius: 100%;
 }
-.review-by{
+
+.review-by {
   font-size: 14px;
   font-weight: 600;
 }

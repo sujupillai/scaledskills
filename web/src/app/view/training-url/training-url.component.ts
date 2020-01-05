@@ -15,6 +15,7 @@ export class TrainingUrlComponent implements OnInit {
   avgRating=0;
   regUsers = [];
   totalUser;
+  imageBaseUrl='http://scaledskills.com/api/Document/p/';
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
