@@ -1,5 +1,5 @@
-<!-- <pre>{{entity|json}}</pre>
-<pre>{{trainingSetting|json}}</pre> -->
+<pre>{{entity|json}}</pre>
+
 <div class="container display-profile-wrap" *ngIf="entity">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
@@ -36,8 +36,12 @@
                 {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm a'}}</span>
             </div>
           </div>
+          {{isVisibleToAll  }}
           <div class="sub_links">
-            <div class="flex">
+            <div *ngIf="!isVisibleToAll">
+              <p>Kindly register to view webinar details</p>
+            </div>
+            <div class="flex" *ngIf="isVisibleToAll">
               <i class="pi pi-map-marker" style="margin:0px 10px 0 0"></i>
               <div *ngIf="entity['mode']!='Online'">
                 {{entity['address1']?entity['address1'] + ' , ':'Address1 : NA, '}}
@@ -48,12 +52,9 @@
                 {{entity['zipCode']?entity['zipCode'] + ' , ':'Zip : NA, '}}
                 {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
-              <div *ngIf="entity && entity['mode']=='Online' && !entity.isOnlineDetailsVisible">
+              <div *ngIf="entity && entity['mode']=='Online'">
                 <p *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
                 <p *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
-              </div>
-              <div *ngIf="entity && entity['mode']=='Online' && (entity.isOnlineDetailsVisible && !entity.isRegister)">
-                <p>Kindly register to view webinar details</p>
               </div>
             </div>
           </div>

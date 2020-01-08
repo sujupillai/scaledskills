@@ -14,12 +14,14 @@ export class TrainingUrlComponent implements OnInit {
   totalTrainer;
   avgRating=0;
   regUsers = [];
+  
   totalUser;
   imageBaseUrl='http://scaledskills.com/api/Document/p/';
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
   relatedTrainings = [];
+  isVisibleToAll=false;
   noRecord = [];
   trainingSetting;
   display: boolean = false;
@@ -121,6 +123,17 @@ export class TrainingUrlComponent implements OnInit {
         this.trainingId = this.entity['trainingId']
         if (this.trainingId > 0) {
           this.isError = false;
+          if(!this.entity.isOnlineDetailsVisible){
+            this.isVisibleToAll=true
+          }else{
+            if(this.entity.isOnlineDetailsVisible){
+              if(this.entity.isRegister && this.isLoggedIn){
+                this.isVisibleToAll=true
+              }else{
+                this.isVisibleToAll=false
+              }
+            }
+          }
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
           this.fetchTrainingMemberRegister();

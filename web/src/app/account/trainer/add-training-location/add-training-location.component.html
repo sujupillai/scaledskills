@@ -4,12 +4,12 @@
   <p-radioButton name="modeType" value="2" label="Online" inputId="Online" [(ngModel)]="modeType">
   </p-radioButton>
 </div>
+<div class="form-group">
+  <p-checkbox [(ngModel)]="isOnlineDetailsVisible" binary="true"
+    label="Online details visible ONLY to Registered Users">
+  </p-checkbox>
+</div>
 <form [formGroup]="physicalLocationForm" autocomplete="off" novalidate>
-  <div class="form-group">
-    <p-checkbox formControlName="isOnlineDetailsVisible" binary="true" label="Online details visible ONLY to Registered Users">
-    </p-checkbox>
-    
-  </div>
   <div class="clearfix" *ngIf="modeType==1">
     <div class="row">
       <div formGroupName="addressModel">

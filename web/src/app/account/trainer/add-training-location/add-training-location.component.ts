@@ -12,6 +12,7 @@ export class AddTrainingLocationComponent implements OnInit {
   onlineLocationForm: FormGroup;
   physicalLocationForm: FormGroup;
   modeType = 0;
+  isOnlineDetailsVisible = false;
   trainingId = 0;
   entity;
   prevState;
@@ -42,7 +43,7 @@ export class AddTrainingLocationComponent implements OnInit {
         return
       } else {
         this.createPhysicalForm(() => {
-          this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true,};
+          this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, };
           this.getCountryList();
         })
         this.createOnlineForm(() => {
@@ -54,7 +55,7 @@ export class AddTrainingLocationComponent implements OnInit {
   createOnlineForm = (callback) => {
     this.onlineLocationForm = this._FormBuilder.group({
       id: 0,
-      isOnlineDetailsVisible:false,
+      isOnlineDetailsVisible: false,
       onlineLocation: ['', Validators.required],
       locationDetail: [''],
       modeType: [2, Validators.required],
@@ -81,7 +82,7 @@ export class AddTrainingLocationComponent implements OnInit {
       id: 0,
       onlineLocation: [''],
       locationDetail: [''],
-      isOnlineDetailsVisible:false,
+      isOnlineDetailsVisible: false,
       modeType: [1],
       addressModel: this._FormBuilder.group({
         address1: ['', Validators.required],
@@ -101,7 +102,6 @@ export class AddTrainingLocationComponent implements OnInit {
     }
   }
   get physicalFormControl() { return this.physicalLocationForm.controls };
-
   getMaster = (url, masterCollection) => {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
@@ -168,6 +168,7 @@ export class AddTrainingLocationComponent implements OnInit {
         }
       }
     });
+    this.isOnlineDetailsVisible = this.entity['isOnlineDetailsVisible'];
     if (this.modeType == 1) {
       this.setAddress(this.entity, formElement)
     }
@@ -191,26 +192,63 @@ export class AddTrainingLocationComponent implements OnInit {
   submitHttpReq = (postObj, formCtrl, formElement) => {
     let url = ApiPath.trainingLocation;
     url = url.replace('{TrainingId}', this.trainingId.toString())
+    postObj.isOnlineDetailsVisible = this.isOnlineDetailsVisible;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this.resetForm(this[formElement], formCtrl)
-      this.getData();
-      
+      if (res && res.responseCode == 406) {
+        let msgArray = [
+          { mgs: res.responseMessege, class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
+      } else if (res && res.responseCode == 200) {
+        let msgArray = [
+          {
+            mgs: res.responseMessege ? res.responseMessege : 'Success',
+            class: 'confirmMsg'
+          },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+        });
+      } else {
+        let msgArray = [
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error').subscribe(res => {
+          this.resetForm(this[formElement], formCtrl)
+          this.getData();
+        })
+      }
+    }, error => {
+      let msgArray = [
+        { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+      ]
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error').subscribe(res => {
+        this.resetForm(this[formElement], formCtrl)
+        this.getData();
+      })
     })
   }
   handleSubmit = () => {
     if (this.modeType == 2) {
       if (this.onlineLocationForm.valid) {
         let postObj = { ...this.onlineLocationForm.value }
-        this.submitHttpReq(postObj, 'onlineFormControl', 'onlineLocationForm')
+        if (this.onlineLocationForm.valid) {
+          this.submitted = false
+          this.submitHttpReq(postObj, 'onlineFormControl', 'onlineLocationForm')
+        } else {
+          this.submitted = true
+        }
       }
     } else if (this.modeType == 1) {
       let postObj = {
         ...this.physicalLocationForm.value
       }
-      postObj.addressModel.countryObj = postObj.addressModel.countryObj[0];
-      postObj.addressModel.stateObj = postObj.addressModel.stateObj[0];
+      postObj.addressModel.countryObj = postObj.addressModel && postObj.addressModel.countryObj[0] ? postObj.addressModel.countryObj[0] : '';
+      postObj.addressModel.stateObj = postObj.addressModel && postObj.addressModel.stateObj[0] ? postObj.addressModel.stateObj[0] : '';
       if (this.physicalLocationForm.valid) {
+        this.submitted = false;
         this.submitHttpReq(postObj, 'physicalFormControl', 'physicalLocationForm')
+      } else {
+        this.submitted = true
       }
     }
   }
