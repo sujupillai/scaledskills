@@ -12,16 +12,15 @@ import { HttpService, AuthenticationService, SharedService } from '../../_servic
 export class TrainingUrlComponent implements OnInit {
   regTrainers = [];
   totalTrainer;
-  avgRating=0;
+  avgRating = 0;
   regUsers = [];
-  
   totalUser;
-  imageBaseUrl='http://scaledskills.com/api/Document/p/';
+  imageBaseUrl = 'http://scaledskills.com/api/Document/p/';
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
   relatedTrainings = [];
-  isVisibleToAll=false;
+  isVisibleToAll = false;
   noRecord = [];
   trainingSetting;
   display: boolean = false;
@@ -33,8 +32,8 @@ export class TrainingUrlComponent implements OnInit {
   userInfo: any = {};
   isLoggedIn: boolean = false;
   isError: boolean = false;
-  reviewList=[];
-  totalReview=0;
+  reviewList = [];
+  totalReview = 0;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -59,7 +58,6 @@ export class TrainingUrlComponent implements OnInit {
     });
     localStorage.removeItem('returnurl');
   }
-
   fetchPastTraining = () => {
     let postObj = {
       "userId": this.userId,
@@ -96,9 +94,9 @@ export class TrainingUrlComponent implements OnInit {
     let url = ApiPath.getTrainingReview;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       debugger
-      this.reviewList=res.result.results
-      this.totalReview=res.result.totalCount;
-      this.avgRating =res.result.avgRating
+      this.reviewList = res.result.results
+      this.totalReview = res.result.totalCount;
+      this.avgRating = res.result.avgRating
     })
   }
   fetchUpcomingTraining = () => {
@@ -113,7 +111,17 @@ export class TrainingUrlComponent implements OnInit {
       this.upcommingTrainings = res.result.results;
     })
   }
-
+  getTrainingSeting = () => {
+    let url = ApiPath.trainingSettings;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      this.trainingSetting = res.result
+    })
+  }
+  getUser = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue
+    this.isLoggedIn = this.userInfo ? true : false;
+  }
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
@@ -123,16 +131,10 @@ export class TrainingUrlComponent implements OnInit {
         this.trainingId = this.entity['trainingId']
         if (this.trainingId > 0) {
           this.isError = false;
-          if(!this.entity.isOnlineDetailsVisible){
-            this.isVisibleToAll=true
-          }else{
-            if(this.entity.isOnlineDetailsVisible){
-              if(this.entity.isRegister && this.isLoggedIn){
-                this.isVisibleToAll=true
-              }else{
-                this.isVisibleToAll=false
-              }
-            }
+          if (!this.entity.isOnlineDetailsVisible) {
+            this.isVisibleToAll = true
+          } else {
+            this.isVisibleToAll = this.entity.isRegister ? true : false
           }
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
@@ -147,17 +149,6 @@ export class TrainingUrlComponent implements OnInit {
         }
       }
     })
-  }
-  getTrainingSeting = () => {
-    let url = ApiPath.trainingSettings;
-    url = url.replace('{TrainingId}', this.trainingId.toString())
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      this.trainingSetting = res.result
-    })
-  }
-  getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
-    this.isLoggedIn = this.userInfo ? true : false;
   }
   goToLink = (trainingId) => {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
@@ -359,5 +350,4 @@ export class TrainingUrlComponent implements OnInit {
     let val = window.location.origin + '/' + prefix + '/' + url;
     window.open(val, "_blank");
   }
-
 }
