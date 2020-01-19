@@ -79,9 +79,14 @@
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
               </div> -->
-              <div pTooltip="Kindly register to give the feedback." tooltipPosition="bottom">
-                <div class="item" (click)="handleFeedback()"
-                  [ngClass]="entity['isRegister']?'cursor-pointer':'disabled'">
+
+              <div *ngIf="!entity['isRegister']" pTooltip="Kindly register to give the feedback."
+                tooltipPosition="bottom">
+                <div class="item" [ngClass]="entity['isRegister']?'cursor-pointer':'disabled'">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
+              </div>
+              <div *ngIf="entity['isRegister']">
+                <div class="item cursor-pointer" (click)="handleFeedback()">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
               </div>
             </div>

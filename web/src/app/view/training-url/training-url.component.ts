@@ -61,7 +61,7 @@ export class TrainingUrlComponent implements OnInit {
   fetchPastTraining = () => {
     let postObj = {
       "userId": this.userId,
-      "pageType": this.entity.hostedBy==2?'O':'P',
+      "pageType": this.entity.hostedBy == 2 ? 'O' : 'P',
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -74,7 +74,7 @@ export class TrainingUrlComponent implements OnInit {
   FetchRelatedTraining = () => {
     let postObj = {
       "userId": this.trainingId,
-      "pageType": this.entity.hostedBy==2?'O':'P',
+      "pageType": this.entity.hostedBy == 2 ? 'O' : 'P',
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -102,7 +102,7 @@ export class TrainingUrlComponent implements OnInit {
   fetchUpcomingTraining = () => {
     let postObj = {
       "userId": this.userId,
-      "pageType": this.entity.hostedBy==2?'O':'P',
+      "pageType": this.entity.hostedBy == 2 ? 'O' : 'P',
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -248,7 +248,9 @@ export class TrainingUrlComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess');
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+            this.fetchTrainingReview()
+          });
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
