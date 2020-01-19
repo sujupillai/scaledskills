@@ -1,5 +1,3 @@
-<pre>{{entity|json}}</pre>
-
 <div class="container display-profile-wrap" *ngIf="entity">
   <div class="form-group">
     <div class="verticaltoolbar" *ngIf="canEdit">
@@ -36,7 +34,6 @@
                 {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm a'}}</span>
             </div>
           </div>
-          {{isVisibleToAll  }}
           <div class="sub_links">
             <div *ngIf="!isVisibleToAll">
               <p>Kindly register to view webinar details</p>
@@ -53,7 +50,7 @@
                 {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
               <div *ngIf="entity && entity['mode']=='Online'">
-                <p *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
+                <p class="cursor-pointer" (click)="openUrl(entity && entity['onlineLocation']?entity && entity['onlineLocation']:'')" *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
                 <p *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
               </div>
             </div>
