@@ -209,7 +209,6 @@ export class TrainerUrlComponent implements OnInit {
     }
     let url = ApiPath.getTrainingReview;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      debugger
       this.reviewList = res.result.results
       this.totalReview = res.result.totalCount;
       this.avgRating = res.result.avgRating

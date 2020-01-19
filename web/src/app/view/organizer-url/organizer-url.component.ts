@@ -215,7 +215,6 @@ export class OrganizerUrlComponent implements OnInit {
     this.openUrl(url + urlPostFix)
   }
   hendleFollowMe = () => {
-    debugger
     let url = ApiPath.followOrg;
     let postObj = {
       typeId: this.orgId
