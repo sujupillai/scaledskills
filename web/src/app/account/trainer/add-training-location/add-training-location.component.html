@@ -4,7 +4,7 @@
   <p-radioButton name="modeType" value="2" label="Online" inputId="Online" [(ngModel)]="modeType">
   </p-radioButton>
 </div>
-<div class="form-group">
+<div class="form-group" *ngIf="modeType==2">
   <p-checkbox [(ngModel)]="isOnlineDetailsVisible" binary="true"
     label="Online details visible ONLY to Registered Users">
   </p-checkbox>

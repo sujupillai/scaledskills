@@ -27,9 +27,9 @@ export class TrainerUrlComponent implements OnInit {
   noRecord = [];
   urlString: string = '';
   entity = null;
-  imageBaseUrl='http://scaledskills.com/api/Document/p/';
-  reviewList=[];
-  totalReview=0;
+  imageBaseUrl = 'http://scaledskills.com/api/Document/p/';
+  reviewList = [];
+  totalReview = 0;
   avgRating;
   userInfo: any = {};
   isLoggedIn: boolean = false;
@@ -114,7 +114,7 @@ export class TrainerUrlComponent implements OnInit {
     let postObj = {
       "userId": this.trainerId,
       "searchText": "",
-      "pageType":'P',
+      "pageType": 'P',
       "pageSize": 1000,
       "page": 0
     }
@@ -127,7 +127,7 @@ export class TrainerUrlComponent implements OnInit {
     let postObj = {
       "userId": this.trainerId,
       "searchText": "",
-      "pageType":'P',
+      "pageType": 'P',
       "pageSize": 1000,
       "page": 0
     }
@@ -182,7 +182,7 @@ export class TrainerUrlComponent implements OnInit {
       }
     })
   }
-  
+
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;
     let postObj = {
@@ -210,9 +210,9 @@ export class TrainerUrlComponent implements OnInit {
     let url = ApiPath.getTrainingReview;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       debugger
-      this.reviewList=res.result.results
-      this.totalReview=res.result.totalCount;
-      this.avgRating =res.result.avgRating
+      this.reviewList = res.result.results
+      this.totalReview = res.result.totalCount;
+      this.avgRating = res.result.avgRating
     })
   }
   openUrl(urlToOpen) {
@@ -224,7 +224,7 @@ export class TrainerUrlComponent implements OnInit {
     window.open(url, '_blank');
   }
   hendleFollowMe = () => {
-    let url = ApiPath.trainerFollow;
+    let url = ApiPath.followTrainer;
     let postObj = {
       typeId: this.trainerId
     }

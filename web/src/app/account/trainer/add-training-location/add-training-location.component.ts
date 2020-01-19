@@ -168,9 +168,13 @@ export class AddTrainingLocationComponent implements OnInit {
         }
       }
     });
-    this.isOnlineDetailsVisible = this.entity['isOnlineDetailsVisible'];
+    
     if (this.modeType == 1) {
+      this.isOnlineDetailsVisible = false;
       this.setAddress(this.entity, formElement)
+    }
+    else{
+      this.isOnlineDetailsVisible = this.entity['isOnlineDetailsVisible'];
     }
   }
   getData = () => {
@@ -192,7 +196,7 @@ export class AddTrainingLocationComponent implements OnInit {
   submitHttpReq = (postObj, formCtrl, formElement) => {
     let url = ApiPath.trainingLocation;
     url = url.replace('{TrainingId}', this.trainingId.toString())
-    postObj.isOnlineDetailsVisible = this.isOnlineDetailsVisible;
+    postObj.isOnlineDetailsVisible = this.modeType==1?false:this.isOnlineDetailsVisible;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       if (res && res.responseCode == 406) {
         let msgArray = [

@@ -14,7 +14,7 @@ export const ApiPath = {
   'Organization': 'api/Organization',
   'organizationUserTag': 'api/Organization/UserTag',
   'organizationUserCertificate': 'api/Organization/Certificate',
-  'organizationFollow': 'api/Home/O/f',
+
   /* auth */
   'register': 'api/Account',
   'Accountlogin': 'api/Account/login',
@@ -48,7 +48,7 @@ export const ApiPath = {
   'trainingAbout': 'api/Training/{TrainingId}/About',
   'trainingImage': 'api/Training/{TrainingId}/Image',
   'trainingVU': 'api/Training/VU',
-  'trainingFollow': 'api/Home/T/f',
+
   'trainingMemberRegister': 'api/Home/T/M/R',
   'trainingMemberTrainer': 'api/Home/T/M/T',
   /* home */
@@ -68,9 +68,14 @@ export const ApiPath = {
   'orderTicket': 'api/Order/T',
   'orderDetail': 'api/Order/{orderId}',
   'placeOrder': 'api/Order/P/{orderId}',
+
   /* follow /member */
-  'trainerFollow': 'api/Home/P/f',
   'generalMemberFollow': 'api/Home/P/M/f',
-  'relatedTraining':'api/Home/RelatedT',
-  'getTrainingReview':'api/Home/T/review'
+  'relatedTraining': 'api/Home/RelatedT',
+  'getTrainingReview': 'api/Home/T/review',
+
+  /* handle follow */
+  'followOrg': 'api/Home/O/f',
+  'followTraining': 'api/Home/T/f',
+  'followTrainer': 'api/Home/P/f',
 }

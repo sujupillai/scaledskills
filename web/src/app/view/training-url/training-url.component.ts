@@ -278,7 +278,7 @@ export class TrainingUrlComponent implements OnInit {
   }
   hendleFollowMe = () => {
     if (this.isLoggedIn) {
-      let url = ApiPath.trainingFollow;
+      let url = ApiPath.followTraining;
       let postObj = {
         typeId: this.trainingId
       }

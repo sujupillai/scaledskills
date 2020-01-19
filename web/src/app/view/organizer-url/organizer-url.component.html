@@ -1,15 +1,17 @@
 <div class="container" *ngIf="entity!=null">
+  <!-- <pre>{{entity|json}}</pre> -->
   <div class="">
     <div class="header_detail">
       <div class="userThumbWrap">
         <div class="thumb trainer">
-          <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
+          <img src="{{imageBaseUrl}}{{entity['image']}}" onError="this.src='../../../../assets/images/users.png';"
+            alt="image" class="img-responsive">
         </div>
         <div class="text-desc">
           <h3>{{entity.user && entity.user.name?entity.user.name:'N/A'}}
             &nbsp;
             <button type="button" class="btn btn-gradient bookBtn">
-              4.3&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;831 Users
+              {{avgRating}}&nbsp;<i class="fa fa-star"></i>&nbsp;|&nbsp;&nbsp;{{totalReview}} Reviews
             </button></h3>
           <div>
             <strong>Address:</strong>
@@ -183,30 +185,6 @@
         </p-carousel>
       </div>
       <div class="border-line top bottom"></div>
-      <div class="rewiew-wrap">
-        <div class="form-group">
-          <p-card class="training-reviews">
-            <div class="userThumbWrap">
-              <div class="thumb">
-                <img src="../../../assets/images/placeholder-image.jpg" alt="" class="img-responsive">
-              </div>
-              <div class="text-desc">
-                <h3>{{entity.user && entity.user.firstName?entity.user.firstName:''}}
-                  {{entity.user && entity.user.lastName?entity.user.lastName:''}}
-                </h3>
-                <p>attended Web Development Programme</p>
-                <p>posted on 24 Oct, 2018</p>
-              </div>
-            </div>
-            <div class="description">
-              "Teachers and trainers are very professional and co-operative. They teach us about how to move ahead in
-              your
-              life and do your best. I had improved my communication skills, confidence level and technical skills. I
-              recommend. "
-            </div>
-          </p-card>
-        </div>
-      </div>
       <div class="form-group">
         <div class="border-line top bottom"></div>
         <div class="rewiew-wrap">
@@ -244,5 +222,4 @@
     </div>
   </div>
 </div>
-
 <app-error *ngIf="entity==null && isError"></app-error>
