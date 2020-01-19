@@ -18,7 +18,6 @@
     <div class="col-sm-3"></div>
   </div>
 </section>
-
 <section class="section-padding clearfix bgGray">
   <div class="container">
     <div class="row">
@@ -26,11 +25,16 @@
         <app-training-card [item]="item"></app-training-card>
         <br>
       </div>
+      <div class="col-sm-12" *ngIf="RTList.length==0">
+        <p-card>
+          No records to display
+        </p-card>
+      </div>
     </div>
-    <div class="form-group text-center">
+    <div class="form-group text-center" *ngIf="RTList.length>0">
       <p class="clrPurple"><strong>{{page+1}} - 16 of {{totalTraining}} Records</strong></p>
     </div>
-    <div class="clearfix text-center">
+    <div class="clearfix text-center" *ngIf="RTList.length>0">
       <button type="button" class="btn btn-gradient" [ngClass]="{disabled: page==0}"
         (click)="funPrevious(page)">Previous</button>
       <button type="button" class="btn btn-gradient ml15" [ngClass]="{disabled: (page+1)*pageSize>=totalTraining}"

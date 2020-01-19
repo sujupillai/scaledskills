@@ -1889,6 +1889,7 @@ body .ui-button {
 
 .profile-img-wap {
   padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .mr-10 {
@@ -1904,4 +1905,17 @@ body .ui-button {
 .review-by {
   font-size: 14px;
   font-weight: 600;
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+  color: #fff
+}
+
+.pi-times:before {
+  color: #fff
+}
+
+.no-records {
+  font-size: 14px;
 }
