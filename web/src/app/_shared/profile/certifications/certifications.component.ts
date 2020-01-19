@@ -9,6 +9,7 @@ import { ApiPath } from '../../../_helpers/_constants/api';
 export class CertificationsComponent implements OnInit {
   certificatesForm: FormGroup;
   loadGrid: boolean = false;
+  curentYear=(new Date()).getFullYear();
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   submitted: boolean = false;
   minDate: Date;

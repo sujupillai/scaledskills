@@ -12,6 +12,7 @@ export class AddTrainingTicketComponent implements OnInit {
   formElement: FormGroup;
   countryList = [];
   stateList = [];
+  curentYear=(new Date()).getFullYear();
   submitted: boolean = false;
   trainingId = 0;
   addTicketForm = false;

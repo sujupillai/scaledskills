@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">Training For</label>
+            <label for="">Training For <span class="required">*</span></label>
             <angular2-multiselect class="form-control" [data]="trainingForList" [(ngModel)]="trainingForValue"
               [settings]="settings" formControlName="hostedByObj" (onSelect)="onChangeHostedBy($event, hostedBy)"
               (onDeSelect)="OnDeSelect($event)">
@@ -41,14 +41,19 @@
             <p class="msgError text-danger"
               *ngIf="formControl.hostedBy.hasError('required') && (formControl.hostedBy.dirty || submitted)">Required
               Field.</p>
+            <p class="msgError text-danger"
+              *ngIf="formControl.hostedBy.value==2 && !formControl['organizationList'].value">Please select organization
+              from list.</p>
           </div>
         </div>
         <div class="col-sm-6" *ngIf="formControl.hostedBy.value==2">
           <div class="form-group">
             <label>Search</label>
-            <!-- <angular2-multiselect class="form-control" [data]="organizationListMaster" [(ngModel)]="organizationListValue"
-            [settings]="settings" formControlName="organizationListObj" (onSelect)="onChangeHostedBy($event, hostedBy)">
-          </angular2-multiselect> -->
+            <angular2-multiselect class="form-control" [data]="organizationListMaster"
+              [(ngModel)]="organizationListValue" [settings]="settings" formControlName="organizationListObj"
+              (onSelect)="onHandleSelect($event, 'organizationListObj', 'organizationList', 'organizationListValue')"
+              (onDeSelect)="onHandleDeSelect($event, 'organizationListObj', 'organizationList', 'organizationListValue')">
+            </angular2-multiselect>
           </div>
         </div>
       </div>
@@ -65,8 +70,8 @@
         <div class="form-group">
           <label>Start Date <span class="required">*</span></label>
           <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true"
-            hourFormat="12" [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy"
-            [maxDate]="endDate.value" placeholder="DD/MM/YYYY">
+            hourFormat="12" [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true"
+            dateFormat="dd/mm/yy" [maxDate]="endDate.value" placeholder="DD/MM/YYYY">
           </p-calendar>
           <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
             Required Field.
@@ -77,7 +82,7 @@
         <div class="form-group">
           <label>End Date <span class="required">*</span></label>
           <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
-            [yearNavigator]="true" yearRange="1900:3000" [utc]="true" dateFormat="dd/mm/yy" [minDate]="startDate.value"
+            [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy" [minDate]="startDate.value"
             placeholder="DD/MM/YYYY">
           </p-calendar>
           <p class="msgError text-danger" *ngIf="!endDate.value && submitted">

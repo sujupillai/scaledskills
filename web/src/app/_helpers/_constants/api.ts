@@ -14,7 +14,7 @@ export const ApiPath = {
   'Organization': 'api/Organization',
   'organizationUserTag': 'api/Organization/UserTag',
   'organizationUserCertificate': 'api/Organization/Certificate',
-
+  'organizationList': 'api/Organization/list',
   /* auth */
   'register': 'api/Account',
   'Accountlogin': 'api/Account/login',

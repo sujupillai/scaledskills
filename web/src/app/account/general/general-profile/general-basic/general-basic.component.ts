@@ -12,7 +12,7 @@ export class GeneralBasicComponent implements OnInit {
   profileForm: FormGroup;
   countryList = [];
   entity;
-  yearRange=""
+  curentYear=(new Date()).getFullYear();
   imageBaseHref=window.location.origin + '/api/Document/p/';
   stateList = [];
   submitted: boolean = false;
@@ -51,8 +51,6 @@ export class GeneralBasicComponent implements OnInit {
         this.isGeneralUser = true;
       }
       this.getProfileData(this.basicApi);
-      let year = (new Date()).getFullYear();
-      this.yearRange=(year-150)+':'+year
     })
   }
   createprofileForm = (callback) => {

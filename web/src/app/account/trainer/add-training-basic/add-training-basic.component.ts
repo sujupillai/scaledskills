@@ -17,8 +17,10 @@ export class AddTrainingBasicComponent implements OnInit {
   organizationListValue = [];
   submitted: boolean = false;
   startDate = new FormControl();
+  curentYear=(new Date()).getFullYear();
   endDate = new FormControl();
   settings = {};
+  multiSettings = {};
   trainingId = 0;
   zoneList = [];
   selectedZone = [];
@@ -36,8 +38,8 @@ export class AddTrainingBasicComponent implements OnInit {
   }]
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) {
     this.trainingForList = [
-      { text: 'Individual', value: '1' }
-      // { text: 'Organization', value: '2' },
+      { text: 'Individual', value: '1' },
+      { text: 'Organization', value: '2' },
     ]
   }
   ngOnInit() {
@@ -47,13 +49,13 @@ export class AddTrainingBasicComponent implements OnInit {
       this.startDate.setValue('');
       this.endDate.setValue('');
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
+      this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.trainingForValue = [{ text: 'Individual', value: '1' }]
       this._ActivatedRoute.parent.params.subscribe((param: any) => {
         this.trainingId = param['id'] ? param['id'] : 0;
         if (this.trainingId > 0) {
           this.getData(this.trainingId)
         }
-
       });
     })
   }
@@ -97,16 +99,30 @@ export class AddTrainingBasicComponent implements OnInit {
         } else {
           this.urlConfig.isUrl = false;
         }
-        setTimeout(() => {
-          var hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
-          this.formControl['hostedByObj'].setValue(hostedBy);
-          var zone = this.zoneList.filter(x => x.value == this.trainingData.timeZone)
+        let zone = this.zoneList.filter(x => x.value == this.trainingData.timeZone)
+        let hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
+        if (this.trainingData.hostedBy == 2) {
           this.formControl['timeZoneObj'].setValue(zone);
           this.selectedZone = zone;
-
-        }, 200)
+          this.getOrgData();
+          this.organizationListValue = this.trainingData.organizationListObj
+        } else {
+          setTimeout(() => {
+            this.formControl['hostedByObj'].setValue(hostedBy);
+            this.formControl['timeZoneObj'].setValue(zone);
+            this.selectedZone = zone;
+          }, 200)
+        }
       } else {
         this.resetForm(this.trainingBasicForm)
+      }
+    })
+  }
+  getOrgData = () => {
+    let url = ApiPath.organizationList
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res.result) {
+        this.organizationListMaster = res.result;
       }
     })
   }
@@ -149,6 +165,9 @@ export class AddTrainingBasicComponent implements OnInit {
     let id = event.value
     if (id == 2) {
       /* display organization */
+      this.getOrgData()
+    } else {
+      this.organizationListMaster = [];
     }
     this.trainingBasicForm.get('hostedBy').setValue(event.value)
   }
@@ -156,6 +175,15 @@ export class AddTrainingBasicComponent implements OnInit {
     this.formControl.hostedBy.setValue('');
     this.formControl.hostedByObj.setValue('');
     this.trainingForValue = this.defaultList;
+  }
+  onHandleSelect(event, obj, control, model) {
+    let data = [event.value]
+    this.formControl[control].setValue(data)
+  }
+  onHandleDeSelect(event, obj, control, model) {
+    this.trainingBasicForm.get('organizationList').setValue('')
+    this.trainingBasicForm.get('organizationListObj').setValue(this.defaultList)
+    this['organizationListValue'] = this.defaultList;
   }
   handleSubmit = () => {
     this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value.toLocaleString() : '');
@@ -176,7 +204,7 @@ export class AddTrainingBasicComponent implements OnInit {
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
           } else if (res && res.responseCode == 200) {
-            let newTraining=this.trainingId==0?true:false;
+            let newTraining = this.trainingId == 0 ? true : false;
             this.trainingId = res.result;
             let msgArray = [
               {
@@ -185,9 +213,9 @@ export class AddTrainingBasicComponent implements OnInit {
               },
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
-              if(newTraining){
-                this._Router.navigate(['account/trainer/training/'+this.trainingId+'/basic']);
-              }else{
+              if (newTraining) {
+                this._Router.navigate(['account/trainer/training/' + this.trainingId + '/basic']);
+              } else {
                 this.getData(this.trainingId)
               }
             });
@@ -234,7 +262,6 @@ export class AddTrainingBasicComponent implements OnInit {
   OnZoneSelect(event) {
     let id = event.value
     this.formControl.timeZone.setValue(id)
-
   }
   OnZoneDeSelect(event) {
     this.formControl.timeZone.setValue('')

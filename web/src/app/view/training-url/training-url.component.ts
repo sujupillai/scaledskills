@@ -238,7 +238,7 @@ export class TrainingUrlComponent implements OnInit {
     let data = {
       trainingId: this.trainingId
     }
-    this.messageDialogConfig(data, 'Send Email', 2).subscribe(res => {
+    this.messageDialogConfig(data, 'Feedback', 2).subscribe(res => {
       if (res != undefined) {
         if (res && res.responseCode == 200) {
           let msgArray = [
