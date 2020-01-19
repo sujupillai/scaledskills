@@ -71,6 +71,7 @@ export const ApiPath = {
 
   /* follow /member */
   'generalMemberFollow': 'api/Home/P/M/f',
+  'orgMemberFollow': 'api/Home/O/M/f',
   'relatedTraining': 'api/Home/RelatedT',
   'getTrainingReview': 'api/Home/T/review',
 

@@ -50,7 +50,9 @@
                 {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
               <div *ngIf="entity && entity['mode']=='Online'">
-                <p class="cursor-pointer" (click)="openUrl(entity && entity['onlineLocation']?entity && entity['onlineLocation']:'')" *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
+                <p class="cursor-pointer"
+                  (click)="openUrl(entity && entity['onlineLocation']?entity && entity['onlineLocation']:'')"
+                  *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
                 <p *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
               </div>
             </div>
@@ -63,14 +65,16 @@
           </div>
           <p class="hostedBy">
             Hosted By {{entity['userName']}}
-            <span class="joinbtn" *ngIf="!canEdit">&nbsp;<i class="fa fa-user-plus" aria-hidden="true"
-                (click)="hendleFollowMe()"></i>&nbsp;Follow</span>
+            <span class="joinbtn text-primary" [ngClass]="entity.isFollow?'no-cursor':''" (click)="hendleFollowMe()"
+              *ngIf="!canEdit">
+              &nbsp;<i class="fa fa-user-plus"
+                aria-hidden="true"></i>&nbsp;{{entity.isFollow?'Following':'Follow'}}</span>
           </p>
           <div class="inline-block">
             <div class="flex feed-row">
               <div class="item cursor-pointer {{entity.isInterest?'text-success':''}}" (click)="handleInterest(entity)">
                 <i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}
-                ({{!entity['interestCount']?'':entity['interestCount']|number}})
+                ({{!entity['interestCount']?'0':entity['interestCount']|number}})
               </div>
               <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
                 <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
@@ -112,7 +116,8 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
             <div class="userThumb text-center cursor-pointer">
-              <img src="{{imageBaseUrl}}{{item['image']}}" onError="this.src='../../../../assets/images/user.png';" alt="image" class="img-responsive">
+              <img src="{{imageBaseUrl}}{{item['image']}}" onError="this.src='../../../../assets/images/user.png';"
+                alt="image" class="img-responsive">
               <h3>{{item.firstName}} {{item.lastName}}</h3>
             </div>
           </p-card>
@@ -141,8 +146,8 @@
         <div class="ui-grid ui-grid-responsive">
           <p-card styleClass="ui-card-shadow">
             <div class="userThumb text-center">
-              <img src="{{imageBaseUrl}}{{item['image']}}"
-            onError="this.src='../../../../assets/images/user.png';" alt="image" class="img-responsive">
+              <img src="{{imageBaseUrl}}{{item['image']}}" onError="this.src='../../../../assets/images/user.png';"
+                alt="image" class="img-responsive">
               <h3>{{item.firstName}} {{item.lastName}}</h3>
             </div>
           </p-card>

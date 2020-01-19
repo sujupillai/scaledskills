@@ -17,7 +17,8 @@ export class AddTrainingBasicComponent implements OnInit {
   organizationListValue = [];
   submitted: boolean = false;
   startDate = new FormControl();
-  curentYear=(new Date()).getFullYear();
+  curentYear=new Date().getFullYear();
+  yearRange=''
   endDate = new FormControl();
   settings = {};
   multiSettings = {};
@@ -44,6 +45,7 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   ngOnInit() {
     // this.getAllData();
+    this.yearRange=this.curentYear+':'+this.curentYear+5;
     this.getTimeZone();
     this.createForm(() => {
       this.startDate.setValue('');
@@ -101,17 +103,16 @@ export class AddTrainingBasicComponent implements OnInit {
         }
         let zone = this.zoneList.filter(x => x.value == this.trainingData.timeZone)
         let hostedBy = this.trainingForList.filter(x => x.value == this.trainingData.hostedBy)
-        if (this.trainingData.hostedBy == 2) {
+        setTimeout(() => {
+          this.formControl['hostedByObj'].setValue(hostedBy);
           this.formControl['timeZoneObj'].setValue(zone);
           this.selectedZone = zone;
+        }, 200)
+        if (this.trainingData.hostedBy == 2) {
           this.getOrgData();
           this.organizationListValue = this.trainingData.organizationListObj
         } else {
-          setTimeout(() => {
-            this.formControl['hostedByObj'].setValue(hostedBy);
-            this.formControl['timeZoneObj'].setValue(zone);
-            this.selectedZone = zone;
-          }, 200)
+          this.organizationListValue = this.defaultList
         }
       } else {
         this.resetForm(this.trainingBasicForm)

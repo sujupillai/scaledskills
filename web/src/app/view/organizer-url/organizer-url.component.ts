@@ -71,6 +71,7 @@ export class OrganizerUrlComponent implements OnInit {
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
           this.fetchTrainingReview();
+          this.fetchMembers();
         }
         else {
           this.entity = null;
@@ -81,19 +82,25 @@ export class OrganizerUrlComponent implements OnInit {
   }
   httpFetch = (url, postObj, masterCollection) => {
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      this[masterCollection] = res.result.results;
+      if (res && res.result.results) {
+        this[masterCollection] = res.result.results;
+      }
     })
   }
   fetchPastTraining = () => {
     let postObj = {
-      ...this.trainingEntity
+      ...this.trainingEntity,
+      "userId": this.orgId,
+      "pageType": "O",
     }
     let url = ApiPath.pastTraining;
     this.httpFetch(url, postObj, 'pastTrainings');
   }
   fetchUpcomingTraining = () => {
     let postObj = {
-      ...this.trainingEntity
+      ...this.trainingEntity,
+      "userId": this.orgId,
+      "pageType": "O",
     }
     let url = ApiPath.upcomingTraining;
     this.httpFetch(url, postObj, 'upcommingTrainings');
@@ -158,9 +165,9 @@ export class OrganizerUrlComponent implements OnInit {
     document.execCommand('copy');
   }
   fetchMembers = () => {
-    let url = ApiPath.generalMemberFollow;
+    let url = ApiPath.orgMemberFollow;
     let postObj = {
-      "trainingId": this.orgId,
+      "id": this.orgId,
       "pageType": "O",
       "searchText": "",
       "pageSize": 500,

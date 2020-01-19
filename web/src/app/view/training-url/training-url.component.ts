@@ -61,6 +61,7 @@ export class TrainingUrlComponent implements OnInit {
   fetchPastTraining = () => {
     let postObj = {
       "userId": this.userId,
+      "pageType": this.entity.hostedBy==2?'O':'P',
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -73,7 +74,7 @@ export class TrainingUrlComponent implements OnInit {
   FetchRelatedTraining = () => {
     let postObj = {
       "userId": this.trainingId,
-      "pageType": "",
+      "pageType": this.entity.hostedBy==2?'O':'P',
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -101,6 +102,7 @@ export class TrainingUrlComponent implements OnInit {
   fetchUpcomingTraining = () => {
     let postObj = {
       "userId": this.userId,
+      "pageType": this.entity.hostedBy==2?'O':'P',
       "searchText": "",
       "pageSize": 1000,
       "page": 0
@@ -276,6 +278,7 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   hendleFollowMe = () => {
+    debugger
     if (this.isLoggedIn) {
       let url = ApiPath.followTraining;
       let postObj = {

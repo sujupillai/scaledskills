@@ -131,8 +131,8 @@
       <div class="col-sm-6">
         <label>Ticket Sale starts from</label>
         <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true"
-          [yearNavigator]="true" yearRange="{{curentYear}:{{curentYear+5}}}" [utc]="true" dateFormat="dd/mm/yy" [maxDate]="endDate.value"
-          placeholder="DD/MM/YYYY">
+          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
+          [maxDate]="endDate.value" placeholder="DD/MM/YYYY">
         </p-calendar>
         <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
           Required Field.
@@ -141,8 +141,8 @@
       <div class="col-sm-6">
         <label>Ticket Sale Ends at</label>
         <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true"
-          [yearNavigator]="true" yearRange="{{curentYear}:{{curentYear+5}}}" [utc]="true" dateFormat="dd/mm/yy" [minDate]="startDate.value"
-          placeholder="DD/MM/YYYY">
+          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
+          [minDate]="startDate.value" placeholder="DD/MM/YYYY">
         </p-calendar>
         <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
           Required Field.

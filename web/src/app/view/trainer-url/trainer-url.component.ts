@@ -223,6 +223,7 @@ export class TrainerUrlComponent implements OnInit {
     window.open(url, '_blank');
   }
   hendleFollowMe = () => {
+    debugger
     let url = ApiPath.followTrainer;
     let postObj = {
       typeId: this.trainerId
