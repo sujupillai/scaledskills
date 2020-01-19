@@ -42,6 +42,10 @@ export class AddTrainingComponent implements OnInit {
         label: 'Add Trainer',
         link: 'addTrainer',
       }
+      , {
+        label: 'PUBLISH',
+        link: 'publish',
+      }
     ];
   }
 }

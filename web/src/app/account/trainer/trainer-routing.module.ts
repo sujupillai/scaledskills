@@ -18,6 +18,7 @@ import { AddTrainingSettingsComponent } from './add-training-settings/add-traini
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
 import { TrainerBasicComponent } from './trainer-basic/trainer-basic.component'
 import { AuthGuard } from '../../_guards';
+import { TrainingFinalComponent } from './training-final/training-final.component';
 const routes = [
   {
     path: '', component: TrainerComponent,
@@ -51,6 +52,7 @@ const routes = [
       { path: 'promotions', component: AddTrainingPromotionsComponent },
       { path: 'settings', component: AddTrainingSettingsComponent },
       { path: 'addTrainer', component: AddTrainerComponent },
+      { path: 'publish', component: TrainingFinalComponent },
     ],
     canActivate: [AuthGuard]
   }
