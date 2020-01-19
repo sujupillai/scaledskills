@@ -10,6 +10,8 @@ import { MessageComponent } from '../../_shared/_dialogs/message/message.compone
 })
 export class OrganizerUrlComponent implements OnInit {
   cars = [];
+  memberList = [];
+  totalMember = 0;
   display: boolean = false;
   isSendMesage: boolean = false;
   cities = [];
@@ -155,7 +157,22 @@ export class OrganizerUrlComponent implements OnInit {
     });
     document.execCommand('copy');
   }
-
+  fetchMembers = () => {
+    let url = ApiPath.generalMemberFollow;
+    let postObj = {
+      "trainingId": this.orgId,
+      "pageType": "O",
+      "searchText": "",
+      "pageSize": 500,
+      "page": 0
+    }
+    this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.totalMember = res.result.totalCount;
+        this.memberList = res['result']['results'];
+      }
+    })
+  }
 
 
   fetchTrainingReview = () => {
@@ -168,7 +185,6 @@ export class OrganizerUrlComponent implements OnInit {
     }
     let url = ApiPath.getTrainingReview;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      debugger
       this.reviewList = res.result.results
       this.totalReview = res.result.totalCount;
       this.avgRating = res.result.avgRating
