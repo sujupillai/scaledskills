@@ -5,13 +5,16 @@ import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 import { ReviewComponent } from '../../_shared/_dialogs/review/review.component';
 import { HttpService, AuthenticationService, SharedService } from '../../_service';
-import {Title} from "@angular/platform-browser";
+import { Title } from "@angular/platform-browser";
 @Component({
   selector: 'app-training-url',
   templateUrl: './training-url.component.html',
 })
 export class TrainingUrlComponent implements OnInit {
   regTrainers = [];
+  reviewDisplay=false;
+  reviewContent=''
+  currentTime = new Date();
   totalTrainer;
   avgRating = 0;
   regUsers = [];
@@ -133,8 +136,8 @@ export class TrainingUrlComponent implements OnInit {
         this.canEdit = res.result.canEdit;
         this.trainingId = this.entity['trainingId']
         if (this.trainingId > 0) {
-          let temp=document.title;
-          this._titleService.setTitle(this.entity.name + '- ScaledSkills | Transforming Training' );
+          let temp = document.title;
+          this._titleService.setTitle(this.entity.name + '- ScaledSkills | Transforming Training');
           this.isError = false;
           if (!this.entity.isOnlineDetailsVisible) {
             this.isVisibleToAll = true
@@ -190,8 +193,9 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
-  showDialog() {
-    this.display = true;
+  showReviewDialog(content) {
+    this.reviewContent=content;
+    this.reviewDisplay = true;
   }
   openMessageDialog = (dialogConfig, dialogHeader, component) => {
     return this.dialogService.open(component, {
@@ -344,6 +348,15 @@ export class TrainingUrlComponent implements OnInit {
     }
     this.openUrl(url + urlPostFix)
   }
+  getColor = (endDate) => {
+    if (new Date(endDate).getTime() < this.currentTime.getTime()) {
+      return 'disabled'
+    } else {
+      return 'enable'
+    }
+
+  }
+  
   copyToClipboard = () => {
     let url = origin + this._Router.url;
     document.addEventListener('copy', (e: ClipboardEvent) => {
@@ -357,4 +370,5 @@ export class TrainingUrlComponent implements OnInit {
     let val = window.location.origin + '/' + prefix + '/' + url;
     window.open(val, "_blank");
   }
+  
 }

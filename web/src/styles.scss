@@ -1411,8 +1411,23 @@ textarea.ui-inputtext {
 }
 
 .training-reviews {
+  .ui-card {
+    padding-bottom: 20px;
+    max-height: 300px;
+  }
+
   .description {
     margin-top: 20px;
+  }
+
+  .review-by {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 15px;
+    text-align: right;
+    @extend .clrBlue;
   }
 }
 
@@ -1921,4 +1936,15 @@ body .ui-dialog .ui-dialog-titlebar {
 
 .no-records {
   font-size: 14px;
+}
+
+.ui-carousel .ui-carousel-viewport .ui-carousel-items {
+  float: left;
+  display: flex;
+  min-width: 100%;
+
+  .row-same-height {
+    height: 100%;
+    position: relative;
+  }
 }

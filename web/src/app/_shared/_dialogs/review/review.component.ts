@@ -15,10 +15,10 @@ export class ReviewComponent implements OnInit {
   trainingId: any = 0;
   prevState;
   listData = [];
-  submitted=false;
+  submitted = false;
   res
   val2: number = 5;
-  msg=null;
+  msg = null;
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig,
     private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
@@ -52,17 +52,17 @@ export class ReviewComponent implements OnInit {
   }
   handleRate(event) {
     this.msg = null;
-}
-handleCancelRate(event) {
+  }
+  handleCancelRate(event) {
     this.msg = "Required Field.";
-}
+  }
   handleSubmit = (): void => {
     let url = ApiPath.trainingReview;
     url = url.replace('{TrainingId}', this.trainingId.toString())
     let postObj = {
       ...this.traineeReviewForm.value
     }
-    if(this.traineeReviewForm.valid){
+    if (this.traineeReviewForm.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res && res.responseCode == 200) {
@@ -89,7 +89,7 @@ handleCancelRate(event) {
         ]
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       });
-    }else{
+    } else {
       this.msg = "Required Field.";
       this.submitted = true;
     }
