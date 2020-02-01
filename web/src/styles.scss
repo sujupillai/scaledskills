@@ -1553,13 +1553,12 @@ textarea.ui-inputtext {
   outline: none !important;
 }
 
+.ui-carousel .ui-carousel-dropdown,
+.ui-carousel .ui-carousel-mobiledropdown {
+  display: none !important
+}
+
 .homeBanner {
-
-  .ui-carousel .ui-carousel-dropdown,
-  .ui-carousel .ui-carousel-mobiledropdown {
-    display: none !important
-  }
-
 
   img {
     max-height: 362px;
