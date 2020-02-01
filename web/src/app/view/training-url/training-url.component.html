@@ -31,7 +31,9 @@
               <span>
                 {{entity['startDate'] | date:'EEE'}}, {{entity['startDate'] | date:'MMM d, y | h:mm a'}}
                 to
-                {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm a'}}</span>
+                {{entity['endDate'] | date:'EEE'}}, {{entity['endDate'] | date:'MMM d, y | h:mm a'}}
+                {{entity && entity['timeZone']?'('+entity['timeZone']+')':'(IST)'}}
+              </span>
             </div>
           </div>
           <div class="sub_links">
