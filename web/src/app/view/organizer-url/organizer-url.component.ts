@@ -4,12 +4,14 @@ import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, SharedService, AuthenticationService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
+import { EmbedVideoService } from 'ngx-embed-video';
 @Component({
   selector: 'app-organizer-url',
   templateUrl: './organizer-url.component.html'
 })
 export class OrganizerUrlComponent implements OnInit {
   cars = [];
+  iframe_html: any = null;
   memberList = [];
   totalMember = 0;
   display: boolean = false;
@@ -47,6 +49,7 @@ export class OrganizerUrlComponent implements OnInit {
     { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
   constructor(public dialogService: DialogService, private _AuthenticationService: AuthenticationService,
+    private embedService: EmbedVideoService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
@@ -74,6 +77,11 @@ export class OrganizerUrlComponent implements OnInit {
         this.orgId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.orgId > 0) {
           this.entity = res.result ? res.result : null;
+          if (this.entity.about && this.entity.about.videoUrl) {
+            this.iframe_html = this.embedService.embed(this.entity.about.videoUrl);
+          } else {
+            this.iframe_html = null
+          }
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
           this.fetchTrainingReview();

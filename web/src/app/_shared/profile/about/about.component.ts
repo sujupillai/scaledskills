@@ -30,6 +30,7 @@ export class AboutComponent implements OnInit {
       {
         aboutText: [''],
         coursesOfferedText: [''],
+        videoUrl:[''],
         name: [''],
       }
     )

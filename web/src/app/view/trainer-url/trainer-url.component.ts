@@ -4,14 +4,16 @@ import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, SharedService, AuthenticationService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
+import { EmbedVideoService } from 'ngx-embed-video';
 @Component({
   selector: 'app-trainer-url',
   templateUrl: './trainer-url.component.html'
 })
 export class TrainerUrlComponent implements OnInit {
+  iframe_html: any = null;
   cars = [];
   memberList = [];
-  isLoading:boolean=true;
+  isLoading: boolean = true;
   totalMember = 0;
   display: boolean = false;
   isSendMesage: boolean = false;
@@ -44,6 +46,7 @@ export class TrainerUrlComponent implements OnInit {
   ];
   origin = window.location.origin;
   constructor(public dialogService: DialogService,
+    private embedService: EmbedVideoService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
     private _SharedService: SharedService, private _AuthenticationService: AuthenticationService) {
   }
@@ -81,7 +84,6 @@ export class TrainerUrlComponent implements OnInit {
   }
   copyToClipboard = () => {
     let url = origin + this._Router.url;
-
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();
@@ -93,12 +95,17 @@ export class TrainerUrlComponent implements OnInit {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
   getData = (url) => {
-    this.isLoading=true;
+    this.isLoading = true;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.trainerId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.trainerId > 0) {
           this.entity = res.result ? res.result : null;
+          if (this.entity.about && this.entity.about.videoUrl) {
+            this.iframe_html = this.embedService.embed(this.entity.about.videoUrl);
+          } else {
+            this.iframe_html = null
+          }
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
@@ -109,7 +116,7 @@ export class TrainerUrlComponent implements OnInit {
           this.entity = null;
           this.isError = true;
         }
-        this.isLoading=false
+        this.isLoading = false
       }
     })
   }
@@ -141,7 +148,6 @@ export class TrainerUrlComponent implements OnInit {
   }
   showDialog(collection) {
     this[collection] = true;
-
   }
   openMessageDialog = (dialogConfig, dialogHeader) => {
     return this.dialogService.open(MessageComponent, {
@@ -152,7 +158,6 @@ export class TrainerUrlComponent implements OnInit {
       width: '80%'
     });
   }
-
   messageDialogConfig = (data, header) => {
     let tempRes;
     let dialogConfig = {
@@ -185,7 +190,6 @@ export class TrainerUrlComponent implements OnInit {
       }
     })
   }
-
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;
     let postObj = {

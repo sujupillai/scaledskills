@@ -103,9 +103,11 @@
       </ul>
     </div>
   </div>
-
   <div class="tab-content">
     <div class="container">
+      <div class="iframeWrap" *ngIf="iframe_html">
+        <div [innerHtml]="iframe_html"></div>
+      </div>
       <div>
         <h3>About</h3>
         <p [innerHTML]="entity && entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>

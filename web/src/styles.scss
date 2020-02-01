@@ -378,7 +378,7 @@ p+p {
 //
 p-radiobutton~p-radiobutton,
 .ui-button-raised~.ui-button-raised,
-button {
+button~button {
   margin-left: 15px;
 }
 
@@ -683,6 +683,13 @@ textarea {
 
 .bgBlue {
   background: rgba(92, 116, 241, 0.92);
+}
+.btn-border-blue {
+  border : 1px rgba(92, 116, 241, 0.92) solid;
+  color:rgba(92, 116, 241, 1)
+}
+.btn.traiing-id{
+  min-width: 200px;
 }
 
 .clrBlue {

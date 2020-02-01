@@ -29,7 +29,7 @@ import { OrderTicketComponent } from './view/training-url/order-ticket/order-tic
 import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { TitleService } from './title.service';
-
+import { EmbedVideo } from 'ngx-embed-video';
 
 @NgModule({
   declarations: [
@@ -52,12 +52,14 @@ import { TitleService } from './title.service';
     MaintenanceComponent
   ],
   imports: [
+    
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     NgPrimeModule,
-    SharedModule
+    SharedModule,
+    EmbedVideo.forRoot()
   ],
   
   providers: [DialogService, SharedService, TitleService,
