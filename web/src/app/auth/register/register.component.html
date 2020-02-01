@@ -48,24 +48,15 @@
             <label for="">Mobile Number <span class="required">*</span></label>
             <div class="row">
               <div class="col-sm-4" style="padding-right: 0">
-                <angular2-multiselect [data]="countryList" [(ngModel)]="selectedCountry" [settings]="countrySettings"
+                <angular2-multiselect [data]="countryList" [(ngModel)]="selectedCountry" [settings]="settings"
                   (onSelect)="OnCountrySelect($event)" (onDeSelect)="OnCountryDeSelect($event)"
                   formControlName="countryObj">
-                  <c-badge>
-                    <ng-template let-item="item">
-                      ({{item.countryCode}}) {{item.text}}
-                    </ng-template>
-                  </c-badge>
-                  <c-item>
-                    <ng-template let-item="item">
-                      {{item.text}}
-                    </ng-template>
-                  </c-item>
+                  
                 </angular2-multiselect>
               </div>
-
               <div class="col-sm-8" [ngClass]="{disabled: formControl.countryCode.value==null}">
-                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" maxlength="10" digitOnly  />
+                <input type="text" placeholder="Enter Here" pInputText formControlName="phoneNumber" maxlength="10"
+                  digitOnly />
               </div>
             </div>
             <p class="msgError text-danger"
@@ -86,7 +77,8 @@
               <div class="form-group">
                 <label for="">Password <span class="required">*</span></label>
                 <div class="ui-inputgroup">
-                  <input class="width_100" type="{{inputType}}" placeholder="Enter Here" pInputText formControlName="password" />
+                  <input class="width_100" type="{{inputType}}" placeholder="Enter Here" pInputText
+                    formControlName="password" />
                   <span class="ui-inputgroup-addon cursor-pointer">
                     <i class="fa fa-eye" aria-hidden="true" (click)="handleEyeType()"></i>
                   </span>
@@ -94,7 +86,7 @@
                 <p class="msgError text-danger"
                   *ngIf="formControl.password.invalid && (formControl.password.dirty || submitted)">
                   <small *ngIf="formControl.password.hasError('minlength')">
-                    Password should be atleast 6git  characters.
+                    Password should be atleast 6git characters.
                   </small>
                   <small *ngIf="formControl.password.hasError('required')">
                     Required Field.
@@ -107,7 +99,7 @@
                 <label for="">Confirm Password <span class="required">*</span></label>
                 <div class="ui-inputgroup">
                   <input class="width_100" type="{{inputType}}" placeholder="Enter Here" pInputText
-                  formControlName="confirmPassword" />
+                    formControlName="confirmPassword" />
                   <span class="ui-inputgroup-addon cursor-pointer">
                     <i class="fa fa-eye" aria-hidden="true" (click)="handleEyeType()"></i>
                   </span>

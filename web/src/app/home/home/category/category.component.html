@@ -32,7 +32,8 @@
       </div>
     </div>
     <div class="form-group text-center" *ngIf="RTList.length>0">
-      <p class="clrPurple"><strong>{{page+1}} - 16 of {{totalTraining}} Records</strong></p>
+      <p class="clrPurple"><strong>{{page+1}} - {{totalTraining> 16?16:totalTraining}} of {{totalTraining}}
+          Records</strong></p>
     </div>
     <div class="clearfix text-center" *ngIf="RTList.length>0">
       <button type="button" class="btn btn-gradient" [ngClass]="{disabled: page==0}"

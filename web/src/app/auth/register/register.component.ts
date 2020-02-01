@@ -13,23 +13,20 @@ export class RegisterComponent implements OnInit {
   error = '';
   submitted: boolean = false;
   countryList = [];
-  selectedCountry =  [ { "text": "INDIA", "value": "1", "isSelect": true, "countryCode": "+91" } ];
+  selectedCountry = [{ "text": "INDIA", "value": "1", "isSelect": true }];
   defaultList = [{
     "text": "Select",
     "value": "0",
     "isSelect": false
   }];
   settings = {};
-  inputType='password'
+  inputType = 'password'
   countrySettings = {};
   constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
   ngOnInit() {
     this.createForm(() => {
       this.settings = {
         singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
-      };
-      this.countrySettings = {
-        singleSelection: true, text: "Select", labelKey: "text", classes: "myclass custom-class", enableSearchFilter: true, searchBy: ['text'], searchPlaceholderText: 'Search by name'
       };
       this.getCountryList();
     })
@@ -46,7 +43,7 @@ export class RegisterComponent implements OnInit {
         confirmPassword: ['', Validators.required],
         id: 0,
         countryObj: [''],
-        countryCode: ['+91'],
+        countryCode: [''],
       },
       {
         validator: MustMatch('password', 'confirmPassword'),
@@ -61,11 +58,6 @@ export class RegisterComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.responseCode == 200) {
         this[masterCollection] = res.result;
-        if (masterCollection == 'countryList') {
-          this[masterCollection].map(x => {
-            x.countryCode = "+91"
-          })
-        }
       }
     })
   }
@@ -74,14 +66,14 @@ export class RegisterComponent implements OnInit {
     this.getMaster(url, 'countryList')
   }
   OnCountrySelect(event) {
-    this.registerForm.get('countryCode').setValue(event.countryCode)
+    this.registerForm.get('countryCode').setValue(event.value)
   }
   OnCountryDeSelect(event) {
     this.registerForm.get('countryCode').setValue(null)
     this.registerForm.get('countryObj').setValue([])
   }
-  handleEyeType=()=>{
-    this.inputType=this.inputType=='text'?'password':'text'
+  handleEyeType = () => {
+    this.inputType = this.inputType == 'text' ? 'password' : 'text'
   }
   handleSubmitForm = () => {
     if (this.registerForm.invalid) {
@@ -107,7 +99,7 @@ export class RegisterComponent implements OnInit {
             { mgs: res.responseMessege, class: 'confirmMsg' },
             { mgs: 'Please check your registered email id for verify your account after two minutes.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
             this._Router.navigate(['/'])
           })
         } else {
@@ -119,7 +111,7 @@ export class RegisterComponent implements OnInit {
       },
         error => {
           let msgArray = [
-            { mgs: error['message']?error['message']:'Server Error', class: 'confirmMsg' },
+            { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         });
