@@ -11,6 +11,7 @@ import { MessageComponent } from '../../_shared/_dialogs/message/message.compone
 export class TrainerUrlComponent implements OnInit {
   cars = [];
   memberList = [];
+  isLoading:boolean=true;
   totalMember = 0;
   display: boolean = false;
   isSendMesage: boolean = false;
@@ -92,6 +93,7 @@ export class TrainerUrlComponent implements OnInit {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
   getData = (url) => {
+    this.isLoading=true;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.trainerId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
@@ -107,6 +109,7 @@ export class TrainerUrlComponent implements OnInit {
           this.entity = null;
           this.isError = true;
         }
+        this.isLoading=false
       }
     })
   }
@@ -223,7 +226,6 @@ export class TrainerUrlComponent implements OnInit {
     window.open(url, '_blank');
   }
   hendleFollowMe = () => {
-    debugger
     let url = ApiPath.followTrainer;
     let postObj = {
       typeId: this.trainerId

@@ -377,7 +377,8 @@ p+p {
 
 //
 p-radiobutton~p-radiobutton,
-.ui-button-raised~.ui-button-raised, button {
+.ui-button-raised~.ui-button-raised,
+button {
   margin-left: 15px;
 }
 
@@ -1553,10 +1554,12 @@ textarea.ui-inputtext {
 }
 
 .homeBanner {
-  .ui-carousel .ui-carousel-dropdown, .ui-carousel .ui-carousel-mobiledropdown {
+
+  .ui-carousel .ui-carousel-dropdown,
+  .ui-carousel .ui-carousel-mobiledropdown {
     display: none !important
   }
-  
+
 
   img {
     max-height: 362px;
@@ -1585,16 +1588,15 @@ li.ui-carousel-item.ui-widget-content.ui-corner-all {
 
 .home_banner {
   .ui-carousel .ui-carousel-header {
-    display: none !important
-    // position: absolute;
-    // left: 0;
-    // bottom: 0;
-    // width: 100%;
-    // z-index: 999;
-    // background: transparent !important;
-    // text-align: center;
-    // border: 0px !important;
-    // box-shadow: none !important;
+    display: none !important // position: absolute;
+      // left: 0;
+      // bottom: 0;
+      // width: 100%;
+      // z-index: 999;
+      // background: transparent !important;
+      // text-align: center;
+      // border: 0px !important;
+      // box-shadow: none !important;
   }
 
   .ui-carousel-header-title {

@@ -5,6 +5,7 @@ import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 import { ReviewComponent } from '../../_shared/_dialogs/review/review.component';
 import { HttpService, AuthenticationService, SharedService } from '../../_service';
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-training-url',
   templateUrl: './training-url.component.html',
@@ -43,6 +44,7 @@ export class TrainingUrlComponent implements OnInit {
     { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
   constructor(public dialogService: DialogService,
+    private _titleService: Title,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
   }
   ngOnInit() {
@@ -131,6 +133,8 @@ export class TrainingUrlComponent implements OnInit {
         this.canEdit = res.result.canEdit;
         this.trainingId = this.entity['trainingId']
         if (this.trainingId > 0) {
+          let temp=document.title;
+          this._titleService.setTitle(this.entity.name + '- ScaledSkills | Transforming Training' );
           this.isError = false;
           if (!this.entity.isOnlineDetailsVisible) {
             this.isVisibleToAll = true
@@ -280,7 +284,6 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   hendleFollowMe = () => {
-    debugger
     if (this.isLoggedIn) {
       let url = ApiPath.followTraining;
       let postObj = {

@@ -1,10 +1,10 @@
-<div class="container" *ngIf="entity!=null">
+<div class="container" *ngIf="entity && !isLoading">
   <div class="">
     <div class="header_detail">
       <div class="userThumbWrap">
         <div class="thumb trainer">
-          <img src="{{imageBaseUrl}}{{entity['image']}}"
-            onError="this.src='../../../../assets/images/user.png';" alt="image" class="img-responsive">
+          <img src="{{imageBaseUrl}}{{entity['image']}}" onError="this.src='../../../../assets/images/user.png';"
+            alt="image" class="img-responsive">
         </div>
         <div class="text-desc">
           <h3>{{entity.user && entity.user.firstName?entity.user.firstName:'N/A'}}
@@ -64,66 +64,77 @@
       </div>
     </div>
   </div>
-  <div class="border-line top bottom invisible"></div>
-  <div class="training-page-content">
-    <ul class="tab-menu">
-      <li>
-        <a href="javascript:void(0)" class="active">
-          About
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          Courses Offered
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          Certification
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          Upcoming Trainings
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          Past Trainings
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          Reviews
-        </a>
-      </li>
-    </ul>
-    <div class="tab-content">
+</div>
+<div class="border-line top bottom invisible"></div>
+<div class="training-page-content">
+  <div class="sticky-footer-tab">
+    <div class="container">
+      <ul class="tab-menu">
+        <li>
+          <a href="javascript:void(0)" class="active">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            Courses Offered
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            Certification
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            Upcoming Trainings
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            Past Trainings
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            Reviews
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div class="container">
       <div>
         <h3>About</h3>
-        <p [innerHTML]="entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>
+        <p [innerHTML]="entity && entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>
       </div>
       <div class="border-line top bottom"></div>
       <div>
         <h3>Courses Offered</h3>
-        <p [innerHTML]="entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'"></p>
+        <p
+          [innerHTML]="entity && entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'">
+        </p>
       </div>
       <div class="border-line top bottom"></div>
       <div>
         <h3>Certifications</h3>
-        <ul class="list-li">
+        <ul class="list-li" *ngIf="entity && entity.certificate && entity.certificate.length>0">
           <li *ngFor="let item of entity.certificate">
             <strong>{{item.name}}</strong> – {{item.authority}} {{item.from | date : 'MM/dd/yyyy'}} to
             {{item.to | date : 'MM/dd/yyyy'}}
             {{item.isExpired?'Expired':''}}
           </li>
-          <li *ngIf="entity.certificate && entity.certificate.length==0">No records to display.</li>
+        </ul>
+        <ul class="list-li" *ngIf="entity && entity.certificate && entity.certificate.length==0">
+          <li>No records to display.</li>
         </ul>
       </div>
       <div class="border-line top bottom"></div>
       <div class="form-group">
         <p-carousel headerText="Upcoming Trainings ({{upcommingTrainings.length}})" [value]="upcommingTrainings"
-          numVisible="5" circular="true" autoplayInterval="5000"
+          numVisible="4" circular="true" autoplayInterval="5000"
           *ngIf="upcommingTrainings && upcommingTrainings.length>0">
           <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">
@@ -145,7 +156,7 @@
       <div class="border-line top bottom"></div>
       <!-- past training -->
       <div class="form-group">
-        <p-carousel headerText="Past Trainings ({{pastTrainings.length}})" [value]="pastTrainings" numVisible="5"
+        <p-carousel headerText="Past Trainings ({{pastTrainings.length}})" [value]="pastTrainings" numVisible="4"
           circular="true" autoplayInterval="5000" *ngIf="pastTrainings.length>0">
           <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">
@@ -166,7 +177,7 @@
       </div>
       <div class="border-line top"></div>
       <div class="form-group">
-        <p-carousel headerText="Members ({{memberList.length}})" [value]="memberList" numVisible="5" circular="true"
+        <p-carousel headerText="Members ({{memberList.length}})" [value]="memberList" numVisible="4" circular="true"
           autoplayInterval="5000" *ngIf="memberList.length>0">
           <ng-template let-item pTemplate="item">
             <div class="ui-grid ui-grid-responsive">

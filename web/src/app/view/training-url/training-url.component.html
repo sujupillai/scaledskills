@@ -68,7 +68,7 @@
             <span class="joinbtn text-primary" [ngClass]="entity.isFollow?'no-cursor':''" (click)="hendleFollowMe()"
               *ngIf="!canEdit">
               &nbsp;<i class="fa fa-user-plus"
-                aria-hidden="true"></i>&nbsp;{{entity.isFollow?'Following':'Follow'}}</span>
+                aria-hidden="true"></i>&nbsp;{{isLoggedIn && entity.isFollow?'Following':'Follow'}}</span>
           </p>
           <div class="inline-block">
             <div class="flex feed-row">

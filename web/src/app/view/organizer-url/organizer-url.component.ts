@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService } from '../../_service';
+import { HttpService, SharedService, AuthenticationService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 @Component({
@@ -32,6 +32,8 @@ export class OrganizerUrlComponent implements OnInit {
     "pageSize": 1000,
     "page": 0
   }
+  userInfo: any = {};
+  isLoggedIn: boolean = false;
   entity = null;
   reviewList = [];
   totalReview = 0;
@@ -44,7 +46,7 @@ export class OrganizerUrlComponent implements OnInit {
     { label: 'Twitter', icon: 'fa fa-twitter', command: () => { this.shareAction(5); } },
     { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
-  constructor(public dialogService: DialogService,
+  constructor(public dialogService: DialogService, private _AuthenticationService: AuthenticationService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
@@ -58,6 +60,10 @@ export class OrganizerUrlComponent implements OnInit {
       url = url.replace('{urlName}', this.urlString)
       this.getData(url)
     });
+  }
+  getUser = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue
+    this.isLoggedIn = this.userInfo ? true : false;
   }
   goToLink = (trainingId) => {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
