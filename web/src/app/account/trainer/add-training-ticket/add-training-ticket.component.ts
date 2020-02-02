@@ -12,9 +12,11 @@ export class AddTrainingTicketComponent implements OnInit {
   formElement: FormGroup;
   countryList = [];
   stateList = [];
-  curentYear=(new Date()).getFullYear();
+  trainingBasicData = null;
+  curentYear = (new Date()).getFullYear();
   submitted: boolean = false;
   trainingId = 0;
+  ticektSaleMaxDate;
   addTicketForm = false;
   defaultList = [{
     "text": "Free",
@@ -24,7 +26,12 @@ export class AddTrainingTicketComponent implements OnInit {
   ticketTypeList = [{
     "text": "Free",
     "value": "1",
-  }];
+  },
+  {
+    "text": "Paid",
+    "value": "2",
+  }
+  ];
   prevState;
   settings;
   startDate = new FormControl();
@@ -49,6 +56,7 @@ export class AddTrainingTicketComponent implements OnInit {
         this.getData()
       }
     });
+    this.getTrainingData(this.trainingId)
     this.createForm(() => {
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.selectedTicketType = this.defaultList;
@@ -77,10 +85,20 @@ export class AddTrainingTicketComponent implements OnInit {
     }
   }
   get formControl() { return this.formElement.controls };
+  getTrainingData = (id) => {
+    let url = ApiPath.getTraining
+    url = url.replace('{id}', id)
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res.result) {
+        this.trainingBasicData = res.result
+      }
+    })
+  }
   getMaster = (url, masterCollection) => {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         this[masterCollection] = res.result
+        this.ticektSaleMaxDate = new Date(this.trainingBasicData.endDate);
       }
     })
   }
@@ -98,9 +116,9 @@ export class AddTrainingTicketComponent implements OnInit {
       this.formControl['paymentCharge'].setValue(0)
     }
   }
-  OnItemDeSelect(item:any){
+  OnItemDeSelect(item: any) {
     this.formControl['ticketType'].setValue('')
-}
+  }
   getData = () => {
     this.displayNoRecord = false;
     let url = ApiPath.trainingTicket;
@@ -111,7 +129,7 @@ export class AddTrainingTicketComponent implements OnInit {
     })
   }
   resetForm(formGroup: FormGroup, addTicketForm) {
-    this.submitted=false;
+    this.submitted = false;
     let id = this.formControl.id.value;
     if (id > 0) {
       Object.keys(this.prevState).forEach(name => {

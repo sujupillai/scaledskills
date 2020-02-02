@@ -1,13 +1,13 @@
 <div class="container">
   <div class="order-detail-wrap">
     <h2 class="text-center">Order Detail</h2>
-    <div class="order-detail-inner">
+    <div class="order-detail-inner" *ngIf="orderDetail">
       <h3>Order ID: <span class="text-danger">{{orderDetail.orderAppId}}</span>
-        <div class="order-status" [ngClass]="orderDetail.orderStatusName =='Open' ?'open':'success'">
+        <div class="order-status" [ngClass]="orderDetail && orderDetail.orderStatusName =='Open' ?'open':'success'">
           {{orderDetail.orderStatusName}}
         </div>
       </h3>
-      <div class="ticket-cart-grid row">
+      <div class="ticket-cart-grid row" *ngIf="orderDetail && orderDetail.items">
         <div class="form-group ticketWrap col-sm-6" *ngFor="let item of orderDetail.items, let i=index">
           <div class="relative">
             <div class="left circle"></div>
@@ -38,7 +38,8 @@
     </div>
   </div>
   <div class="form-group clearfix button-group text-right">
-      <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
-      <button *ngIf="orderDetail.orderStatusName =='Open'" pButton type="button" label="Place Order" class="ui-button-raised" (click)="handleSubmit(orderDetail.orderAppId)"></button>
+    <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
+    <button *ngIf="orderDetail && orderDetail.orderStatusName =='Open'" pButton type="button" label="Place Order"
+      class="ui-button-raised" (click)="handleSubmit(orderDetail.orderAppId)"></button>
   </div>
 </div>

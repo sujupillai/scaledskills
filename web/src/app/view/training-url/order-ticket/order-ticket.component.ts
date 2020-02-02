@@ -63,7 +63,7 @@ export class OrderTicketComponent implements OnInit {
           "itemId": x.id,
           "qty": x.orderQty,
           "unitPrice": x.paymentCharge,
-          "totalPrice": x.paymentCharge * x.qty
+          "totalPrice": x.paymentCharge * x.orderQty
         })
       }
     });

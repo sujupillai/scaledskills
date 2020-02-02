@@ -143,16 +143,16 @@ export class AddTrainingLocationComponent implements OnInit {
     this.selectedState = this.defaultList;
   }
   setAddress = (dataObj, formElement) => {
-    this[formElement].get(['addressModel', 'address1']).setValue(dataObj.addressModel && dataObj.addressModel.address1 ? dataObj.addressModel.address1 : 'NA');
-    this[formElement].get(['addressModel', 'address2']).setValue(dataObj.addressModel && dataObj.addressModel.address2 ? dataObj.addressModel.address2 : 'NA');
-    this[formElement].get(['addressModel', 'address3']).setValue(dataObj.addressModel && dataObj.addressModel.address3 ? dataObj.addressModel.address3 : 'NA');
-    this[formElement].get(['addressModel', 'city']).setValue(dataObj.addressModel && dataObj.addressModel.city ? dataObj.addressModel.city : 'NA');
-    this[formElement].get(['addressModel', 'zipCode']).setValue(dataObj.addressModel && dataObj.addressModel.zipCode ? dataObj.addressModel.zipCode : 'NA');
-    this[formElement].get(['addressModel', 'street']).setValue(dataObj.addressModel && dataObj.addressModel.street ? dataObj.addressModel.street : 'NA');
+    this[formElement].get(['addressModel', 'address1']).setValue(dataObj.addressModel && dataObj.addressModel.address1 ? dataObj.addressModel.address1 : '');
+    this[formElement].get(['addressModel', 'address2']).setValue(dataObj.addressModel && dataObj.addressModel.address2 ? dataObj.addressModel.address2 : '');
+    this[formElement].get(['addressModel', 'address3']).setValue(dataObj.addressModel && dataObj.addressModel.address3 ? dataObj.addressModel.address3 : '');
+    this[formElement].get(['addressModel', 'city']).setValue(dataObj.addressModel && dataObj.addressModel.city ? dataObj.addressModel.city : '');
+    this[formElement].get(['addressModel', 'zipCode']).setValue(dataObj.addressModel && dataObj.addressModel.zipCode ? dataObj.addressModel.zipCode : '');
+    this[formElement].get(['addressModel', 'street']).setValue(dataObj.addressModel && dataObj.addressModel.street ? dataObj.addressModel.street : '');
     this[formElement].get(['addressModel', 'countryId']).setValue(dataObj.addressModel && dataObj.addressModel.countryId ? dataObj.addressModel.countryId : 0);
     this[formElement].get(['addressModel', 'stateId']).setValue(dataObj.addressModel && dataObj.addressModel.stateId ? dataObj.addressModel.stateId : 0);
-    this[formElement].get(['addressModel', 'countryObj']).setValue(dataObj.addressModel && dataObj.addressModel.countryObj ? dataObj.addressModel.countryObj : 'NA');
-    this[formElement].get(['addressModel', 'stateObj']).setValue(dataObj.addressModel && dataObj.addressModel.stateObj ? dataObj.addressModel.stateObj : 'NA');
+    this[formElement].get(['addressModel', 'countryObj']).setValue(dataObj.addressModel && dataObj.addressModel.countryObj ? dataObj.addressModel.countryObj : '');
+    this[formElement].get(['addressModel', 'stateObj']).setValue(dataObj.addressModel && dataObj.addressModel.stateObj ? dataObj.addressModel.stateObj : '');
     this.selectedCountry = dataObj.addressModel && dataObj.addressModel.countryObj ? [dataObj.addressModel.countryObj] : this.defaultList;
     this.selectedState = dataObj.addressModel && dataObj.addressModel.stateObj ? [dataObj.addressModel.stateObj] : this.defaultList;
     if (this[formElement].get(['addressModel', 'countryId']).value > 0) {

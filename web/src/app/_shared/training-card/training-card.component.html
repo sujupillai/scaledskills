@@ -24,10 +24,10 @@
   <hr>
   <div class="card-desc flex_c_c">
     <p class="label-price">
-      {{item.mode?item.mode:'NA'}}
+      {{item.mode && item.mode =='Offline'?'Classroom':item.mode}}
     </p>
     <p class="label-price border">
-      {{item.amount?'Rs. '+item.amount:'FREE'}}
+      {{item.amount && item.amount>0 ?'Rs. '+item.amount:'FREE'}}
     </p>
   </div>
   <hr>
