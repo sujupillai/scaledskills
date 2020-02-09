@@ -17,7 +17,7 @@
             {{entity['name']?entity['name']:'N/A'}}
           </p>
           <div>
-            <p class="hostedBy">{{entity['mode']}}</p>
+            <p class="hostedBy">{{entity['mode'] =='Offline'?'Classroom':entity['mode']}}</p>
           </div>
           <div *ngIf="entity['mode']!='Online'">
             <p class="hostedBy">

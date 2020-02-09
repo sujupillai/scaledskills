@@ -1582,18 +1582,9 @@ textarea.ui-inputtext {
   display: none !important
 }
 
-.homeBanner {
 
-  img {
-    max-height: 362px;
-  }
-}
 
-li.ui-carousel-item.ui-widget-content.ui-corner-all {
-  img {
-    height: 350px;
-  }
-}
+
 
 .banner_no_header {
   .ui-carousel-header {
@@ -1978,12 +1969,14 @@ body .ui-dialog .ui-dialog-titlebar {
         padding-top: 5px;
         padding-bottom: 5px;
         padding-right: 30px;
-        color:#000;
-        &:last-child{
+        color: #000;
+
+        &:last-child {
           padding-right: 0;
         }
       }
-      th{
+
+      th {
         font-weight: bold;
       }
 
@@ -1994,3 +1987,35 @@ body .ui-dialog .ui-dialog-titlebar {
 table {
   width: 100%;
 }
+
+.home_banner {
+  img {
+    max-height: 362px;
+  }
+
+  .ui-carousel-items li {
+    img {
+      height: 350px;
+    }
+  }
+}
+.card-image{
+  img {
+    o-transition: transform .7s ease-out !important;
+    -webkit-transition: transform .7s ease-out !important;
+    -webkit-transition: -webkit-transform .7s ease-out !important;
+    transition: -webkit-transform .7s ease-out !important;
+    transition: transform .7s ease-out !important;
+    transition: transform .7s ease-out, -webkit-transform .7s ease-out !important;
+    -webkit-transform-style: initial;
+    transform-style: flat;
+  }
+  &:hover img {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+}
+
+
+
