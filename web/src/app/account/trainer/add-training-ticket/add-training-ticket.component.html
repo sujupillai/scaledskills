@@ -31,234 +31,247 @@
   </div>
   <div class="form-group text-right" *ngIf="displayNoRecord">
     <button (click)="addTicketForm=!addTicketForm" type="button" class="btn btn-primary">Add Ticket</button>
-    <!-- <button pButton type="button" label="Add Ticket" class="ui-button-raised ui-button-secondary"
-      ></button> -->
   </div>
 </div>
-<form [formGroup]="formElement" autocomplete="off" novalidate *ngIf="addTicketForm">
-  <div class="form-group">
-    <label>Ticket Name</label>
-    <input type="text" pInputText placeholder="Ticket Name" formControlName="name" />
-    <p class="msgError text-danger"
-      *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
-      Required Field.
-    </p>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label>Quantity</label>
-        <input type="text" pInputText placeholder="Quantity" formControlName="qty" digitOnly />
-        <p class="msgError text-danger"
-          *ngIf="formControl.qty.hasError('required') && (formControl.qty.dirty || submitted)">
-          Required Field.
-        </p>
-      </div>
+<div *ngIf="addTicketForm">
+  <form [formGroup]="formElement" autocomplete="off" novalidate>
+    <div class="form-group">
+      <label>Ticket Name</label>
+      <input type="text" pInputText placeholder="Ticket Name" formControlName="name" />
+      <p class="msgError text-danger"
+        *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
+        Required Field.
+      </p>
     </div>
-    <div class="col-sm-6">
-      <label>Per booking</label>
-      <div class="">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon">Min</span>
-                <input type="text" pInputText placeholder="Min" formControlName="minBooking" digitOnly />
-              </div>
-              <p class="msgError text-danger" *ngIf="formControl.minBooking.value<=0 &&
-                  !formControl.minBooking.hasError('required')">
-                Min qty should be greather than 0.
-              </p>
-              <p class="msgError text-danger"
-                *ngIf="formControl.minBooking.hasError('required') && (formControl.minBooking.dirty || submitted)">
-                Required Field.
-              </p>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon">Max</span>
-                <input type="text" pInputText placeholder="Qty" formControlName="maxBooking" digitOnly />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
     <div class="row">
       <div class="col-sm-6">
-        <label>Ticket Sale starts from</label>
-        <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
-          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
-          [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
-        </p-calendar>
-        <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
-          Required Field.
-        </p>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="text" pInputText placeholder="Quantity" formControlName="qty" digitOnly />
+          <p class="msgError text-danger"
+            *ngIf="formControl.qty.hasError('required') && (formControl.qty.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
       </div>
       <div class="col-sm-6">
-        <label>Ticket Sale Ends at</label>
-        <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
-          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
-          [minDate]="startDate.value" [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
-        </p-calendar>
-        <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
-          Required Field.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label>Type</label>
-        <input type="hidden" formControlName="ticketType">
-        <angular2-multiselect class="form-control" [data]="ticketTypeList" [(ngModel)]="selectedTicketType"
-          [settings]="settings" formControlName="ticketTypeObj" (onSelect)="onTypeChange($event, hostedBy)"
-          (onDeSelect)="OnItemDeSelect($event)">
-        </angular2-multiselect>
-        <p class="msgError text-danger"
-          *ngIf="formControl.ticketType.hasError('required') && (formControl.ticketType.dirty || submitted)">
-          Required Field.
-        </p>
-      </div>
-    </div>
-    <div class="col-sm-6" [ngClass]="{disabled: formControl.ticketType.value==1}">
-      <div class="form-group">
-        <label>Price</label>
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon">Rs.</span>
-          <input type="text" pInputText placeholder="Price" formControlName="paymentCharge" digitOnly />
-          <span class="ui-inputgroup-addon">.00</span>
+        <label>Per booking</label>
+        <div class="">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">Min</span>
+                  <input type="text" pInputText placeholder="Min" formControlName="minBooking" digitOnly />
+                </div>
+                <p class="msgError text-danger" *ngIf="formControl.minBooking.value<=0 &&
+                  !formControl.minBooking.hasError('required')">
+                  Min qty should be greather than 0.
+                </p>
+                <p class="msgError text-danger"
+                  *ngIf="formControl.minBooking.hasError('required') && (formControl.minBooking.dirty || submitted)">
+                  Required Field.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon">Max</span>
+                  <input type="text" pInputText placeholder="Qty" formControlName="maxBooking" digitOnly />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="msgError text-danger"
-          *ngIf="formControl.paymentCharge.hasError('required') && (formControl.paymentCharge.dirty || submitted)">
-          Required Field.
-        </p>
       </div>
     </div>
-  </div>
-  <div class="clearfix bgGray payment-table form-group">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6">
+          <label>Ticket Sale starts from</label>
+          <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true"
+            hourFormat="12" [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true"
+            dateFormat="dd/mm/yy" [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
+          </p-calendar>
+          <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
+            Required Field.
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <label>Ticket Sale Ends at</label>
+          <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
+            [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
+            [minDate]="startDate.value" [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
+          </p-calendar>
+          <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Type</label>
+          <input type="hidden" formControlName="ticketType">
+          <angular2-multiselect class="form-control" [data]="ticketTypeList" [(ngModel)]="selectedTicketType"
+            [settings]="settings" formControlName="ticketTypeObj" (onSelect)="onTypeChange($event, hostedBy)"
+            (onDeSelect)="OnItemDeSelect($event)">
+          </angular2-multiselect>
+          <p class="msgError text-danger"
+            *ngIf="formControl.ticketType.hasError('required') && (formControl.ticketType.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6" [ngClass]="{disabled: formControl.ticketType.value==1}">
+        <div class="form-group">
+          <label>Price</label>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">Rs.</span>
+            <input type="text" pInputText placeholder="Price" formControlName="paymentCharge" (change)="ticketPreview()"
+              digitOnly />
+            <span class="ui-inputgroup-addon">.00</span>
+          </div>
+          <p class="msgError text-danger"
+            *ngIf="formControl.paymentCharge.hasError('required') && (formControl.paymentCharge.dirty || submitted)">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="clearfix bgGray payment-table form-group"
+    *ngIf="paymentDetails.length>0 && formControl.paymentCharge.value>0">
     <div class="col-sm-12 form-group">
-      <table class="payment-table">
-        <tr>
-          <th>
-            Type
-          </th>
-          <th>
-            Charge in %
-          </th>
-          <th>Who will pay</th>
-        </tr>
-        <tr>
-          <td>
-            Affiliate  <i class="fa fa-info-circle" aria-hidden="true" pTooltip="Affiliate marketing is the process of earning income every time you promote someone elses products or services. If you generate a sale for the company, you get paid. If you don't generate a sale, you do not get paid." tooltipPosition="top"></i>
-          </td>
-          <td>
-            <input type="text" placeholder="%" class="form-control">
-          </td>
-          <td>
-            <div>
-              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
-              </p-radioButton>
-              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
-              </p-radioButton>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Convenience Fee
-          </td>
-          <td>
-            <input type="text" placeholder="%" class="form-control">
-          </td>
-          <td>
-            <div>
-              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
-              </p-radioButton>
-              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
-              </p-radioButton>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Payment Gateway
-          </td>
-          <td>
-            <input type="text" placeholder="%" class="form-control">
-          </td>
-          <td>
-            <div>
-              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
-              </p-radioButton>
-              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
-              </p-radioButton>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            GST
-          </td>
-          <td>
-            <input type="text" placeholder="%" class="form-control">
-          </td>
-          <td>
-            <div>
-              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
-              </p-radioButton>
-              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
-              </p-radioButton>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            
-          </td>
-          <td>
-            
-          </td>
-          <td>
-            <div class="">
-              <a (click)="showDialog()">View Breakup</a>  
-              
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div class="row">
+        <div class="col-sm-9">
+          <table class="payment-table">
+            <tr>
+              <th>
+                Type
+              </th>
+              <th>
+                Charge in %
+              </th>
+              <th>Who will pay</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let item of paymentDetails, let i=index">
+              <td>
+                {{item.feeText}}
+                <i *ngIf="item.feeType==776" class="fa fa-info-circle" aria-hidden="true"
+                  pTooltip="Affiliate marketing is the process of earning income every time you promote someone elses products or services. If you generate a sale for the company, you get paid. If you don't generate a sale, you do not get paid."
+                  tooltipPosition="top"></i>
+              </td>
+              <td class="value-cell">
+                <input type="text" placeholder="Value" [(ngModel)]="item.amount" digitOnly class="form-control"
+                  maxlength="2" [ngClass]="{disabled: item.feeType!==776}" (change)="ticketPreview()">
+              </td>
+              <td>
+                <div>
+                  <p-radioButton name="payee{{i}}" [(ngModel)]="item.modeType" value="1" label="Organizer"
+                    inputId="organizer{{i}}" (click)="ticketPreview()">
+                  </p-radioButton>
+                  <p-radioButton name="payee{{i}}" [(ngModel)]="item.modeType" value="2" label="Buyer"
+                    (click)="ticketPreview()" inputId="buyer{{i}}">
+                  </p-radioButton>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3">
+          <strong>Money to Organizer</strong> <br>
+          Rs. {{paymentBreakup && paymentBreakup.organizerTotal}} <br>
+          <a href="javascript:void(0)" (click)="showDialog()">View Breakup</a> <br>
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-group">
     <label>Ticket Description</label>
-    <textarea pInputTextarea autoResize="autoResize" placeholder="Description" formControlName="description"></textarea>
+    <textarea pInputTextarea autoResize="autoResize" placeholder="Description" name="description"
+      [(ngModel)]="description"></textarea>
   </div>
   <div class="form-group">
-    <label>Message to Atendee</label>
-    <textarea pInputTextarea autoResize="autoResize" placeholder="Message" formControlName="msgForAtendee"></textarea>
+    <label>Message to Attendee</label>
+    <textarea pInputTextarea autoResize="autoResize" placeholder="Message" name="msgForAtendee"
+      [(ngModel)]="msgForAtendee"></textarea>
   </div>
   <div class="form-group button-group text-right">
     <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
       (click)="handleCancel()"></button>
     <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
   </div>
-</form>
-
-<p-dialog header="Payment Breakup" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
-    [draggable]="false" [resizable]="false">
-    <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
-        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. 
-        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, 
-        kind and benevolent to those who give respect,
-        but given to ruthless violence whenever anything stands against the good of the family.</p>
-        <p-footer>
-            <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
-            <button type="button" pButton icon="pi pi-times" (click)="display=false" label="No" class="ui-button-secondary"></button>
-        </p-footer>
+</div>
+<p-dialog header="Payment Breakup" [(visible)]="display" [modal]="true" [style]="{width: '400px'}" [maximizable]="true"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <table class="breakup-table">
+    <tr>
+      <td>
+        Ticket Price
+      </td>
+      <td class="text-right">
+        Rs. {{formControl.paymentCharge.value}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Service Fee
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.serviceTax}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Payment Gateway Fee
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.getwayfee}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        GST Charges
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.gst}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Affiliation Commission
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.affilation}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Amount to be paid by buyer
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.buyerTotal}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Amount to organizer
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.organizerTotal}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Amount to organizer (In case of affiliate)
+      </td>
+      <td class="text-right">
+        Rs. {{paymentBreakup.organizerTotal}}
+      </td>
+    </tr>
+  </table>
 </p-dialog>
-

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl, FormArray } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { HttpService, SharedService } from '../../../_service'
 import { first } from 'rxjs/operators';
@@ -17,6 +17,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AddTrainingTicketComponent implements OnInit {
   formElement: FormGroup;
+  ticketId = 0;
+  paymentDetails = [];
+  paymentBreakup:null;
   countryList = [];
   display: boolean;
   stateList = [];
@@ -46,6 +49,8 @@ export class AddTrainingTicketComponent implements OnInit {
   endDate = new FormControl();
   trainingData = [];
   displayNoRecord = false;
+  msgForAtendee = '';
+  description: '';
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
@@ -86,6 +91,7 @@ export class AddTrainingTicketComponent implements OnInit {
       endDate: ['', Validators.required],
       description: [''],
       msgForAtendee: [''],
+
       id: 0
     })
     if (callback) {
@@ -93,20 +99,32 @@ export class AddTrainingTicketComponent implements OnInit {
     }
   }
   get formControl() { return this.formElement.controls };
+
   getTrainingData = (id) => {
     let url = ApiPath.getTraining
     url = url.replace('{id}', id)
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.result) {
-        this.trainingBasicData = res.result
+        this.trainingBasicData = res.result;
+        this.ticektSaleMaxDate = new Date(this.trainingBasicData.endDate);
       }
+    })
+  }
+  ticketPreview = () => {
+    let url = ApiPath.ticketPreview;
+    let data ={
+      "totalAmount": this.formControl.paymentCharge.value,
+      "paymentDetails": this.paymentDetails
+    }
+  
+    this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
+      this.paymentBreakup=res.result
     })
   }
   getMaster = (url, masterCollection) => {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         this[masterCollection] = res.result
-        this.ticektSaleMaxDate = new Date(this.trainingBasicData.endDate);
       }
     })
   }
@@ -122,7 +140,20 @@ export class AddTrainingTicketComponent implements OnInit {
     this.formControl['ticketType'].setValue(event.value)
     if (event.value == 1) {
       this.formControl['paymentCharge'].setValue(0)
+    } else {
+      this.getTicketFee()
     }
+  }
+  getTicketFee = () => {
+    let url = ApiPath.ticketFee;
+    url = url.replace('{ticketId}', this.ticketId.toString())
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.paymentDetails = res.result;
+      } else {
+        this.paymentDetails = []
+      }
+    })
   }
   OnItemDeSelect(item: any) {
     this.formControl['ticketType'].setValue('')
@@ -180,6 +211,9 @@ export class AddTrainingTicketComponent implements OnInit {
       this.prevState = res.result;
       this.addTicketForm = true;
       let dataObj = res.result;
+      this.description = dataObj.description;
+      this.msgForAtendee = dataObj.msgForAtendee;
+      this.ticketId = dataObj.id
       Object.keys(dataObj).forEach(name => {
         if (this.formControl[name]) {
           if (name != 'address') {
@@ -211,6 +245,8 @@ export class AddTrainingTicketComponent implements OnInit {
     let postObj = {
       ...this.formElement.value
     }
+    postObj.description = this.description;
+    postObj.msgForAtendee = this.msgForAtendee;
     if (this.formElement.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
@@ -254,7 +290,6 @@ export class AddTrainingTicketComponent implements OnInit {
       this.submitted = true;
     }
   }
-
 
   showDialog() {
     this.display = true;
