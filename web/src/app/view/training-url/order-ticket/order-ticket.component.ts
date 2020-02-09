@@ -96,7 +96,7 @@ export class OrderTicketComponent implements OnInit {
           this.orderId = res['result']
           let msgArray = [
             {
-              mgs: res && res.responseMessege ? res.responseMessege + ' Now you can check your ordetail' : 'Order generated successfully. Now you can check your ordetail.',
+              mgs: res && res.responseMessege ? res.responseMessege + ' Now you can check your order detail' : 'Order generated successfully. Now you can check your order detail.',
               class: 'confirmMsg'
             },
           ]
