@@ -10,11 +10,13 @@ import { OrganizerUrlComponent } from './view/organizer-url/organizer-url.compon
 import { OrderTicketComponent } from './view/training-url/order-ticket/order-ticket.component';
 import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { ContactUsComponent } from './home/contact-us/contact-us.component';
 import { AuthGuard } from './_guards';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'trainingRequest/:id', component: RequestComponent, canActivate: [AuthGuard] },
   { path: 'trainingRequests', component: RequestListComponent, canActivate: [AuthGuard] },
+  { path: 'contact', component: ContactUsComponent },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule)

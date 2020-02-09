@@ -6,11 +6,19 @@ import { first } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-training-ticket',
-  templateUrl: './add-training-ticket.component.html'
+  templateUrl: './add-training-ticket.component.html',
+  styles: [`
+        @media screen and (max-width: 40em) {
+            :host ::ng-deep .ui-dialog {
+                width: 75vw !important;
+            }
+        }
+    `]
 })
 export class AddTrainingTicketComponent implements OnInit {
   formElement: FormGroup;
   countryList = [];
+  display: boolean;
   stateList = [];
   trainingBasicData = null;
   curentYear = (new Date()).getFullYear();
@@ -245,5 +253,10 @@ export class AddTrainingTicketComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       this.submitted = true;
     }
+  }
+
+
+  showDialog() {
+    this.display = true;
   }
 }

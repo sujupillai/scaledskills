@@ -684,11 +684,13 @@ textarea {
 .bgBlue {
   background: rgba(92, 116, 241, 0.92);
 }
+
 .btn-border-blue {
-  border : 1px rgba(92, 116, 241, 0.92) solid;
-  color:rgba(92, 116, 241, 1)
+  border: 1px rgba(92, 116, 241, 0.92) solid;
+  color: rgba(92, 116, 241, 1)
 }
-.btn.traiing-id{
+
+.btn.traiing-id {
   min-width: 200px;
 }
 
@@ -1242,10 +1244,10 @@ p-footer {
     justify-content: center;
 
     img {
-      width: 100%;
-      height: auto;
+      height: 100%;
       max-height: 100%;
       max-width: 100%;
+      width: 100%;
       display: inline-block;
 
     }
@@ -1870,10 +1872,13 @@ body .ui-button {
     height: 100%;
     width: 100%;
     text-align: center;
+    padding: 5px;
+
     img {
-      max-height: 100%!important;
+      max-height: 100% !important;
       max-width: 100%;
       width: auto;
+      height: 100%;
       vertical-align: bottom;
     }
   }
@@ -1957,4 +1962,35 @@ body .ui-dialog .ui-dialog-titlebar {
     height: 100%;
     position: relative;
   }
+}
+
+.payment-table {
+  padding-top: 20px;
+
+  table {
+    width: 100%;
+
+    tr {
+
+      td,
+      th {
+        width: 33%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 30px;
+        color:#000;
+        &:last-child{
+          padding-right: 0;
+        }
+      }
+      th{
+        font-weight: bold;
+      }
+
+    }
+  }
+}
+
+table {
+  width: 100%;
 }

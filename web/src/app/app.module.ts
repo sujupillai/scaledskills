@@ -30,6 +30,7 @@ import { OrderDetailComponent } from './view/training-url/order-detail/order-det
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { TitleService } from './title.service';
 import { EmbedVideo } from 'ngx-embed-video';
+import { ContactUsComponent } from './home/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EmbedVideo } from 'ngx-embed-video';
     TrainingFormComponent,
     OrderTicketComponent,
     OrderDetailComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
+    ContactUsComponent
   ],
   imports: [
     

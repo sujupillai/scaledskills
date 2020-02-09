@@ -87,6 +87,30 @@
       </div>
     </div>
   </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Ticket Sale starts from</label>
+        <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
+          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
+          [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
+        </p-calendar>
+        <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
+          Required Field.
+        </p>
+      </div>
+      <div class="col-sm-6">
+        <label>Ticket Sale Ends at</label>
+        <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
+          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
+          [minDate]="startDate.value" [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
+        </p-calendar>
+        <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
+          Required Field.
+        </p>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
@@ -117,38 +141,97 @@
       </div>
     </div>
   </div>
-  <!-- <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="pos-relative">
-          <label>Payment Gateway &amp; Services Charges </label>
-          <p-dropdown [options]="ticketType" placeholder="Select" optionLabel="Select"></p-dropdown>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-6">
-        <label>Ticket Sale starts from</label>
-        <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
-          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
-          [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
-        </p-calendar>
-        <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
-          Required Field.
-        </p>
-      </div>
-      <div class="col-sm-6">
-        <label>Ticket Sale Ends at</label>
-        <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
-          [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
-          [minDate]="startDate.value" [maxDate]="ticektSaleMaxDate" placeholder="DD/MM/YYYY">
-        </p-calendar>
-        <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
-          Required Field.
-        </p>
-      </div>
+  <div class="clearfix bgGray payment-table form-group">
+    <div class="col-sm-12 form-group">
+      <table class="payment-table">
+        <tr>
+          <th>
+            Type
+          </th>
+          <th>
+            Charge in %
+          </th>
+          <th>Who will pay</th>
+        </tr>
+        <tr>
+          <td>
+            Affiliate
+          </td>
+          <td>
+            <input type="text" placeholder="%" class="form-control">
+          </td>
+          <td>
+            <div>
+              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
+              </p-radioButton>
+              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
+              </p-radioButton>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Convenience Fee
+          </td>
+          <td>
+            <input type="text" placeholder="%" class="form-control">
+          </td>
+          <td>
+            <div>
+              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
+              </p-radioButton>
+              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
+              </p-radioButton>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Payment Gateway
+          </td>
+          <td>
+            <input type="text" placeholder="%" class="form-control">
+          </td>
+          <td>
+            <div>
+              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
+              </p-radioButton>
+              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
+              </p-radioButton>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GST
+          </td>
+          <td>
+            <input type="text" placeholder="%" class="form-control">
+          </td>
+          <td>
+            <div>
+              <p-radioButton name="accountType" value="1" label="Organizer" inputId="opt1">
+              </p-radioButton>
+              <p-radioButton name="accountType" value="2" label="Buyer" inputId="opt2">
+              </p-radioButton>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            <div class="">
+              <a (click)="showDialog()">View Breakup</a>  
+              
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
   <div class="form-group">
@@ -165,3 +248,17 @@
     <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
   </div>
 </form>
+
+<p-dialog header="Payment Breakup" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
+        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. 
+        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, 
+        kind and benevolent to those who give respect,
+        but given to ruthless violence whenever anything stands against the good of the family.</p>
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="display=false" label="Yes"></button>
+            <button type="button" pButton icon="pi pi-times" (click)="display=false" label="No" class="ui-button-secondary"></button>
+        </p-footer>
+</p-dialog>
+
