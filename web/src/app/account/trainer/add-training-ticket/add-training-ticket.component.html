@@ -208,7 +208,7 @@
 </div>
 <p-dialog header="Payment Breakup" [(visible)]="display" [modal]="true" [style]="{width: '400px'}" [maximizable]="true"
   [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-  <table class="breakup-table">
+  <table class="breakup-table" *ngIf="paymentBreakup">
     <tr>
       <td>
         Ticket Price

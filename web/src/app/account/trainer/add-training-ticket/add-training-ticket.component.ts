@@ -247,6 +247,7 @@ export class AddTrainingTicketComponent implements OnInit {
     }
     postObj.description = this.description;
     postObj.msgForAtendee = this.msgForAtendee;
+    postObj.ticketPaymentDetails=this.paymentDetails;
     if (this.formElement.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {

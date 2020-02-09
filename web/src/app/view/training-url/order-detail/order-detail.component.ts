@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService } from '../../../_service';
+import { HttpService, SharedService, AuthenticationService } from '../../../_service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-order-detail',
@@ -8,8 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OrderDetailComponent implements OnInit {
   urlString: string = '';
+  paymentUrl = ApiPath.placeOrder;
   orderDetail = null;
-  constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService,
+  constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, public _AuthenticationService: AuthenticationService,
     private _Router: Router, private _SharedService: SharedService) { }
   ngOnInit() {
     let url = ApiPath.orderDetail;
@@ -17,11 +18,12 @@ export class OrderDetailComponent implements OnInit {
       this.urlString = param.orderId;
       url = url.replace('{orderId}', this.urlString.toString())
       this.fetchOrderDetail(url)
+      this.paymentUrl = this.paymentUrl.replace('{orderId}', this.urlString.toString())
     });
   }
   fetchOrderDetail = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      this.orderDetail = res['result']
+      this.orderDetail = res['result'];
     })
   }
   _httpOrder = (orderAppId) => {
@@ -81,6 +83,31 @@ export class OrderDetailComponent implements OnInit {
       this._Router.navigate([returnUrl]);
     })
   }
+  postToExternalSite(orderAppId): void {
+    let url = ApiPath.placeOrder;
+    url = url.replace('{orderId}', this.urlString.toString())
+    const origin = window.location.origin;
+    let baseHref;
+    if (origin.indexOf("localhost") > -1) {
+      baseHref = 'http://testapi.scaledskills.com/';
+    } else {
+      baseHref = window.location.origin + '/';
+    }
+    const form = window.document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", baseHref + url);
+    form.setAttribute("target", "_self");
+    form.appendChild(this.createHiddenElement('orderAppId', orderAppId));
+    window.document.body.appendChild(form);
+    form.submit();
+  }
+  private createHiddenElement(name: string, value: string): HTMLInputElement {
+    const hiddenField = document.createElement('input');
+    hiddenField.setAttribute('name', name);
+    hiddenField.setAttribute('value', value);
+    hiddenField.setAttribute('type', 'hidden');
+    return hiddenField;
+  }
   handleSubmit = (orderAppId) => {
     let msgArray = [
       { mgs: 'Do you want to confirm your booking ?', class: 'confirmMsg' },
@@ -88,11 +115,11 @@ export class OrderDetailComponent implements OnInit {
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
       if (res) {
         if (this.orderDetail.items[0].totalPrice > 0) {
-          this.paymenMsg();
+          this.postToExternalSite(orderAppId);
+          // this.paymenMsg();
         } else {
           this._httpOrder(orderAppId)
         }
-
       }
     })
   }
