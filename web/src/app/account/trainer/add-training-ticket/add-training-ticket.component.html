@@ -168,10 +168,10 @@
               <td class="value-cell">
                 <input type="text" placeholder="Value" [(ngModel)]="item.amount" digitOnly class="form-control disabled"
                   maxlength="2" (change)="ticketPreview()">
-                <!-- [ngClass]="{disabled: item.feeType!==776}" -->
+                
               </td>
               <td>
-                <div>
+                <div [ngClass]="{disabled: item.feeType==776}">
                   <p-radioButton name="payee{{i}}" [(ngModel)]="item.modeType" value="1" label="Organizer"
                     inputId="organizer{{i}}" (click)="ticketPreview()">
                   </p-radioButton>
