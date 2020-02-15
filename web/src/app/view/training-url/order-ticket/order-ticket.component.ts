@@ -11,12 +11,12 @@ export class OrderTicketComponent implements OnInit {
   urlString: string = '';
   ticketList = []
   selectedTickets = [];
-  orderId = 'ORD-1229-TL-000000005';
+  orderId = '';
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     let url = ApiPath.trainingTicket;
     this._ActivatedRoute.params.subscribe((param: any) => {
-      this.urlString = param.url;
+      this.urlString = param.id;
       url = url.replace('{TrainingId}', this.urlString.toString())
       this.fetchTickets(url)
     });

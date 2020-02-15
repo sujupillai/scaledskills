@@ -33,9 +33,9 @@ const routes: Routes = [
   { path: 't/:url', component: TrainingUrlComponent },
   { path: 'p/:url', component: TrainerUrlComponent },
   { path: 'o/:url', component: OrganizerUrlComponent },
-  { path: 'placeOrder/:url', component: OrderTicketComponent },
+  { path: 't/:url/:id/booking', component: OrderTicketComponent },
   { path: 'orderDetail/:orderId', component: OrderDetailComponent },
-  { path: 'maintenance', component: MaintenanceComponent},
+  { path: 'maintenance', component: MaintenanceComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];
 @NgModule({

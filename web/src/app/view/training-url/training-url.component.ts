@@ -282,7 +282,7 @@ export class TrainingUrlComponent implements OnInit {
   registerForTraining = () => {
     localStorage.setItem('returnurl', this._Router.url);
     if (this.isLoggedIn) {
-      this._Router.navigate(['/placeOrder', this.trainingId])
+      this._Router.navigate(['/t/'+this.entity.url+'/'+this.trainingId+'/booking' ])
     } else {
       this.goToLogin();
     }
