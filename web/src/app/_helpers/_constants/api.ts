@@ -81,5 +81,6 @@ export const ApiPath = {
   'followTrainer': 'api/Home/P/f',
   /* tickets */
   'ticketFee':'api/Ticket/Fee/{ticketId}',
-  'ticketPreview':'api/Ticket/Preview'
+  'ticketPreview':'api/Ticket/Preview',
+  'orsersSummary':'api/Order/S/{orderId}',
 }

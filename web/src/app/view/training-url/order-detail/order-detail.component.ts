@@ -17,13 +17,22 @@ export class OrderDetailComponent implements OnInit {
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.orderId;
       url = url.replace('{orderId}', this.urlString.toString())
-      this.fetchOrderDetail(url)
+      this.fetchOrderDetail(url);
+      this.fetchOrderSummary();
       this.paymentUrl = this.paymentUrl.replace('{orderId}', this.urlString.toString())
     });
   }
   fetchOrderDetail = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      prompt('res',JSON.stringify(res))
       this.orderDetail = res['result'];
+    })
+  }
+  fetchOrderSummary=()=>{
+    let url = ApiPath.orsersSummary;
+    url = url.replace('{orderId}', this.urlString.toString())
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      
     })
   }
   _httpOrder = (orderAppId) => {
