@@ -10,6 +10,7 @@ export class OrderDetailComponent implements OnInit {
   urlString: string = '';
   paymentUrl = ApiPath.placeOrder;
   orderDetail = null;
+  orderSummaryData=null;
   constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, public _AuthenticationService: AuthenticationService,
     private _Router: Router, private _SharedService: SharedService) { }
   ngOnInit() {
@@ -24,7 +25,6 @@ export class OrderDetailComponent implements OnInit {
   }
   fetchOrderDetail = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      prompt('res',JSON.stringify(res))
       this.orderDetail = res['result'];
     })
   }
@@ -32,10 +32,11 @@ export class OrderDetailComponent implements OnInit {
     let url = ApiPath.orsersSummary;
     url = url.replace('{orderId}', this.urlString.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      
+      this.orderSummaryData=res['result']
     })
   }
   _httpOrder = (orderAppId) => {
+    debugger
     let url = ApiPath.placeOrder;
     url = url.replace('{orderId}', this.urlString.toString())
     this._HttpService.httpCall(url, 'POST', orderAppId, null).subscribe(res => {
@@ -118,6 +119,7 @@ export class OrderDetailComponent implements OnInit {
     return hiddenField;
   }
   handleSubmit = (orderAppId) => {
+    debugger
     let msgArray = [
       { mgs: 'Do you want to confirm your booking ?', class: 'confirmMsg' },
     ]
