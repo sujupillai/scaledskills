@@ -166,8 +166,9 @@
                   tooltipPosition="top"></i>
               </td>
               <td class="value-cell">
-                <input type="text" placeholder="Value" [(ngModel)]="item.amount" digitOnly class="form-control"
-                  maxlength="2" [ngClass]="{disabled: item.feeType!==776}" (change)="ticketPreview()">
+                <input type="text" placeholder="Value" [(ngModel)]="item.amount" digitOnly class="form-control disabled"
+                  maxlength="2" (change)="ticketPreview()">
+                <!-- [ngClass]="{disabled: item.feeType!==776}" -->
               </td>
               <td>
                 <div>

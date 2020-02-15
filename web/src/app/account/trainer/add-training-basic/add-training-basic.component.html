@@ -13,7 +13,7 @@
       <div class="flex vMiddle urlBox">
         <div class="fixed-input">{{baseUrl}}</div>
         <input type="text" formControlName="url" pInputText placeholder="Enter Here"
-          [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="updateUrl()">
+          [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="updateUrl()" (blur)="validateUrl()">
         <p class="msgError text-danger" *ngIf="formControl.url.invalid && (formControl.url.dirty || submitted)">
           <small *ngIf="formControl.url.hasError('required')">
             Required Field.

@@ -19,7 +19,7 @@ export class AddTrainingTicketComponent implements OnInit {
   formElement: FormGroup;
   ticketId = 0;
   paymentDetails = [];
-  paymentBreakup:null;
+  paymentBreakup: null;
   countryList = [];
   display: boolean;
   stateList = [];
@@ -91,7 +91,6 @@ export class AddTrainingTicketComponent implements OnInit {
       endDate: ['', Validators.required],
       description: [''],
       msgForAtendee: [''],
-
       id: 0
     })
     if (callback) {
@@ -99,7 +98,6 @@ export class AddTrainingTicketComponent implements OnInit {
     }
   }
   get formControl() { return this.formElement.controls };
-
   getTrainingData = (id) => {
     let url = ApiPath.getTraining
     url = url.replace('{id}', id)
@@ -112,13 +110,12 @@ export class AddTrainingTicketComponent implements OnInit {
   }
   ticketPreview = () => {
     let url = ApiPath.ticketPreview;
-    let data ={
+    let data = {
       "totalAmount": this.formControl.paymentCharge.value,
       "paymentDetails": this.paymentDetails
     }
-  
     this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
-      this.paymentBreakup=res.result
+      this.paymentBreakup = res.result
     })
   }
   getMaster = (url, masterCollection) => {
@@ -200,7 +197,7 @@ export class AddTrainingTicketComponent implements OnInit {
     this.formControl.endDate.setValue(dataObj.endDate);
   }
   setDropdown = (dataObj) => {
-    var ticketTypeObj = this.ticketTypeList.filter(x => x.value == dataObj.ticketType)
+    let ticketTypeObj = this.ticketTypeList.filter(x => x.value == dataObj.ticketType)
     this.selectedTicketType = ticketTypeObj;
     this.formControl['ticketTypeObj'].setValue(ticketTypeObj);
   }
@@ -211,6 +208,9 @@ export class AddTrainingTicketComponent implements OnInit {
       this.prevState = res.result;
       this.addTicketForm = true;
       let dataObj = res.result;
+      if (dataObj.ticketType == 2) {
+        this.getTicketFee()
+      }
       this.description = dataObj.description;
       this.msgForAtendee = dataObj.msgForAtendee;
       this.ticketId = dataObj.id
@@ -221,8 +221,20 @@ export class AddTrainingTicketComponent implements OnInit {
           }
         }
       });
+      debugger
+      /* himanshu */
+      if (dataObj.ticketType == 1) {
+        this.selectedTicketType = this.defaultList;
+        this.formControl['ticketTypeObj'].setValue(this.defaultList);
+      } else {
+        let data = [{
+          "text": "Paid",
+          "value": "2",
+        }]
+        this.selectedTicketType = data;
+        this.formControl['ticketTypeObj'].setValue(data);
+      }
       this.setDate(dataObj)
-      this.setDropdown(dataObj)
     })
   }
   handleCancel = () => {
@@ -247,7 +259,7 @@ export class AddTrainingTicketComponent implements OnInit {
     }
     postObj.description = this.description;
     postObj.msgForAtendee = this.msgForAtendee;
-    postObj.ticketPaymentDetails=this.paymentDetails;
+    postObj.ticketPaymentDetails = this.paymentDetails;
     if (this.formElement.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
@@ -291,7 +303,6 @@ export class AddTrainingTicketComponent implements OnInit {
       this.submitted = true;
     }
   }
-
   showDialog() {
     this.display = true;
   }
