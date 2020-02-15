@@ -30,6 +30,9 @@ export class OrderTicketComponent implements OnInit {
           x.isAdded = false;
           x.maxBooking = x.maxBooking ? x.maxBooking : x.availableQty
         })
+        this.ticketList[0].isAdded=true;
+        this.ticketList[0].orderQty=1;
+        this.selectedTickets = this.ticketList.filter(x => x.isAdded);
       }
     })
   }
