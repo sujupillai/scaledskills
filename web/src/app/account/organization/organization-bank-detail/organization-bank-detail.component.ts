@@ -48,7 +48,7 @@ export class OrganizationBankDetailComponent implements OnInit {
   }
   get formControl() { return this.formElement.controls }
   getBankDetail = () => {
-     let url= this._Router.url.indexOf('general/bank') >= 0?ApiPath.userBankDetail:ApiPath.organizationBankDetail;
+    let url = this._Router.url.indexOf('general/bank') >= 0 ? ApiPath.userBankDetail : ApiPath.organizationBankDetail;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
@@ -73,13 +73,13 @@ export class OrganizationBankDetailComponent implements OnInit {
     });
   }
   myUploader = (event, control) => {
+    debugger
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
     const formData = new FormData();
     formData.append('file', this.fileData);
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
       this.formControl[control].setValue(res.result)
-
     })
   }
   handleSubmit = () => {
@@ -92,7 +92,7 @@ export class OrganizationBankDetailComponent implements OnInit {
       // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
     } else {
-      let url= this._Router.url.indexOf('general/bank') >= 0?ApiPath.userBankDetail:ApiPath.organizationBankDetail;
+      let url = this._Router.url.indexOf('general/bank') >= 0 ? ApiPath.userBankDetail : ApiPath.organizationBankDetail;
       let postObj = {
         ...this.formElement.value
       }
@@ -104,7 +104,7 @@ export class OrganizationBankDetailComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
             this.getBankDetail()
           });
         } else {
