@@ -1,9 +1,4 @@
-<div class="error-wrap-alt">
-  <img src="../../../assets/images/maintenance.png" alt="">
-  <br>
-  <h1>We are updating our plateform with new features. We will be back shortly...</h1>
-</div>
-<!-- <form [formGroup]="orgBankDetailForm" autocomplete="off" novalidate>
+<form [formGroup]="formElement" autocomplete="off" novalidate>
   <div class="clearfix">
     <div class="row">
       <div class="col-sm-6">
@@ -61,7 +56,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="">GST Number <span class="required">*</span></label>
+          <label for="">GST Number</label>
           <input type="text" pInputText placeholder="GST Number" formControlName="gstNum" />
           <p class="msgError text-danger"
             *ngIf="formControl.gstNum.hasError('required') && (formControl.gstNum.dirty || submitted)">
@@ -77,9 +72,9 @@
           <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
             (uploadHandler)="myUploader($event, 'exemptionDocId')">
           </p-fileUpload>
-          <p class="msgError text-danger" *ngIf="formControl.exemptionDocId.value=='' && submitted">
+          <!-- <p class="msgError text-danger" *ngIf="formControl.exemptionDocId.value=='' && submitted">
             Required Field.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
@@ -90,9 +85,9 @@
           <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
             (uploadHandler)="myUploader($event, 'panCardDocId')">
           </p-fileUpload>
-          <p class="msgError text-danger" *ngIf="formControl.panCardDocId.value=='' && submitted">
+          <!-- <p class="msgError text-danger" *ngIf="formControl.panCardDocId.value=='' && submitted">
             Required Field.
-          </p>
+          </p> -->
         </div>
 
       </div>
@@ -104,9 +99,9 @@
           <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
             (uploadHandler)="myUploader($event, 'adharCardDocId')">
           </p-fileUpload>
-          <p class="msgError text-danger" *ngIf="formControl.adharCardDocId.value=='' && submitted">
+          <!-- <p class="msgError text-danger" *ngIf="formControl.adharCardDocId.value=='' && submitted">
             Required Field.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
@@ -117,9 +112,9 @@
           <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
             (uploadHandler)="myUploader($event, 'cancellationDocId')">
           </p-fileUpload>
-          <p class="msgError text-danger" *ngIf="formControl.cancellationDocId.value=='' && submitted">
+          <!-- <p class="msgError text-danger" *ngIf="formControl.cancellationDocId.value=='' && submitted">
             Required Field.
-          </p>
+          </p> -->
         </div>
       </div>
     </div>
@@ -133,15 +128,18 @@
             <p-radioButton name="accountType" value="2" label="Savings" formControlName="accountType" inputId="opt2">
             </p-radioButton>
           </div>
+          <p class="msgError text-danger" *ngIf="!formControl.accountType.value&& submitted">
+            Required Field.
+          </p>
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="text-danger">Bank details need to be verified</label>
-    </div>
+    </div> -->
     <div class="form-group button-group text-right">
       <button pButton type="button" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
       <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
-</form> -->
+</form>

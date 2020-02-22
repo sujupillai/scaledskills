@@ -80,7 +80,9 @@ export const ApiPath = {
   'followTraining': 'api/Home/T/f',
   'followTrainer': 'api/Home/P/f',
   /* tickets */
-  'ticketFee':'api/Ticket/Fee/{ticketId}',
-  'ticketPreview':'api/Ticket/Preview',
-  'orsersSummary':'api/Order/S/{orderId}',
+  'ticketFee': 'api/Ticket/Fee/{ticketId}',
+  'ticketPreview': 'api/Ticket/Preview',
+  'orsersSummary': 'api/Order/S/{orderId}',
+  'organizationBankDetail': 'api/Organization/BankDetail',
+  'userBankDetail': 'api/User/BankDetail'
 }
