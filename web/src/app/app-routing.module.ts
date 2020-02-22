@@ -11,6 +11,7 @@ import { OrderTicketComponent } from './view/training-url/order-ticket/order-tic
 import { OrderDetailComponent } from './view/training-url/order-detail/order-detail.component';
 import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
+import { PaymentErrorComponent } from './payment-error/payment-error.component';
 import { AuthGuard } from './_guards';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,8 +34,10 @@ const routes: Routes = [
   { path: 't/:url', component: TrainingUrlComponent },
   { path: 'p/:url', component: TrainerUrlComponent },
   { path: 'o/:url', component: OrganizerUrlComponent },
-  { path: 't/:url/:id/booking', component: OrderTicketComponent },
-  { path: 'orderDetail/:orderId', component: OrderDetailComponent },
+  { path: 't/:url/:id/booking', component: OrderTicketComponent},
+  { path: 'orderDetail/:orderId', component: OrderDetailComponent},
+  { path: 'paymentError', component: PaymentErrorComponent},
+  { path: 'orderDetail/:orderId', component: OrderDetailComponent},
   { path: 'maintenance', component: MaintenanceComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];

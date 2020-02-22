@@ -31,6 +31,7 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { TitleService } from './title.service';
 import { EmbedVideo } from 'ngx-embed-video';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
+import { PaymentErrorComponent } from './payment-error/payment-error.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ContactUsComponent } from './home/contact-us/contact-us.component';
     OrderTicketComponent,
     OrderDetailComponent,
     MaintenanceComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    PaymentErrorComponent
   ],
   imports: [
     

@@ -1837,6 +1837,9 @@ body .ui-button {
 .text-expire {
   color: red !important;
 }
+.clr-red{
+  color: red !important;
+}
 
 .hostedBy {
   font-weight: bold;
@@ -2034,5 +2037,13 @@ table {
     td{
       color: #000;
     }
+  }
+}
+.payment-error{
+  margin-top: 30px;
+  .bottom-container, .top-container{
+    border:1px #ccc solid;
+    padding: 35px;
+    margin:20px 0;
   }
 }
