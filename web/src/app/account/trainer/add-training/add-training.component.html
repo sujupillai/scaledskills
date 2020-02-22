@@ -12,10 +12,10 @@
             </a>
             <ul class="accordion-nav" [ngClass]="{active:active}">
               <li *ngFor="let link of routeLinks">
-                  <a [routerLink]="link.link" [routerLinkActive]="['activlink']">
-                    {{link.label}}
-                  </a>
-                </li>
+                <a [routerLink]="link.link" [routerLinkActive]="['activlink']">
+                  {{link.label}}
+                </a>
+              </li>
             </ul>
           </li>
           <li>

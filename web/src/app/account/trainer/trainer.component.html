@@ -5,25 +5,19 @@
       <div class="mat-accordion-plain content">
         <ul class="accordion-like-nav">
           <li>
-            <a class="flex v-center justifyCenter" routerLinkActive="active" [routerLink]="['profile']"
-              (click)="setActiveTab('1')">
-              Profile
-              <span class="glyphicon" [ngClass]="setActiveTabIndex== 1?'glyphicon-minus':'glyphicon-plus'"></span>
-            </a>
-            <ul class="accordion-nav" [ngClass]="{active: setActiveTabIndex==1}">
-              <li>
-                <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
-              </li>
-              <li>
-                <a routerLinkActive="active" [routerLink]="['profile/about']">About</a>
-              </li>
-              <li>
-                <a routerLinkActive="active" [routerLink]="['profile/certificate']">Certifications Earned</a>
-              </li>
-              <li>
-                <a routerLinkActive="active" [routerLink]="['profile/social']">Social Media</a>
-              </li>
-            </ul>
+            <span class="nav-heading">Profile</span>
+         </li>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
+          </li>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['profile/about']">About</a>
+          </li>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['profile/certificate']">Certifications Earned</a>
+          </li>
+          <li>
+            <a routerLinkActive="active" [routerLink]="['profile/social']">Social Media</a>
           </li>
           <li>
             <a [routerLink]="['/account']">
