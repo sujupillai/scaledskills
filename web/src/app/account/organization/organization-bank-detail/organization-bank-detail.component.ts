@@ -32,6 +32,7 @@ export class OrganizationBankDetailComponent implements OnInit {
       branchName: ['', Validators.required],
       ifscCode: ['', Validators.required],
       gstNum: [''],
+      upiNo:[''],
       exemptionDocId: [''],
       panCardDocId: [''],
       adharCardDocId: [''],

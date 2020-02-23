@@ -11,6 +11,7 @@ export class OrderTicketComponent implements OnInit {
   urlString: string = '';
   ticketList = []
   selectedTickets = [];
+  referalCode:'';
   orderId = '';
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
@@ -84,6 +85,7 @@ export class OrderTicketComponent implements OnInit {
       "address": "",
       "description": "",
       "totalAmount": 0,
+      'referalCode':'',
       "items": this.orderItem()
     }
     if (postObj.items.length > 0) {

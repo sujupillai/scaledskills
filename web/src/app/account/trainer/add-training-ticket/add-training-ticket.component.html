@@ -171,7 +171,8 @@
                 
               </td>
               <td>
-                <div [ngClass]="{disabled: item.feeType==776}">
+                <!-- [ngClass]="{disabled: item.feeType==776}" -->
+                <div>
                   <p-radioButton name="payee{{i}}" [(ngModel)]="item.modeType" value="1" label="Organizer"
                     inputId="organizer{{i}}" (click)="ticketPreview()">
                   </p-radioButton>
