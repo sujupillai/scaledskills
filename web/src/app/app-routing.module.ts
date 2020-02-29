@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'o/:url', component: OrganizerUrlComponent },
   { path: 't/:url/:id/booking', component: OrderTicketComponent},
   { path: 'orderDetail/:orderId', component: OrderDetailComponent},
-  { path: 'p/error', component: PaymentErrorComponent},
+  { path: 'order/failure', component: PaymentErrorComponent},
   { path: 'orderDetail/:orderId', component: OrderDetailComponent},
   { path: 'maintenance', component: MaintenanceComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
