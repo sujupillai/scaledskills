@@ -17,8 +17,8 @@ export class AddTrainingBasicComponent implements OnInit {
   organizationListValue = [];
   submitted: boolean = false;
   startDate = new FormControl();
-  curentYear=new Date().getFullYear();
-  yearRange=''
+  curentYear = new Date().getFullYear();
+  yearRange = ''
   endDate = new FormControl();
   settings = {};
   multiSettings = {};
@@ -45,7 +45,7 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   ngOnInit() {
     // this.getAllData();
-    this.yearRange=this.curentYear+':'+this.curentYear+5;
+    this.yearRange = this.curentYear + ':' + this.curentYear + 5;
     this.getTimeZone();
     this.createForm(() => {
       this.startDate.setValue('');

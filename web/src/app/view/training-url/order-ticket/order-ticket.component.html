@@ -52,15 +52,15 @@
     <div class="form-group">
       <div class="row">
         <div class="col-sm-3">
-          <label for="">Referral Code</label>
-          <input type="text" class="form-control" [(ngModel)]="referalCode" placeholder="Referral Code">
+          <label for="">Referral Number</label>
+          <input type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code" digitOnly />
         </div>
       </div>
     </div>
   </div>
   <div class="form-group clearfix button-group text-right">
-    <button [ngClass]="selectedTickets.length==0?'disabled':''" pButton type="button" label="Submit" class="ui-button-raised"
-      (click)="handleSubmit()"></button>
+    <button [ngClass]="selectedTickets.length==0?'disabled':''" pButton type="button" label="Submit"
+      class="ui-button-raised" (click)="handleSubmit()"></button>
     <button pButton type="button" (click)="backClicked()" label="Cancel"
       class="ui-button-raised ui-button-danger"></button>
   </div>
