@@ -26,14 +26,11 @@
   </p>
 </div>
 <div class="form-group button-group text-right">
-  <span class="btn-action" [ngClass]="{disabled: !this.isAccept}">
-    <button type="button" class="btn btn-default" (click)="handleSave(0)">Save</button>
-  </span>
   <span class="btn-action">
     <button type="button" class="btn btn-default" (click)="viewProfile()">Preview</button>
   </span>
   <span class="btn-action" [ngClass]="{disabled: !this.isAccept}">
-    <button type="button" class="btn btn-default" (click)="handleSave(0)">Go Live</button>
+    <button type="button" class="btn btn-success" (click)="handleSave(1)">Go Live</button>
   </span>
   <div>
     <p class="msgError text-danger" *ngIf="!this.isAccept && submitted">

@@ -53,11 +53,18 @@ export class TrainingFinalComponent implements OnInit {
       status: status
     }
     if (this.isAccept) {
-      prompt('data', JSON.stringify(data))
-      // this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
-      //   debugger;
+      this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
+        let msgArray = [
+          { mgs: 'Training is published', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
+          if (res == 1) {
+            let val = window.location.origin + '/p/' + this.entity.profileUrl;
+            window.open(val, "_blank");
+          }
+        })
 
-      // })
+      })
     } else {
       this.submitted = true
     }
