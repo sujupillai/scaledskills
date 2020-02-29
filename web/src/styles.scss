@@ -317,7 +317,7 @@ p+p {
 //
 p-radiobutton~p-radiobutton,
 .ui-button-raised~.ui-button-raised,
-button~button {
+button~button, .btn-action ~  .btn-action {
   margin-left: 15px;
 }
 .main-holder-section {

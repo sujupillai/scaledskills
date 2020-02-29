@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpService, SharedService } from 'src/app/_service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiPath } from 'src/app/_helpers/_constants/api';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-training-final',
   templateUrl: './training-final.component.html',
 })
 export class TrainingFinalComponent implements OnInit {
-  isPaidPromotions: boolean = false;
-  isAggree: boolean = false;
+  isPromotion: boolean = false;
+  isAccept: boolean = false;
+  submitted: boolean = false;
+  entity = null;
   trainingId = 0;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
@@ -26,7 +30,42 @@ export class TrainingFinalComponent implements OnInit {
         })
         return
       } else {
+        this.getProfileData()
       }
     });
   }
+
+  getProfileData = () => {
+    let url = ApiPath.trainer;
+    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
+      if (res.responseCode == 200) {
+        this.entity = res.result;
+      }
+    })
+  }
+  handleSave = (status) => {
+    let url = ApiPath.publish;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
+    let data = {
+      isPromotion: this.isPromotion,
+      isAccept: this.isAccept,
+      trainingId: this.trainingId,
+      status: status
+    }
+    if (this.isAccept) {
+      prompt('data', JSON.stringify(data))
+      // this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
+      //   debugger;
+
+      // })
+    } else {
+      this.submitted = true
+    }
+
+  }
+  viewProfile() {
+    let val = window.location.origin + '/p/' + this.entity.profileUrl;
+    window.open(val, "_blank");
+  }
+
 }
