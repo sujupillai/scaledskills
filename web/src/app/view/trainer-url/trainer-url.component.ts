@@ -193,7 +193,7 @@ export class TrainerUrlComponent implements OnInit {
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;
     let postObj = {
-      "trainingId": this.trainerId,
+      "id": this.trainerId,
       "pageType": "P",
       "searchText": "",
       "pageSize": 500,
