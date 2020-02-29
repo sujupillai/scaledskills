@@ -82,7 +82,8 @@ export const ApiPath = {
   /* tickets */
   'ticketFee': 'api/Ticket/Fee/{ticketId}',
   'ticketPreview': 'api/Ticket/Preview',
-  'orsersSummary': 'api/Order/S/{orderId}',
+  'ordersSummary': 'api/Order/S/{orderId}',
+  'orderCancel': 'api/Order/c/{orderId}',
   'organizationBankDetail': 'api/Organization/BankDetail',
   'userBankDetail': 'api/User/BankDetail'
 }

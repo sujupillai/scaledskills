@@ -73,7 +73,7 @@
   <div class="form-group clearfix button-group text-right">
     <button *ngIf="orderDetail && orderDetail.orderStatusName =='Complete'" type="button" class="btn btn-primary"
       [routerLink]="['/']">Back to home</button>
-    <button *ngIf="orderDetail && orderDetail.orderStatusName =='Open'" type="button"
+    <button (click)="cancelOrder(orderDetail.orderAppId)" *ngIf="orderDetail && orderDetail.orderStatusName =='Open'" type="button"
       class="btn btn-danger">Cancel</button>
     <button *ngIf="orderDetail && orderDetail.orderStatusName =='Open'" type="button" class="btn btn-primary"
       (click)="handleSubmit(orderDetail.orderAppId)">Confirm</button>

@@ -29,14 +29,13 @@ export class OrderDetailComponent implements OnInit {
     })
   }
   fetchOrderSummary=()=>{
-    let url = ApiPath.orsersSummary;
+    let url = ApiPath.ordersSummary;
     url = url.replace('{orderId}', this.urlString.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       this.orderSummaryData=res['result']
     })
   }
   _httpOrder = (orderAppId) => {
-    debugger
     let url = ApiPath.placeOrder;
     url = url.replace('{orderId}', this.urlString.toString())
     this._HttpService.httpCall(url, 'POST', orderAppId, null).subscribe(res => {
@@ -119,7 +118,6 @@ export class OrderDetailComponent implements OnInit {
     return hiddenField;
   }
   handleSubmit = (orderAppId) => {
-    debugger
     let msgArray = [
       { mgs: 'Do you want to confirm your booking ?', class: 'confirmMsg' },
     ]
@@ -131,6 +129,53 @@ export class OrderDetailComponent implements OnInit {
         } else {
           this._httpOrder(orderAppId)
         }
+      }
+    })
+  }
+  
+
+  _httpOrderCancel = (orderAppId) => {
+    let url = ApiPath.orderCancel;
+    url = url.replace('{orderId}', this.urlString.toString())
+    this._HttpService.httpCall(url, 'POST', orderAppId, null).subscribe(res => {
+      if (res && res.responseCode == 406) {
+        let msgArray = [
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
+      } else if (res && res.responseCode == 200) {
+        let msgArray = [
+          {
+            mgs: 'Your booking has been canceled.',
+            class: 'confirmMsg'
+          },
+        ]
+        this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
+          let returnUrl = localStorage.getItem('returnurl') || '/';
+          this._Router.navigate([returnUrl]);
+        })
+      } else {
+        let msgArray = [
+          { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+      }
+    }, error => {
+      let msgArray = [
+        { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+      ]
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+    })
+  }
+
+
+  cancelOrder=(orderAppId)=>{
+    let msgArray = [
+      { mgs: 'Are you sure to cancel your order ?', class: 'confirmMsg' },
+    ]
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
+      if (res) {
+       alert(res)
       }
     })
   }
