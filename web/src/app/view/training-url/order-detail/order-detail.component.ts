@@ -10,7 +10,7 @@ export class OrderDetailComponent implements OnInit {
   urlString: string = '';
   paymentUrl = ApiPath.placeOrder;
   orderDetail = null;
-  orderSummaryData=null;
+  orderSummaryData = null;
   constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, public _AuthenticationService: AuthenticationService,
     private _Router: Router, private _SharedService: SharedService) { }
   ngOnInit() {
@@ -28,11 +28,11 @@ export class OrderDetailComponent implements OnInit {
       this.orderDetail = res['result'];
     })
   }
-  fetchOrderSummary=()=>{
+  fetchOrderSummary = () => {
     let url = ApiPath.ordersSummary;
     url = url.replace('{orderId}', this.urlString.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      this.orderSummaryData=res['result']
+      this.orderSummaryData = res['result']
     })
   }
   _httpOrder = (orderAppId) => {
@@ -132,7 +132,7 @@ export class OrderDetailComponent implements OnInit {
       }
     })
   }
-  
+
 
   _httpOrderCancel = (orderAppId) => {
     let url = ApiPath.orderCancel;
@@ -168,15 +168,18 @@ export class OrderDetailComponent implements OnInit {
     })
   }
 
-
-  cancelOrder=(orderAppId)=>{
+  cancelOrder = (orderAppId) => {
     let msgArray = [
       { mgs: 'Are you sure to cancel your order ?', class: 'confirmMsg' },
     ]
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
       if (res) {
-       alert(res)
+        this._httpOrderCancel(orderAppId)
       }
     })
+  }
+  backToHome = () => {
+    let returnUrl = localStorage.getItem('returnurl') || '/';
+    this._Router.navigate([returnUrl]);
   }
 }

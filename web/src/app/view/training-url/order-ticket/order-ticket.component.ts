@@ -77,7 +77,6 @@ export class OrderTicketComponent implements OnInit {
   backClicked = () => {
     let returnUrl = localStorage.getItem('returnurl') || '/';
     this._Router.navigate([returnUrl]);
-    // this._location.back();
   }
   handleSubmit = () => {
     let postObj = {
@@ -99,15 +98,7 @@ export class OrderTicketComponent implements OnInit {
         } else if (res && res.responseCode == 200) {
           /* success  */
           this.orderId = res['result']
-          let msgArray = [
-            {
-              mgs: res && res.responseMessege ? res.responseMessege + ' Now you can check your order detail' : 'Order generated successfully. Now you can check your order detail.',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
-            this._Router.navigate(['/orderDetail', this.orderId])
-          })
+          this._Router.navigate(['/orderDetail', this.orderId])
         } else {
           /* any other error */
           let msgArray = [
