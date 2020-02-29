@@ -32,7 +32,7 @@ export class OrganizationBankDetailComponent implements OnInit {
       branchName: ['', Validators.required],
       ifscCode: ['', Validators.required],
       gstNum: [''],
-      upiNo:[''],
+      upi:[''],
       exemptionDocId: [''],
       panCardDocId: [''],
       adharCardDocId: [''],
@@ -41,7 +41,7 @@ export class OrganizationBankDetailComponent implements OnInit {
       panCardDocUrl: [''],
       adharCardDocUrl: [''],
       cancellationDocUrl: [''],
-      id: [''],
+      id: [0],
     })
     if (callback) {
       callback()
@@ -74,7 +74,6 @@ export class OrganizationBankDetailComponent implements OnInit {
     });
   }
   myUploader = (event, control) => {
-    debugger
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
     const formData = new FormData();
@@ -84,7 +83,6 @@ export class OrganizationBankDetailComponent implements OnInit {
     })
   }
   handleSubmit = () => {
-    debugger
     if (this.formElement.invalid) {
       this.submitted = true;
       let msgArray = [
