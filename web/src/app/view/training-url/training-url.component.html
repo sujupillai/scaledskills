@@ -70,7 +70,7 @@
             <a class="cursor-pointer" (click)="userNavigate()" *ngIf="entity && entity.isDisplayFollow">Hosted By
               {{entity['userName']}}</a>
             <span class="joinbtn text-primary" [ngClass]="entity.isFollow?'no-cursor':''" (click)="hendleFollowMe()"
-              *ngIf="entity && !entity.isDisplayFollow">
+              *ngIf="entity && entity.isDisplayFollow">
               &nbsp;<i class="fa fa-user-plus"
                 aria-hidden="true"></i>&nbsp;{{isLoggedIn && entity.isFollow?'Following':'Follow'}}</span>
           </p>
