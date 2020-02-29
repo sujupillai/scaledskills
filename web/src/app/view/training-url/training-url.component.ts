@@ -12,8 +12,8 @@ import { Title } from "@angular/platform-browser";
 })
 export class TrainingUrlComponent implements OnInit {
   regTrainers = [];
-  reviewDisplay=false;
-  reviewContent=''
+  reviewDisplay = false;
+  reviewContent = ''
   currentTime = new Date();
   totalTrainer;
   avgRating = 0;
@@ -194,7 +194,7 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   showReviewDialog(content) {
-    this.reviewContent=content;
+    this.reviewContent = content;
     this.reviewDisplay = true;
   }
   openMessageDialog = (dialogConfig, dialogHeader, component) => {
@@ -282,7 +282,7 @@ export class TrainingUrlComponent implements OnInit {
   registerForTraining = () => {
     localStorage.setItem('returnurl', this._Router.url);
     if (this.isLoggedIn) {
-      this._Router.navigate(['/t/'+this.entity.url+'/'+this.trainingId+'/booking' ])
+      this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'])
     } else {
       this.goToLogin();
     }
@@ -356,7 +356,7 @@ export class TrainingUrlComponent implements OnInit {
     }
 
   }
-  
+
   copyToClipboard = () => {
     let url = origin + this._Router.url;
     document.addEventListener('copy', (e: ClipboardEvent) => {
@@ -370,5 +370,14 @@ export class TrainingUrlComponent implements OnInit {
     let val = window.location.origin + '/' + prefix + '/' + url;
     window.open(val, "_blank");
   }
-  
+  userNavigate = () => {
+    if (this.entity.hostedBy == 1) {
+      let val = window.location.origin + '/p/' + this.entity.userUrl;
+      window.open(val, "_blank");
+    } else {
+      let val = window.location.origin + '/o/' + this.entity.userUrl;
+      window.open(val, "_blank");
+    }
+  }
+
 }
