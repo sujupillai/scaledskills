@@ -221,8 +221,6 @@ export class AddTrainingTicketComponent implements OnInit {
           }
         }
       });
-      debugger
-      /* himanshu */
       if (dataObj.ticketType == 1) {
         this.selectedTicketType = this.defaultList;
         this.formControl['ticketTypeObj'].setValue(this.defaultList);

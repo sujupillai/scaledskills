@@ -168,7 +168,6 @@ export class AddTrainingLocationComponent implements OnInit {
         }
       }
     });
-    debugger
     if (this.modeType == 1) {
       this.isOnlineDetailsVisible = false;
       this.setAddress(this.entity, formElement)
