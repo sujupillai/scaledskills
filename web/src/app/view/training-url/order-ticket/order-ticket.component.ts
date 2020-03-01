@@ -108,24 +108,24 @@ export class OrderTicketComponent implements OnInit {
     }
     if (!this.submitted) {
       let url = ApiPath.orderTicket
-      // this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      //   if (res && res.responseCode == 406) {
-      //     let msgArray = [
-      //       { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-      //     ]
-      //     this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
-      //   } else if (res && res.responseCode == 200) {
-      //     /* success  */
-      //     this.orderId = res['result']
-      //     this._Router.navigate(['/orderDetail', this.orderId])
-      //   } else {
-      //     /* any other error */
-      //     let msgArray = [
-      //       { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-      //     ]
-      //     this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-      //   }
-      // })
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        if (res && res.responseCode == 406) {
+          let msgArray = [
+            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
+        } else if (res && res.responseCode == 200) {
+          /* success  */
+          this.orderId = res['result']
+          this._Router.navigate(['/orderDetail', this.orderId])
+        } else {
+          /* any other error */
+          let msgArray = [
+            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+          ]
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        }
+      })
     }
   }
 }
