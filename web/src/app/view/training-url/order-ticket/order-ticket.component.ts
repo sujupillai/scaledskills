@@ -88,7 +88,6 @@ export class OrderTicketComponent implements OnInit {
       'referralCode': this.referralCode,
       "items": this.orderItem()
     }
-    debugger
     if(postObj.referralCode){
       if(this.referralCode.length!=10){
         this.submitted=true

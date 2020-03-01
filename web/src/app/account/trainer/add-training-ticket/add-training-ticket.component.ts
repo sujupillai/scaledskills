@@ -141,7 +141,6 @@ export class AddTrainingTicketComponent implements OnInit {
     }
   }
   getTicketFee = () => {
-    debugger
     let url = ApiPath.ticketFee;
     url = url.replace('{ticketId}', this.ticketId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -212,8 +211,8 @@ export class AddTrainingTicketComponent implements OnInit {
       this.addTicketForm = true;
       let dataObj = res.result;
       this.description = dataObj.description;
-      this.ticketId = dataObj.id
-      debugger
+      this.ticketId = dataObj.id;
+
       if (dataObj.ticketType == 2) {
         this.getTicketFee()
       }
@@ -234,8 +233,10 @@ export class AddTrainingTicketComponent implements OnInit {
         }]
         this.selectedTicketType = data;
         this.formControl['ticketTypeObj'].setValue(data);
+        this.ticketPreview();
       }
       this.setDate(dataObj)
+
     })
   }
   handleCancel = () => {
