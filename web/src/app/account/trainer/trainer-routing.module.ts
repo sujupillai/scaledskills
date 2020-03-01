@@ -50,7 +50,7 @@ const routes = [
       { path: 'questions', component: AddTrainingQuestionComponent },
       { path: 'feedback', component: AddTrainingFeedbackComponent },
       { path: 'promotions', component: AddTrainingPromotionsComponent },
-      { path: 'settings', component: AddTrainingSettingsComponent },
+      // { path: 'settings', component: AddTrainingSettingsComponent },
       { path: 'addTrainer', component: AddTrainerComponent },
       { path: 'publish', component: TrainingFinalComponent },
     ],

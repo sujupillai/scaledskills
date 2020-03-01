@@ -30,15 +30,15 @@ export class TrainingFinalComponent implements OnInit {
         })
         return
       } else {
-        this.getProfileData()
+        this.getData(this.trainingId)
       }
     });
   }
-
-  getProfileData = () => {
-    let url = ApiPath.trainer;
-    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
-      if (res.responseCode == 200) {
+  getData = (id) => {
+    let url = ApiPath.getTraining
+    url = url.replace('{id}', id)
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res.result) {
         this.entity = res.result;
       }
     })
@@ -54,25 +54,30 @@ export class TrainingFinalComponent implements OnInit {
     }
     if (this.isAccept) {
       this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
-        let msgArray = [
-          { mgs: 'Training is published', class: 'confirmMsg' },
-        ]
-        this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
-          if (res == 1) {
-            let val = window.location.origin + '/p/' + this.entity.profileUrl;
-            window.open(val, "_blank");
-          }
-        })
-
+        if (res && res.responseCode == 200) {
+          let msgArray = [
+            { mgs: 'Training is published', class: 'confirmMsg' },
+          ]
+          this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
+            if (res == 1) {
+              let val = window.location.origin + '/t/' + this.entity.url;
+              window.open(val, "_blank");
+            }
+          })
+        } else {
+          let msgArray = [
+            { mgs: res.responseMessege, class: 'confirmMsg' },
+          ]
+          this._SharedService.dialogConfig(msgArray, true, true, false, 'OKAY', 'CANCEL', false, 'Alert').subscribe(res => {
+          })
+        }
       })
     } else {
       this.submitted = true
     }
-
   }
   viewProfile() {
-    let val = window.location.origin + '/p/' + this.entity.profileUrl;
+    let val = window.location.origin + '/t/' + this.entity.url;
     window.open(val, "_blank");
   }
-
 }

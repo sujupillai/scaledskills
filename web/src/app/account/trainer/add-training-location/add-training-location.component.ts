@@ -92,7 +92,7 @@ export class AddTrainingLocationComponent implements OnInit {
         street: [''],
         countryId: ['', Validators.required],
         countryObj: [],
-        stateId: ['', Validators.required],
+        stateId: [''],
         stateObj: [''],
         city: ['', Validators.required],
       }),
@@ -172,7 +172,7 @@ export class AddTrainingLocationComponent implements OnInit {
       this.isOnlineDetailsVisible = false;
       this.setAddress(this.entity, formElement)
     }
-    else{
+    else {
       this.isOnlineDetailsVisible = this.entity['isOnlineDetailsVisible'];
     }
   }
@@ -195,7 +195,7 @@ export class AddTrainingLocationComponent implements OnInit {
   submitHttpReq = (postObj, formCtrl, formElement) => {
     let url = ApiPath.trainingLocation;
     url = url.replace('{TrainingId}', this.trainingId.toString())
-    postObj.isOnlineDetailsVisible = this.modeType==1?false:this.isOnlineDetailsVisible;
+    postObj.isOnlineDetailsVisible = this.modeType == 1 ? false : this.isOnlineDetailsVisible;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       if (res && res.responseCode == 406) {
         let msgArray = [

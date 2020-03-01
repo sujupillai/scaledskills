@@ -56,7 +56,7 @@ export class OrgBasicComponent implements OnInit {
         street: [''],
         countryId: ['', Validators.required],
         countryObj: [],
-        stateId: ['', Validators.required],
+        stateId: [''],
         stateObj: [''],
         city: ['', Validators.required],
       }),

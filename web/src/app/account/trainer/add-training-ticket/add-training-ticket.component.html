@@ -165,12 +165,11 @@
                   pTooltip="Affiliate marketing is the process of earning income every time you promote someone elses products or services. If you generate a sale for the company, you get paid. If you don't generate a sale, you do not get paid."
                   tooltipPosition="top"></i>
               </td>
-              <td class="value-cell">
+              <td class="value-cell" [ngClass]="{disabled: item.feeType!=776}">
                 <input type="text" placeholder="Value" [(ngModel)]="item.amount" digitOnly class="form-control"
                   maxlength="2" (change)="ticketPreview()">
               </td>
               <td>
-                <!-- [ngClass]="{disabled: item.feeType==776}" -->
                 <div>
                   <p-radioButton name="payee{{i}}" [(ngModel)]="item.modeType" value="1" label="Organizer"
                     inputId="organizer{{i}}" (click)="ticketPreview()">
@@ -196,11 +195,11 @@
     <textarea pInputTextarea autoResize="autoResize" placeholder="Description" name="description"
       [(ngModel)]="description"></textarea>
   </div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label>Message to Attendee</label>
     <textarea pInputTextarea autoResize="autoResize" placeholder="Message" name="msgForAtendee"
       [(ngModel)]="msgForAtendee"></textarea>
-  </div>
+  </div> -->
   <div class="form-group button-group text-right">
     <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
       (click)="handleCancel()"></button>
@@ -261,14 +260,6 @@
     <tr>
       <td>
         Amount to organizer
-      </td>
-      <td class="text-right">
-        Rs. {{paymentBreakup.organizerTotal}}
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Amount to organizer (In case of affiliate)
       </td>
       <td class="text-right">
         Rs. {{paymentBreakup.organizerTotal}}

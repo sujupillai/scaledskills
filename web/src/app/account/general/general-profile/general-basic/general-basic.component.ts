@@ -70,7 +70,7 @@ export class GeneralBasicComponent implements OnInit {
         street: [''],
         countryId: ['', Validators.required],
         countryObj: [],
-        stateId: ['', Validators.required],
+        stateId: [''],
         stateObj: [''],
         city: ['', Validators.required],
       }),

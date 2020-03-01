@@ -72,7 +72,7 @@
   </div>
   <div class="form-group clearfix button-group text-right">
     <button *ngIf="orderDetail && orderDetail.orderStatusName =='Complete'" type="button" class="btn btn-primary"
-      (click)="backToHome()">Back to home</button>
+      (click)="backToHome()">Back to training</button>
     <button (click)="cancelOrder(orderDetail.orderAppId)" *ngIf="orderDetail && orderDetail.orderStatusName =='Open'"
       type="button" class="btn btn-danger">Cancel</button>
     <button *ngIf="orderDetail && orderDetail.orderStatusName =='Open'" type="button" class="btn btn-primary"

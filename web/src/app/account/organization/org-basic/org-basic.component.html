@@ -58,16 +58,10 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="">State <span class="required">*</span></label>
+            <label for="">State</label>
             <angular2-multiselect class="form-control" [data]="stateList" [(ngModel)]="selectedState"
               [settings]="settings" formControlName="stateObj" (onSelect)="onChangeState($event)"
               (onDeSelect)="OnStateDeSelect($event)"></angular2-multiselect>
-              <p class="msgError text-danger"
-              *ngIf="formElement.get(['address', 'stateId']).invalid && (formElement.get(['address', 'stateId']).dirty || submitted)">
-              <small *ngIf="formElement.get(['address', 'stateId']).hasError('required')">
-                Required Field.
-              </small>
-            </p>
           </div>
         </div>
         <div class="col-sm-6">

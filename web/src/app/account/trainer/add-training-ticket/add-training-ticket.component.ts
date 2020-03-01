@@ -49,7 +49,6 @@ export class AddTrainingTicketComponent implements OnInit {
   endDate = new FormControl();
   trainingData = [];
   displayNoRecord = false;
-  msgForAtendee = '';
   description: '';
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
@@ -212,7 +211,6 @@ export class AddTrainingTicketComponent implements OnInit {
         this.getTicketFee()
       }
       this.description = dataObj.description;
-      this.msgForAtendee = dataObj.msgForAtendee;
       this.ticketId = dataObj.id
       Object.keys(dataObj).forEach(name => {
         if (this.formControl[name]) {
@@ -256,7 +254,6 @@ export class AddTrainingTicketComponent implements OnInit {
       ...this.formElement.value
     }
     postObj.description = this.description;
-    postObj.msgForAtendee = this.msgForAtendee;
     postObj.ticketPaymentDetails = this.paymentDetails;
     if (this.formElement.valid) {
       this.submitted = false;

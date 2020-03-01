@@ -49,11 +49,16 @@
         </p-card>
       </div>
     </div>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-3">
-          <label for="">Referral Number</label>
-          <input type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code" digitOnly />
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="">Referral Mobile Number (10 digit) <i class="fa fa-info-circle" aria-hidden="true"
+              pTooltip="Applicable in India only" tooltipPosition="top"></i></label>
+          <input type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code" digitOnly
+            maxlength="10" />
+          <p class="msgError text-danger" *ngIf="submitted && referralCode && referralCode.length!=10">
+            Referral number should be 10 digit.
+          </p>
         </div>
       </div>
     </div>
