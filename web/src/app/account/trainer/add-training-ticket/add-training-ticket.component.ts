@@ -149,6 +149,7 @@ export class AddTrainingTicketComponent implements OnInit {
         this.paymentDetails.map(x => {
           x.ticketId = this.ticketId
         })
+        this.ticketPreview();
       } else {
         this.paymentDetails = []
       }
@@ -233,7 +234,6 @@ export class AddTrainingTicketComponent implements OnInit {
         }]
         this.selectedTicketType = data;
         this.formControl['ticketTypeObj'].setValue(data);
-        this.ticketPreview();
       }
       this.setDate(dataObj)
 
