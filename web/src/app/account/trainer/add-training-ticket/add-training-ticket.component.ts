@@ -141,11 +141,15 @@ export class AddTrainingTicketComponent implements OnInit {
     }
   }
   getTicketFee = () => {
+    debugger
     let url = ApiPath.ticketFee;
-    url = url.replace('{ticketId}', this.ticketId.toString())
+    url = url.replace('{ticketId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.paymentDetails = res.result;
+        this.paymentDetails.map(x=>{
+          x.ticketId=this.trainingId
+        })
       } else {
         this.paymentDetails = []
       }
