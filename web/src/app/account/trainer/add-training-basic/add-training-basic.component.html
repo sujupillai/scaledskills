@@ -35,7 +35,7 @@
           <div class="form-group">
             <label for="">Training For <span class="required">*</span></label>
             <angular2-multiselect class="form-control" [data]="trainingForList" [(ngModel)]="trainingForValue"
-              [settings]="settings" formControlName="hostedByObj" (onSelect)="onChangeHostedBy($event, hostedBy)"
+              [settings]="settings" formControlName="hostedByObj" (onSelect)="onChangeHostedBy($event, 'hostedBy')"
               (onDeSelect)="OnDeSelect($event)">
             </angular2-multiselect>
             <p class="msgError text-danger"

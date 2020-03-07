@@ -56,7 +56,7 @@
               pTooltip="Applicable in India only" tooltipPosition="top"></i></label>
           <input type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Mobile Number" digitOnly
             maxlength="10" />
-          <p class="msgError text-danger" *ngIf="submitted && referralCode && referralCode.length!=10">
+          <p class="msgError text-danger" *ngIf="submitted && referralCode && referralCode['length']!=10">
             Referral number should be 10 digit.
           </p>
         </div>

@@ -8,6 +8,7 @@ import { HttpService, SharedService } from '../../../_service'
 })
 export class AddTrainingPromotionsComponent implements OnInit {
   form: FormGroup;
+  commission=[];
   constructor(private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _HttpService: HttpService) { }
   optionArray = [];
   ngOnInit() {

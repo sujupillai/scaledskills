@@ -162,15 +162,14 @@ export class AddTrainingBasicComponent implements OnInit {
       this.urlConfig.vrlValidationMsg = this.urlConfig.isUrlValid ? 'Url is available.' : 'Url is already used with other.';
     })
   }
-  onChangeHostedBy(event) {
+  onChangeHostedBy(event, key) {
     let id = event.value
     if (id == 2) {
-      /* display organization */
       this.getOrgData()
     } else {
       this.organizationListMaster = [];
     }
-    this.trainingBasicForm.get('hostedBy').setValue(event.value)
+    this.trainingBasicForm.get(key).setValue(event.value)
   }
   OnDeSelect(event) {
     this.formControl.hostedBy.setValue('');

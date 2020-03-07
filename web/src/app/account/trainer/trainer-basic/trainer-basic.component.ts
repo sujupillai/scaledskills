@@ -261,6 +261,9 @@ export class TrainerBasicComponent implements OnInit {
     let val = window.location.origin + '/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
+  upateUrl=()=>{
+    
+  }
   validateUrl = () => {
     this.urlConfig.vrlValidationMsg = '';
     this.urlConfig.urlSubmitted = true;

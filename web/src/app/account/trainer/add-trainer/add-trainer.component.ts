@@ -96,10 +96,10 @@ export class AddTrainerComponent implements OnInit {
       }
     })
   }
-  OnSelect = () => {
+  OnSelect = (event) => {
     this.msg = null
   }
-  onDeSelect = () => {
+  onDeSelect = (event) => {
     this.msg = null
   }
   handleAddUser = () => {

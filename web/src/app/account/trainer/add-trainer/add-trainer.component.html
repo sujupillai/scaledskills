@@ -3,7 +3,7 @@
     <div class="col-sm-10">
       <label>Select Trainer</label>
       <angular2-multiselect [data]="regTrainers" [(ngModel)]="selectedTrainer" [settings]="settings"
-        (onSelect)="OnSelect($event)" (onDeSelect)="OnDeSelect($event)">
+        (onSelect)="OnSelect($event)" (onDeSelect)="onDeSelect($event)">
         <c-badge>
           <ng-template let-item="item">
             {{item.firstName}} {{item.lastName}}
