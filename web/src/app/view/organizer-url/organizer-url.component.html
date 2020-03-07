@@ -174,9 +174,9 @@
             <div class="ui-grid ui-grid-responsive">
               <p-card styleClass="ui-card-shadow cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
                 <div class="userThumb text-center cursor-pointer">
-                  <img src="{{item.user && item.user.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
-                    alt="user profile">
-                  <h3>{{item.user && item.firstName}} {{item.user && item.lastName}}</h3>
+                  <img src="{{imageBaseUrl}}{{item.user && item.user.image}}"
+                    onError="this.src='../../../../assets/images/banner/home/placeholder.png';" alt="user profile">
+                  <h3>{{item['user'] && item['user']['firstName']}} {{item['user'] && item['user']['lastName']}}</h3>
                 </div>
               </p-card>
             </div>

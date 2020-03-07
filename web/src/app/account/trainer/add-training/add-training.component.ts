@@ -34,10 +34,10 @@ export class AddTrainingComponent implements OnInit {
       //   label: 'Promotions',
       //   link: 'promotions',
       // }
-      , {
-        label: 'Settings',
-        link: 'settings',
-      }
+      // , {
+      //   label: 'Settings',
+      //   link: 'settings',
+      // }
       , {
         label: 'Add Trainer',
         link: 'addTrainer',

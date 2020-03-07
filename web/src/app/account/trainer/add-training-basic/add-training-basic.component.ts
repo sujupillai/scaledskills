@@ -44,7 +44,6 @@ export class AddTrainingBasicComponent implements OnInit {
     ]
   }
   ngOnInit() {
-    // this.getAllData();
     this.yearRange = this.curentYear + ':' + this.curentYear + 5;
     this.getTimeZone();
     this.createForm(() => {

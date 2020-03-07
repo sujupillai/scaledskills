@@ -95,7 +95,7 @@ export class OrderDetailComponent implements OnInit {
     const origin = window.location.origin;
     let baseHref;
     if (origin.indexOf("localhost") > -1) {
-      baseHref = 'http://testapi.scaledskills.com/';
+      baseHref = 'https://testapi.scaledskills.com/';
     } else {
       baseHref = window.location.origin + '/';
     }

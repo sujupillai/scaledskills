@@ -19,7 +19,7 @@ export class TrainingUrlComponent implements OnInit {
   avgRating = 0;
   regUsers = [];
   totalUser;
-  imageBaseUrl = 'http://scaledskills.com/api/Document/p/';
+  imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
@@ -371,11 +371,11 @@ export class TrainingUrlComponent implements OnInit {
     window.open(val, "_blank");
   }
   userNavigate = () => {
-    if (this.entity.hostedBy == 1) {
-      let val = window.location.origin + '/p/' + this.entity.userUrl;
+    if (this.entity.hostedBy == 2) {
+      let val = window.location.origin + '/o/' + this.entity.userUrl;
       window.open(val, "_blank");
     } else {
-      let val = window.location.origin + '/o/' + this.entity.userUrl;
+      let val = window.location.origin + '/p/' + this.entity.userUrl;
       window.open(val, "_blank");
     }
   }
