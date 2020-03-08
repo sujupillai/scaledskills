@@ -45,7 +45,6 @@ export class AddTrainingBasicComponent implements OnInit {
   }
   ngOnInit() {
     this.yearRange = this.curentYear + ':' + this.curentYear + 5;
-    this.getTimeZone();
     this.createForm(() => {
       this.startDate.setValue('');
       this.endDate.setValue('');
@@ -55,10 +54,16 @@ export class AddTrainingBasicComponent implements OnInit {
       this._ActivatedRoute.parent.params.subscribe((param: any) => {
         this.trainingId = param['id'] ? param['id'] : 0;
         if (this.trainingId > 0) {
-          this.getData(this.trainingId)
+          this.getTimeZone(() => {
+            this.getData(this.trainingId)
+          });
+        } else {
+          this.getTimeZone(() => { });
         }
       });
     })
+
+
   }
   createForm = (callback: any): void => {
     this.trainingBasicForm = this._FormBuilder.group({
@@ -81,6 +86,17 @@ export class AddTrainingBasicComponent implements OnInit {
     }
   }
   get formControl() { return this.trainingBasicForm.controls }
+  getTimeZone = (callback) => {
+    let url = ApiPath.globalZone;
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        this.zoneList = res.result;
+      }
+      if (callback) {
+        callback()
+      }
+    })
+  }
   getData = (id) => {
     let url = ApiPath.getTraining
     url = url.replace('{id}', id)
@@ -106,7 +122,7 @@ export class AddTrainingBasicComponent implements OnInit {
           this.formControl['hostedByObj'].setValue(hostedBy);
           this.formControl['timeZoneObj'].setValue(zone);
           this.selectedZone = zone;
-        }, 2000)
+        }, 1000)
         if (this.trainingData.hostedBy == 2) {
           this.getOrgData();
           this.organizationListValue = this.trainingData.organizationListObj
@@ -126,14 +142,7 @@ export class AddTrainingBasicComponent implements OnInit {
       }
     })
   }
-  getTimeZone = () => {
-    let url = ApiPath.globalZone;
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
-      if (res && res.responseCode == 200) {
-        this.zoneList = res.result;
-      }
-    })
-  }
+
   updateUrl = () => {
     this.urlConfig.isUrlValid = false;
     this.urlConfig.vrlValidationMsg = 'Please validate url';
