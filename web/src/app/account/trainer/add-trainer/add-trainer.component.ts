@@ -16,6 +16,7 @@ export class AddTrainerComponent implements OnInit {
   cars = [];
   trainingId = 0;
   settings = {};
+  imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
   cols = [];
   defaultList = [{
     "text": "Select",
@@ -30,7 +31,7 @@ export class AddTrainerComponent implements OnInit {
 
     this.settings = {
       singleSelection: true, text: "Select", labelKey: "firstName", classes: "myclass custom-class",
-      enableSearchFilter: true, searchBy: ['firstName'], searchPlaceholderText: 'Search by name'
+      enableSearchFilter: true, searchBy: ['firstName', 'lastName'], searchPlaceholderText: 'Search by name'
     };
 
     this._ActivatedRoute.parent.params.subscribe((param: any) => {

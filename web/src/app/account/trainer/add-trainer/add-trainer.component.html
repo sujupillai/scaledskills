@@ -11,7 +11,7 @@
         </c-badge>
         <c-item>
           <ng-template let-item="item">
-            {{item.firstName}}
+            {{item.firstName}} {{item.lastName}}
           </ng-template>
         </c-item>
       </angular2-multiselect>
@@ -33,7 +33,7 @@
       <p-card styleClass="ui-card-shadow cursor-pointer relative">
         <span class="close-icon" (click)="handleDeleteUser(item)">X</span>
         <div class="userThumb text-center cursor-pointer" (click)="viewProfile('p', item.profileUrl)">
-          <img src="{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+          <img src="{{imageBaseUrl}}{{item.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
             alt="user profile">
           <h3>{{item.firstName}} {{item.lastName}}</h3>
         </div>

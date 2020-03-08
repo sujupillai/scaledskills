@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
     this.gerUserInfo();
   }
   gerUserInfo = () => {
+    debugger
     this.userInfo = this._AuthenticationService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
   }

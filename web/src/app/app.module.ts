@@ -78,4 +78,4 @@ import { PaymentErrorComponent } from './payment-error/payment-error.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);
