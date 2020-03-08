@@ -336,7 +336,8 @@ export class TrainingUrlComponent implements OnInit {
   shareAction = (type) => {
     let url;
     this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
-    let urlPostFix = origin + this._Router.url + '?refCode=' + this.refCode;
+    //let urlPostFix = origin + this._Router.url + '?refCode=' + this.refCode;
+    let urlPostFix = origin + window.location.pathname + '?refCode=' + this.refCode;
     if (type == 1) {
       url = ApiPath.social.fb
     } else if (type == 2) {
@@ -359,7 +360,8 @@ export class TrainingUrlComponent implements OnInit {
   }
   copyToClipboard = () => {
     this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
-    let url = origin + this._Router.url + '?refCode=' + this.refCode;
+    // let url = origin + this._Router.url + '?refCode=' + this.refCode;
+    let url = origin + window.location.pathname + '?refCode=' + this.refCode;
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();
