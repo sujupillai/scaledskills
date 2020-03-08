@@ -11,6 +11,7 @@ export class HomeAddComponent implements OnInit {
     { msg: 'No records to display' }
   ];
   userInfo: any = {};
+  refCode='CardView';
   isLoggedIn: boolean = false;
   constructor(private _HttpService: service.HttpService) { }
   ngOnInit() {

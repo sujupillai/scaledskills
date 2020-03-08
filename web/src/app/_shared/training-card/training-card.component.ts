@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../_service';
 export class TrainingCardComponent implements OnInit {
   userInfo: any = {};
   @Input() item;
+  @Input() refCode;
   isLoggedIn: boolean = false;
   constructor(private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router, private _AuthenticationService: AuthenticationService) { }
   ngOnInit() {
