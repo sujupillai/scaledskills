@@ -150,8 +150,10 @@ export class TrainingUrlComponent implements OnInit {
           this.fetchTrainingMemberRegister();
           this.fetchTrainingMemberTrainer();
           this.FetchRelatedTraining();
-          this.getTrainingSeting();
-          this.fetchTrainingReview()
+          this.fetchTrainingReview();
+          if (this.isLoggedIn) {
+            this.getTrainingSeting();
+          }
         } else {
           this.entity = null;
           this.isError = true;

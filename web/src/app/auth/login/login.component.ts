@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  refCode:null;
   isRememberMe: boolean = false;
   error = '';
   constructor(
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     }
   }
   ngOnInit() {
+    debugger
     this.createForm(() => {
     })
     this.returnUrl = this._ActivatedRoute.snapshot.queryParams['returnUrl'] || '/';
@@ -59,6 +61,7 @@ export class LoginComponent implements OnInit {
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
         if (res.responseCode == 200) {
           this._Router.navigate([this.returnUrl]);
+          
           localStorage.removeItem('returnUrl')
         } else if (res.responseCode == 406) {
           let msgArray = [
