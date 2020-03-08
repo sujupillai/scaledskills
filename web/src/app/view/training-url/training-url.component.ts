@@ -18,7 +18,7 @@ export class TrainingUrlComponent implements OnInit {
   totalTrainer;
   avgRating = 0;
   regUsers = [];
-  refCode: '';
+  refCode;
   totalUser;
   imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
   trainingId = 0;
@@ -127,7 +127,6 @@ export class TrainingUrlComponent implements OnInit {
   }
   getUser = () => {
     this.userInfo = this._AuthenticationService.currentUserValue;
-    this.refCode = this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
     this.isLoggedIn = this.userInfo ? true : false;
   }
   getData = (url) => {
@@ -284,7 +283,7 @@ export class TrainingUrlComponent implements OnInit {
   registerForTraining = () => {
     localStorage.setItem('returnurl', this._Router.url);
     if (this.isLoggedIn) {
-      this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: this.refCode } })
+      this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'])
     } else {
       this.goToLogin();
     }
@@ -336,7 +335,8 @@ export class TrainingUrlComponent implements OnInit {
   }
   shareAction = (type) => {
     let url;
-    let urlPostFix = origin + this._Router.url;
+    this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
+    let urlPostFix = origin + this._Router.url + '?refCode=' + this.refCode;
     if (type == 1) {
       url = ApiPath.social.fb
     } else if (type == 2) {
@@ -356,11 +356,10 @@ export class TrainingUrlComponent implements OnInit {
     } else {
       return 'enable'
     }
-
   }
-
   copyToClipboard = () => {
-    let url = origin + this._Router.url;
+    this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
+    let url = origin + this._Router.url + '?refCode=' + this.refCode;
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();
@@ -381,5 +380,4 @@ export class TrainingUrlComponent implements OnInit {
       window.open(val, "_blank");
     }
   }
-
 }
