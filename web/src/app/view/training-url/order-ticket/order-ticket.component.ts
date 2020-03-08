@@ -13,7 +13,7 @@ export class OrderTicketComponent implements OnInit {
   selectedTickets = [];
   referralCode: '';
   orderId = '';
-  submitted=false;
+  submitted = false;
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     let url = ApiPath.trainingTicket;
@@ -21,6 +21,9 @@ export class OrderTicketComponent implements OnInit {
       this.urlString = param.id;
       url = url.replace('{TrainingId}', this.urlString.toString())
       this.fetchTickets(url)
+    });
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.referralCode = params.refCode
     });
   }
   fetchTickets = (url) => {
@@ -88,21 +91,21 @@ export class OrderTicketComponent implements OnInit {
       'referralCode': this.referralCode,
       "items": this.orderItem()
     }
-    if(postObj.referralCode){
-      if(this.referralCode.length!=10){
-        this.submitted=true
-      }else{
-        if(postObj.items.length > 0){
-          this.submitted=false
-        }else{
-          this.submitted=true
+    if (postObj.referralCode) {
+      if (this.referralCode.length != 10) {
+        this.submitted = true
+      } else {
+        if (postObj.items.length > 0) {
+          this.submitted = false
+        } else {
+          this.submitted = true
         }
       }
-    }else{
-      if(postObj.items.length > 0){
-        this.submitted=false
-      }else{
-        this.submitted=true
+    } else {
+      if (postObj.items.length > 0) {
+        this.submitted = false
+      } else {
+        this.submitted = true
       }
     }
     if (!this.submitted) {
