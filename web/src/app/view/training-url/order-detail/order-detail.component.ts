@@ -36,11 +36,9 @@ export class OrderDetailComponent implements OnInit {
     })
   }
   _httpOrder = (orderAppId) => {
-    debugger
     let url = ApiPath.placeOrder;
     url = url.replace('{orderId}', this.urlString.toString())
     this._HttpService.httpCall(url, 'POST', orderAppId, null).subscribe(res => {
-      debugger
       // if (res && res.responseCode == 406) {
       //   let msgArray = [
       //     { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }

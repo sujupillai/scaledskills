@@ -18,6 +18,7 @@ export class TrainingUrlComponent implements OnInit {
   totalTrainer;
   avgRating = 0;
   regUsers = [];
+  refCode: '';
   totalUser;
   imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
   trainingId = 0;
@@ -125,7 +126,8 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
+    this.userInfo = this._AuthenticationService.currentUserValue;
+    this.refCode = this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
     this.isLoggedIn = this.userInfo ? true : false;
   }
   getData = (url) => {
@@ -282,7 +284,7 @@ export class TrainingUrlComponent implements OnInit {
   registerForTraining = () => {
     localStorage.setItem('returnurl', this._Router.url);
     if (this.isLoggedIn) {
-      this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: '8447755613' } })
+      this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: this.refCode } })
     } else {
       this.goToLogin();
     }
