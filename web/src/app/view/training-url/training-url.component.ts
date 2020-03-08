@@ -281,9 +281,17 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   registerForTraining = () => {
+    this.refCode = null;
     localStorage.setItem('returnurl', this._Router.url);
     if (this.isLoggedIn) {
-      this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'])
+      this._ActivatedRoute.queryParams.subscribe(params => {
+        this.refCode = params.refCode
+      });
+      if (this.refCode) {
+        this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: this.refCode } })
+      } else {
+        this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'])
+      }
     } else {
       this.goToLogin();
     }
@@ -334,10 +342,16 @@ export class TrainingUrlComponent implements OnInit {
     window.open(url, '_blank');
   }
   shareAction = (type) => {
+    this.refCode=null;
     let url;
-    this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
+    this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : null;
     //let urlPostFix = origin + this._Router.url + '?refCode=' + this.refCode;
-    let urlPostFix = origin + window.location.pathname + '?refCode=' + this.refCode;
+    let urlPostFix;
+    if (this.refCode) {
+      urlPostFix = origin + window.location.pathname + '?refCode=' + this.refCode;
+    } else {
+      urlPostFix = origin + window.location.pathname;
+    }
     if (type == 1) {
       url = ApiPath.social.fb
     } else if (type == 2) {
@@ -359,9 +373,15 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   copyToClipboard = () => {
-    this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : '0';
+    this.refCode=null;
+    this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : null;
     // let url = origin + this._Router.url + '?refCode=' + this.refCode;
-    let url = origin + window.location.pathname + '?refCode=' + this.refCode;
+    let url;
+    if (this.refCode) {
+      url = origin + window.location.pathname + '?refCode=' + this.refCode;
+    } else {
+      url = origin + window.location.pathname;
+    }
     document.addEventListener('copy', (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', (url));
       e.preventDefault();
