@@ -106,7 +106,7 @@ export class AddTrainingBasicComponent implements OnInit {
           this.formControl['hostedByObj'].setValue(hostedBy);
           this.formControl['timeZoneObj'].setValue(zone);
           this.selectedZone = zone;
-        }, 300)
+        }, 2000)
         if (this.trainingData.hostedBy == 2) {
           this.getOrgData();
           this.organizationListValue = this.trainingData.organizationListObj
