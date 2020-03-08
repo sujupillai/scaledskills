@@ -270,7 +270,8 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   goToLogin = () => {
-    localStorage.setItem('returnurl', this._Router.url); let msgArray = [
+    localStorage.setItem('returnurl', this._Router.url);
+    let msgArray = [
       { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
       { mgs: 'Do you want to login ?', class: 'subMsg' },
     ]
@@ -282,11 +283,12 @@ export class TrainingUrlComponent implements OnInit {
   }
   registerForTraining = () => {
     this.refCode = null;
-    localStorage.setItem('returnurl', this._Router.url);
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
     if (this.isLoggedIn) {
-      this._ActivatedRoute.queryParams.subscribe(params => {
-        this.refCode = params.refCode
-      });
       if (this.refCode) {
         this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: this.refCode } })
       } else {
@@ -342,7 +344,7 @@ export class TrainingUrlComponent implements OnInit {
     window.open(url, '_blank');
   }
   shareAction = (type) => {
-    this.refCode=null;
+    this.refCode = null;
     let url;
     this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : null;
     //let urlPostFix = origin + this._Router.url + '?refCode=' + this.refCode;
@@ -373,7 +375,7 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   copyToClipboard = () => {
-    this.refCode=null;
+    this.refCode = null;
     this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : null;
     // let url = origin + this._Router.url + '?refCode=' + this.refCode;
     let url;

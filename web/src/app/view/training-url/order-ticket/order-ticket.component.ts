@@ -14,6 +14,7 @@ export class OrderTicketComponent implements OnInit {
   referralCode: '';
   orderId = '';
   submitted = false;
+
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     let url = ApiPath.trainingTicket;
@@ -23,7 +24,7 @@ export class OrderTicketComponent implements OnInit {
       this.fetchTickets(url)
     });
     this._ActivatedRoute.queryParams.subscribe(params => {
-      this.referralCode = params.refCode
+      this.referralCode = params.refCode ? params.refCode : null
     });
   }
   fetchTickets = (url) => {
@@ -80,7 +81,11 @@ export class OrderTicketComponent implements OnInit {
   }
   backClicked = () => {
     let returnUrl = localStorage.getItem('returnurl') || '/';
-    this._Router.navigate([returnUrl]);
+    if (this.referralCode) {
+      this._Router.navigate(['/' + returnUrl], { queryParams: { refCode: this.referralCode } });
+    } else {
+      this._Router.navigate([returnUrl]);
+    }
   }
   handleSubmit = () => {
     let postObj = {
@@ -91,22 +96,10 @@ export class OrderTicketComponent implements OnInit {
       'referralCode': this.referralCode,
       "items": this.orderItem()
     }
-    if (postObj.referralCode) {
-      if (this.referralCode.length != 10) {
-        this.submitted = true
-      } else {
-        if (postObj.items.length > 0) {
-          this.submitted = false
-        } else {
-          this.submitted = true
-        }
-      }
+    if (postObj.items.length > 0) {
+      this.submitted = false
     } else {
-      if (postObj.items.length > 0) {
-        this.submitted = false
-      } else {
-        this.submitted = true
-      }
+      this.submitted = true
     }
     if (!this.submitted) {
       let url = ApiPath.orderTicket
@@ -119,7 +112,12 @@ export class OrderTicketComponent implements OnInit {
         } else if (res && res.responseCode == 200) {
           /* success  */
           this.orderId = res['result']
-          this._Router.navigate(['/orderDetail', this.orderId])
+          if (this.referralCode) {
+            this._Router.navigate(['/orderDetail', this.orderId], { queryParams: { refCode: this.referralCode } })
+          } else {
+            this._Router.navigate(['/orderDetail', this.orderId])
+          }
+
         } else {
           /* any other error */
           let msgArray = [

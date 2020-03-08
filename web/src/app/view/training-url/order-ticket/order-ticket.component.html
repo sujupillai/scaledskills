@@ -53,11 +53,7 @@
         <div class="form-group">
           <label for="">Referral Code <i class="fa fa-info-circle" aria-hidden="true"
               pTooltip="Valid for Indian citizens" tooltipPosition="top"></i></label>
-          <input readonly type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code"
-            maxlength="10" />
-          <p class="msgError text-danger" *ngIf="submitted && referralCode && referralCode['length']!=10">
-            Referral number should be 10 digit.
-          </p>
+          <input readonly type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code"/>
         </div>
       </div>
     </div>

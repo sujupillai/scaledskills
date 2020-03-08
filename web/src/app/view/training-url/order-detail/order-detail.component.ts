@@ -11,6 +11,7 @@ export class OrderDetailComponent implements OnInit {
   paymentUrl = ApiPath.placeOrder;
   orderDetail = null;
   orderSummaryData = null;
+  refCode: '';
   constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, public _AuthenticationService: AuthenticationService,
     private _Router: Router, private _SharedService: SharedService) { }
   ngOnInit() {
@@ -21,6 +22,9 @@ export class OrderDetailComponent implements OnInit {
       this.fetchOrderDetail(url);
       this.fetchOrderSummary();
       this.paymentUrl = this.paymentUrl.replace('{orderId}', this.urlString.toString())
+    });
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode ? params.refCode : null
     });
   }
   fetchOrderDetail = (url) => {
@@ -76,8 +80,7 @@ export class OrderDetailComponent implements OnInit {
           },
         ]
         this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
-          let returnUrl = localStorage.getItem('returnurl') || '/';
-          this._Router.navigate([returnUrl]);
+          this.redirectTo();
         })
       }
     }, error => {
@@ -143,8 +146,7 @@ export class OrderDetailComponent implements OnInit {
           },
         ]
         this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
-          let returnUrl = localStorage.getItem('returnurl') || '/';
-          this._Router.navigate([returnUrl]);
+          this.redirectTo();
         })
       } else {
         let msgArray = [
@@ -168,9 +170,16 @@ export class OrderDetailComponent implements OnInit {
         this._httpOrderCancel(orderAppId)
       }
     })
-  }
+  };
   backToHome = () => {
-    let returnUrl = localStorage.getItem('returnurl') || '/';
-    this._Router.navigate([returnUrl]);
+    this.redirectTo();
   }
+  redirectTo = () => {
+    let returnUrl = localStorage.getItem('returnurl') || '/';
+    if (this.refCode) {
+      this._Router.navigate(['/' + returnUrl], { queryParams: { refCode: this.refCode } });
+    } else {
+      this._Router.navigate([returnUrl]);
+    }
+  };
 }
