@@ -9,7 +9,7 @@ import { ApiPath } from '../../../_helpers/_constants/api';
 export class CertificationsComponent implements OnInit {
   certificatesForm: FormGroup;
   loadGrid: boolean = false;
-  curentYear=(new Date()).getFullYear();
+  curentYear = (new Date()).getFullYear();
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService) { }
   submitted: boolean = false;
   minDate: Date;
@@ -22,8 +22,8 @@ export class CertificationsComponent implements OnInit {
   ngOnInit() {
     this.createForm(() => {
       this.certificationUrl = ApiPath.trainerCertificate;
-      this.certificationFrom.setValue(new Date());
-      this.certificationTo.setValue(new Date());
+      this.certificationFrom.setValue('');
+      this.certificationTo.setValue('');
       this.getCertificationData();
     })
   }
@@ -33,8 +33,8 @@ export class CertificationsComponent implements OnInit {
       name: ['', Validators.required],
       url: ['', [Validators.pattern(reg)]],
       authority: ['', [Validators.required]],
-      from: [this.certificationFrom.value, [Validators.required]],
-      to: [this.certificationTo.value, [Validators.required]],
+      from: ['', [Validators.required]],
+      to: [''],
       id: [0],
       isExpired: [false],
     })
@@ -96,11 +96,10 @@ export class CertificationsComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
             this.resetForm(this.certificatesForm)
-          this.getCertificationData()
+            this.getCertificationData()
           });
-          
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }

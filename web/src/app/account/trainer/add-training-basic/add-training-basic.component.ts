@@ -48,7 +48,7 @@ export class AddTrainingBasicComponent implements OnInit {
     this.createForm(() => {
       this.startDate.setValue('');
       this.endDate.setValue('');
-      this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
+      this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
       this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.trainingForValue = [{ text: 'Individual', value: '1' }]
       this._ActivatedRoute.parent.params.subscribe((param: any) => {
@@ -62,8 +62,6 @@ export class AddTrainingBasicComponent implements OnInit {
         }
       });
     })
-
-
   }
   createForm = (callback: any): void => {
     this.trainingBasicForm = this._FormBuilder.group({
@@ -142,7 +140,6 @@ export class AddTrainingBasicComponent implements OnInit {
       }
     })
   }
-
   updateUrl = () => {
     this.urlConfig.isUrlValid = false;
     this.urlConfig.vrlValidationMsg = 'Please validate url';

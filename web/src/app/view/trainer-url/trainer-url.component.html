@@ -125,7 +125,7 @@
         <ul class="list-li" *ngIf="entity && entity.certificate && entity.certificate.length>0">
           <li *ngFor="let item of entity.certificate">
             <strong>{{item.name}}</strong> – {{item.authority}} {{item.from | date : 'MM/dd/yyyy'}} to
-            {{item.to | date : 'MM/dd/yyyy'}}
+            {{!item.to?'No Expiration Date':item.to | date : 'MM/dd/yyyy'}}
             {{item.isExpired?'Expired':''}}
           </li>
         </ul>
