@@ -254,8 +254,8 @@ export class AddTrainingTicketComponent implements OnInit {
     this.submitted = true;
     let url = ApiPath.trainingTicket;
     url = url.replace('{TrainingId}', this.trainingId.toString())
-    this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value : '');
-    this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value : '');
+    this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value.toLocaleString() : '');
+    this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value.toLocaleString() : '');
     let postObj = {
       ...this.formElement.value
     }
