@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpService, AuthenticationService, SharedService } from 'src/app/_service';
+import { HttpService, SharedService } from 'src/app/_service';
 
 @Component({
   selector: 'app-add-trainer',
@@ -24,7 +24,7 @@ export class AddTrainerComponent implements OnInit {
     "isSelect": false
   }]
   constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
-    private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
+    private _SharedService: SharedService) {
   }
 
   ngOnInit() {

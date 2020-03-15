@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as service from '../../../_service';
 import { ApiPath } from '../../../_helpers/_constants/api'
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../_service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -17,7 +14,7 @@ export class CategoryComponent implements OnInit {
   currentLength = 0;
   userInfo: any = {};
   isLoggedIn: boolean = false;
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router, private _AuthenticationService: AuthenticationService) { }
+  constructor(private _HttpService: service.HttpService) { }
   ngOnInit() {
     this.getData();
   }

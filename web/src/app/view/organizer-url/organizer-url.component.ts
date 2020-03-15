@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService, AuthenticationService } from '../../_service';
+import { HttpService, SharedService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 import { EmbedVideoService } from 'ngx-embed-video';
@@ -49,7 +49,7 @@ export class OrganizerUrlComponent implements OnInit {
     { label: 'Twitter', icon: 'fa fa-twitter', command: () => { this.shareAction(5); } },
     { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
-  constructor(public dialogService: DialogService, private _AuthenticationService: AuthenticationService,
+  constructor(public dialogService: DialogService,
     private embedService: EmbedVideoService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
@@ -66,7 +66,7 @@ export class OrganizerUrlComponent implements OnInit {
     });
   }
   getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
+    this.userInfo = this._SharedService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
   }
   goToLink = (trainingId) => {

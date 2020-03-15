@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService, AuthenticationService } from '../../../_service';
+import { HttpService, SharedService } from '../../../_service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-order-detail',
@@ -12,7 +12,7 @@ export class OrderDetailComponent implements OnInit {
   orderDetail = null;
   orderSummaryData = null;
   refCode: '';
-  constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, public _AuthenticationService: AuthenticationService,
+  constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService,
     private _Router: Router, private _SharedService: SharedService) { }
   ngOnInit() {
     let url = ApiPath.orderDetail;

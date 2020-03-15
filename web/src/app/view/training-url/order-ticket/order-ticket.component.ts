@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, AuthenticationService, SharedService } from '../../../_service';
-import { Location } from '@angular/common';
+import { HttpService, SharedService } from '../../../_service';
 @Component({
   selector: 'app-order-ticket',
   templateUrl: './order-ticket.component.html'
@@ -15,7 +14,7 @@ export class OrderTicketComponent implements OnInit {
   orderId = '';
   submitted = false;
 
-  constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
+  constructor(private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
     let url = ApiPath.trainingTicket;
     this._ActivatedRoute.params.subscribe((param: any) => {

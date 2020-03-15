@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService, AuthenticationService } from '../../_service';
+import { HttpService, SharedService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 import { EmbedVideoService } from 'ngx-embed-video';
@@ -48,7 +48,7 @@ export class TrainerUrlComponent implements OnInit {
   constructor(public dialogService: DialogService,
     private embedService: EmbedVideoService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
-    private _SharedService: SharedService, private _AuthenticationService: AuthenticationService) {
+    private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.noRecord = [
@@ -63,7 +63,7 @@ export class TrainerUrlComponent implements OnInit {
     });
   }
   getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
+    this.userInfo = this._SharedService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
   }
   shareAction = (type) => {

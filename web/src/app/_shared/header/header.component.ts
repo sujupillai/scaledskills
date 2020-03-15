@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../_service/authentication.service';
-
+import { SharedService } from '../../_service'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
@@ -8,21 +7,21 @@ import { AuthenticationService } from '../../_service/authentication.service';
 export class HeaderComponent implements OnInit {
   userInfo: any = {};
   isLoggedIn: boolean = false;
-  imageBaseUrl='https://scaledskills.com/api/Document/p/';
-  constructor(private _AuthenticationService: AuthenticationService) { }
+  imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
+  constructor(private _SharedService: SharedService) { }
 
   ngOnInit() {
     this.gerUserInfo();
-    this._AuthenticationService.getAuthEmitter().subscribe((customObject) => {
+    this._SharedService.getAuthEmitter().subscribe((customObject) => {
       this.gerUserInfo();
     });
   }
   handleLogOut = () => {
-    this._AuthenticationService.logout()
+    this._SharedService.logout()
     this.gerUserInfo();
   }
   gerUserInfo = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue
+    this.userInfo = this._SharedService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
   }
 

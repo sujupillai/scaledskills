@@ -4,7 +4,7 @@ import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 import { ReviewComponent } from '../../_shared/_dialogs/review/review.component';
-import { HttpService, AuthenticationService, SharedService } from '../../_service';
+import { HttpService, SharedService } from '../../_service';
 import { Title } from "@angular/platform-browser";
 @Component({
   selector: 'app-training-url',
@@ -49,7 +49,7 @@ export class TrainingUrlComponent implements OnInit {
   ];
   constructor(public dialogService: DialogService,
     private _titleService: Title,
-    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
+    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
     this.noRecord = [
@@ -126,7 +126,7 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue;
+    this.userInfo = this._SharedService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
   }
   getData = (url) => {
