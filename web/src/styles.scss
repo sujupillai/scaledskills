@@ -1725,3 +1725,13 @@ table {
 body .ui-carousel-viewport .ui-card{
   box-shadow: none;
 }
+body .ui-datepicker:not(.ui-datepicker-inline){
+  z-index: 99999999!important;
+}
+body .ui-datepicker table td{
+  padding: 0px!important;
+}
+body .ui-datepicker table td.ui-datepicker-today > a.ui-state-active, body .ui-datepicker table td.ui-datepicker-today > span.ui-state-active, body .ui-datepicker table td > a.ui-state-active, body .ui-datepicker table td > span.ui-state-active{
+  background-color: transparent;
+  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%)!important; 
+}

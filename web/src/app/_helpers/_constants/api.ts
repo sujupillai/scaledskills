@@ -86,5 +86,8 @@ export const ApiPath = {
   'orderCancel': 'api/Order/c/{orderId}',
   'organizationBankDetail': 'api/Organization/BankDetail',
   'userBankDetail': 'api/User/BankDetail',
-  'publish':'api/Training/{TrainingId}/Publish'
+  'publish':'api/Training/{TrainingId}/Publish',
+
+  'attendeeUpcomingTraining': 'api/Home/AT/UCT',
+  'attendeePastTraining': 'api/Home/AT/PT',  
 }

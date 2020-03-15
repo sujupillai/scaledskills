@@ -26,7 +26,7 @@ export class AttendeeViewComponent implements OnInit {
       "pageSize": 16,
       "page": 0
     }
-    let url = ApiPath.upcomingTraining;
+    let url = ApiPath.attendeeUpcomingTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.upcomingTrainings = res.result.results;
     })
@@ -39,7 +39,7 @@ export class AttendeeViewComponent implements OnInit {
       "pageSize": 16,
       "page": 0
     }
-    let url = ApiPath.pastTraining;
+    let url = ApiPath.attendeePastTraining;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.pastTrainings = res.result.results;
     })
