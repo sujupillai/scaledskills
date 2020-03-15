@@ -108,7 +108,7 @@
           <div class="inline-block">
             <div class="flex feed-row">
               <div class="item cursor-pointer">
-                <p-splitButton label="Share" styleClass="ui-button-success" icon="pi pi-share-alt"
+                <p-splitButton label="Share & Earn" styleClass="ui-button-success" icon="pi pi-share-alt"
                   [model]="shareOptions">
                 </p-splitButton>
               </div>
@@ -281,8 +281,9 @@
   </div>
 </div>
 <app-error *ngIf="entity==null && isError"></app-error>
-<p-dialog header="{{reviewContent['firstName']}} {{reviewContent['lastName']}}" [(visible)]="reviewDisplay" [modal]="true"
-  [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+<p-dialog header="{{reviewContent['firstName']}} {{reviewContent['lastName']}}" [(visible)]="reviewDisplay"
+  [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false"
+  [resizable]="false">
   <p-card class="training-reviews">
     <div class="='col-same-height'">
       <div class="content">

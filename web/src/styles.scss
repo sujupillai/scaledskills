@@ -317,7 +317,8 @@ p+p {
 //
 p-radiobutton~p-radiobutton,
 .ui-button-raised~.ui-button-raised,
-button~button, .btn-action ~  .btn-action {
+button~button,
+.btn-action~.btn-action {
   margin-left: 15px;
 }
 .main-holder-section {
@@ -595,19 +596,6 @@ textarea {
 .padding-10 {
   padding: 10px
 }
-.home-banner {
-  padding: 10px 0 0 0;
-  background: white;
-}
-.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
-  margin-top: 2px !important;
-}
-.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label,
-.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-  font-size: 18px;
-  font-weight: 500;
-  color: rgba(92, 116, 241, 1)
-}
 .home-search {
   padding: 20px 0 10px 0;
   .mat-form-field-label {
@@ -757,9 +745,6 @@ body .ui-dropdown,
 .input_fileupload--hidden {
   display: none !important;
 }
-.mat-form-field-appearance-legacy .mat-form-field-wrapper {
-  margin-bottom: 5px !important;
-}
 .iframeWrap {
   width: 100%;
   height: 300px;
@@ -805,10 +790,6 @@ body .ui-dropdown,
   img {
     max-height: 100%
   }
-}
-body .submit {
-  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
-  color: #fff
 }
 .form-group {
   margin-bottom: 25px;
@@ -1106,15 +1087,6 @@ p-footer {
     font-weight: 700;
   }
 }
-body .ui-carousel .ui-carousel-header {
-  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
-  color: #fff;
-  border-bottom: 0;
-}
-body .ui-carousel .ui-carousel-button,
-body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link {
-  color: #fff;
-}
 .border-line {
   background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
   height: 2px;
@@ -1319,21 +1291,26 @@ textarea.ui-inputtext {
   }
 }
 .home_banner {
+  img {
+    max-height: 362px;
+  }
+  .ui-carousel-items li {
+    img {
+      height: 350px;
+    }
+  }
   .ui-carousel .ui-carousel-header {
-    display: none !important // position: absolute;
-      // left: 0;
-      // bottom: 0;
-      // width: 100%;
-      // z-index: 999;
-      // background: transparent !important;
-      // text-align: center;
-      // border: 0px !important;
-      // box-shadow: none !important;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(0, 0, 0, .5) !important;
+    text-align: center;
+    border: 0px !important;
+    box-shadow: none !important;
   }
   .ui-carousel-header-title {
-    display: none;
-  }
-  .ui-carousel-button {
     display: none;
   }
   .ui-carousel-page-links {
@@ -1422,9 +1399,6 @@ textarea.ui-inputtext {
   color: #fe3e01;
   font-size: 12px;
 }
-body .ui-button {
-  box-shadow: none !important;
-}
 .mb-5 {
   margin-bottom: 5px;
 }
@@ -1486,20 +1460,19 @@ body .ui-button {
     color: white;
   }
 }
-.navbar-brand{
+.navbar-brand {
   padding: 10px 15px;
   height: auto;
 }
-.navbar-header{
-  img{
+.navbar-header {
+  img {
     height: 45px;
     width: auto;
-    
   }
 }
 .navbar-right {
   margin-right: 0px !important;
-  padding: 5px 0!important;
+  padding: 5px 0 !important;
 }
 .welcome-user {
   white-space: nowrap;
@@ -1609,10 +1582,6 @@ body .ui-button {
   font-size: 14px;
   font-weight: 600;
 }
-body .ui-dialog .ui-dialog-titlebar {
-  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
-  color: #fff
-}
 .pi-times:before {
   color: #fff
 }
@@ -1658,16 +1627,6 @@ body .ui-dialog .ui-dialog-titlebar {
 }
 table {
   width: 100%;
-}
-.home_banner {
-  img {
-    max-height: 362px;
-  }
-  .ui-carousel-items li {
-    img {
-      height: 350px;
-    }
-  }
 }
 .card-image {
   img {
@@ -1719,19 +1678,52 @@ table {
   font-weight: bold;
   border-bottom: 1px rgba(92, 116, 241, 0.92) solid;
 }
-.font20{
+.font20 {
   font-size: 20px;
 }
-body .ui-carousel-viewport .ui-card{
-  box-shadow: none;
-}
-body .ui-datepicker:not(.ui-datepicker-inline){
-  z-index: 99999999!important;
-}
-body .ui-datepicker table td{
-  padding: 0px!important;
-}
-body .ui-datepicker table td.ui-datepicker-today > a.ui-state-active, body .ui-datepicker table td.ui-datepicker-today > span.ui-state-active, body .ui-datepicker table td > a.ui-state-active, body .ui-datepicker table td > span.ui-state-active{
-  background-color: transparent;
-  background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%)!important; 
+body {
+  .submit,
+  .ui-dialog .ui-dialog-titlebar {
+    background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+    color: #fff;
+  }
+  .ui-carousel {
+    .ui-carousel-header {
+      background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%);
+      color: #fff;
+      border-bottom: 0;
+    }
+    .ui-carousel-button,
+    .ui-carousel-page-links .ui-carousel-page-link {
+      color: #fff;
+    }
+  }
+  .ui-button {
+    box-shadow: none !important;
+  }
+  .ui-carousel-viewport .ui-card {
+    box-shadow: none;
+  }
+  .ui-datepicker {
+    &:not(.ui-datepicker-inline) {
+      z-index: 99999999 !important;
+    }
+    table td {
+      padding: 0px !important;
+      &.ui-datepicker-today> {
+        a.ui-state-active,
+        span.ui-state-active {
+          background-color: transparent;
+          background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%) !important;
+        }
+      }
+      > {
+        a.ui-state-active,
+        span.ui-state-active {
+          background-color: transparent;
+          background-image: linear-gradient(40deg, rgba(92, 116, 241, 0.92) 0%, rgba(118, 33, 199, 0.92) 100%) !important;
+        }
+      }
+    }
+  }
 }
