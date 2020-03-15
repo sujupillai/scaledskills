@@ -22,6 +22,22 @@
         </div>
       </div>
     </div>
+    <!-- <div class="clearfix form-group">
+      <label for="">Profile Image</label>
+      <div class="row bgGray profile-img-wap">
+        <div class="col-sm-6">
+          <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'image', 'entity')" (onRemove)="removeProfileFile($event, 'image', 'entity')">
+          </p-fileUpload>
+        </div>
+        <div class="col-sm-6 text-center">
+          <div class="profile-dp" *ngIf="!noImage">
+            <img src="{{entity.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+              alt="" class="img-responsive">
+          </div>
+        </div>
+      </div>
+    </div> -->
     <div class="row">
       <div formGroupName="address">
         <div class="col-sm-12">
@@ -48,7 +64,7 @@
             <angular2-multiselect class="form-control" [data]="countryList" [(ngModel)]="selectedCountry"
               [settings]="settings" formControlName="countryObj" (onSelect)="OnCountrySelect($event)"
               (onDeSelect)="OnCountryDeSelect($event)"></angular2-multiselect>
-              <p class="msgError text-danger"
+            <p class="msgError text-danger"
               *ngIf="formElement.get(['address', 'countryId']).invalid && (formElement.get(['address', 'countryId']).dirty || submitted)">
               <small *ngIf="formElement.get(['address', 'countryId']).hasError('required')">
                 Required Field.
@@ -179,7 +195,7 @@
     <div class="clearfix form-group">
       <label for="">Upload any one id proof</label>
       <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
-        (uploadHandler)="myUploader($event, 'idProof')">
+        (uploadHandler)="myUploader($event, 'idProof', null)">
       </p-fileUpload>
     </div>
     <div class="form-group clearfix button-group text-right">
