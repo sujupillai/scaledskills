@@ -48,7 +48,7 @@ export class TrainerBasicComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
       gender: [''],
       baseUrl: [this.baseUrl],
       profileUrl: ['', Validators.required],

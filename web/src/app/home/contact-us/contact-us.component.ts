@@ -29,7 +29,7 @@ export class ContactUsComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
       msg: ['', Validators.required],
       id: ['0'],
     })

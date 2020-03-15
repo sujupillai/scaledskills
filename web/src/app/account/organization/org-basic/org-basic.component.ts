@@ -44,7 +44,7 @@ export class OrgBasicComponent implements OnInit {
       baseUrl: this.baseUrl,
       profileUrl: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
       gst: ['', [Validators.minLength(15), Validators.maxLength(15)]],
       panNumber: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       idProof: [''],

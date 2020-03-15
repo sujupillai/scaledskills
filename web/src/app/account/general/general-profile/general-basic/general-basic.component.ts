@@ -59,7 +59,7 @@ export class GeneralBasicComponent implements OnInit {
       lastName: ['', Validators.required],
       image: [''],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(10)]],
       gender: ['', Validators.required],
       dateOfBirth: [this.dateOfBirth, Validators.required],
       address: this._FormBuilder.group({

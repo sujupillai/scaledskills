@@ -64,9 +64,9 @@
               <small *ngIf="formControl.phoneNumber.hasError('maxlength')">
                 Max 10 numbers.
               </small>
-              <!-- <small *ngIf="formControl.phoneNumber.hasError('minlength')">
-                Atleast 10 numbers.
-              </small> -->
+              <small *ngIf="formControl.phoneNumber.hasError('minlength')">
+                Atleast 9 numbers.
+              </small>
               <small *ngIf="formControl.phoneNumber.hasError('required')">
                 Required Field.
               </small>

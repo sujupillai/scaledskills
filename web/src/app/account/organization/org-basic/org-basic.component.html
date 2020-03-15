@@ -138,7 +138,7 @@
           <label for="">Mobile Number <span class="required">*</span></label>
           <input pInputText placeholder="Mobile Number" formControlName="phoneNumber" maxlength="10" digitOnly>
           <p class="msgError" *ngIf="formControl.phoneNumber.hasError('minlength')">
-            Atleast 10 numbers.
+            Atleast 9 numbers.
           </p>
           <p class="msgError" *ngIf="formControl.phoneNumber.hasError('maxlength')">
             Max 10 numbers.
