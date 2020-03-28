@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { AuthenticationService } from '../../_service';
 import { SharedService } from '../../_service'
 import { first } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,16 +16,17 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  refCode: null;
+  refCode:null;
   isRememberMe: boolean = false;
   error = '';
   constructor(
     private _FormBuilder: FormBuilder,
     private _Router: Router,
+    private _AuthenticationService: AuthenticationService,
     private _SharedService: SharedService,
-    public dialogService: DialogService, private _ActivatedRoute: ActivatedRoute
+    public dialogService: DialogService, private _ActivatedRoute:ActivatedRoute
   ) {
-    if (this._SharedService.currentUserValue) {
+    if (this._AuthenticationService.currentUserValue) {
       this._Router.navigate(['/account']);
     }
   }
@@ -55,9 +57,10 @@ export class LoginComponent implements OnInit {
       this.submitted = false;
       let data = this.loginForm.value;
       let url = ApiPath.Accountlogin;
-      this._SharedService.login(url, data).pipe(first()).subscribe(res => {
+      this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
         if (res.responseCode == 200) {
           this._Router.navigate([this.returnUrl]);
+          
           localStorage.removeItem('returnUrl')
         } else if (res.responseCode == 406) {
           let msgArray = [
@@ -68,7 +71,7 @@ export class LoginComponent implements OnInit {
       },
         error => {
           let msgArray = [
-            { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+            { mgs: error['message']?error['message']:'Server Error', class: 'confirmMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
         });

@@ -195,7 +195,7 @@ export class TrainerBasicComponent implements OnInit {
                 class: 'confirmMsg'
               },
             ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
               this.getProfileData()
             });
           } else {
@@ -251,6 +251,7 @@ export class TrainerBasicComponent implements OnInit {
     })
   }
   updateUrl = () => {
+    this.urlConfig.isUrl = false;
     this.urlConfig.isUrlValid = false;
     this.urlConfig.vrlValidationMsg = 'Please validate url';
     this.urlConfig.urlSubmitted = false;
@@ -260,9 +261,6 @@ export class TrainerBasicComponent implements OnInit {
   viewProfile() {
     let val = window.location.origin + '/p/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
-  }
-  upateUrl=()=>{
-    
   }
   validateUrl = () => {
     this.urlConfig.vrlValidationMsg = '';

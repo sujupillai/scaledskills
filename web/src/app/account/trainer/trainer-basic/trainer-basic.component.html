@@ -54,8 +54,8 @@
         <label>Trainer Url <span class="required">*</span></label>
         <div class="flex vMiddle urlBox">
           <div class="fixed-input">{{baseUrl}}</div>
-          <input type="text" formControlName="profileUrl" pInputText placeholder="Enter Here"
-          [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="upateUrl()">
+          <input type="text" formControlName="profileUrl" pInputText placeholder="Enter Here" (keyup)="updateUrl()"
+            (blur)="validateUrl()">
         </div>
         <p class="msgError text-danger"
           *ngIf="formControl.profileUrl.invalid && (formControl.profileUrl.dirty || submitted)">

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { HttpService, SharedService } from 'src/app/_service';
+import { HttpService, AuthenticationService, SharedService } from 'src/app/_service';
 import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-contact-us',
@@ -12,7 +12,7 @@ export class ContactUsComponent implements OnInit {
   userInfo: any = {};
   isLoggedIn: boolean = false;
   submitted = false;
-  constructor(private _FormBuilder: FormBuilder,
+  constructor(private _FormBuilder: FormBuilder, private _AuthenticationService: AuthenticationService,
     private _HttpService: HttpService, private _SharedService: SharedService) { }
   data;
   ngOnInit() {
@@ -39,7 +39,7 @@ export class ContactUsComponent implements OnInit {
   }
   get formControl() { return this.formElement.controls }
   getUserInfo = (callback) => {
-    this.userInfo = this._SharedService.currentUserValue
+    this.userInfo = this._AuthenticationService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
     if (callback) {
       callback()

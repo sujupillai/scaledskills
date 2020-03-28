@@ -11,10 +11,8 @@ export class OrgBasicComponent implements OnInit {
   formElement: FormGroup;
   submitted: boolean = false;
   fileData = null;
-  imageBaseHref = window.location.origin + '/api/Document/p/';
   selectedCountry = [];
   selectedState = [];
-  entity;
   settings = {};
   isUrl = false;
   isValidateUrl = false;
@@ -43,7 +41,6 @@ export class OrgBasicComponent implements OnInit {
     this.formElement = this._FormBuilder.group({
       name: ['', Validators.required],
       ownerName: ['', Validators.required],
-      image: [''],
       baseUrl: this.baseUrl,
       profileUrl: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -92,7 +89,6 @@ export class OrgBasicComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
-        this.entity = { ...dataObj };
         Object.keys(dataObj).forEach(name => {
           if (this.formControl[name]) {
             if (name != 'address') {
@@ -152,16 +148,13 @@ export class OrgBasicComponent implements OnInit {
     this.formElement.get(['address', 'zipCode']).setValue('');
     this.selectedState = this.defaultList;
   }
-  myUploader = (event, control, module) => {
+  myUploader = (event, control) => {
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
     const formData = new FormData();
     formData.append('file', this.fileData);
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
-      this.formControl[control].setValue(res.result);
-      if (module) {
-        this[module]['image'] = this.imageBaseHref + res.result;
-      }
+      this.formControl[control].setValue(res.result)
     })
   }
   handleSubmit = () => {
@@ -191,6 +184,7 @@ export class OrgBasicComponent implements OnInit {
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
             this.fetchData();
           });
+
         } else {
           /* any other error */
           let msgArray = [
@@ -212,7 +206,8 @@ export class OrgBasicComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
     }
   }
-  upateUrl = () => {
+  updateUrl = () => {
+    this.isUrl = false;
     this.urlValidationMsg = '';
     let urlStr = (this.formControl['profileUrl'].value).split(' ').join('_')
     this.formControl['profileUrl'].setValue(urlStr)
@@ -221,6 +216,7 @@ export class OrgBasicComponent implements OnInit {
     let val = window.location.origin + '/o/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
+
   validateUrl = () => {
     const url = ApiPath.trainerVU;
     let params = {

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { SharedService } from '../_service';
+import { AuthenticationService } from '../_service';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private _SharedService: SharedService
+    private _AuthenticationService: AuthenticationService
   ) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this._SharedService.currentUserValue;
+    const currentUser = this._AuthenticationService.currentUserValue;
     if (currentUser) {
       return true;
     }

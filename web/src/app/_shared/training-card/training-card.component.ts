@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as service from '../../_service';
 import { ApiPath } from '../../_helpers/_constants/api'
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../_service';
 @Component({
   selector: 'app-training-card',
   templateUrl: './training-card.component.html',
@@ -12,12 +13,12 @@ export class TrainingCardComponent implements OnInit {
   @Input() item;
   @Input() refCode;
   isLoggedIn: boolean = false;
-  constructor(private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router) { }
+  constructor(private _HttpService: service.HttpService, private _SharedService: service.SharedService, private _Router: Router, private _AuthenticationService: AuthenticationService) { }
   ngOnInit() {
     this.getUserInfo();
   }
   getUserInfo = () => {
-    this.userInfo = this._SharedService.currentUserValue
+    this.userInfo = this._AuthenticationService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
   }
   handleInterest = (item) => {
