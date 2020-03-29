@@ -94,7 +94,8 @@
               </div>
             </div>
           </div>
-          <p><strong class="clrPurple font20">Price: {{entity && entity['amount']}} (INR)</strong></p>
+          <p><strong class="clrPurple font20">Price:
+              {{entity && entity['amount']?entity['amount'] + ' (INR)':'FREE'}}</strong></p>
           <div class="btn btn-default traiing-id btn-border-blue font-bold">
             TRAINING ID : {{entity && entity.trainingId}}
           </div>
