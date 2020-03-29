@@ -140,6 +140,10 @@ export class AddTrainingBasicComponent implements OnInit {
       }
     })
   }
+  restEndData=()=>{
+    this.endDate.setValue('');
+    this.formControl.endDate.setValue('');
+  }
   updateUrl = () => {
     this.urlConfig.isUrlValid = false;
     this.urlConfig.vrlValidationMsg = 'Please validate url';
