@@ -28,7 +28,6 @@ import { PasswordModule } from 'primeng/password';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [],
@@ -37,14 +36,14 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     CheckboxModule, ButtonModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule,
     AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule,
     FileUploadModule, MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule,
-    DialogModule, DynamicDialogModule, PasswordModule, AngularMultiSelectModule, TabMenuModule, SplitButtonModule, NgxMaterialTimepickerModule
+    DialogModule, DynamicDialogModule, PasswordModule, AngularMultiSelectModule, TabMenuModule, SplitButtonModule
   ],
   exports: [
     CommonModule, MatNativeDateModule, ReactiveFormsModule, FormsModule, InputTextModule, CheckboxModule, ButtonModule,
     CardModule, EditorModule, DropdownModule, InputTextareaModule, RadioButtonModule,
     AutoCompleteModule, CalendarModule, ChipsModule, ToggleButtonModule, InputSwitchModule, TableModule, FileUploadModule,
     MultiSelectModule, DataViewModule, RatingModule, CarouselModule, TooltipModule, DialogModule, DynamicDialogModule,
-    PasswordModule, AngularMultiSelectModule, TabMenuModule, SplitButtonModule, NgxMaterialTimepickerModule
+    PasswordModule, AngularMultiSelectModule, TabMenuModule, SplitButtonModule
   ]
 })
 export class NgPrimeModule { }
