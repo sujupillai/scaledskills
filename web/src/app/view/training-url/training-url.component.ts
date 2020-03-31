@@ -272,14 +272,25 @@ export class TrainingUrlComponent implements OnInit {
     })
   }
   goToLogin = () => {
-    localStorage.setItem('returnurl', this._Router.url);
+    this.refCode = null;
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
+
     let msgArray = [
       { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
       { mgs: 'Do you want to login ?', class: 'subMsg' },
     ]
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
       if (res) {
-        this._Router.navigate(['/auth/login']);
+        if (this.refCode) {
+          this._Router.navigate(['/auth/login'], { queryParams: { refCode: this.refCode } })
+        } else {
+          this._Router.navigate(['/auth/login']);
+        }
+
       }
     })
   }
@@ -379,7 +390,6 @@ export class TrainingUrlComponent implements OnInit {
   copyToClipboard = () => {
     this.refCode = null;
     this.refCode = this.userInfo && this.userInfo.phoneNumber ? this.userInfo.phoneNumber : null;
-    // let url = origin + this._Router.url + '?refCode=' + this.refCode;
     let url;
     if (this.refCode) {
       url = origin + window.location.pathname + '?refCode=' + this.refCode;

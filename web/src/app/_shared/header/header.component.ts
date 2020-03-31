@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../_service/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,10 @@ import { AuthenticationService } from '../../_service/authentication.service';
 })
 export class HeaderComponent implements OnInit {
   userInfo: any = {};
+  refCode;
   isLoggedIn: boolean = false;
   imageBaseUrl='https://scaledskills.com/api/Document/p/';
-  constructor(private _AuthenticationService: AuthenticationService) { }
+  constructor(private _AuthenticationService: AuthenticationService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
 
   ngOnInit() {
     this.gerUserInfo();
@@ -24,6 +26,19 @@ export class HeaderComponent implements OnInit {
   gerUserInfo = () => {
     this.userInfo = this._AuthenticationService.currentUserValue
     this.isLoggedIn = this.userInfo ? true : false;
+  }
+  goToLink=()=>{
+    this.refCode = null;
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
+    if (this.refCode) {
+      this._Router.navigate(['/auth/login'], { queryParams: { refCode: this.refCode } })
+    } else {
+      this._Router.navigate(['/auth/login']);
+    }
   }
 
 

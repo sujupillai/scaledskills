@@ -24,7 +24,7 @@
         </a>
       </li>
       <li routerLinkActive="active" *ngIf="!isLoggedIn">
-        <a [routerLink]="['auth/login']">
+        <a (click)="goToLink()">
           <span class="glyphicon glyphicon-log-in"></span> Login
         </a>
       </li>

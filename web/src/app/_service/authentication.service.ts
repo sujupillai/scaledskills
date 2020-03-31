@@ -23,9 +23,8 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
   login(url: string, data: any) {
-    localStorage.clear();
-    sessionStorage.clear();
-
+    // localStorage.clear();
+    // sessionStorage.clear();
     return this._SharedService.httpCall(url, 'POST', data, null).pipe(map(res => {
       if (res && res.responseCode == 200) {
         let user;

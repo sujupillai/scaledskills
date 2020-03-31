@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
-  returnUrl: string;
   refCode:null;
   isRememberMe: boolean = false;
   error = '';
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.createForm(() => {
     })
-    this.returnUrl = this._ActivatedRoute.snapshot.queryParams['returnUrl'] || '/';
   }
   createForm = (callback) => {
     this.loginForm = this._FormBuilder.group(
@@ -59,8 +57,16 @@ export class LoginComponent implements OnInit {
       let url = ApiPath.Accountlogin;
       this._AuthenticationService.login(url, data).pipe(first()).subscribe(res => {
         if (res.responseCode == 200) {
-          this._Router.navigate([this.returnUrl]);
-          
+          let returnUrl = localStorage.getItem('returnurl') || '/';
+          this.refCode = null;
+            this._ActivatedRoute.queryParams.subscribe(params => {
+            this.refCode = params.refCode
+          });
+          if (this.refCode) {
+            this._Router.navigate(['/' + returnUrl], { queryParams: { refCode: this.refCode } });
+          } else {
+            this._Router.navigate([returnUrl]);
+          }
           localStorage.removeItem('returnUrl')
         } else if (res.responseCode == 406) {
           let msgArray = [
