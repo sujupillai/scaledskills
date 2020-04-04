@@ -35,6 +35,7 @@ export class ReviewComponent implements OnInit {
       likeAbout: [''],
       improveAbout: [''],
       needInFeature: [''],
+      id: 0
     })
     if (callback) {
       callback()
@@ -47,6 +48,11 @@ export class ReviewComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.listData = res.result;
+        Object.keys(this.listData[0]).forEach(name => {
+          if (this.formControl[name]) {
+            this.formControl[name].setValue(this.listData[0][name]);
+          }
+        });
       }
     })
   }
@@ -67,16 +73,6 @@ export class ReviewComponent implements OnInit {
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res && res.responseCode == 200) {
           this.ref.close();
-          // let msgArray = [
-          //   {
-          //     mgs: res.responseMessege ? res.responseMessege : 'Success',
-          //     class: 'confirmMsg'
-          //   },
-          // ]
-          // this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
-          //   // this.resetForm(this.traineeReviewForm);
-          //   // this.getData()
-          // });
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }
