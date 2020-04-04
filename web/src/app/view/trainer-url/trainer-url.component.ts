@@ -94,6 +94,21 @@ export class TrainerUrlComponent implements OnInit {
   goToLink = (trainingId) => {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
+  setYoutubeUrl = (url) => {
+    var str = url;
+    let embeddedUrl;
+    if (str.indexOf('embed') > -1) {
+      embeddedUrl = str;
+    } else {
+      var res = str.split("=");
+      embeddedUrl = "https://www.youtube.com/embed/" + res[1] + "?autoplay=1";
+    }
+    let element = document.getElementById('aboutVideoFrame');
+    if (element) {
+      document.getElementById('aboutVideoFrame').setAttribute("src", embeddedUrl);
+    }
+
+  }
   getData = (url) => {
     this.isLoading = true;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -101,16 +116,16 @@ export class TrainerUrlComponent implements OnInit {
         this.trainerId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.trainerId > 0) {
           this.entity = res.result ? res.result : null;
-          if (this.entity.about && this.entity.about.videoUrl) {
-            this.iframe_html = this.embedService.embed(this.entity.about.videoUrl);
-          } else {
-            this.iframe_html = null
-          }
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
           this.fetchMembers();
           this.fetchTrainingReview();
+          if (this.entity.about && this.entity.about.videoUrl) {
+            setTimeout(() => {
+              this.setYoutubeUrl(this.entity.about.videoUrl)
+            }, 0)
+          }
         }
         else {
           this.entity = null;
