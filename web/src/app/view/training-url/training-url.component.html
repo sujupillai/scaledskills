@@ -80,9 +80,6 @@
                 <i class="fa fa-star" aria-hidden="true"></i>&nbsp;{{entity.isInterest?' Interested':' Show Interest'}}
                 ({{!entity['interestCount']?'0':entity['interestCount']|number}})
               </div>
-              <!-- <div class="item cursor-pointer text-primary" (click)="hendleFollowMe()" [ngClass]="entity['isFollow']?'no-cursor':''">
-                <i class="fa fa-rss" aria-hidden="true"></i>&nbsp;{{entity['isFollow']?'Following':'Follow'}}
-              </div> -->
               <div *ngIf="!entity['isRegister']" pTooltip="Kindly register to give the feedback."
                 tooltipPosition="bottom">
                 <div class="item" [ngClass]="entity['isRegister']?'cursor-pointer':'disabled'">
