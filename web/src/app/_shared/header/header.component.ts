@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../_service/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiPath } from 'src/app/_helpers/_constants/api';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
   userInfo: any = {};
   refCode;
   isLoggedIn: boolean = false;
-  imageBaseUrl='https://scaledskills.com/api/Document/p/';
+  imageBaseUrl=ApiPath.imageBaseSrc;
   constructor(private _AuthenticationService: AuthenticationService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
 
   ngOnInit() {

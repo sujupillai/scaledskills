@@ -20,7 +20,7 @@ export class TrainingUrlComponent implements OnInit {
   regUsers = [];
   refCode;
   totalUser;
-  imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
+  imageBaseUrl=ApiPath.imageBaseSrc;
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];

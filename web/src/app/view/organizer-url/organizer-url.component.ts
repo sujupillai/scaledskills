@@ -12,7 +12,7 @@ import { EmbedVideoService } from 'ngx-embed-video';
 export class OrganizerUrlComponent implements OnInit {
   cars = [];
   iframe_html: any = null;
-  imageBaseUrl = 'http://scaledskills.com/api/Document/p/';
+  imageBaseUrl=ApiPath.imageBaseSrc;
   memberList = [];
   totalMember = 0;
   display: boolean = false;

@@ -16,7 +16,7 @@ export class AddTrainerComponent implements OnInit {
   cars = [];
   trainingId = 0;
   settings = {};
-  imageBaseUrl = 'https://scaledskills.com/api/Document/p/';
+  imageBaseUrl=ApiPath.imageBaseSrc;
   cols = [];
   defaultList = [{
     "text": "Select",

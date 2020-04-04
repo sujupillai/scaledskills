@@ -48,7 +48,6 @@ export const ApiPath = {
   'trainingAbout': 'api/Training/{TrainingId}/About',
   'trainingImage': 'api/Training/{TrainingId}/Image',
   'trainingVU': 'api/Training/VU',
-
   'trainingMemberRegister': 'api/Home/T/M/R',
   'trainingMemberTrainer': 'api/Home/T/M/T',
   /* home */
@@ -68,13 +67,11 @@ export const ApiPath = {
   'orderTicket': 'api/Order/T',
   'orderDetail': 'api/Order/{orderId}',
   'placeOrder': 'api/Order/P/{orderId}',
-
   /* follow /member */
   'generalMemberFollow': 'api/Home/P/M/f',
   'orgMemberFollow': 'api/Home/O/M/f',
   'relatedTraining': 'api/Home/RelatedT',
   'getTrainingReview': 'api/Home/T/review',
-
   /* handle follow */
   'followOrg': 'api/Home/O/f',
   'followTraining': 'api/Home/T/f',
@@ -86,8 +83,8 @@ export const ApiPath = {
   'orderCancel': 'api/Order/c/{orderId}',
   'organizationBankDetail': 'api/Organization/BankDetail',
   'userBankDetail': 'api/User/BankDetail',
-  'publish':'api/Training/{TrainingId}/Publish',
-
+  'publish': 'api/Training/{TrainingId}/Publish',
   'attendeeUpcomingTraining': 'api/Home/AT/UCT',
-  'attendeePastTraining': 'api/Home/AT/PT',  
+  'attendeePastTraining': 'api/Home/AT/PT',
+  'imageBaseSrc': 'https://scaledskills.com/api/Document/p/'
 }

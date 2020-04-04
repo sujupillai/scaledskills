@@ -3,7 +3,7 @@
     <div class="header_detail">
       <div class="userThumbWrap">
         <div class="thumb trainer">
-          <img src="{{imageBaseUrl}}{{entity['image']}}" onError="this.src='../../../../assets/images/users.png';"
+          <img src="{{imageBaseUrl}}{{entity.user['image']}}" onError="this.src='../../../../assets/images/users.png';"
             alt="image" class="img-responsive">
         </div>
         <div class="text-desc">
@@ -48,9 +48,6 @@
                   [ngClass]="(entity.social && entity.social[0].twitterUrls)?'cursor-pointer':'disabled'">
                   <i class="fa fa-twitter" aria-hidden="true" (click)="openUrl(entity.social[0].twitterUrls)"></i>
                 </div>
-                <!-- <div class="item cursor-pointer round">
-                            <a [href]="https://www.google.com/" appExternalUrl><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                          </div> -->
               </div>
             </div>
           </div>
