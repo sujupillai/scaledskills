@@ -4,11 +4,13 @@ import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, SharedService, AuthenticationService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
+import { EmbedVideoService } from 'ngx-embed-video';
 @Component({
   selector: 'app-trainer-url',
   templateUrl: './trainer-url.component.html'
 })
 export class TrainerUrlComponent implements OnInit {
+  iframe_html: any = null;
   cars = [];
   memberList = [];
   isLoading: boolean = true;
@@ -44,6 +46,7 @@ export class TrainerUrlComponent implements OnInit {
   ];
   origin = window.location.origin;
   constructor(public dialogService: DialogService,
+    private embedService: EmbedVideoService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
     private _SharedService: SharedService, private _AuthenticationService: AuthenticationService) {
   }
@@ -91,21 +94,6 @@ export class TrainerUrlComponent implements OnInit {
   goToLink = (trainingId) => {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
-  setYoutubeUrl = (url) => {
-    var str = url;
-    let embeddedUrl;
-    if (str.indexOf('embed') > -1) {
-      embeddedUrl = str;
-    } else {
-      var res = str.split("=");
-      embeddedUrl = "https://www.youtube.com/embed/" + res[1] + "?autoplay=1";
-    }
-    let element = document.getElementById('aboutVideoFrame');
-    if (element) {
-      document.getElementById('aboutVideoFrame').setAttribute("src", embeddedUrl);
-    }
-
-  }
   getData = (url) => {
     this.isLoading = true;
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -113,16 +101,16 @@ export class TrainerUrlComponent implements OnInit {
         this.trainerId = res['result']['user'] && res['result']['user']['id'] > 0 ? res['result']['user']['id'] : 0;
         if (this.trainerId > 0) {
           this.entity = res.result ? res.result : null;
+          if (this.entity.about && this.entity.about.videoUrl) {
+            this.iframe_html = this.embedService.embed(this.entity.about.videoUrl);
+          } else {
+            this.iframe_html = null
+          }
           this.isError = false;
           this.fetchPastTraining();
           this.fetchUpcomingTraining();
           this.fetchMembers();
           this.fetchTrainingReview();
-          if (this.entity.about && this.entity.about.videoUrl) {
-            setTimeout(() => {
-              this.setYoutubeUrl(this.entity.about.videoUrl)
-            }, 0)
-          }
         }
         else {
           this.entity = null;
