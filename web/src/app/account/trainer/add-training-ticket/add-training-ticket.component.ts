@@ -50,6 +50,7 @@ export class AddTrainingTicketComponent implements OnInit {
   trainingData = [];
   displayNoRecord = false;
   description: '';
+  msgForAtendee: '';
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
     this._ActivatedRoute.parent.params.subscribe((param: any) => {
@@ -212,8 +213,8 @@ export class AddTrainingTicketComponent implements OnInit {
       this.addTicketForm = true;
       let dataObj = res.result;
       this.description = dataObj.description;
+      this.msgForAtendee = dataObj.msgForAtendee;
       this.ticketId = dataObj.id;
-
       if (dataObj.ticketType == 2) {
         this.getTicketFee()
       }
@@ -236,7 +237,6 @@ export class AddTrainingTicketComponent implements OnInit {
         this.formControl['ticketTypeObj'].setValue(data);
       }
       this.setDate(dataObj)
-
     })
   }
   handleCancel = () => {
@@ -260,6 +260,7 @@ export class AddTrainingTicketComponent implements OnInit {
       ...this.formElement.value
     }
     postObj.description = this.description;
+    postObj.msgForAtendee = this.msgForAtendee;
     postObj.ticketPaymentDetails = this.paymentDetails;
     if (this.formElement.valid) {
       this.submitted = false;
