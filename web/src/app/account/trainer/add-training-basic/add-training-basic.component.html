@@ -70,24 +70,45 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label>Start Date <span class="required">*</span></label>
-          <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [showTime]="true"
-            hourFormat="12" [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true"
-            dateFormat="dd/mm/yy"  placeholder="DD/MM/YYYY">
+          <p-calendar name="startDate" [formControl]="startDate" [monthNavigator]="true" [yearNavigator]="true"
+            yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YYYY"
+            [maxDate]="endDate.value">
           </p-calendar>
           <p class="msgError text-danger" *ngIf="!startDate.value && submitted">
             Required Field.
           </p>
         </div>
       </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Start time<span class="required">*</span></label>
+          <p-calendar name="startTime" [formControl]="startTime" [timeOnly]="true" hourFormat="12" placeholder="00:00:AM"></p-calendar>
+          <p class="msgError text-danger" *ngIf="!startTime.value && submitted">
+            Required Field.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <!-- [minDate]="startDate.value" -->
       <div class="col-sm-6">
         <div class="form-group">
           <label>End Date <span class="required">*</span></label>
-          <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [showTime]="true" hourFormat="12"
-            [yearNavigator]="true" yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy"
-             placeholder="DD/MM/YYYY">
+          <p-calendar name="endDate" [formControl]="endDate" [monthNavigator]="true" [yearNavigator]="true"
+            yearRange="{{curentYear}}:{{curentYear+5}}" [utc]="true" dateFormat="dd/mm/yy" placeholder="DD/MM/YYYY"
+            [minDate]="startDate.value">
           </p-calendar>
           <p class="msgError text-danger" *ngIf="!endDate.value && submitted">
+            Required Field.
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>End Time <span class="required">*</span></label>
+          <p-calendar name="endTime" [formControl]="endTime" [timeOnly]="true" hourFormat="12" placeholder="00:00:AM">
+          </p-calendar>
+          <p class="msgError text-danger" *ngIf="!endTime.value && submitted">
             Required Field.
           </p>
         </div>

@@ -17,9 +17,11 @@ export class AddTrainingBasicComponent implements OnInit {
   organizationListValue = [];
   submitted: boolean = false;
   startDate = new FormControl();
+  startTime = new FormControl();
   curentYear = new Date().getFullYear();
   yearRange = ''
   endDate = new FormControl();
+  endTime = new FormControl();
   settings = {};
   multiSettings = {};
   trainingId = 0;
@@ -47,7 +49,9 @@ export class AddTrainingBasicComponent implements OnInit {
     this.yearRange = this.curentYear + ':' + this.curentYear + 5;
     this.createForm(() => {
       this.startDate.setValue('');
+      this.startTime.setValue('');
       this.endDate.setValue('');
+      this.endTime.setValue('');
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
       this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.trainingForValue = [{ text: 'Individual', value: '1' }]
@@ -70,7 +74,9 @@ export class AddTrainingBasicComponent implements OnInit {
       url: ['', Validators.required],
       description: ['', Validators.required],
       startDate: ['', Validators.required],
+      startTime: ['', Validators.required],
       endDate: ['', Validators.required],
+      endTime: ['', Validators.required],
       timeZone: ['', Validators.required],
       timeZoneObj: [],
       organizationList: [],
@@ -96,6 +102,7 @@ export class AddTrainingBasicComponent implements OnInit {
     })
   }
   getData = (id) => {
+    this.trainingData = null;
     let url = ApiPath.getTraining
     url = url.replace('{id}', id)
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -107,7 +114,9 @@ export class AddTrainingBasicComponent implements OnInit {
           }
         });
         this.startDate.setValue(res.result.startDate ? new Date(res.result.startDate) : '');
+        this.startTime.setValue(res.result.startDate ? new Date(res.result.startDate) : '');
         this.endDate.setValue(res.result.endDate ? new Date(res.result.endDate) : '');
+        this.endTime.setValue(res.result.endDate ? new Date(res.result.endDate) : '');
         if (this.trainingData.url) {
           this.urlConfig.isUrl = true;
           this.urlConfig.isUrlValid = true;
@@ -140,9 +149,11 @@ export class AddTrainingBasicComponent implements OnInit {
       }
     })
   }
-  restEndData=()=>{
+  restEndData = () => {
     this.endDate.setValue('');
+    this.endTime.setValue('');
     this.formControl.endDate.setValue('');
+    this.formControl.endTime.setValue('');
   }
   updateUrl = () => {
     this.urlConfig.isUrlValid = false;
@@ -195,12 +206,25 @@ export class AddTrainingBasicComponent implements OnInit {
     this['organizationListValue'] = this.defaultList;
   }
   handleSubmit = () => {
-    this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value.toLocaleString() : '');
-    this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value.toLocaleString() : '');
+    let startDate = this.startDate.value ? this.startDate.value.toLocaleString() : '';
+    let startTime = this.startTime.value ? this.startTime.value.toLocaleString() : '';
+    let startDateTime = startDate.split(',')[0] + ',' + startTime.split(',')[1]
+    this.formControl.startTime.setValue(startTime);
+    this.formControl.startDate.setValue(startDateTime);
+    let endDate = this.endDate.value ? this.endDate.value.toLocaleString() : '';
+    let endTime = this.endTime.value ? this.endTime.value.toLocaleString() : '';
+    let endDateTime = endDate.split(',')[0] + ',' + endTime.split(',')[1]
+    this.formControl.endDate.setValue(endDateTime);
+    this.formControl.endTime.setValue(endTime);
     let postObj = {
       ...this.trainingBasicForm.value,
     }
-    if (this.trainingBasicForm.invalid) {
+    if (postObj.endDate < postObj.startDate) {
+      let msgArray = [
+        { mgs: 'End date should be greater than start date' }
+      ]
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
+    } else if (this.trainingBasicForm.invalid) {
       this.submitted = true;
     } else {
       if (this.urlConfig.isUrlValid) {
