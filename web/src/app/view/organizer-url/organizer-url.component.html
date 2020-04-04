@@ -109,17 +109,18 @@
       </li>
     </ul>
     <div class="tab-content">
-      <div class="iframeWrap" *ngIf="iframe_html">
-        <div [innerHtml]="iframe_html"></div>
+      <div class="iframeWrap" *ngIf="entity && entity.about && entity.about.videoUrl">
+        <iframe width="560" height="315" frameborder="0" id="aboutVideoFrame"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div>
         <h3>About</h3>
-        <p [innerHTML]="entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>
+        <p [innerHTML]="entity && entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>
       </div>
       <div class="border-line top bottom"></div>
       <div>
         <h3>Courses</h3>
-        <p [innerHTML]="entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'"></p>
+        <p [innerHTML]="entity && entity.about && entity.about.coursesOfferedText?entity.about.coursesOfferedText:'N/A'"></p>
       </div>
       <div class="border-line top bottom"></div>
       <div class="form-group">

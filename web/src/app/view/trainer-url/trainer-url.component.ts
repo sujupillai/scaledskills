@@ -9,7 +9,6 @@ import { MessageComponent } from '../../_shared/_dialogs/message/message.compone
   templateUrl: './trainer-url.component.html'
 })
 export class TrainerUrlComponent implements OnInit {
-  iframe_html: any = null;
   cars = [];
   memberList = [];
   isLoading: boolean = true;
@@ -99,10 +98,13 @@ export class TrainerUrlComponent implements OnInit {
       embeddedUrl = str;
     } else {
       var res = str.split("=");
-      embeddedUrl = "https://www.youtube.com/embed/" + res[1];
+      embeddedUrl = "https://www.youtube.com/embed/" + res[1] + "?autoplay=1";
     }
-    document.getElementById('abc');
-    document.getElementById('abc').setAttribute("src", embeddedUrl);
+    let element = document.getElementById('aboutVideoFrame');
+    if (element) {
+      document.getElementById('aboutVideoFrame').setAttribute("src", embeddedUrl);
+    }
+
   }
   getData = (url) => {
     this.isLoading = true;
