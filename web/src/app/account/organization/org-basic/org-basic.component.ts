@@ -12,9 +12,13 @@ export class OrgBasicComponent implements OnInit {
   submitted: boolean = false;
   fileData = null;
   selectedCountry = [];
+  imageBaseHref = 'http://scaledskills.com/api/Document/p/';
   selectedState = [];
   settings = {};
+  prevData;
   isUrl = false;
+  noImage = true;
+  entity;
   isValidateUrl = false;
   urlValidationMsg;
   defaultList = [{
@@ -48,6 +52,7 @@ export class OrgBasicComponent implements OnInit {
       gst: ['', [Validators.minLength(15), Validators.maxLength(15)]],
       panNumber: ['', [Validators.minLength(10), Validators.maxLength(10)]],
       idProof: [''],
+      image: [''],
       address: this._FormBuilder.group({
         address1: ['', Validators.required],
         address2: [''],
@@ -88,22 +93,29 @@ export class OrgBasicComponent implements OnInit {
     let url = ApiPath.Organization;
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
-        let dataObj = res.result;
-        Object.keys(dataObj).forEach(name => {
+        this.entity = res.result;
+        Object.keys(this.entity).forEach(name => {
           if (this.formControl[name]) {
             if (name != 'address') {
-              this.formControl[name].setValue(dataObj[name]);
+              this.formControl[name].setValue(this.entity[name]);
             }
           }
         });
-        if (dataObj.profileUrl) {
+        if (this.entity.profileUrl) {
           this.isUrl = true;
           this.isValidateUrl = true;
         } else {
           this.isUrl = false;
           this.isValidateUrl = false;
         }
-        this.setAddress(dataObj)
+        if (!this.entity.image) {
+          this.noImage = true;
+        } else {
+          this.entity.image = 'http://scaledskills.com/api/Document/p/' + this.entity.image;
+          this.noImage = false;
+        }
+        this.setAddress(this.entity)
+        this.prevData = { ...this.entity };
       }
     })
   }
@@ -148,13 +160,24 @@ export class OrgBasicComponent implements OnInit {
     this.formElement.get(['address', 'zipCode']).setValue('');
     this.selectedState = this.defaultList;
   }
+  removeImage = (event, control) => {
+    this.formControl[control].setValue(this.prevData[control]);
+    this.entity.image = this.formControl[control].value;
+  }
   myUploader = (event, control) => {
+    debugger
+    this.noImage = true;
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
     const formData = new FormData();
     formData.append('file', this.fileData);
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
-      this.formControl[control].setValue(res.result)
+      if (res && res['responseCode'] == 200) {
+        this.formControl[control].setValue(res.result);
+        this[control] = false;
+        this.noImage = false;
+        this.entity.image = this.imageBaseHref + res.result;
+      }
     })
   }
   handleSubmit = () => {
@@ -184,7 +207,6 @@ export class OrgBasicComponent implements OnInit {
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
             this.fetchData();
           });
-
         } else {
           /* any other error */
           let msgArray = [
@@ -216,7 +238,6 @@ export class OrgBasicComponent implements OnInit {
     let val = window.location.origin + '/o/' + this.formControl['profileUrl'].value;
     window.open(val, "_blank");
   }
-
   validateUrl = () => {
     const url = ApiPath.trainerVU;
     let params = {

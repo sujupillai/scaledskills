@@ -4,7 +4,7 @@
       <div class="col-sm-6">
         <div class="form-group">
           <label for="">Organization Name <span class="required">*</span></label>
-          <input type="text" pInputText placeholder="Organization Name" formControlName="name"/>
+          <input type="text" pInputText placeholder="Organization Name" formControlName="name" />
           <p class="msgError text-danger"
             *ngIf="formControl.name.hasError('required') && (formControl.name.dirty || submitted)">
             Required Field.
@@ -19,6 +19,22 @@
             *ngIf="formControl.ownerName.hasError('required') && (formControl.ownerName.dirty || submitted)">
             Required Field.
           </p>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix form-group">
+      <label for="">Profile Image</label>
+      <div class="row bgGray profile-img-wap">
+        <div class="col-sm-6">
+          <p-fileUpload name="file" multiple="false" accept="image/*" maxFileSize="1000000" customUpload="true"
+            (uploadHandler)="myUploader($event, 'image')" (onRemove)="removeImage($event, 'image')">
+          </p-fileUpload>
+        </div>
+        <div class="col-sm-6 text-center">
+          <div class="profile-dp" *ngIf="!noImage">
+            <img src="{{entity && entity.image}}" onError="this.src='../../../../assets/images/banner/home/placeholder.png';"
+              alt="" class="img-responsive">
+          </div>
         </div>
       </div>
     </div>

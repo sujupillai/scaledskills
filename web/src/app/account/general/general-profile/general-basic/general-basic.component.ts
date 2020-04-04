@@ -12,8 +12,9 @@ export class GeneralBasicComponent implements OnInit {
   profileForm: FormGroup;
   countryList = [];
   entity;
-  curentYear=(new Date()).getFullYear();
-  imageBaseHref=window.location.origin + '/api/Document/p/';
+  curentYear = (new Date()).getFullYear();
+  // imageBaseHref=window.location.origin + '/api/Document/p/';
+  imageBaseHref = 'http://scaledskills.com/api/Document/p/';
   stateList = [];
   submitted: boolean = false;
   dateOfBirth = new FormControl();
@@ -21,7 +22,7 @@ export class GeneralBasicComponent implements OnInit {
   uplo: File;
   selectedCountry = [];
   selectedState = [];
-  noImage=true;
+  noImage = true;
   settings = {};
   defaultList = [];
   minDate: Date = new Date();
@@ -29,7 +30,7 @@ export class GeneralBasicComponent implements OnInit {
   isGeneralUser: boolean = true;
   isReferralID = false;
   documentUpload: string = '';
-  prevData={};
+  prevData = {};
   fileData = null;
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
@@ -113,12 +114,12 @@ export class GeneralBasicComponent implements OnInit {
     this.selectedState = this.defaultList;
     this.stateList = [];
   }
-  removeProfileFile=(event, control)=>{
+  removeProfileFile = (event, control) => {
     this.formControl[control].setValue(this.prevData['image']);
-    this.entity.image=this.formControl[control].value;
+    this.entity.image = this.formControl[control].value;
   }
   myUploader = (event, control) => {
-    this.noImage=true;
+    this.noImage = true;
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
     const formData = new FormData();
@@ -126,8 +127,8 @@ export class GeneralBasicComponent implements OnInit {
     this._HttpService.httpCall(url, 'POST', formData, null).subscribe(res => {
       this.formControl[control].setValue(res.result);
       this[control] = false;
-      this.noImage=false;
-      this.entity.image=this.imageBaseHref+res.result;
+      this.noImage = false;
+      this.entity.image = this.imageBaseHref + res.result;
     })
   }
   onChangeState(event) {
@@ -152,8 +153,7 @@ export class GeneralBasicComponent implements OnInit {
     this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
       if (res.responseCode == 200) {
         let dataObj = res.result;
-        this.entity={...dataObj};
-        
+        this.entity = { ...dataObj };
         Object.keys(dataObj).forEach(name => {
           if (this.formControl[name]) {
             if (name != 'address') {
@@ -161,17 +161,15 @@ export class GeneralBasicComponent implements OnInit {
             }
           }
         });
-        if(!this.entity.image){
-          this.noImage=true;
-        }else{
-          this.entity.image='http://scaledskills.com/api/Document/p/'+dataObj.image;
-          this.noImage=false;
+        if (!this.entity.image) {
+          this.noImage = true;
+        } else {
+          this.entity.image = 'http://scaledskills.com/api/Document/p/' + dataObj.image;
+          this.noImage = false;
         }
-        
         let currentDate = dataObj.dateOfBirth ? new Date(dataObj.dateOfBirth) : ''
         this.dateOfBirth.setValue(currentDate);
         this.profileForm.get('referralID').setValue(dataObj.referralID);
-        
         if (dataObj.referralID) {
           this.isReferralID = true
         } else {
@@ -195,7 +193,7 @@ export class GeneralBasicComponent implements OnInit {
           this.getStateList(id)
         }
       }
-      this.prevData={...this.entity};
+      this.prevData = { ...this.entity };
     })
   }
   get formControl() { return this.profileForm.controls }
@@ -226,7 +224,6 @@ export class GeneralBasicComponent implements OnInit {
           this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
             this.getProfileData(this.basicApi);
           });
-
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' }
