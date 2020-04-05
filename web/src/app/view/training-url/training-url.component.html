@@ -52,10 +52,10 @@
                 {{entity['countryName']?entity['countryName'] + ' , ':''}}
               </div>
               <div *ngIf="entity && entity['mode']=='Online'">
-                <p class="cursor-pointer"
+                <p class="cursor-pointer clrBlue"
                   (click)="openUrl(entity && entity['onlineLocation']?entity && entity['onlineLocation']:'')"
                   *ngIf="entity && entity['onlineLocation']">{{entity['onlineLocation']}}</p>
-                <p *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
+                <p class="wordBreak" *ngIf="entity && entity['locationDetail']">{{entity['locationDetail']}}</p>
               </div>
             </div>
           </div>
@@ -86,13 +86,14 @@
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
               </div>
               <!-- *ngIf="entity['isRegister']" -->
-              <div >
+              <div>
                 <div class="item cursor-pointer" (click)="handleFeedback()">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
               </div>
             </div>
           </div>
-          <p><strong class="clrPurple font20">Price:
+
+          <p *ngIf="entity && entity['amount']"><strong class="clrPurple font20">Price:
               {{entity && entity['amount']?entity['amount'] + ' (INR)':'FREE'}}</strong></p>
           <div class="btn btn-default traiing-id btn-border-blue font-bold">
             TRAINING ID : {{entity && entity.trainingId}}
