@@ -73,19 +73,9 @@ export class OrganizerUrlComponent implements OnInit {
     this._Router.navigate(['account/trainer/training/' + trainingId + '/basic']);
   }
   setYoutubeUrl = (url) => {
-    var str = url;
-    let embeddedUrl;
-    if (str.indexOf('embed') > -1) {
-      embeddedUrl = str;
-    } else {
-      var res = str.split("=");
-      var length = res.length - 1;
-      embeddedUrl = "https://www.youtube.com/embed/" + res[length] + "?autoplay=1";
-    }
-    let element = document.getElementById('aboutVideoFrame');
-    if (element) {
-      document.getElementById('aboutVideoFrame').setAttribute("src", embeddedUrl);
-    }
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] + '?autoplay=1' : null;
   }
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -98,9 +88,8 @@ export class OrganizerUrlComponent implements OnInit {
           this.fetchTrainingReview();
           this.fetchMembers();
           if (this.entity.about && this.entity.about.videoUrl) {
-            setTimeout(() => {
-              this.setYoutubeUrl(this.entity.about.videoUrl)
-            }, 0)
+            this.setYoutubeUrl(this.entity.about.videoUrl)
+            document.getElementById('aboutVideoFrame').innerHTML = '<div class="iframeWrap"><iframe width="560" height="315" src="//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl) + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div?';
           }
         }
         else {
