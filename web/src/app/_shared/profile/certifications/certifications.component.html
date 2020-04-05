@@ -71,7 +71,7 @@
       <th>Authority</th>
       <th>Valid From</th>
       <th>Valid To</th>
-      <th>Expired</th>
+      <!-- <th>Expired</th> -->
       <th class="text-center">Action</th>
     </tr>
   </ng-template>
@@ -81,7 +81,7 @@
       <td>{{item.authority}}</td>
       <td>{{item.from | date : 'MM/dd/yyyy'}}</td>
       <td>{{!item.to?'No Expiration Date':item.to | date : 'MM/dd/yyyy'}}</td>
-      <td>{{item.isExpired?'Yes':'No'}}</td>
+      <!-- <td>{{item.isExpired?'Yes':'No'}}</td> -->
       <td class="text-center">
         <a href="javascript:void(0)" class="cursor-pointer" (click)="handleEdit(item)">
           <i class="pi pi-pencil"></i>
@@ -90,9 +90,6 @@
           (click)="handleView(item.url)">
           <i class="pi pi-info"></i>
         </a>
-        <!-- <a href="javascript:void(0)" class="cursor-pointer" (click)="handleRemove()">
-          <i class="pi pi-times"></i>
-        </a> -->
       </td>
     </tr>
   </ng-template>
