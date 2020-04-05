@@ -12,7 +12,7 @@ import { EmbedVideoService } from 'ngx-embed-video';
 export class OrganizerUrlComponent implements OnInit {
   cars = [];
   iframe_html: any = null;
-  imageBaseUrl=ApiPath.imageBaseSrc;
+  imageBaseUrl = ApiPath.imageBaseSrc;
   memberList = [];
   totalMember = 0;
   display: boolean = false;
@@ -79,13 +79,13 @@ export class OrganizerUrlComponent implements OnInit {
       embeddedUrl = str;
     } else {
       var res = str.split("=");
-      embeddedUrl = "https://www.youtube.com/embed/" + res[1] + "?autoplay=1";
+      var length = res.length - 1;
+      embeddedUrl = "https://www.youtube.com/embed/" + res[length] + "?autoplay=1";
     }
     let element = document.getElementById('aboutVideoFrame');
     if (element) {
       document.getElementById('aboutVideoFrame').setAttribute("src", embeddedUrl);
     }
-
   }
   getData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
@@ -210,8 +210,6 @@ export class OrganizerUrlComponent implements OnInit {
       }
     })
   }
-
-
   fetchTrainingReview = () => {
     let postObj = {
       "userId": this.orgId,
