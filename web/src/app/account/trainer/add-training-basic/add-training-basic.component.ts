@@ -219,12 +219,13 @@ export class AddTrainingBasicComponent implements OnInit {
     let postObj = {
       ...this.trainingBasicForm.value,
     }
-    if (postObj.endDate < postObj.startDate) {
+    /* if (postObj.endDate < postObj.startDate) {
       let msgArray = [
         { mgs: 'End date should be greater than start date' }
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
-    } else if (this.trainingBasicForm.invalid) {
+    } else  */
+    if (this.trainingBasicForm.invalid) {
       this.submitted = true;
     } else {
       if (this.urlConfig.isUrlValid) {
