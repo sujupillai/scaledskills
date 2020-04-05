@@ -195,7 +195,7 @@ export class TrainerUrlComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess');
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
         } else {
           let msgArray = [
             { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }

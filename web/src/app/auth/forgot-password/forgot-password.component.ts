@@ -58,7 +58,7 @@ export class ForgotPasswordComponent implements OnInit {
             { mgs: res.responseMessege, class: 'confirmMsg' },
             { mgs: 'Please check your registered email id for reset password link.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Success').subscribe(res => {
             this._Router.navigate(['/']);
           })
         } else {

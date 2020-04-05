@@ -96,7 +96,7 @@ export class CertificationsComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
             this.resetForm(this.certificatesForm)
             this.getCertificationData()
           });
@@ -129,7 +129,7 @@ export class CertificationsComponent implements OnInit {
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
     // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Success').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.certificatesForm)
       }

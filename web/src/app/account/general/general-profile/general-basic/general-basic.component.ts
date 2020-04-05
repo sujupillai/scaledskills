@@ -221,7 +221,7 @@ export class GeneralBasicComponent implements OnInit {
               class: 'confirmMsg'
             },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
             this.getProfileData(this.basicApi);
           });
         } else {
@@ -267,7 +267,7 @@ export class GeneralBasicComponent implements OnInit {
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
-    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Success').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.profileForm)
       }

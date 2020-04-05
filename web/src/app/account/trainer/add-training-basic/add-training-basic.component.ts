@@ -246,7 +246,7 @@ export class AddTrainingBasicComponent implements OnInit {
                 class: 'confirmMsg'
               },
             ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
               if (newTraining) {
                 this._Router.navigate(['account/trainer/training/' + this.trainingId + '/basic']);
               } else {

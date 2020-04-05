@@ -56,7 +56,7 @@ export class OrderDetailComponent implements OnInit {
       //       class: 'confirmMsg'
       //     },
       //   ]
-      //   this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
+      //   this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Success').subscribe(res => {
       //     let returnUrl = localStorage.getItem('returnurl') || '/';
       //     this._Router.navigate([returnUrl]);
       //   })
@@ -79,7 +79,7 @@ export class OrderDetailComponent implements OnInit {
             class: 'confirmMsg'
           },
         ]
-        this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
+        this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Success').subscribe(res => {
           this.redirectTo();
         })
       }
@@ -145,7 +145,7 @@ export class OrderDetailComponent implements OnInit {
             class: 'confirmMsg'
           },
         ]
-        this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Sucess').subscribe(res => {
+        this._SharedService.dialogConfig(msgArray, true, true, false, 'OK', null, false, 'Success').subscribe(res => {
           this.redirectTo();
         })
       } else {

@@ -131,7 +131,7 @@ export class TrainingFormComponent implements OnInit {
           let msgArray = [
             { mgs: 'Request Send', class: 'confirmMsg' }
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess')
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success')
         } else {
           let msgArray = [
             { mgs: 'Something went wrong', class: 'confirmMsg' },
@@ -166,7 +166,7 @@ export class TrainingFormComponent implements OnInit {
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
     // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Success').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.requestForm)
       }

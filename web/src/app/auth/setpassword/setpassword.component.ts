@@ -63,7 +63,7 @@ export class SetpasswordComponent implements OnInit {
           let msgArray = [
             { mgs: res.responseMessege, class: 'confirmMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
             this._Router.navigate(['/auth/login']);
           })
         } else {

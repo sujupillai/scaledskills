@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
             { mgs: res.responseMessege, class: 'confirmMsg' },
             { mgs: 'Please check your registered email id for verify your account after two minutes.', class: 'subMsg' },
           ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
             this._Router.navigate(['/'])
           })
         } else {

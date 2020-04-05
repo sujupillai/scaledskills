@@ -57,7 +57,7 @@ export class AddTrainingPromotionsComponent implements OnInit {
           },
         ]
         // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Sucess').subscribe(res=>{
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res=>{
           this.getData()
         })
       }

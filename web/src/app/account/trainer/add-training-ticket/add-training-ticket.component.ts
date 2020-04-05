@@ -244,7 +244,7 @@ export class AddTrainingTicketComponent implements OnInit {
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
       { mgs: 'Unsaved changes will not be saved.', class: 'subMsg' },
     ]
-    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Sucess').subscribe(res => {
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Success').subscribe(res => {
       if (res == 1) {
         this.resetForm(this.formElement, null)
       }
@@ -271,7 +271,7 @@ export class AddTrainingTicketComponent implements OnInit {
             { mgs: 'Do you want to create another ticket?.', class: 'subMsg' },
           ]
           // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'NO', false, 'Sucess').subscribe(res => {
+          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'NO', false, 'Success').subscribe(res => {
             if (res == 1) {
               this.resetForm(this.formElement, true)
             } else {
