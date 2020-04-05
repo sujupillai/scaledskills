@@ -101,7 +101,8 @@ export class TrainerUrlComponent implements OnInit {
       embeddedUrl = str;
     } else {
       var res = str.split("=");
-      embeddedUrl = "https://www.youtube.com/embed/" + res[1] + "?autoplay=1";
+      var length =res.length-1;
+      embeddedUrl = "https://www.youtube.com/embed/" + res[length] + "?autoplay=1";
     }
     let element = document.getElementById('aboutVideoFrame');
     if (element) {
