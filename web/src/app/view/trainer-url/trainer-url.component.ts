@@ -5,6 +5,7 @@ import { HttpService, SharedService, AuthenticationService } from '../../_servic
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
 import { EmbedVideoService } from 'ngx-embed-video';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-trainer-url',
   templateUrl: './trainer-url.component.html'
@@ -36,6 +37,7 @@ export class TrainerUrlComponent implements OnInit {
   avgRating;
   userInfo: any = {};
   isLoggedIn: boolean = false;
+  safeSrc: SafeResourceUrl;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -46,6 +48,7 @@ export class TrainerUrlComponent implements OnInit {
   ];
   origin = window.location.origin;
   constructor(public dialogService: DialogService,
+    private sanitizer: DomSanitizer,
     private embedService: EmbedVideoService,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService,
     private _SharedService: SharedService, private _AuthenticationService: AuthenticationService) {
@@ -97,7 +100,7 @@ export class TrainerUrlComponent implements OnInit {
   setYoutubeUrl = (url) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] + '?autoplay=1' : null;
+    return (match && match[2].length === 11) ? match[2]  : null;
   }
   getData = (url) => {
     this.isLoading = true;
@@ -112,8 +115,7 @@ export class TrainerUrlComponent implements OnInit {
           this.fetchMembers();
           this.fetchTrainingReview();
           if (this.entity.about && this.entity.about.videoUrl) {
-            this.setYoutubeUrl(this.entity.about.videoUrl)
-            document.getElementById('aboutVideoFrame').innerHTML = '<div class="iframeWrap"><iframe width="560" height="315" src="//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl) + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div?';
+            this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl('//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl)+'?autoplay=1');
           }
         }
         else {

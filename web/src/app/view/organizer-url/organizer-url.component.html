@@ -106,7 +106,12 @@
       </li>
     </ul>
     <div class="tab-content">
-      <div id="aboutVideoFrame"></div>
+      <!-- <div id="aboutVideoFrame"></div> -->
+      <div class="iframeWrap" *ngIf="entity.about && entity.about.videoUrl">
+        <iframe [class.thumbnail]="thumbnail" [src]="safeSrc" width="560" height="315" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+          webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
       <div>
         <h3>About</h3>
         <p [innerHTML]="entity.about && entity.about.aboutText?entity.about.aboutText:'N/A'"></p>

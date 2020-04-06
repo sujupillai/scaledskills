@@ -4,7 +4,7 @@ import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { HttpService, SharedService, AuthenticationService } from '../../_service';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
-import { EmbedVideoService } from 'ngx-embed-video';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-organizer-url',
   templateUrl: './organizer-url.component.html'
@@ -41,6 +41,7 @@ export class OrganizerUrlComponent implements OnInit {
   reviewList = [];
   totalReview = 0;
   avgRating = 0;
+  safeSrc: SafeResourceUrl;
   shareOptions = [
     { label: 'Facebook', icon: 'fa fa-facebook', command: () => { this.shareAction(1); } },
     { label: 'Whatsapp', icon: 'fa fa-whatsapp', command: () => { this.shareAction(2); } },
@@ -50,7 +51,7 @@ export class OrganizerUrlComponent implements OnInit {
     { label: 'Copy Url', icon: 'fa fa-clone', command: () => { this.copyToClipboard(); } },
   ];
   constructor(public dialogService: DialogService, private _AuthenticationService: AuthenticationService,
-    private embedService: EmbedVideoService,
+    private sanitizer: DomSanitizer,
     private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _SharedService: SharedService) {
   }
   ngOnInit() {
@@ -87,9 +88,13 @@ export class OrganizerUrlComponent implements OnInit {
           this.fetchUpcomingTraining();
           this.fetchTrainingReview();
           this.fetchMembers();
+          // if (this.entity.about && this.entity.about.videoUrl) {
+          //   this.setYoutubeUrl(this.entity.about.videoUrl)
+          //   document.getElementById('aboutVideoFrame').innerHTML = '<div class="iframeWrap"><iframe width="560" height="315" src="//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl) + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div?';
+          //   document.getElementById("aboutVideoFrame").click();
+          // }
           if (this.entity.about && this.entity.about.videoUrl) {
-            this.setYoutubeUrl(this.entity.about.videoUrl)
-            document.getElementById('aboutVideoFrame').innerHTML = '<div class="iframeWrap"><iframe width="560" height="315" src="//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl) + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div?';
+            this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl('//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl) + '?autoplay=1');
           }
         }
         else {
