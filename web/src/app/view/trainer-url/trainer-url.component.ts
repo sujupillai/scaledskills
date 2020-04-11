@@ -100,7 +100,7 @@ export class TrainerUrlComponent implements OnInit {
   setYoutubeUrl = (url) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2]  : null;
+    return (match && match[2].length === 11) ? match[2] : null;
   }
   getData = (url) => {
     this.isLoading = true;
@@ -115,7 +115,7 @@ export class TrainerUrlComponent implements OnInit {
           this.fetchMembers();
           this.fetchTrainingReview();
           if (this.entity.about && this.entity.about.videoUrl) {
-            this.safeSrc =  this.sanitizer.bypassSecurityTrustResourceUrl('//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl)+'?autoplay=1');
+            this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl('//www.youtube.com/embed/' + this.setYoutubeUrl(this.entity.about.videoUrl) + '?autoplay=1');
           }
         }
         else {
@@ -174,27 +174,31 @@ export class TrainerUrlComponent implements OnInit {
     return ref.onClose;
   }
   showSendMesage() {
-    let data = {
-      toEmail: this.entity.user.email ? this.entity.user.email : ''
-    }
-    this.messageDialogConfig(data, 'Send Email').subscribe(res => {
-      if (res != undefined) {
-        if (res && res.responseCode == 200) {
-          let msgArray = [
-            {
-              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
-        } else {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-        }
+    if (this.entity.user.email) {
+      let data = {
+        toEmail: this.entity.user.email ? this.entity.user.email : ''
       }
-    })
+      this.messageDialogConfig(data, 'Send Email').subscribe(res => {
+        if (res != undefined) {
+          if (res && res.responseCode == 200) {
+            let msgArray = [
+              {
+                mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+                class: 'confirmMsg'
+              },
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
+          } else {
+            let msgArray = [
+              { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+          }
+        }
+      })
+    } else {
+      this._Router.navigate(['/contact']);
+    }
   }
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;

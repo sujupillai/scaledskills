@@ -166,18 +166,22 @@ export class OrganizerUrlComponent implements OnInit {
     this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
   }
   showSendMesage() {
-    let data = {
-      toEmail: this.entity.user.email ? this.entity.user.email : ''
-    }
-    this.messageDialogConfig(data, 'Send Email').subscribe(res => {
-      if (res != undefined) {
-        if (res && res.responseCode == 200) {
-          this.successMsg(res);
-        } else {
-          this.errorMsg(res);
-        }
+    if (this.entity.user.email) {
+      let data = {
+        toEmail: this.entity.user.email ? this.entity.user.email : ''
       }
-    })
+      this.messageDialogConfig(data, 'Send Email').subscribe(res => {
+        if (res != undefined) {
+          if (res && res.responseCode == 200) {
+            this.successMsg(res);
+          } else {
+            this.errorMsg(res);
+          }
+        }
+      })
+    } else {
+      this._Router.navigate(['/contact']);
+    }
   }
   copyToClipboard = () => {
     let url = origin + this._Router.url;

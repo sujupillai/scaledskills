@@ -20,7 +20,7 @@ export class TrainingUrlComponent implements OnInit {
   regUsers = [];
   refCode;
   totalUser;
-  imageBaseUrl=ApiPath.imageBaseSrc;
+  imageBaseUrl = ApiPath.imageBaseSrc;
   trainingId = 0;
   upcommingTrainings = [];
   pastTrainings = [];
@@ -224,27 +224,31 @@ export class TrainingUrlComponent implements OnInit {
     return ref.onClose;
   }
   showSendMesage() {
-    let data = {
-      toEmail: this.entity['email'] ? this.entity['email'] : ''
-    }
-    this.messageDialogConfig(data, 'Send Email', 1).subscribe(res => {
-      if (res != undefined) {
-        if (res && res.responseCode == 200) {
-          let msgArray = [
-            {
-              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
-        } else {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-        }
+    if (this.entity['userEmail']) {
+      let data = {
+        toEmail: this.entity['userEmail'] ? this.entity['userEmail'] : ''
       }
-    })
+      this.messageDialogConfig(data, 'Send Email', 1).subscribe(res => {
+        if (res != undefined) {
+          if (res && res.responseCode == 200) {
+            let msgArray = [
+              {
+                mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+                class: 'confirmMsg'
+              },
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
+          } else {
+            let msgArray = [
+              { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+            ]
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+          }
+        }
+      })
+    } else {
+      this._Router.navigate(['/contact']);
+    }
   }
   handleFeedback = () => {
     let data = {
@@ -278,7 +282,6 @@ export class TrainingUrlComponent implements OnInit {
     });
     let returnUrl = window.location.pathname;
     localStorage.setItem('returnurl', returnUrl);
-
     let msgArray = [
       { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
       { mgs: 'Do you want to login ?', class: 'subMsg' },
@@ -290,7 +293,6 @@ export class TrainingUrlComponent implements OnInit {
         } else {
           this._Router.navigate(['/auth/login']);
         }
-
       }
     })
   }
