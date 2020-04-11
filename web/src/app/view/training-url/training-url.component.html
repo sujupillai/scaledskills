@@ -85,8 +85,7 @@
                 <div class="item" [ngClass]="entity['isRegister']?'cursor-pointer':'disabled'">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
               </div>
-              <!-- *ngIf="entity['isRegister']" -->
-              <div>
+              <div *ngIf="entity['isRegister']">
                 <div class="item cursor-pointer" (click)="handleFeedback()">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Feedback</div>
               </div>
