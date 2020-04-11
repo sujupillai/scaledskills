@@ -220,7 +220,7 @@ export class TrainerUrlComponent implements OnInit {
       "pageSize": 1000,
       "page": 0
     }
-    let url = ApiPath.getTrainingReview;
+    let url = ApiPath.getTrainingAllFeedback;
     this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
       this.reviewList = res.result.results
       this.totalReview = res.result.totalCount;

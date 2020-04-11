@@ -71,7 +71,9 @@ export const ApiPath = {
   'generalMemberFollow': 'api/Home/P/M/f',
   'orgMemberFollow': 'api/Home/O/M/f',
   'relatedTraining': 'api/Home/RelatedT',
-  'getTrainingReview': 'api/Home/T/review',
+  'getTrainingAllFeedback': 'api/Home/T/review',
+  'getTrainingReviewByUser': 'api/Training/{TrainingId}/U/Review',
+  
   /* handle follow */
   'followOrg': 'api/Home/O/f',
   'followTraining': 'api/Home/T/f',

@@ -10,8 +10,8 @@ export class HttpService {
     let url = ''
     const origin = window.location.origin;
     if (origin.indexOf("localhost") > -1) {
-        //url = 'https://testapi.scaledskills.com/';
-        url = 'https://scaledskills.com/';
+        url = 'http://testapi.scaledskills.com/';
+        //url = 'https://scaledskills.com/';
     } else {
       url = window.location.origin+'/';
     }

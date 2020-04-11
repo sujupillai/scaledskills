@@ -14,7 +14,7 @@ export class ReviewComponent implements OnInit {
   traineeReviewForm: FormGroup;
   trainingId: any = 0;
   prevState;
-  listData = [];
+  feedbackObj = [];
   submitted = false;
   res
   val2: number = 5;
@@ -43,14 +43,14 @@ export class ReviewComponent implements OnInit {
   }
   get formControl() { return this.traineeReviewForm.controls };
   getData = () => {
-    let url = ApiPath.trainingReview;
+    let url = ApiPath.getTrainingReviewByUser;
     url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.listData = res.result;
-        Object.keys(this.listData[0]).forEach(name => {
+        this.feedbackObj = res.result;
+        Object.keys(this.feedbackObj).forEach(name => {
           if (this.formControl[name]) {
-            this.formControl[name].setValue(this.listData[0][name]);
+            this.formControl[name].setValue(this.feedbackObj[name]);
           }
         });
       }
