@@ -12,8 +12,7 @@
       <label>Training Url <span class="required">*</span></label>
       <div class="flex vMiddle urlBox">
         <div class="fixed-input">{{baseUrl}}</div>
-        <input type="text" formControlName="url" pInputText placeholder="Enter Here"
-          [ngClass]="urlConfig.isUrl?'disabled':''" (keyup)="updateUrl()" (blur)="validateUrl()">
+        <input type="text" formControlName="url" pInputText placeholder="Enter Here" (keyup)="updateUrl()" (blur)="validateUrl()">
         <p class="msgError text-danger" *ngIf="formControl.url.invalid && (formControl.url.dirty || submitted)">
           <small *ngIf="formControl.url.hasError('required')">
             Required Field.
@@ -90,7 +89,6 @@
       </div>
     </div>
     <div class="row">
-      <!-- [minDate]="startDate.value" -->
       <div class="col-sm-6">
         <div class="form-group">
           <label>End Date <span class="required">*</span></label>

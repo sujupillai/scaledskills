@@ -156,6 +156,7 @@ export class AddTrainingBasicComponent implements OnInit {
     this.formControl.endTime.setValue('');
   }
   updateUrl = () => {
+    this.urlConfig.isUrl = false;
     this.urlConfig.isUrlValid = false;
     this.urlConfig.vrlValidationMsg = 'Please validate url';
     this.urlConfig.urlSubmitted = false;
@@ -219,12 +220,7 @@ export class AddTrainingBasicComponent implements OnInit {
     let postObj = {
       ...this.trainingBasicForm.value,
     }
-    /* if (postObj.endDate < postObj.startDate) {
-      let msgArray = [
-        { mgs: 'End date should be greater than start date' }
-      ]
-      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
-    } else  */
+    
     if (this.trainingBasicForm.invalid) {
       this.submitted = true;
     } else {
