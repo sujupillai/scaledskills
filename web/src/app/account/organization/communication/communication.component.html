@@ -12,54 +12,24 @@
         <p-dropdown [options]="[1,2,3]" placeholder="Organization"></p-dropdown>
       </div>
       <div class="col-sm-6">
-        <label>Users/Trainings</label>
-        <p-dropdown [options]="[1,2,3]" placeholder="Users/Trainings"></p-dropdown>
-      </div>
-    </div>
-    <div class="row form-group">
-      <div class="col-sm-6">
-        <label>Users</label>
-        <p-dropdown [options]="[1,2,3]" placeholder="Users"></p-dropdown>
-      </div>
-      <div class="col-sm-6">
         <label>Trainings</label>
         <p-dropdown [options]="[1,2,3]" placeholder="Trainings"></p-dropdown>
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-6">
-        <label>Filter User List</label>
-        <div class="ui-g" style="width:250px;margin-bottom:10px">
-          <div class="ui-g-12">
-            <p-checkbox name="group1" value="New York" label="New York" [(ngModel)]="selectedCities" inputId="ny">
-            </p-checkbox>
-          </div>
-          <div class="ui-g-12">
-            <p-checkbox name="group1" value="San Francisco" label="San Francisco" [(ngModel)]="selectedCities"
-              inputId="sf"></p-checkbox>
-          </div>
-          <div class="ui-g-12">
-            <p-checkbox name="group1" value="Los Angeles" label="Los Angeles" [(ngModel)]="selectedCities" inputId="la">
-            </p-checkbox>
-          </div>
-        </div>
+        <label>User Types</label>
+        <p-dropdown [options]="userTypes" placeholder="User Types"></p-dropdown>
       </div>
       <div class="col-sm-6">
-        <label>Final User List</label>
-        <div class="ui-g" style="width:250px;margin-bottom:10px">
-          <div class="ui-g-12">
-            <p-checkbox name="group1" value="New York" label="New York" [(ngModel)]="selectedCities" inputId="ny">
-            </p-checkbox>
-          </div>
-          <div class="ui-g-12">
-            <p-checkbox name="group1" value="San Francisco" label="San Francisco" [(ngModel)]="selectedCities"
-              inputId="sf"></p-checkbox>
-          </div>
-          <div class="ui-g-12">
-            <p-checkbox name="group1" value="Los Angeles" label="Los Angeles" [(ngModel)]="selectedCities" inputId="la">
-            </p-checkbox>
-          </div>
-        </div>
+        <label>Users</label> Export to csv
+        <p-dropdown [options]="[1,2,3]" placeholder="Users"></p-dropdown>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-12">
+        <label>Template</label>
+        <p-dropdown [options]="[1,2,3]" placeholder="Template"></p-dropdown>
       </div>
     </div>
     <div class="row form-group">
