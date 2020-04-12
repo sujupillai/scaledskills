@@ -170,7 +170,7 @@ export class OrganizerUrlComponent implements OnInit {
       let data = {
         toEmail: this.entity.user.email ? this.entity.user.email : ''
       }
-      this.messageDialogConfig(data, 'Send Email').subscribe(res => {
+      this.messageDialogConfig(data, 'Send Message').subscribe(res => {
         if (res != undefined) {
           if (res && res.responseCode == 200) {
             this.successMsg(res);

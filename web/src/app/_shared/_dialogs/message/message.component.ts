@@ -50,7 +50,6 @@ export class MessageComponent implements OnInit {
         this.ref.close(error);
       })
     }
-    // this.ref.close(data);
   }
   handleCancel=()=>{
     this.ref.close();
