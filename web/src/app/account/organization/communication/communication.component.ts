@@ -14,13 +14,16 @@ export class CommunicationComponent implements OnInit {
         'text': "All"
       },
       {
-        'text': "Registered Users"
+        'text': "Registered"
       },
       {
-        'text': "Pending Registration Users"
+        'text': "Pending Registration"
       },
       {
-        'text': "Interested Users"
+        'text': "Interested"
+      },
+      {
+        'text': "Feedback Received"
       }
     ]
   }
