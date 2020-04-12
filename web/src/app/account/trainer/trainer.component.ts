@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 @Component({
   selector: 'app-account-trainer',
   templateUrl: './trainer.component.html'
@@ -12,15 +12,13 @@ export class TrainerComponent implements OnInit {
   setActiveTabIndex: number = 1
   trainingId: number = 0;
   routeLinks: any[];
-  constructor(private _ActivatedRoute:ActivatedRoute, private _Router:Router) { }
+  constructor(private _ActivatedRoute: ActivatedRoute, private _Router: Router) { }
   ngOnInit() {
     this.tabArray = [
-      { 'name': 'Personal', 'label': 'basic', 'routeId': '1' },
-      { 'name': 'Credentials', 'label': 'password', 'routeId': '2' },
-      { 'name': 'Keywords', 'label': 'keyword', 'routeId': '3' },
-      { 'name': 'About', 'label': 'about', 'routeId': '4' },
-      { 'name': 'Certifications Earned', 'label': 'certificate', 'routeId': '5' },
-      { 'name': 'Social Media', 'label': 'social', 'routeId': '6' }
+      { label: 'Basic', routerLink: '/account/trainer/profile/basic' },
+      { label: 'About', routerLink: '/account/trainer/profile/about' },
+      { label: 'Certifications Earned', routerLink: '/account/trainer/profile/certificate' },
+      { label: 'Social Media', routerLink: '/account/trainer/profile/social' },
     ]
   }
   setActiveTab = (number) => {
