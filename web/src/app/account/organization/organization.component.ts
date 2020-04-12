@@ -14,9 +14,11 @@ export class OrganizationComponent implements OnInit {
 
   ngOnInit() {
     this.tabArray = [
-      { 'name': 'Personal', 'label': 'basic', 'routeId': '1' },
-      { 'name': 'About', 'label': 'about', 'routeId': '4' },
-      { 'name': 'Social Media', 'label': 'social', 'routeId': '6' }
+      { label: 'Basic', routerLink: '/account/organization/profile/basic' },
+      { label: 'About', routerLink: '/account/organization/profile/about' },
+      { label: 'Social', routerLink: '/account/organization/profile/social' },
+      { label: 'Bank Details', routerLink: '/account/organization/bank' },
+      { label: 'Communication', routerLink: '/account/organization/communication' },
     ]
   }
   setActiveTab = (number) => {

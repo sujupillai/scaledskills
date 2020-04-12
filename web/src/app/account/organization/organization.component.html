@@ -1,37 +1,16 @@
 <div class="container">
-  <h2 class="text-center">Organization</h2>
-  <div class="row row-same-height profile-wrap">
-    <div class="col-same-height col-sm-3">
-      <div class="mat-accordion-plain content">
-        <ul class="accordion-like-nav">
-          <li>
-            <span class="nav-heading">Profile</span>
-         </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['profile/about']">About</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['profile/social']">Social</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['bank']">Bank Details</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['communication']">Communication</a>
-          </li>
-          <li>
-            <a [routerLink]="['/account']">
-              <i class="glyphicon glyphicon-chevron-left"></i> Back
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-same-height col-sm-9 content-section">
+  <h2 class="text-center section-heading">
+    <a [routerLink]="['/account']" class="arrow">
+      <i class="glyphicon glyphicon-chevron-left"></i> Back
+    </a>
+    ORGANIZATION
+  </h2>
+  <div class="row profile-wrap">
+    <div class="col-sm-12 content-section">
       <div class="content">
+        <div class="tab-bar">
+          <p-tabMenu [model]="tabArray"></p-tabMenu>
+        </div>
         <router-outlet></router-outlet>
       </div>
     </div>
