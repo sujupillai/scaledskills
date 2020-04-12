@@ -1,52 +1,18 @@
 <div class="container">
-  <h2 class="text-center">GENERAL</h2>
+  <h2 class="text-center section-heading">
+    <a [routerLink]="['/account']" class="arrow">
+      <i class="glyphicon glyphicon-chevron-left"></i> Back
+    </a>
+    GENERAL
+  </h2>
   <div class="row profile-wrap">
     <div class="col-sm-12 content-section">
       <div class="content">
-        <div class="tab-bar"><p-tabMenu [model]="items"></p-tabMenu></div>
+        <div class="tab-bar">
+          <p-tabMenu [model]="tabArray"></p-tabMenu>
+        </div>
         <router-outlet></router-outlet>
       </div>
     </div>
   </div>
 </div>
-
-
-<!-- <div class="container">
-  <h2 class="text-center">GENERAL</h2>
-  <div class="row row-same-height profile-wrap">
-    <div class="col-same-height col-sm-3">
-      <div class="mat-accordion-plain content">
-        <ul class="accordion-like-nav">
-          <li>
-             <span class="nav-heading">Profile</span>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['profile/basic']">Basic</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['profile/password']">Credentials</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['attendeeView']">Attendee View</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['organizerView']">Organizer View</a>
-          </li>
-          <li>
-            <a routerLinkActive="active" [routerLink]="['bank']">Bank Details</a>
-          </li>
-          <li>
-            <a [routerLink]="['/account']">
-              <i class="glyphicon glyphicon-chevron-left"></i> Back
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-same-height col-sm-9 content-section">
-      <div class="content">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
-</div> -->

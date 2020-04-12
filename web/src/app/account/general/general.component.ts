@@ -12,21 +12,14 @@ export class GeneralComponent implements OnInit {
   items;
   constructor() { }
   ngOnInit() {
-    this.items = [
+    this.tabArray = [
       { label: 'Basic', routerLink: '/account/general/profile/basic' },
       { label: 'Password', routerLink: '/account/general/profile/password' },
       { label: 'Attendee View', routerLink: '/account/general/attendeeView' },
       { label: 'Organizer View', routerLink: '/account/general/organizerView' },
       { label: 'Bank Details', routerLink: '/account/general/bank' },
     ];
-    this.tabArray = [
-      { 'name': 'Personal', 'label': 'basic', 'routeId': '1' },
-      { 'name': 'Credentials', 'label': 'password', 'routeId': '2' },
-      { 'name': 'Keywords', 'label': 'keyword', 'routeId': '3' },
-      { 'name': 'About', 'label': 'about', 'routeId': '4' },
-      { 'name': 'Certifications Earned', 'label': 'certificate', 'routeId': '5' },
-      { 'name': 'Social Media', 'label': 'social', 'routeId': '6' }
-    ]
+    
   }
   setActiveTab = (number) => {
     if (this.setActiveTabIndex == number) {

@@ -2102,3 +2102,16 @@ body {
 body .tab-bar .ui-tabmenu .ui-tabmenu-nav {
   padding-bottom: 5px;
 }
+
+.section-heading {
+  position: relative;
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
