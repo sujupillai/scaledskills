@@ -8,9 +8,17 @@ export class GeneralComponent implements OnInit {
   expandedTab: number = -1;
   tabArray = []
   id: number;
-  setActiveTabIndex: number = 1
+  setActiveTabIndex: number = 1;
+  items;
   constructor() { }
   ngOnInit() {
+    this.items = [
+      { label: 'Basic', routerLink: '/account/general/profile/basic' },
+      { label: 'Password', routerLink: '/account/general/profile/password' },
+      { label: 'Attendee View', routerLink: '/account/general/attendeeView' },
+      { label: 'Organizer View', routerLink: '/account/general/organizerView' },
+      { label: 'Bank Details', routerLink: '/account/general/bank' },
+    ];
     this.tabArray = [
       { 'name': 'Personal', 'label': 'basic', 'routeId': '1' },
       { 'name': 'Credentials', 'label': 'password', 'routeId': '2' },
