@@ -27,5 +27,8 @@ export class CommunicationComponent implements OnInit {
       }
     ]
   }
+  handleSubmit=()=>{
+    
+  }
 
 }
