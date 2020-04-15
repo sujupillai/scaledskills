@@ -14,6 +14,7 @@ export class OrganizerUrlComponent implements OnInit {
   iframe_html: any = null;
   imageBaseUrl = ApiPath.imageBaseSrc;
   memberList = [];
+  refCode;
   totalMember = 0;
   display: boolean = false;
   isSendMesage: boolean = false;
@@ -165,23 +166,49 @@ export class OrganizerUrlComponent implements OnInit {
     ]
     this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
   }
-  showSendMesage() {
-    if (this.entity.user.email) {
-      let data = {
-        toEmail: this.entity.user.email ? this.entity.user.email : ''
-      }
-      this.messageDialogConfig(data, 'Send Message').subscribe(res => {
-        if (res != undefined) {
-          if (res && res.responseCode == 200) {
-            this.successMsg(res);
-          } else {
-            this.errorMsg(res);
-          }
+  goToLogin = () => {
+    this.refCode = null;
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
+    let msgArray = [
+      { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+      { mgs: 'Do you want to login ?', class: 'subMsg' },
+    ]
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
+      if (res) {
+        if (this.refCode) {
+          this._Router.navigate(['/auth/login'], { queryParams: { refCode: this.refCode } })
+        } else {
+          this._Router.navigate(['/auth/login']);
         }
-      })
+      }
+    })
+  }
+  showSendMesage() {
+    if (this.isLoggedIn) {
+      if (this.entity.user.email) {
+        let data = {
+          toEmail: this.entity.user.email ? this.entity.user.email : ''
+        }
+        this.messageDialogConfig(data, 'Send Message').subscribe(res => {
+          if (res != undefined) {
+            if (res && res.responseCode == 200) {
+              this.successMsg(res);
+            } else {
+              this.errorMsg(res);
+            }
+          }
+        })
+      } else {
+        this._Router.navigate(['/contact']);
+      }
     } else {
-      this._Router.navigate(['/contact']);
+      this.goToLogin();
     }
+
   }
   copyToClipboard = () => {
     let url = origin + this._Router.url;

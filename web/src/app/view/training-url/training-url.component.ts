@@ -224,31 +224,36 @@ export class TrainingUrlComponent implements OnInit {
     return ref.onClose;
   }
   showSendMesage() {
-    if (this.entity['userEmail']) {
-      let data = {
-        toEmail: this.entity['userEmail'] ? this.entity['userEmail'] : ''
-      }
-      this.messageDialogConfig(data, 'Send Enquiry', 1).subscribe(res => {
-        if (res != undefined) {
-          if (res && res.responseCode == 200) {
-            let msgArray = [
-              {
-                mgs: res && res.responseMessege ? res.responseMessege : 'Success',
-                class: 'confirmMsg'
-              },
-            ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
-          } else {
-            let msgArray = [
-              { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-            ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-          }
+    if (this.isLoggedIn) {
+      if (this.entity['userEmail']) {
+        let data = {
+          toEmail: this.entity['userEmail'] ? this.entity['userEmail'] : ''
         }
-      })
+        this.messageDialogConfig(data, 'Send Enquiry', 1).subscribe(res => {
+          if (res != undefined) {
+            if (res && res.responseCode == 200) {
+              let msgArray = [
+                {
+                  mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+                  class: 'confirmMsg'
+                },
+              ]
+              this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
+            } else {
+              let msgArray = [
+                { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+              ]
+              this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+            }
+          }
+        })
+      } else {
+        this._Router.navigate(['/contact']);
+      }
     } else {
-      this._Router.navigate(['/contact']);
+      this.goToLogin();
     }
+
   }
   handleFeedback = () => {
     let data = {

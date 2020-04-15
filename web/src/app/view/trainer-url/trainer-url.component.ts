@@ -12,6 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class TrainerUrlComponent implements OnInit {
   iframe_html: any = null;
+  refCode;
   cars = [];
   memberList = [];
   isLoading: boolean = true;
@@ -173,32 +174,58 @@ export class TrainerUrlComponent implements OnInit {
     let ref = this.openMessageDialog(dialogConfig, dialogHeader);
     return ref.onClose;
   }
-  showSendMesage() {
-    if (this.entity.user.email) {
-      let data = {
-        toEmail: this.entity.user.email ? this.entity.user.email : ''
-      }
-      this.messageDialogConfig(data, 'Send Message').subscribe(res => {
-        if (res != undefined) {
-          if (res && res.responseCode == 200) {
-            let msgArray = [
-              {
-                mgs: res && res.responseMessege ? res.responseMessege : 'Success',
-                class: 'confirmMsg'
-              },
-            ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
-          } else {
-            let msgArray = [
-              { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-            ]
-            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-          }
+  goToLogin = () => {
+    this.refCode = null;
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
+    let msgArray = [
+      { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+      { mgs: 'Do you want to login ?', class: 'subMsg' },
+    ]
+    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
+      if (res) {
+        if (this.refCode) {
+          this._Router.navigate(['/auth/login'], { queryParams: { refCode: this.refCode } })
+        } else {
+          this._Router.navigate(['/auth/login']);
         }
-      })
-    } else {
-      this._Router.navigate(['/contact']);
+      }
+    })
+  }
+  showSendMesage() {
+    if (this.isLoggedIn){
+      if (this.entity.user.email) {
+        let data = {
+          toEmail: this.entity.user.email ? this.entity.user.email : ''
+        }
+        this.messageDialogConfig(data, 'Send Message').subscribe(res => {
+          if (res != undefined) {
+            if (res && res.responseCode == 200) {
+              let msgArray = [
+                {
+                  mgs: res && res.responseMessege ? res.responseMessege : 'Success',
+                  class: 'confirmMsg'
+                },
+              ]
+              this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success');
+            } else {
+              let msgArray = [
+                { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
+              ]
+              this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+            }
+          }
+        })
+      } else {
+        this._Router.navigate(['/contact']);
+      }
+    }else{
+      this.goToLogin();
     }
+    
   }
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;
