@@ -4,21 +4,24 @@ import { DynamicDialogConfig } from 'primeng/api';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { HttpService } from '../../../_service'
 import { ApiPath } from 'src/app/_helpers/_constants/api';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
 })
 export class MessageComponent implements OnInit {
   formElement: FormGroup;
-  submitted=false;
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private _FormBuilder: FormBuilder, 
-    private _HttpService:HttpService) { }
+  entity;
+  submitted = false;
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private _FormBuilder: FormBuilder,
+    private _HttpService: HttpService) { }
   data;
   ngOnInit() {
     this.data = this.config.data;
     this.createForm(() => {
-      this.formControl['toEmail'].setValue(this.data.data && this.data.data.toEmail ? this.data.data.toEmail:'')
-  })
+      this.formControl['toEmail'].setValue(this.data.data && this.data.data.toEmail ? this.data.data.toEmail : '')
+      this.getProfileData();
+    })
   }
   createForm = (callback) => {
     this.formElement = this._FormBuilder.group({
@@ -33,25 +36,36 @@ export class MessageComponent implements OnInit {
     }
   }
   get formControl() { return this.formElement.controls }
+  getProfileData = () => {
+    let url = ApiPath.userBasic;
+    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
+      if (res.responseCode == 200) {
+        this.entity = res.result;
+      }
+    })
+  }
   handleSubmit = () => {
+    debugger
     let postObj = {
       ...this.formElement.value
     }
+    postObj.body = postObj.body + '\n' + '\n' + '\n' + 'Sender Details:' + '\n' + 'Name :' + this.entity.firstName + ' ' + this.entity.lastName + '\n' + 'Email :' + this.entity.email + '\n' + 'Phone No:' + this.entity.phoneNumber
+    prompt('postObj', JSON.stringify(postObj))
     if (this.formElement.invalid) {
       this.submitted = true;
     } else {
-      const url =ApiPath.trainerEmail
-      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        if (res && res.responseCode == 200) {
-          this.resetForm(this.formElement)
-          }
-        this.ref.close(res);
-      }, error => {
-        this.ref.close(error);
-      })
+      const url = ApiPath.trainerEmail
+      // this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+      //   if (res && res.responseCode == 200) {
+      //     this.resetForm(this.formElement)
+      //     }
+      //   this.ref.close(res);
+      // }, error => {
+      //   this.ref.close(error);
+      // })
     }
   }
-  handleCancel=()=>{
+  handleCancel = () => {
     this.ref.close();
   }
   resetForm(formGroup: FormGroup) {
