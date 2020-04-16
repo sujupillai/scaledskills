@@ -59,6 +59,7 @@ export class OrganizerUrlComponent implements OnInit {
     this.noRecord = [
       { msg: 'No records to display' }
     ];
+    this.getUser();
     this.cars = this.noRecord;
     let url = ApiPath.orgUrl
     this._ActivatedRoute.params.subscribe((param: any) => {
@@ -166,7 +167,7 @@ export class OrganizerUrlComponent implements OnInit {
     ]
     this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
   }
-  goToLogin = () => {
+  goToLogin = (msg) => {
     this.refCode = null;
     this._ActivatedRoute.queryParams.subscribe(params => {
       this.refCode = params.refCode
@@ -174,7 +175,7 @@ export class OrganizerUrlComponent implements OnInit {
     let returnUrl = window.location.pathname;
     localStorage.setItem('returnurl', returnUrl);
     let msgArray = [
-      { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+      { mgs: msg, class: 'confirmMsg' },
       { mgs: 'Do you want to login ?', class: 'subMsg' },
     ]
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
@@ -206,9 +207,8 @@ export class OrganizerUrlComponent implements OnInit {
         this._Router.navigate(['/contact']);
       }
     } else {
-      this.goToLogin();
+      this.goToLogin('You should login first to send enquiry for this training.');
     }
-
   }
   copyToClipboard = () => {
     let url = origin + this._Router.url;

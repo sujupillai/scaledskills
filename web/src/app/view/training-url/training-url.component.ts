@@ -227,7 +227,8 @@ export class TrainingUrlComponent implements OnInit {
     if (this.isLoggedIn) {
       if (this.entity['userEmail']) {
         let data = {
-          toEmail: this.entity['userEmail'] ? this.entity['userEmail'] : ''
+          toEmail: this.entity['userEmail'] ? this.entity['userEmail'] : '',
+          objData:this.entity,
         }
         this.messageDialogConfig(data, 'Send Enquiry', 1).subscribe(res => {
           if (res != undefined) {
@@ -251,9 +252,8 @@ export class TrainingUrlComponent implements OnInit {
         this._Router.navigate(['/contact']);
       }
     } else {
-      this.goToLogin();
+      this.goToLogin('You should login first to send enquiry for this training.');
     }
-
   }
   handleFeedback = () => {
     let data = {
@@ -280,7 +280,7 @@ export class TrainingUrlComponent implements OnInit {
       }
     })
   }
-  goToLogin = () => {
+  goToLogin = (msg) => {
     this.refCode = null;
     this._ActivatedRoute.queryParams.subscribe(params => {
       this.refCode = params.refCode
@@ -288,7 +288,7 @@ export class TrainingUrlComponent implements OnInit {
     let returnUrl = window.location.pathname;
     localStorage.setItem('returnurl', returnUrl);
     let msgArray = [
-      { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+      { mgs: msg, class: 'confirmMsg' },
       { mgs: 'Do you want to login ?', class: 'subMsg' },
     ]
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
@@ -315,7 +315,7 @@ export class TrainingUrlComponent implements OnInit {
         this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'])
       }
     } else {
-      this.goToLogin();
+      this.goToLogin('You should login first to register for this training.');
     }
   }
   hendleFollowMe = () => {
@@ -330,7 +330,7 @@ export class TrainingUrlComponent implements OnInit {
         }
       })
     } else {
-      this.goToLogin();
+      this.goToLogin('You should login first to follow for this training.');
     }
   }
   handleInterest = (item) => {
@@ -352,7 +352,7 @@ export class TrainingUrlComponent implements OnInit {
         }
       })
     } else {
-      this.goToLogin();
+      this.goToLogin('You should login first to send interest for this training.');
     }
   };
   openUrl(urlToOpen) {

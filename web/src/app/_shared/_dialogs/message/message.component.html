@@ -1,37 +1,26 @@
 <form [formGroup]="formElement" autocomplete="off" novalidate>
-  <div id="default" class="hidden">
+  <div id="bodyStart" class="hidden">
+    <p>Hey {{objData && objData.userName}},</p>
+    <p>{{entity && entity.firstName}} {{entity && entity.lastName}} wrote regarding the
+      training
+      <a href="{{redirectUrl}}" target="_blank">
+        {{objData && objData.name}}
+      </a>
+      <br />
+    </p>
+  </div>
+  <div id="bodyEnd" class="hidden">
+    <br />
     <div><strong>Sender Details</strong></div>
     <div>
-      <strong>Name :</strong> <span>{{entity.firstName}}  {{entity.lastName}}</span>
+      <strong>Name :</strong> <span>{{entity && entity.firstName}} {{entity && entity.lastName}}</span>
     </div>
     <div>
-      <strong>Email :</strong> <span>{{entity.email}}</span>
+      <strong>Email :</strong> <span>{{entity && entity.email}}</span>
     </div>
     <div>
-      <strong>Phone No :</strong> <span>{{entity.phoneNumber}}</span>
+      <strong>Phone No :</strong> <span>{{entity && entity.phoneNumber}}</span>
     </div>
-  </div>
-  <!-- <div class="form-group">
-    <label>To<span class="required">*</span></label>
-    <input pInputText placeholder="Email" formControlName="toEmail"
-      [ngClass]="data.data && data.data.toEmail?'disabled':''">
-    <p class="msgError text-danger" *ngIf="formControl.toEmail.invalid && (formControl.toEmail.dirty || submitted)">
-      <small *ngIf="formControl.toEmail.hasError('email') &&
-                  !formControl.toEmail.hasError('required')">
-        Please enter a valid email address
-      </small>
-      <small *ngIf="formControl.toEmail.hasError('required')">
-        Required Field.
-      </small>
-    </p>
-  </div> -->
-  <div class="form-group">
-    <label>Subject <span class="required">*</span></label>
-    <input type="text" pInputText placeholder="Subject" formControlName="subject" />
-    <p class="msgError text-danger"
-      *ngIf="formControl.subject.hasError('required') && (formControl.subject.dirty || submitted)">
-      Required Field.
-    </p>
   </div>
   <div class="form-group">
     <label>Message <span class="required">*</span></label>

@@ -58,6 +58,7 @@ export class TrainerUrlComponent implements OnInit {
     this.noRecord = [
       { msg: 'No records to display' }
     ];
+    this.getUser();
     this.cars = this.noRecord;
     let url = ApiPath.generalUrl
     this._ActivatedRoute.params.subscribe((param: any) => {
@@ -174,7 +175,7 @@ export class TrainerUrlComponent implements OnInit {
     let ref = this.openMessageDialog(dialogConfig, dialogHeader);
     return ref.onClose;
   }
-  goToLogin = () => {
+  goToLogin = (msg) => {
     this.refCode = null;
     this._ActivatedRoute.queryParams.subscribe(params => {
       this.refCode = params.refCode
@@ -182,7 +183,7 @@ export class TrainerUrlComponent implements OnInit {
     let returnUrl = window.location.pathname;
     localStorage.setItem('returnurl', returnUrl);
     let msgArray = [
-      { mgs: 'You should login first to register for this training.', class: 'confirmMsg' },
+      { mgs: msg, class: 'confirmMsg' },
       { mgs: 'Do you want to login ?', class: 'subMsg' },
     ]
     this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
@@ -196,7 +197,7 @@ export class TrainerUrlComponent implements OnInit {
     })
   }
   showSendMesage() {
-    if (this.isLoggedIn){
+    if (this.isLoggedIn) {
       if (this.entity.user.email) {
         let data = {
           toEmail: this.entity.user.email ? this.entity.user.email : ''
@@ -222,10 +223,9 @@ export class TrainerUrlComponent implements OnInit {
       } else {
         this._Router.navigate(['/contact']);
       }
-    }else{
-      this.goToLogin();
+    } else {
+      this.goToLogin('You should login first to send enquiry for this training.');
     }
-    
   }
   fetchMembers = () => {
     let url = ApiPath.generalMemberFollow;

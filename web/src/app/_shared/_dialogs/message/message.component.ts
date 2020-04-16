@@ -12,12 +12,16 @@ import { first } from 'rxjs/operators';
 export class MessageComponent implements OnInit {
   formElement: FormGroup;
   entity;
+  objData = null;
   submitted = false;
+  redirectUrl = null;
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private _FormBuilder: FormBuilder,
     private _HttpService: HttpService) { }
   data;
   ngOnInit() {
     this.data = this.config.data;
+    this.objData = this.data.data.objData;
+    this.redirectUrl = this.objData && this.objData.url ? 'http://scaledskills.com/t/' + this.objData.url : null
     this.createForm(() => {
       this.formControl['toEmail'].setValue(this.data.data && this.data.data.toEmail ? this.data.data.toEmail : '')
       this.getProfileData();
@@ -38,9 +42,11 @@ export class MessageComponent implements OnInit {
   get formControl() { return this.formElement.controls }
   getProfileData = () => {
     let url = ApiPath.userBasic;
-    this._HttpService.httpCall(url, 'GET', null, null).pipe(first()).subscribe(res => {
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res.responseCode == 200) {
         this.entity = res.result;
+        let subject = this.entity.firstName + ' ' + this.entity.lastName + ' ' + 'has sent you an enquiry via ScaledSkills';
+        this.formControl['subject'].setValue(subject)
       }
     })
   }
@@ -48,9 +54,13 @@ export class MessageComponent implements OnInit {
     let postObj = {
       ...this.formElement.value
     }
-    let bodyData ='<p>'+ postObj.body+'</p>'
-    let defaultData = document.getElementById('default').innerHTML;
-    postObj.body=bodyData+defaultData 
+    let bodyData = '<p>' + postObj.body + '</p>'
+    let bodyStart = '';
+    if (document.getElementById('bodyStart') && this.objData && this.objData.name) {
+      bodyStart = document.getElementById('bodyStart').innerHTML;
+    }
+    let bodyEnd = document.getElementById('bodyEnd').innerHTML;
+    postObj.body = bodyStart + bodyData + bodyEnd;
     if (this.formElement.invalid) {
       this.submitted = true;
     } else {
@@ -58,7 +68,7 @@ export class MessageComponent implements OnInit {
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
         if (res && res.responseCode == 200) {
           this.resetForm(this.formElement)
-          }
+        }
         this.ref.close(res);
       }, error => {
         this.ref.close(error);

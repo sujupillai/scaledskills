@@ -165,7 +165,6 @@ export class OrgBasicComponent implements OnInit {
     this.entity.image = this.formControl[control].value;
   }
   myUploader = (event, control) => {
-    debugger
     this.noImage = true;
     this.fileData = <File>event.files[0];
     let url = ApiPath.documentUpload
