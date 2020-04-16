@@ -45,24 +45,24 @@ export class MessageComponent implements OnInit {
     })
   }
   handleSubmit = () => {
-    debugger
     let postObj = {
       ...this.formElement.value
     }
-    postObj.body = postObj.body + '\n' + '\n' + '\n' + 'Sender Details:' + '\n' + 'Name :' + this.entity.firstName + ' ' + this.entity.lastName + '\n' + 'Email :' + this.entity.email + '\n' + 'Phone No:' + this.entity.phoneNumber
-    prompt('postObj', JSON.stringify(postObj))
+    let bodyData ='<p>'+ postObj.body+'</p>'
+    let defaultData = document.getElementById('default').innerHTML;
+    postObj.body=bodyData+defaultData 
     if (this.formElement.invalid) {
       this.submitted = true;
     } else {
       const url = ApiPath.trainerEmail
-      // this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-      //   if (res && res.responseCode == 200) {
-      //     this.resetForm(this.formElement)
-      //     }
-      //   this.ref.close(res);
-      // }, error => {
-      //   this.ref.close(error);
-      // })
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        if (res && res.responseCode == 200) {
+          this.resetForm(this.formElement)
+          }
+        this.ref.close(res);
+      }, error => {
+        this.ref.close(error);
+      })
     }
   }
   handleCancel = () => {
