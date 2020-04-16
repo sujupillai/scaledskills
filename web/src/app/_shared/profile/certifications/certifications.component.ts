@@ -67,8 +67,8 @@ export class CertificationsComponent implements OnInit {
         this.formControl[name].setValue(item[name]);
       }
     });
-    this.certificationFrom.setValue(new Date(item.from));
-    this.certificationTo.setValue(new Date(item.to));
+    this.certificationFrom.setValue(item.from ? new Date(item.from) : '');
+    this.certificationTo.setValue(item.to ? new Date(item.to) : '');
   }
   handleView = (url) => {
     window.open('http://' + url, "_blank");
@@ -76,8 +76,8 @@ export class CertificationsComponent implements OnInit {
   handleRemove = () => {
   }
   handleSubmit = () => {
-    this.formControl.from.setValue(this.certificationFrom.value ? this.certificationFrom.value : '');
-    this.formControl.to.setValue(this.certificationTo.value ? this.certificationTo.value : '');
+    this.formControl.from.setValue(this.certificationFrom.value ? this.certificationFrom.value.toLocaleString() : '');
+    this.formControl.to.setValue(this.certificationTo.value ? this.certificationTo.value.toLocaleString() : '');
     let postObj = {
       ...this.certificatesForm.value
     }
