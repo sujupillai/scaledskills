@@ -42,10 +42,10 @@
         <div class="form-group">
           <label>Users <span class="required">*</span></label>
           <angular2-multiselect class="form-control" [data]="masterData['users']" name="users"
-            [(ngModel)]="entity.users" [settings]="multiSettings" placeholder="Users">
+            [(ngModel)]="entity['users']" [settings]="multiSettings" placeholder="Users">
           </angular2-multiselect>
           <p class="msgError text-danger"
-            *ngIf="(!entity.users && submitted) || (entity.users && entity.users.length==0 && submitted)">
+            *ngIf="(!entity['users'] && submitted) || (entity['users'] && entity['users'].length==0 && submitted)">
             Required Field.</p>
         </div>
       </div>
