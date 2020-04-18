@@ -87,7 +87,7 @@ export class AddTrainingTicketComponent implements OnInit {
       name: ['', Validators.required],
       qty: ['', Validators.required],
       minBooking: ['1', [Validators.required, Validators.min(1)]],
-      maxBooking: ['',],
+      maxBooking: ['1',],
       ticketType: [1, [Validators.required, Validators.min(1)]],
       ticketTypeObj: [''],
       paymentCharge: ['0', [Validators.required]],
@@ -178,11 +178,13 @@ export class AddTrainingTicketComponent implements OnInit {
     let control: AbstractControl = null;
     formGroup.reset();
     formGroup.markAsUntouched();
-    
+
     Object.keys(formGroup.controls).forEach((name) => {
       control = formGroup.controls[name];
       control.setErrors(null);
     });
+    this.formControl.minBooking.setValue(1);
+    this.formControl.maxBooking.setValue(1);
     this.selectedTicketType = this.defaultList;
     this.startDate.setValue('');
     this.startTime.setValue('');
@@ -263,6 +265,7 @@ export class AddTrainingTicketComponent implements OnInit {
     })
   }
   handleSubmit = () => {
+    debugger
     this.submitted = true;
     let url = ApiPath.trainingTicket;
     url = url.replace('{TrainingId}', this.trainingId.toString())
@@ -279,6 +282,7 @@ export class AddTrainingTicketComponent implements OnInit {
     let postObj = {
       ...this.formElement.value
     }
+    postObj.id=postObj.id?postObj.id:0
     postObj.description = this.description;
     postObj.msgForAtendee = this.msgForAtendee;
     postObj.ticketPaymentDetails = this.paymentDetails;
