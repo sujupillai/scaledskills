@@ -32,6 +32,7 @@ import { TitleService } from './title.service';
 import { EmbedVideo } from 'ngx-embed-video';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
 import { PaymentErrorComponent } from './payment-error/payment-error.component';
+import { DownloadCSVService } from './_service/downloadService';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { PaymentErrorComponent } from './payment-error/payment-error.component';
     EmbedVideo.forRoot()
   ],
   
-  providers: [DialogService, SharedService, TitleService,
+  providers: [DialogService, SharedService, TitleService, DownloadCSVService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: interceptor.HeaderInterceptor,

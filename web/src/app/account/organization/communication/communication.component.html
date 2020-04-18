@@ -41,11 +41,12 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="masterData['users'] && masterData['users'].length>0">
     <div class="col-sm-12">
       <div class="display-flex flexJustifyCenter v-center">
         <p></p>
-        <button type="button" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Export to
+        <button type="button" class="btn btn-success" (click)="download()"><i class="fa fa-file-excel-o"
+            aria-hidden="true"></i>Export to
           CSV</button>
       </div>
     </div>

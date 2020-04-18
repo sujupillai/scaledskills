@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { HttpService, SharedService } from 'src/app/_service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { DownloadCSVService } from 'src/app/_service/downloadService';
 @Component({
   selector: 'app-communication',
   templateUrl: './communication.component.html'
@@ -24,7 +25,7 @@ export class CommunicationComponent implements OnInit {
   multiSettings;
   entity = {};
   postData = {}
-  constructor(private _HttpService: HttpService, private _FormBuilder: FormBuilder, private _SharedService: SharedService) { }
+  constructor(private _HttpService: HttpService, private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _DownloadCSVService: DownloadCSVService) { }
   ngOnInit() {
     this.createForm(() => { })
     this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
@@ -36,7 +37,7 @@ export class CommunicationComponent implements OnInit {
     this._HttpService.httpCall(url, method, body, param).subscribe(res => {
       if (res.result) {
         this.masterData[key] = res.result;
-        if(key=='organization'){
+        if (key == 'organization') {
           this.getTrainings('organization')
         }
       }
@@ -164,5 +165,8 @@ export class CommunicationComponent implements OnInit {
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       })
     }
+  }
+  download(){
+    this._DownloadCSVService.downloadFile(this.masterData['users'], 'usersList');
   }
 }
