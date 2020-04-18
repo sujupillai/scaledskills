@@ -87,7 +87,7 @@ export class AddTrainingTicketComponent implements OnInit {
       name: ['', Validators.required],
       qty: ['', Validators.required],
       minBooking: ['1', [Validators.required, Validators.min(1)]],
-      maxBooking: [''],
+      maxBooking: ['',],
       ticketType: [1, [Validators.required, Validators.min(1)]],
       ticketTypeObj: [''],
       paymentCharge: ['0', [Validators.required]],
@@ -175,7 +175,6 @@ export class AddTrainingTicketComponent implements OnInit {
     })
   }
   resetForm(formGroup: FormGroup, addTicketForm) {
-    this.submitted = false;
     let control: AbstractControl = null;
     formGroup.reset();
     formGroup.markAsUntouched();
@@ -197,7 +196,8 @@ export class AddTrainingTicketComponent implements OnInit {
     this.formControl.endTime.setValue('');
     this.paymentDetails = [];
     this.formControl.id.setValue(0);
-    this.addTicketForm = addTicketForm
+    this.addTicketForm = addTicketForm;
+    this.submitted = false;
   }
   setDate = (dataObj) => {
     this.startDate.setValue(new Date(dataObj.startDate));
@@ -283,39 +283,47 @@ export class AddTrainingTicketComponent implements OnInit {
     postObj.msgForAtendee = this.msgForAtendee;
     postObj.ticketPaymentDetails = this.paymentDetails;
     if (this.formElement.valid) {
-      this.submitted = false;
-      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        if (res.responseCode == 200) {
-          let msgArray = [
-            { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' },
-            { mgs: 'Do you want to create another ticket?.', class: 'subMsg' },
-          ]
-          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'NO', false, 'Success').subscribe(res => {
-            if (res == 1) {
-              this.resetForm(this.formElement, true)
-            } else {
-              this.resetForm(this.formElement, false)
-              this.getData()
-            }
-          })
-        }
-        else {
-          let msgArray = [
-            { mgs: 'Something went wrong', class: 'confirmMsg' }
-          ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-          this.resetForm(this.formElement, false)
-        }
-      },
-        error => {
-          let msgArray = [
-            { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
-          ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-        });
-      this.resetForm(this.formElement, true)
+      if (this.formControl.minBooking.value > this.formControl.maxBooking.value) {
+        let msgArray = [
+          { mgs: 'Max qty should be greather than Min.', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        this.submitted = true;
+      } else {
+        this.submitted = false;
+        this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+          if (res.responseCode == 200) {
+            let msgArray = [
+              { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' },
+              { mgs: 'Do you want to create another ticket?.', class: 'subMsg' },
+            ]
+            this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'NO', false, 'Success').subscribe(res => {
+              if (res == 1) {
+                this.resetForm(this.formElement, true)
+              } else {
+                this.resetForm(this.formElement, false)
+                this.getData()
+              }
+            })
+          }
+          else {
+            let msgArray = [
+              { mgs: 'Something went wrong', class: 'confirmMsg' }
+            ]
+            // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+            this.resetForm(this.formElement, false)
+          }
+        },
+          error => {
+            let msgArray = [
+              { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+            ]
+            // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+            this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+          });
+        this.resetForm(this.formElement, true)
+      }
     } else {
       let msgArray = [
         { mgs: 'Please complete form', class: 'confirmMsg' },
