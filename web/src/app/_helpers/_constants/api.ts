@@ -73,6 +73,11 @@ export const ApiPath = {
   'relatedTraining': 'api/Home/RelatedT',
   'getTrainingAllFeedback': 'api/Home/T/review',
   'getTrainingReviewByUser': 'api/Training/{TrainingId}/U/Review',
+  /* communication */
+  'communicationTrainings': 'api/Communication/T',
+  'communicationTrainingsUser': 'api/Communication/T/user',
+  'communicationTrainingsEmail': 'api/Communication/T/email',
+  'communicationTrainingsEmailTemplate': 'api/Communication/T/email/Template',
   
   /* handle follow */
   'followOrg': 'api/Home/O/f',
