@@ -58,33 +58,34 @@
         </angular2-multiselect>
       </div>
     </div> -->
-    <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <label>Subject</label>
-            <input type="text" pInputText placeholder="Subject" formControlName="emailSubject" name="emailSubject" />
-            <p class="msgError text-danger"
-              *ngIf="formControl.emailSubject.hasError('required') && (formControl.emailSubject.dirty || submitted)">
-              Required Field.</p>
+    <div class="bgGray padding-20">
+      <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" pInputText placeholder="Subject" formControlName="emailSubject" name="emailSubject" />
+              <p class="msgError text-danger"
+                *ngIf="formControl.emailSubject.hasError('required') && (formControl.emailSubject.dirty || submitted)">
+                Required Field.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="form-group">
-            <label>Message</label>
-            <p-editor [style]="{'height':'200px'}" formControlName="emailBody" name="emailBody"></p-editor>
-            <p class="msgError text-danger"
-              *ngIf="formControl.emailBody.hasError('required') && (formControl.emailBody.dirty || submitted)">
-              Required Field.</p>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>Message</label>
+              <p-editor [style]="{'height':'200px'}" formControlName="emailBody" name="emailBody"></p-editor>
+              <p class="msgError text-danger"
+                *ngIf="formControl.emailBody.hasError('required') && (formControl.emailBody.dirty || submitted)">
+                Required Field.</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="form-group button-group text-right">
-        <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-        <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
-      </div>
-    </form>
+        <div class="form-group button-group text-right">
+          <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+        </div>
+      </form>
+    </div>
   </div>
 </form>
