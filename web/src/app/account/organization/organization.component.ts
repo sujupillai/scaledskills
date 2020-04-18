@@ -18,7 +18,7 @@ export class OrganizationComponent implements OnInit {
       { label: 'About', routerLink: '/account/organization/profile/about' },
       { label: 'Social', routerLink: '/account/organization/profile/social' },
       { label: 'Bank Details', routerLink: '/account/organization/bank' },
-      // { label: 'Communication', routerLink: '/account/organization/communication' },
+      { label: 'Communication', routerLink: '/account/organization/communication' },
     ]
   }
   setActiveTab = (number) => {

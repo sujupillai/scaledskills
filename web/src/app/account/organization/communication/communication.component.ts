@@ -12,35 +12,30 @@ export class CommunicationComponent implements OnInit {
     "isSelect": false
   }]
   masterData = {
-    organization:[],
-    trainings:[],
-    
+    organization: [],
+    trainings: [],
   };
+  settings;
   multiSettings;
   entity = {};
   postData = {}
   constructor(private _HttpService: HttpService) { }
   ngOnInit() {
+    this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
     this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', badgeShowLimit: 1 };
     this.getOrgData();
-    this.getUserTypes('userTypes')
-
+    this.getUserTypes('userTypes');
   }
-  getOrgData = () => {
-    let url = ApiPath.organizationList
-    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+  _httpGetMaster = (url, key, body, param, method) => {
+    this._HttpService.httpCall(url, method, body, param).subscribe(res => {
       if (res.result) {
-        this.masterData['organization'] = res.result;
+        this.masterData[key] = res.result;
       }
     })
   }
-  getArray = (key) => {
-    var array = [];
-    this.entity[key].forEach(element => {
-      array.push(element.value)
-    });
-    return array
-
+  getOrgData = () => {
+    let url = ApiPath.organizationList
+    this._httpGetMaster(url, 'organization', null, null, 'GET')
   }
   getTrainings = (key) => {
     let ids = this.getArray(key);
@@ -48,11 +43,15 @@ export class CommunicationComponent implements OnInit {
     let params = {
       url: ids ? ids : 0
     }
-    this._HttpService.httpCall(url, 'GET', null, params).subscribe(res => {
-      if (res.result) {
-        this.masterData['trainings'] = res.result;
-      }
-    })
+    this._httpGetMaster(url, 'trainings', null, params, 'GET')
+  }
+  getUsers = (key, usersType) => {
+    let ids = this.getArray('trainings');
+    let url = ApiPath.communicationTrainingsUser;
+    let params = {
+      users: usersType
+    }
+    this._httpGetMaster(url, 'users', ids, params, 'POST')
   }
   getUserTypes = (key) => {
     let data = [
@@ -79,18 +78,53 @@ export class CommunicationComponent implements OnInit {
     ]
     this.masterData[key] = data;
   }
+  getArray = (key) => {
+    var array = [];
+    this.entity[key].forEach(element => {
+      array.push(element.value)
+    });
+    return array
+  }
   onSelect(event, key) {
-    this.postData[key] = this.getArray(key);
     if (key == 'organization') {
       this.getTrainings('organization')
+      this.entity['trainings'] = []
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+
+    } if (key == 'trainings') {
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+    } else if (key == 'userTypes') {
+      this.getUsers('users', event.value);
+      this.entity['users'] = [];
     }
   }
   OnDeSelect(event, key) {
-    this.postData[key] = this.getArray(key);
     if (key == 'organization') {
       this.getTrainings('organization')
+      this.entity['trainings'] = []
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+
+    } if (key == 'trainings') {
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+    } else if (key == 'userTypes') {
+      this.getUsers('users', event.value);
+      this.entity['users'] = [];
     }
   }
+
   handleSubmit = () => {
+    let array = []
+    this.entity['users'].forEach(element => {
+      array.push(element.value)
+    });
+    this.postData = {
+      ...this.postData,
+      emails: array
+    }
+
   }
 }

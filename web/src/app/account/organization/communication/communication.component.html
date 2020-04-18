@@ -1,55 +1,55 @@
-<!-- <form autocomplete="off" novalidate>
+<form autocomplete="off" novalidate>
   <div class="form-group">
-    {{entity|json}}
-    <pre>{{postData|json}}</pre>
+    {{postData|json}}
     <div class="row form-group">
       <div class="col-sm-6">
         <label>Organization</label>
-        <angular2-multiselect class="form-control" [data]="masterData[organization]" name="organization"
-          [(ngModel)]="entity[organization]" [settings]="multiSettings" placeholder="Organization"
+        <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
+          [(ngModel)]="entity['organization']" [settings]="multiSettings" placeholder="Organization"
           (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
         </angular2-multiselect>
       </div>
-      <div class="col-sm-6" [ngClass]="entity.organization && entity.organization.length>0?'':'disabled'">
+      <div class="col-sm-6">
         <label>Trainings</label>
-        <angular2-multiselect class="form-control" [data]="masterData[trainings]" name="trainings"
-          [(ngModel)]="entity[trainings]" [settings]="multiSettings" placeholder="Trainings"
+        <angular2-multiselect class="form-control" [data]="masterData['trainings']" name="trainings"
+          [(ngModel)]="entity['trainings']" [settings]="multiSettings" placeholder="Trainings"
           (onSelect)="onSelect($event, 'trainings')" (onDeSelect)="OnDeSelect($event, 'trainings')">
         </angular2-multiselect>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-sm-6" [ngClass]="entity[trainings] && entity[trainings].length>0?'':'disabled'">
+      <div class="col-sm-6">
         <label>User Types</label>
-        <angular2-multiselect class="form-control" [data]="masterData[userTypes]" name="userTypes"
-          [(ngModel)]="entity[userTypes]" [settings]="multiSettings" placeholder="User Types">
+        <angular2-multiselect class="form-control" [data]="masterData['userTypes']" name="userTypes"
+          [(ngModel)]="entity['userTypes']" [settings]="settings" placeholder="User Types"
+          (onSelect)="onSelect($event, 'userTypes')" (onDeSelect)="OnDeSelect($event, 'userTypes')">
         </angular2-multiselect>
       </div>
       <div class="col-sm-6">
         <label>Users</label> <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-        <angular2-multiselect class="form-control" [data]="organizationListMaster" name="users"
-          [(ngModel)]="entity.users" [settings]="multiSettings" placeholder="Users">
+        <angular2-multiselect class="form-control" [data]="masterData['users']" name="users" [(ngModel)]="entity.users"
+          [settings]="multiSettings" placeholder="Users">
         </angular2-multiselect>
       </div>
     </div>
-    <div class="row form-group">
+    <!-- <div class="row form-group">
       <div class="col-sm-12">
         <label>Template</label>
         <angular2-multiselect class="form-control" [data]="organizationListMaster" name="template"
-          [(ngModel)]="entity[template]" [settings]="multiSettings" placeholder="Template">
+          [(ngModel)]="entity['template']" [settings]="multiSettings" placeholder="Template">
         </angular2-multiselect>
       </div>
-    </div>
+    </div> -->
     <div class="row form-group">
       <div class="col-sm-12">
         <label>Subject</label>
-        <input type="text" pInputText placeholder="Subject" />
+        <input type="text" pInputText placeholder="Subject" name="emailSubject" [(ngModel)]="postData.emailSubject"/>
       </div>
     </div>
     <div class="row form-group">
       <div class="col-sm-12">
         <label>Message</label>
-        <p-editor [style]="{'height':'200px'}"></p-editor>
+        <p-editor [style]="{'height':'200px'}" name="emailBody" [(ngModel)]="postData.emailBody"></p-editor>
       </div>
     </div>
     <div class="form-group button-group text-right">
@@ -57,4 +57,4 @@
       <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"></button>
     </div>
   </div>
-</form> -->
+</form>
