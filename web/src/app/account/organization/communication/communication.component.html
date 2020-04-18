@@ -1,56 +1,54 @@
-<form autocomplete="off" novalidate>
-  <div class="form-group">
-    {{entity|json}}
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Organization <span class="required">*</span></label>
-          <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
-            [(ngModel)]="entity['organization']" [settings]="multiSettings" placeholder="Organization"
-            (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
-          </angular2-multiselect>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Trainings <span class="required">*</span></label>
-          <angular2-multiselect class="form-control" [data]="masterData['trainings']" name="trainings"
-            [(ngModel)]="entity['trainings']" [settings]="multiSettings" placeholder="Trainings"
-            (onSelect)="onSelect($event, 'trainings')" (onDeSelect)="OnDeSelect($event, 'trainings')">
-          </angular2-multiselect>
-        </div>
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Organization <span class="required">*</span></label>
+        <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
+          [(ngModel)]="entity['organization']" [settings]="multiSettings" placeholder="Organization"
+          (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
+        </angular2-multiselect>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="display-flex flexJustifyCenter v-center">
-          <p></p>
-          <button type="button" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Export to
-            CSV</button>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>User Types <span class="required">*</span></label>
-          <angular2-multiselect class="form-control" [data]="masterData['userTypes']" name="userTypes"
-            [(ngModel)]="entity['userTypes']" [settings]="settings" placeholder="User Types"
-            (onSelect)="onSelect($event, 'userTypes')" (onDeSelect)="OnDeSelect($event, 'userTypes')">
-          </angular2-multiselect>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <label>Users <span class="required">*</span></label>
-          <angular2-multiselect class="form-control" [data]="masterData['users']" name="users"
-            [(ngModel)]="entity['users']" [settings]="multiSettings" placeholder="Users">
-          </angular2-multiselect>
-          <p class="msgError text-danger"
-            *ngIf="(!entity['users'] && submitted) || (entity['users'] && entity['users'].length==0 && submitted)">
-            Required Field.</p>
-        </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Trainings <span class="required">*</span></label>
+        <angular2-multiselect class="form-control" [data]="masterData['trainings']" name="trainings"
+          [(ngModel)]="entity['trainings']" [settings]="multiSettings" placeholder="Trainings"
+          (onSelect)="onSelect($event, 'trainings')" (onDeSelect)="OnDeSelect($event, 'trainings')">
+        </angular2-multiselect>
       </div>
     </div>
-    <!-- <div class="row form-group">
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="display-flex flexJustifyCenter v-center">
+        <p></p>
+        <button type="button" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Export to
+          CSV</button>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>User Types <span class="required">*</span></label>
+        <angular2-multiselect class="form-control" [data]="masterData['userTypes']" name="userTypes"
+          [(ngModel)]="entity['userTypes']" [settings]="settings" placeholder="User Types"
+          (onSelect)="onSelect($event, 'userTypes')" (onDeSelect)="OnDeSelect($event, 'userTypes')">
+        </angular2-multiselect>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Users <span class="required">*</span></label>
+        <angular2-multiselect class="form-control" [data]="masterData['users']" name="users"
+          [(ngModel)]="entity['users']" [settings]="multiSettings" placeholder="Users">
+        </angular2-multiselect>
+        <p class="msgError text-danger"
+          *ngIf="(!entity['users'] && submitted) || (entity['users'] && entity['users'].length==0 && submitted)">
+          Required Field.</p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row form-group">
       <div class="col-sm-12">
         <label>Template</label>
         <angular2-multiselect class="form-control" [data]="organizationListMaster" name="template"
@@ -58,34 +56,33 @@
         </angular2-multiselect>
       </div>
     </div> -->
-    <div class="bgGray padding-20">
-      <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <label>Subject</label>
-              <input type="text" pInputText placeholder="Subject" formControlName="emailSubject" name="emailSubject" />
-              <p class="msgError text-danger"
-                *ngIf="formControl.emailSubject.hasError('required') && (formControl.emailSubject.dirty || submitted)">
-                Required Field.</p>
-            </div>
+  <div class="bgGray padding-20">
+    <form [formGroup]="trainingBasicForm" autocomplete="off" novalidate>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" pInputText placeholder="Subject" formControlName="emailSubject" name="emailSubject" />
+            <p class="msgError text-danger"
+              *ngIf="formControl.emailSubject.hasError('required') && (formControl.emailSubject.dirty || submitted)">
+              Required Field.</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <label>Message</label>
-              <p-editor [style]="{'height':'200px'}" formControlName="emailBody" name="emailBody"></p-editor>
-              <p class="msgError text-danger"
-                *ngIf="formControl.emailBody.hasError('required') && (formControl.emailBody.dirty || submitted)">
-                Required Field.</p>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label>Message</label>
+            <p-editor [style]="{'height':'200px'}" formControlName="emailBody" name="emailBody"></p-editor>
+            <p class="msgError text-danger"
+              *ngIf="formControl.emailBody.hasError('required') && (formControl.emailBody.dirty || submitted)">
+              Required Field.</p>
           </div>
         </div>
-        <div class="form-group button-group text-right">
-          <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="form-group button-group text-right">
+        <button pButton type="submit" label="Submit" class="ui-button-raised" (click)="handleSubmit()"></button>
+      </div>
+    </form>
   </div>
-</form>
+</div>

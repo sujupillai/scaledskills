@@ -18,6 +18,7 @@ export class GeneralComponent implements OnInit {
       { label: 'Attendee View', routerLink: '/account/general/attendeeView' },
       { label: 'Organizer View', routerLink: '/account/general/organizerView' },
       { label: 'Bank Details', routerLink: '/account/general/bank' },
+      { label: 'Communication', routerLink: '/account/general/communication' },
     ];
     
   }
