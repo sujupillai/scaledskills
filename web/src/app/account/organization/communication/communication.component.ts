@@ -17,6 +17,8 @@ export class CommunicationComponent implements OnInit {
   masterData = {
     organization: [],
     trainings: [],
+    userTypes: [],
+    users: [],
   };
   settings;
   multiSettings;
