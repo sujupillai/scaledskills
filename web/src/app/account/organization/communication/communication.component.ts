@@ -25,13 +25,11 @@ export class CommunicationComponent implements OnInit {
   constructor(private _HttpService: HttpService, private _FormBuilder: FormBuilder, private _SharedService: SharedService) { }
   ngOnInit() {
     this.createForm(() => { })
-
     this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
     this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', badgeShowLimit: 1 };
     this.getOrgData();
     this.getUserTypes('userTypes');
   }
-
   _httpGetMaster = (url, key, body, param, method) => {
     this._HttpService.httpCall(url, method, body, param).subscribe(res => {
       if (res.result) {
@@ -108,7 +106,6 @@ export class CommunicationComponent implements OnInit {
       this.entity['trainings'] = []
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
-
     } if (key == 'trainings') {
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
@@ -123,7 +120,6 @@ export class CommunicationComponent implements OnInit {
       this.entity['trainings'] = []
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
-
     } if (key == 'trainings') {
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
@@ -132,12 +128,12 @@ export class CommunicationComponent implements OnInit {
       this.entity['users'] = [];
     }
   }
-
   handleSubmit = () => {
     let array = []
     this.entity['users'] && this.entity['users'].length > 0 && this.entity['users'].forEach(element => {
       array.push(element.value)
     });
+    this.formControl.emails.setValue(array);
     this.postData = {
       ...this.postData,
       emails: array
@@ -149,17 +145,19 @@ export class CommunicationComponent implements OnInit {
       ]
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
     } else {
-      let url;
+      let url = ApiPath.communicationTrainingsEmail;
       this._HttpService.httpCall(url, 'POST', this.postData, null).subscribe(res => {
-
+        debugger
+        let msgArray = [
+          { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       }, error => {
         let msgArray = [
           { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
         ]
-        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
       })
     }
   }
-
 }
