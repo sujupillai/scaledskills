@@ -11,7 +11,11 @@ export class CommunicationComponent implements OnInit {
     "value": "0",
     "isSelect": false
   }]
-  masterData = {};
+  masterData = {
+    organization:[],
+    trainings:[],
+    
+  };
   multiSettings;
   entity = {};
   postData = {}

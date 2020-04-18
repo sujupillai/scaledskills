@@ -5,24 +5,24 @@
     <div class="row form-group">
       <div class="col-sm-6">
         <label>Organization</label>
-        <angular2-multiselect class="form-control" [data]="masterData.organization" name="organization"
-          [(ngModel)]="entity.organization" [settings]="multiSettings" placeholder="Organization"
+        <angular2-multiselect class="form-control" [data]="masterData[organization]" name="organization"
+          [(ngModel)]="entity[organization]" [settings]="multiSettings" placeholder="Organization"
           (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
         </angular2-multiselect>
       </div>
       <div class="col-sm-6" [ngClass]="entity.organization && entity.organization.length>0?'':'disabled'">
         <label>Trainings</label>
-        <angular2-multiselect class="form-control" [data]="masterData.trainings" name="trainings"
-          [(ngModel)]="entity.trainings" [settings]="multiSettings" placeholder="Trainings"
+        <angular2-multiselect class="form-control" [data]="masterData[trainings]" name="trainings"
+          [(ngModel)]="entity[trainings]" [settings]="multiSettings" placeholder="Trainings"
           (onSelect)="onSelect($event, 'trainings')" (onDeSelect)="OnDeSelect($event, 'trainings')">
         </angular2-multiselect>
       </div>
     </div>
     <div class="row form-group">
-      <div class="col-sm-6" [ngClass]="entity.trainings && entity.trainings.length>0?'':'disabled'">
+      <div class="col-sm-6" [ngClass]="entity[trainings] && entity[trainings].length>0?'':'disabled'">
         <label>User Types</label>
-        <angular2-multiselect class="form-control" [data]="masterData.userTypes" name="userTypes"
-          [(ngModel)]="entity.userTypes" [settings]="multiSettings" placeholder="User Types">
+        <angular2-multiselect class="form-control" [data]="masterData[userTypes]" name="userTypes"
+          [(ngModel)]="entity[userTypes]" [settings]="multiSettings" placeholder="User Types">
         </angular2-multiselect>
       </div>
       <div class="col-sm-6">
@@ -36,7 +36,7 @@
       <div class="col-sm-12">
         <label>Template</label>
         <angular2-multiselect class="form-control" [data]="organizationListMaster" name="template"
-          [(ngModel)]="entity.template" [settings]="multiSettings" placeholder="Template">
+          [(ngModel)]="entity[template]" [settings]="multiSettings" placeholder="Template">
         </angular2-multiselect>
       </div>
     </div>
