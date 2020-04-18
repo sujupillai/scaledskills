@@ -36,6 +36,9 @@ export class CommunicationComponent implements OnInit {
     this._HttpService.httpCall(url, method, body, param).subscribe(res => {
       if (res.result) {
         this.masterData[key] = res.result;
+        if(key=='organization'){
+          this.getTrainings('organization')
+        }
       }
     })
   }
@@ -58,7 +61,7 @@ export class CommunicationComponent implements OnInit {
     let ids = this.getArray(key);
     let url = ApiPath.communicationTrainings;
     let params = {
-      url: ids ? ids : 0
+      training_Hosted: ids ? ids : 0
     }
     this._httpGetMaster(url, 'trainings', null, params, 'GET')
   }

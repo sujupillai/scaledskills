@@ -1,6 +1,6 @@
 <div class="form-group">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6" *ngIf="masterData['organization'] && masterData['organization'].length>0">
       <div class="form-group">
         <label>Organization <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
