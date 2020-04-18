@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPath } from '../../../_helpers/_constants/api';
-import { HttpService } from 'src/app/_service';
+import { HttpService, SharedService } from 'src/app/_service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-communication',
   templateUrl: './communication.component.html'
 })
 export class CommunicationComponent implements OnInit {
+  trainingBasicForm: FormGroup;
+  submitted: boolean = false;
   defaultList = [{
     "text": "Select",
     "value": "0",
@@ -19,13 +22,16 @@ export class CommunicationComponent implements OnInit {
   multiSettings;
   entity = {};
   postData = {}
-  constructor(private _HttpService: HttpService) { }
+  constructor(private _HttpService: HttpService, private _FormBuilder: FormBuilder, private _SharedService: SharedService) { }
   ngOnInit() {
+    this.createForm(() => { })
+
     this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
     this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', badgeShowLimit: 1 };
     this.getOrgData();
     this.getUserTypes('userTypes');
   }
+
   _httpGetMaster = (url, key, body, param, method) => {
     this._HttpService.httpCall(url, method, body, param).subscribe(res => {
       if (res.result) {
@@ -33,6 +39,17 @@ export class CommunicationComponent implements OnInit {
       }
     })
   }
+  createForm = (callback: any): void => {
+    this.trainingBasicForm = this._FormBuilder.group({
+      emails: ['', Validators.required],
+      emailSubject: ['', Validators.required],
+      emailBody: ['', Validators.required]
+    })
+    if (callback) {
+      callback()
+    }
+  }
+  get formControl() { return this.trainingBasicForm.controls }
   getOrgData = () => {
     let url = ApiPath.organizationList
     this._httpGetMaster(url, 'organization', null, null, 'GET')
@@ -80,7 +97,7 @@ export class CommunicationComponent implements OnInit {
   }
   getArray = (key) => {
     var array = [];
-    this.entity[key].forEach(element => {
+    this.entity[key] && this.entity[key].length > 0 && this.entity[key].forEach(element => {
       array.push(element.value)
     });
     return array
@@ -118,13 +135,31 @@ export class CommunicationComponent implements OnInit {
 
   handleSubmit = () => {
     let array = []
-    this.entity['users'].forEach(element => {
+    this.entity['users'] && this.entity['users'].length > 0 && this.entity['users'].forEach(element => {
       array.push(element.value)
     });
     this.postData = {
       ...this.postData,
       emails: array
     }
+    if (this.trainingBasicForm.invalid) {
+      this.submitted = true;
+      let msgArray = [
+        { mgs: 'Please complete form.', class: 'confirmMsg' }
+      ]
+      this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
+    } else {
+      let url;
+      this._HttpService.httpCall(url, 'POST', this.postData, null).subscribe(res => {
 
+      }, error => {
+        let msgArray = [
+          { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+        ]
+        // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+      })
+    }
   }
+
 }

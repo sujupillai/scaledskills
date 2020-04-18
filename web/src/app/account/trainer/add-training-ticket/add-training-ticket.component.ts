@@ -178,7 +178,7 @@ export class AddTrainingTicketComponent implements OnInit {
     let control: AbstractControl = null;
     formGroup.reset();
     formGroup.markAsUntouched();
-    debugger
+    
     Object.keys(formGroup.controls).forEach((name) => {
       control = formGroup.controls[name];
       control.setErrors(null);
