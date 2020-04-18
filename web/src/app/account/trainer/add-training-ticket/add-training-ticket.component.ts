@@ -30,8 +30,8 @@ export class AddTrainingTicketComponent implements OnInit {
   ticektSaleMaxDate;
   addTicketForm = false;
   defaultList = [{
-    "text": "Free",
-    "value": "1",
+    "text": "Select",
+    "value": "0",
   }];
   selectedTicketType = [];
   ticketTypeList = [{
@@ -46,7 +46,9 @@ export class AddTrainingTicketComponent implements OnInit {
   prevState;
   settings;
   startDate = new FormControl();
+  startTime = new FormControl();
   endDate = new FormControl();
+  endTime = new FormControl();
   trainingData = [];
   displayNoRecord = false;
   description: '';
@@ -74,7 +76,9 @@ export class AddTrainingTicketComponent implements OnInit {
       this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items' };
       this.selectedTicketType = this.defaultList;
       this.startDate.setValue('');
+      this.startTime.setValue('');
       this.endDate.setValue('');
+      this.endTime.setValue('');
       this.getCountryList();
     })
   }
@@ -88,7 +92,9 @@ export class AddTrainingTicketComponent implements OnInit {
       ticketTypeObj: [''],
       paymentCharge: ['0', [Validators.required]],
       startDate: ['', Validators.required],
+      startTime: ['', Validators.required],
       endDate: ['', Validators.required],
+      endTime: ['', Validators.required],
       description: [''],
       msgForAtendee: [''],
       id: 0
@@ -170,35 +176,38 @@ export class AddTrainingTicketComponent implements OnInit {
   }
   resetForm(formGroup: FormGroup, addTicketForm) {
     this.submitted = false;
-    let id = this.formControl.id.value;
-    if (id > 0) {
-      Object.keys(this.prevState).forEach(name => {
-        if (this.formControl[name]) {
-          this.formControl[name].setValue(this.prevState[name]);
-        }
-      });
-      this.setDate(this.prevState)
-      this.setDropdown(this.prevState)
-      this.addTicketForm = false
-    } else {
-      let control: AbstractControl = null;
-      formGroup.reset();
-      formGroup.markAsUntouched();
-      Object.keys(formGroup.controls).forEach((name) => {
-        control = formGroup.controls[name];
-        control.setErrors(null);
-      });
-      this.selectedTicketType = this.defaultList;
-      this.startDate.setValue(new Date());
-      this.endDate.setValue(new Date());
-      this.addTicketForm = addTicketForm
-    }
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    debugger
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+    this.selectedTicketType = this.defaultList;
+    this.startDate.setValue('');
+    this.startTime.setValue('');
+    this.formControl.startDate.setValue('');
+    this.formControl.startTime.setValue('');
+    this.endDate.setValue('');
+    this.endTime.setValue('');
+    this.description = '';
+    this.msgForAtendee = '';
+    this.formControl.endDate.setValue('');
+    this.formControl.endTime.setValue('');
+    this.paymentDetails = [];
+    this.formControl.id.setValue(0);
+    this.addTicketForm = addTicketForm
   }
   setDate = (dataObj) => {
     this.startDate.setValue(new Date(dataObj.startDate));
+    this.startTime.setValue(new Date(dataObj.startDate));
     this.formControl.startDate.setValue(dataObj.startDate);
+    this.formControl.startTime.setValue(dataObj.startDate);
     this.endDate.setValue(new Date(dataObj.endDate));
+    this.endTime.setValue(new Date(dataObj.endDate));
     this.formControl.endDate.setValue(dataObj.endDate);
+    this.formControl.endTime.setValue(dataObj.endDate);
   }
   setDropdown = (dataObj) => {
     let ticketTypeObj = this.ticketTypeList.filter(x => x.value == dataObj.ticketType)
@@ -239,6 +248,9 @@ export class AddTrainingTicketComponent implements OnInit {
       this.setDate(dataObj)
     })
   }
+  addFormHandle = () => {
+    this.resetForm(this.formElement, true)
+  }
   handleCancel = () => {
     let msgArray = [
       { mgs: 'Are you sure, you want to cancel ?', class: 'confirmMsg' },
@@ -254,8 +266,16 @@ export class AddTrainingTicketComponent implements OnInit {
     this.submitted = true;
     let url = ApiPath.trainingTicket;
     url = url.replace('{TrainingId}', this.trainingId.toString())
-    this.formControl.startDate.setValue(this.startDate.value ? this.startDate.value.toLocaleString() : '');
-    this.formControl.endDate.setValue(this.endDate.value ? this.endDate.value.toLocaleString() : '');
+    let startDate = this.startDate.value ? this.startDate.value.toLocaleString() : '';
+    let startTime = this.startTime.value ? this.startTime.value.toLocaleString() : '';
+    let startDateTime = startDate.split(',')[0] + ',' + startTime.split(',')[1]
+    this.formControl.startTime.setValue(startTime);
+    this.formControl.startDate.setValue(startDateTime);
+    let endDate = this.endDate.value ? this.endDate.value.toLocaleString() : '';
+    let endTime = this.endTime.value ? this.endTime.value.toLocaleString() : '';
+    let endDateTime = endDate.split(',')[0] + ',' + endTime.split(',')[1]
+    this.formControl.endDate.setValue(endDateTime);
+    this.formControl.endTime.setValue(endTime);
     let postObj = {
       ...this.formElement.value
     }
@@ -270,7 +290,6 @@ export class AddTrainingTicketComponent implements OnInit {
             { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' },
             { mgs: 'Do you want to create another ticket?.', class: 'subMsg' },
           ]
-          // dialogConfig(mesage, isAction, isYes, isNo, yesText, noText, autoClose, header)
           this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'NO', false, 'Success').subscribe(res => {
             if (res == 1) {
               this.resetForm(this.formElement, true)

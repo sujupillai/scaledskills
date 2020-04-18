@@ -220,7 +220,7 @@ export class AddTrainingBasicComponent implements OnInit {
     let postObj = {
       ...this.trainingBasicForm.value,
     }
-    
+
     if (this.trainingBasicForm.invalid) {
       this.submitted = true;
     } else {
