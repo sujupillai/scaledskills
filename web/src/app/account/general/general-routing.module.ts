@@ -7,6 +7,7 @@ import { OrganizationBankDetailComponent } from '../organization/organization-ba
 import { AttendeeViewComponent } from './attendee-view/attendee-view.component';
 import { OrganizerViewComponent } from './organizer-view/organizer-view.component';
 import { CredentialsComponent } from './general-profile/credentials/credentials.component';
+import { CommunicationComponent } from '../organization/communication/communication.component';
 import { AuthGuard } from '../../_guards';
 const routes = [
   {
@@ -22,9 +23,12 @@ const routes = [
         ],
         canActivate: [AuthGuard]
       },
-      { path: 'attendeeView', component: AttendeeViewComponent,  canActivate: [AuthGuard] },
-      { path: 'organizerView', component: OrganizerViewComponent,  canActivate: [AuthGuard] },
-      {path: 'bank', component: OrganizationBankDetailComponent,  canActivate: [AuthGuard]}
+      { path: 'attendeeView', component: AttendeeViewComponent, canActivate: [AuthGuard] },
+      { path: 'organizerView', component: OrganizerViewComponent, canActivate: [AuthGuard] },
+      { path: 'bank', component: OrganizationBankDetailComponent, canActivate: [AuthGuard] },
+      {
+        path: 'communication', component: CommunicationComponent, canActivate: [AuthGuard]
+      }
     ]
   }
 ];
