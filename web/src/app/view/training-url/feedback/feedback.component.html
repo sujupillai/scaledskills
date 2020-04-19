@@ -5,7 +5,7 @@
     </a>
     FEEDBACK
   </h2>
-  <div class="row profile-wrap">
+  <div class="row profile-wrap" *ngIf="entity && entity.isRegister && entity.isLoggedIn">
     <div class="col-sm-12 content-section">
       <div class="content">
         <form [formGroup]="formElement" autocomplete="off" novalidate>

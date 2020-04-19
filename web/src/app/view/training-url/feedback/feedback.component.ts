@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ApiPath } from '../../../_helpers/_constants/api';
 import { first } from 'rxjs/operators';
-import { HttpService, SharedService } from '../../../_service';
+import { HttpService, SharedService, AuthenticationService } from '../../../_service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-feedback',
@@ -10,17 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FeedbackComponent implements OnInit {
   formElement: FormGroup;
+  refCode;
   trainingId: any = 0;
   prevState;
   feedbackObj = [];
   submitted = false;
+  urlString: string = '';
   res
   val2: number = 5;
   msg = null;
-  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
+  userInfo: any = {};
+  entity = null;
+  isLoggedIn: boolean = false;
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router, private _ActivatedRoute: ActivatedRoute, private _AuthenticationService: AuthenticationService, ) { }
   ngOnInit() {
+    let url = ApiPath.trainingUrl;
+    this._ActivatedRoute.params.subscribe((param: any) => {
+      this.urlString = param.url;
+      url = url.replace('{urlName}', this.urlString)
+      this.getUserInfo()
+      this.getTrainingData(url)
+    });
     this.createprofileForm(() => {
-      this.getData();
     })
   }
   createprofileForm = (callback) => {
@@ -36,9 +47,43 @@ export class FeedbackComponent implements OnInit {
     }
   }
   get formControl() { return this.formElement.controls }
-  getData = () => {
+  getUserInfo = () => {
+    this.userInfo = this._AuthenticationService.currentUserValue;
+    this.isLoggedIn = this.userInfo ? true : false;
+  }
+  getTrainingData = (url) => {
+    this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
+      if (res && res.responseCode == 200) {
+        debugger
+        this.entity = res.result;
+        this.trainingId = res.result['trainingId'];
+        if (this.entity.isRegister) {
+          this.getFeedbackData(this.trainingId);
+        } else {
+          let msgArray = [
+            { mgs: 'You should register first to give feedback', class: 'confirmMsg' },
+            { mgs: 'Do you want to continue ?', class: 'subMsg' },
+          ]
+          this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
+            this.refCode = null;
+            this._ActivatedRoute.queryParams.subscribe(params => {
+              this.refCode = params.refCode
+            });
+            let returnUrl = window.location.pathname;
+            localStorage.setItem('returnurl', returnUrl);
+            if (res) {
+              this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: this.refCode } })
+            } else {
+              this._Router.navigate(['/t/' + this.entity.url], { queryParams: { refCode: this.refCode } })
+            }
+          })
+        }
+      }
+    })
+  }
+  getFeedbackData = (trainingId) => {
     let url = ApiPath.getTrainingReviewByUser;
-    url = url.replace('{TrainingId}', this.trainingId.toString())
+    url = url.replace('{TrainingId}', trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
         this.feedbackObj = res.result;
@@ -65,14 +110,6 @@ export class FeedbackComponent implements OnInit {
     if (this.formElement.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
-        // if (res && res.responseCode == 200) {
-        //   this.ref.close();
-        // } else {
-        //   let msgArray = [
-        //     { mgs: 'Something went wrong', class: 'confirmMsg' }
-        //   ]
-        //   this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-        // }
       }, error => {
         let msgArray = [
           { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
