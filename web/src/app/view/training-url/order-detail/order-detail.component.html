@@ -53,7 +53,7 @@
             Processing Fee
           </td>
           <td class="text-right">{{orderSummaryData.orderCurrency}}
-            {{orderSummaryData.serviceFee + orderSummaryData.getwayFee}}</td>
+            {{(orderSummaryData.serviceFee + orderSummaryData.getwayFee) | number : 2}}</td>
         </tr>
         <tr>
           <td>
