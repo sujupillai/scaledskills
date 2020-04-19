@@ -65,8 +65,15 @@
         </angular2-multiselect>
       </div>
     </div> -->
-  <div id="msgBody" class="hidden">
+  <div id="msgBody">
     <table style="width: 100%; max-width: 100%; margin: 0px auto; border:0; background: #fff">
+      <tr>
+        <td style="padding: 20px 0;">
+          <h1 style="margin:0px; font-size:48px; font-weight: normal; color:#7030a0; text-align: center;">
+            ScaledSkills
+          </h1>
+        </td>
+      </tr>
       <tr>
         <td style="padding: 0 15px 20px 15px; border-bottom: 1px #ccc solid;">
           <p style="margin:0px; color:#666666; font-size: 16px; text-align: left;">
@@ -76,7 +83,7 @@
       </tr>
       <tr>
         <td style="padding: 20px">
-          {{entity['emailBody']}}
+          <p innerHTML="{{entity['emailBody']}}"></p>
         </td>
       </tr>
     </table>
