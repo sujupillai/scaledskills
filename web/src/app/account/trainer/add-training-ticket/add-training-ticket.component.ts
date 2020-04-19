@@ -265,7 +265,6 @@ export class AddTrainingTicketComponent implements OnInit {
     })
   }
   handleSubmit = () => {
-    debugger
     this.submitted = true;
     let url = ApiPath.trainingTicket;
     url = url.replace('{TrainingId}', this.trainingId.toString())

@@ -140,10 +140,7 @@ export class CommunicationComponent implements OnInit {
       array.push(element.value)
     });
     this.formControl.emails.setValue(array);
-    this.postData = {
-      ...this.postData,
-      emails: array
-    }
+    this.postData = this.trainingBasicForm.value;
     if (this.trainingBasicForm.invalid) {
       this.submitted = true;
       let msgArray = [
@@ -152,8 +149,14 @@ export class CommunicationComponent implements OnInit {
       this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Message')
     } else {
       let url = ApiPath.communicationTrainingsEmail;
-      this._HttpService.httpCall(url, 'POST', this.postData, null).subscribe(res => {
-        debugger
+      let emailBody = document.getElementById('msgBody').innerHTML
+      let data = {
+        ...this.postData,
+        emailBody: emailBody,
+        emails: array
+      }
+      
+      this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
         let msgArray = [
           { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
         ]
@@ -166,7 +169,7 @@ export class CommunicationComponent implements OnInit {
       })
     }
   }
-  download(){
+  download() {
     this._DownloadCSVService.downloadFile(this.masterData['users'], 'usersList');
   }
 }
