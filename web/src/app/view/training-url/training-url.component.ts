@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiPath } from 'src/app/_helpers/_constants/api';
 import { DialogService } from 'primeng/api';
 import { MessageComponent } from '../../_shared/_dialogs/message/message.component';
-import { ReviewComponent } from '../../_shared/_dialogs/review/review.component';
 import { HttpService, AuthenticationService, SharedService } from '../../_service';
 import { Title } from "@angular/platform-browser";
 @Component({
@@ -217,8 +216,6 @@ export class TrainingUrlComponent implements OnInit {
     let component
     if (type == 1) {
       component = MessageComponent
-    } else if (type == 2) {
-      component = ReviewComponent
     }
     let ref = this.openMessageDialog(dialogConfig, dialogHeader, component);
     return ref.onClose;

@@ -12,7 +12,6 @@ import { AddTrainingTagsComponent } from './add-training-tags/add-training-tags.
 import { AddTrainingImagesComponent } from './add-training-images/add-training-images.component';
 import { AddTrainingTicketComponent } from './add-training-ticket/add-training-ticket.component';
 import { AddTrainingQuestionComponent } from './add-training-question/add-training-question.component';
-import { AddTrainingFeedbackComponent } from './add-training-feedback/add-training-feedback.component';
 import { AddTrainingPromotionsComponent } from './add-training-promotions/add-training-promotions.component';
 import { AddTrainingSettingsComponent } from './add-training-settings/add-training-settings.component'
 import { AddTrainerComponent } from './add-trainer/add-trainer.component';
@@ -48,7 +47,6 @@ const routes = [
       { path: 'images', component: AddTrainingImagesComponent },
       { path: 'ticket', component: AddTrainingTicketComponent },
       { path: 'questions', component: AddTrainingQuestionComponent },
-      { path: 'feedback', component: AddTrainingFeedbackComponent },
       { path: 'promotions', component: AddTrainingPromotionsComponent },
       // { path: 'settings', component: AddTrainingSettingsComponent },
       { path: 'addTrainer', component: AddTrainerComponent },
