@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'p/:url', component: TrainerUrlComponent },
   { path: 'o/:url', component: OrganizerUrlComponent },
   { path: 't/:url/:id/booking', component: OrderTicketComponent },
-  { path: 't/:url/feedback', component: FeedbackComponent },
+  { path: 't/:url/feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'orderDetail/:orderId', component: OrderDetailComponent },
   { path: 'order/failure', component: PaymentErrorComponent },
   { path: 'orderDetail/:orderId', component: OrderDetailComponent },
