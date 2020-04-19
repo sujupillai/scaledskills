@@ -228,7 +228,7 @@ export class TrainingUrlComponent implements OnInit {
       if (this.entity['userEmail']) {
         let data = {
           toEmail: this.entity['userEmail'] ? this.entity['userEmail'] : '',
-          objData:this.entity,
+          objData: this.entity,
         }
         this.messageDialogConfig(data, 'Send Enquiry', 1).subscribe(res => {
           if (res != undefined) {
@@ -256,29 +256,17 @@ export class TrainingUrlComponent implements OnInit {
     }
   }
   handleFeedback = () => {
-    let data = {
-      trainingId: this.trainingId
+    this.refCode = null;
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
+    if (this.refCode) {
+      this._Router.navigate(['/t/' + this.entity.url + '/feedback'], { queryParams: { refCode: this.refCode } })
+    } else {
+      this._Router.navigate(['/t/' + this.entity.url + '/feedback'])
     }
-    this.messageDialogConfig(data, 'Feedback', 2).subscribe(res => {
-      if (res != undefined) {
-        if (res && res.responseCode == 200) {
-          let msgArray = [
-            {
-              mgs: res && res.responseMessege ? res.responseMessege : 'Success',
-              class: 'confirmMsg'
-            },
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
-            this.fetchTrainingReview()
-          });
-        } else {
-          let msgArray = [
-            { mgs: res && res.responseMessege ? res.responseMessege : 'Something went wrong', class: 'confirmMsg' }
-          ]
-          this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
-        }
-      }
-    })
   }
   goToLogin = (msg) => {
     this.refCode = null;

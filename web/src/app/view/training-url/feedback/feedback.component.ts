@@ -25,6 +25,12 @@ export class FeedbackComponent implements OnInit {
   constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router, private _ActivatedRoute: ActivatedRoute, private _AuthenticationService: AuthenticationService, ) { }
   ngOnInit() {
     let url = ApiPath.trainingUrl;
+    this.refCode = null;
+    this._ActivatedRoute.queryParams.subscribe(params => {
+      this.refCode = params.refCode
+    });
+    let returnUrl = window.location.pathname;
+    localStorage.setItem('returnurl', returnUrl);
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.url;
       url = url.replace('{urlName}', this.urlString)
@@ -65,12 +71,6 @@ export class FeedbackComponent implements OnInit {
             { mgs: 'Do you want to continue ?', class: 'subMsg' },
           ]
           this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
-            this.refCode = null;
-            this._ActivatedRoute.queryParams.subscribe(params => {
-              this.refCode = params.refCode
-            });
-            let returnUrl = window.location.pathname;
-            localStorage.setItem('returnurl', returnUrl);
             if (res) {
               this._Router.navigate(['/t/' + this.entity.url + '/' + this.trainingId + '/booking'], { queryParams: { refCode: this.refCode } })
             } else {
@@ -110,6 +110,12 @@ export class FeedbackComponent implements OnInit {
     if (this.formElement.valid) {
       this.submitted = false;
       this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        let msgArray = [
+          { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
+          //this.getFeedbackData(this.trainingId);
+        });
       }, error => {
         let msgArray = [
           { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
@@ -138,6 +144,6 @@ export class FeedbackComponent implements OnInit {
     }
   }
   handleCancel = () => {
-    // this.ref.close();
+    this._Router.navigate(['/t/' + this.entity.url], { queryParams: { refCode: this.refCode } })
   }
 }
