@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiPath } from '../../../_helpers/_constants/api';
-import { HttpService, SharedService } from 'src/app/_service';
+import { HttpService, SharedService, AuthenticationService } from 'src/app/_service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { DownloadCSVService } from 'src/app/_service/downloadService';
 @Component({
@@ -10,6 +10,8 @@ import { DownloadCSVService } from 'src/app/_service/downloadService';
 export class CommunicationComponent implements OnInit {
   trainingBasicForm: FormGroup;
   submitted: boolean = false;
+  userInfo: any = {};
+  isLoggedIn: boolean = false;
   defaultList = [{
     "text": "Select",
     "value": "0",
@@ -29,12 +31,13 @@ export class CommunicationComponent implements OnInit {
   multiSettings;
   entity = {};
   postData = {}
-  constructor(private _HttpService: HttpService, private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _DownloadCSVService: DownloadCSVService) { }
+  constructor(private _HttpService: HttpService, private _FormBuilder: FormBuilder, private _SharedService: SharedService, private _DownloadCSVService: DownloadCSVService, private _AuthenticationService: AuthenticationService) { }
   ngOnInit() {
     this.createForm(() => { })
     this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
     this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', badgeShowLimit: 1 };
     // this.getOrgData();
+    this.getUserInfo();
     this.getTrainings('organization', 2)
     this.getUserTypes('userTypes');
   }
@@ -59,6 +62,11 @@ export class CommunicationComponent implements OnInit {
     }
   }
   get formControl() { return this.trainingBasicForm.controls }
+  getUserInfo = () => {
+    debugger
+    this.userInfo = this._AuthenticationService.currentUserValue;
+    this.isLoggedIn = this.userInfo ? true : false;
+  }
   getOrgData = () => {
     let url = ApiPath.organizationList
     this._httpGetMaster(url, 'organization', null, null, 'GET')
