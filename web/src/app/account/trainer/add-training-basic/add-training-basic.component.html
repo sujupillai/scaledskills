@@ -80,7 +80,7 @@
       </div>
       <div class="col-sm-6">
         <div class="form-group">
-          <label>Start time<span class="required">*</span></label>
+          <label>Start Time<span class="required">*</span></label>
           <p-calendar name="startTime" [formControl]="startTime" [timeOnly]="true" hourFormat="12" placeholder="00:00:AM"></p-calendar>
           <p class="msgError text-danger" *ngIf="!startTime.value && submitted">
             Required Field.
