@@ -114,7 +114,7 @@ export class FeedbackComponent implements OnInit {
           { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
         ]
         this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
-          //this.getFeedbackData(this.trainingId);
+          this._Router.navigate(['/t/' + this.entity.url], { queryParams: { refCode: this.refCode } })
         });
       }, error => {
         let msgArray = [
