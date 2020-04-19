@@ -46,26 +46,26 @@
           <td>
             Ticket (s) Price
           </td>
-          <td class="text-right">{{orderSummaryData.orderCurrency}} {{orderSummaryData.subTotal}}</td>
+          <td class="text-right">{{orderSummaryData.orderCurrency}} {{(orderSummaryData.subTotal).toFixed(2)}}</td>
         </tr>
         <tr>
           <td>
             Processing Fee
           </td>
           <td class="text-right">{{orderSummaryData.orderCurrency}}
-            {{(orderSummaryData.serviceFee + orderSummaryData.getwayFee) | number : 2}}</td>
+            {{(orderSummaryData.serviceFee + orderSummaryData.getwayFee).toFixed(2)}}</td>
         </tr>
         <tr>
           <td>
             GST
           </td>
-          <td class="text-right">{{orderSummaryData.orderCurrency}} {{orderSummaryData.gst}}</td>
+          <td class="text-right">{{orderSummaryData.orderCurrency}} {{(orderSummaryData.gst).toFixed(2)}}</td>
         </tr>
         <tr>
           <td>
             <strong>Total Payable</strong>
           </td>
-          <td class="text-right">{{orderSummaryData.orderCurrency}} {{orderSummaryData.total}}</td>
+          <td class="text-right">{{orderSummaryData.orderCurrency}} {{(orderSummaryData.total).toFixed(2)}}</td>
         </tr>
       </table>
     </div>
