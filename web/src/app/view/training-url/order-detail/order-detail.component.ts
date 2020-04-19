@@ -75,7 +75,7 @@ export class OrderDetailComponent implements OnInit {
       } else {
         let msgArray = [
           {
-            mgs: 'Your booking has been confirmed. Check your email for detials.',
+            mgs: 'Your booking has been confirmed. Check your email for details.',
             class: 'confirmMsg'
           },
         ]

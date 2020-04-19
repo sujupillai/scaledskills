@@ -1,8 +1,12 @@
 <div class="container">
   <div class="ticket-cart-grid">
     <h2 class="text-center">Ticket List</h2>
+    <div *ngIf="selectedTickets && selectedTickets.length==0">
+      <strong class="text-danger">Please selct ticket(s) for continue</strong>
+    </div>
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
-      <div class="relative">
+      <div class="relative"
+        [ngClass]="(item.endDate | date: 'dd-MM-yyyy') > (currentDate | date: 'dd-MM-yyyy') ?'':'disabled'">
         <div class="left circle"></div>
         <div class="right circle"></div>
         <p-card>
@@ -53,7 +57,7 @@
         <div class="form-group">
           <label for="">Referral Code <i class="fa fa-info-circle" aria-hidden="true"
               pTooltip="Valid for Indian citizens" tooltipPosition="top"></i></label>
-          <input readonly type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code"/>
+          <input readonly type="text" class="form-control" [(ngModel)]="referralCode" placeholder="Referral Code" />
         </div>
       </div>
     </div>
@@ -65,3 +69,4 @@
       class="ui-button-raised" (click)="handleSubmit()"></button>
   </div>
 </div>
+1

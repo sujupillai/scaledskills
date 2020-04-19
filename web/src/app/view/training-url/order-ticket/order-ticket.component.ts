@@ -14,6 +14,7 @@ export class OrderTicketComponent implements OnInit {
   referralCode: '';
   orderId = '';
   submitted = false;
+  currentDate=new Date();
 
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
@@ -36,9 +37,9 @@ export class OrderTicketComponent implements OnInit {
           x.isAdded = false;
           x.maxBooking = x.maxBooking ? x.maxBooking : x.availableQty
         })
-        this.ticketList[0].isAdded = true;
-        this.ticketList[0].orderQty = 1;
-        this.selectedTickets = this.ticketList.filter(x => x.isAdded);
+        // this.ticketList[0].isAdded = true;
+        // this.ticketList[0].orderQty = 1;
+        // this.selectedTickets = this.ticketList.filter(x => x.isAdded);
       }
     })
   }
