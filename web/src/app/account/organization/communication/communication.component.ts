@@ -16,7 +16,11 @@ export class CommunicationComponent implements OnInit {
     "isSelect": false
   }]
   masterData = {
-    organization: [],
+    organization: [{
+      text: 'Individual', value: '1'
+    },
+    { text: 'Organization', value: '2' }
+    ],
     trainings: [],
     userTypes: [],
     users: [],
@@ -30,7 +34,8 @@ export class CommunicationComponent implements OnInit {
     this.createForm(() => { })
     this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
     this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', badgeShowLimit: 1 };
-    this.getOrgData();
+    // this.getOrgData();
+    this.getTrainings('organization', 2)
     this.getUserTypes('userTypes');
   }
   _httpGetMaster = (url, key, body, param, method) => {
@@ -85,17 +90,18 @@ export class CommunicationComponent implements OnInit {
         "text": "Pending Registration",
         "value": "2",
         "isSelect": false
-      },
-      {
-        "text": "Interested",
-        "value": "3",
-        "isSelect": false
-      },
-      {
-        "text": "Feedback Received",
-        "value": "4",
-        "isSelect": false
       }
+      // ,
+      // {
+      //   "text": "Interested",
+      //   "value": "3",
+      //   "isSelect": false
+      // },
+      // {
+      //   "text": "Feedback Received",
+      //   "value": "4",
+      //   "isSelect": false
+      // }
     ]
     this.masterData[key] = data;
   }
