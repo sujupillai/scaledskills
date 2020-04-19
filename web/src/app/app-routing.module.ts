@@ -13,6 +13,7 @@ import { MaintenanceComponent } from './maintenance/maintenance.component';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
 import { PaymentErrorComponent } from './payment-error/payment-error.component';
 import { AuthGuard } from './_guards';
+import { FeedbackComponent } from './view/training-url/feedback/feedback.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'trainingRequest/:id', component: RequestComponent, canActivate: [AuthGuard] },
@@ -34,10 +35,11 @@ const routes: Routes = [
   { path: 't/:url', component: TrainingUrlComponent },
   { path: 'p/:url', component: TrainerUrlComponent },
   { path: 'o/:url', component: OrganizerUrlComponent },
-  { path: 't/:url/:id/booking', component: OrderTicketComponent},
-  { path: 'orderDetail/:orderId', component: OrderDetailComponent},
-  { path: 'order/failure', component: PaymentErrorComponent},
-  { path: 'orderDetail/:orderId', component: OrderDetailComponent},
+  { path: 't/:url/:id/booking', component: OrderTicketComponent },
+  { path: 't/:url/feedback', component: FeedbackComponent },
+  { path: 'orderDetail/:orderId', component: OrderDetailComponent },
+  { path: 'order/failure', component: PaymentErrorComponent },
+  { path: 'orderDetail/:orderId', component: OrderDetailComponent },
   { path: 'maintenance', component: MaintenanceComponent },
   { path: '**', component: ErrorComponent, pathMatch: 'full' },
 ];

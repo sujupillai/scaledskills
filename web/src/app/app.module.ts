@@ -33,6 +33,7 @@ import { EmbedVideo } from 'ngx-embed-video';
 import { ContactUsComponent } from './home/contact-us/contact-us.component';
 import { PaymentErrorComponent } from './payment-error/payment-error.component';
 import { DownloadCSVService } from './_service/downloadService';
+import { FeedbackComponent } from './view/training-url/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { DownloadCSVService } from './_service/downloadService';
     OrderDetailComponent,
     MaintenanceComponent,
     ContactUsComponent,
-    PaymentErrorComponent
+    PaymentErrorComponent,
+    FeedbackComponent
   ],
   imports: [
     
