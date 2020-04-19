@@ -38,7 +38,7 @@ export class CommunicationComponent implements OnInit {
       if (res.result) {
         this.masterData[key] = res.result;
         if (key == 'organization') {
-          this.getTrainings('organization')
+          this.getTrainings('organization', 0)
         }
       }
     })
@@ -58,11 +58,11 @@ export class CommunicationComponent implements OnInit {
     let url = ApiPath.organizationList
     this._httpGetMaster(url, 'organization', null, null, 'GET')
   }
-  getTrainings = (key) => {
-    let ids = this.getArray(key);
+  getTrainings = (key, id) => {
+    //let ids = this.getArray(key);
     let url = ApiPath.communicationTrainings;
     let params = {
-      training_Hosted: ids ? ids : 0
+      training_Hosted: id ? id : 0
     }
     this._httpGetMaster(url, 'trainings', null, params, 'GET')
   }
@@ -108,7 +108,7 @@ export class CommunicationComponent implements OnInit {
   }
   onSelect(event, key) {
     if (key == 'organization') {
-      this.getTrainings('organization')
+      this.getTrainings('organization', event.value)
       this.entity['trainings'] = []
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
@@ -122,7 +122,7 @@ export class CommunicationComponent implements OnInit {
   }
   OnDeSelect(event, key) {
     if (key == 'organization') {
-      this.getTrainings('organization')
+      this.getTrainings('organization', event.value)
       this.entity['trainings'] = []
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
@@ -155,7 +155,7 @@ export class CommunicationComponent implements OnInit {
         emailBody: emailBody,
         emails: array
       }
-      
+
       this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
         let msgArray = [
           { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }

@@ -4,7 +4,7 @@
       <div class="form-group">
         <label>Organization <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
-          [(ngModel)]="entity['organization']" [settings]="multiSettings" placeholder="Organization"
+          [(ngModel)]="entity['organization']" [settings]="settings" placeholder="Organization"
           (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
         </angular2-multiselect>
       </div>
