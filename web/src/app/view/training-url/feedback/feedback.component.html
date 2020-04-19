@@ -1,1 +1,44 @@
-<p>feedback works!</p>
+<div class="container">
+  <h2 class="text-center section-heading">
+    <a [routerLink]="['/account']" class="arrow">
+      <i class="glyphicon glyphicon-chevron-left"></i> Back
+    </a>
+    FEEDBACK
+  </h2>
+  <div class="row profile-wrap">
+    <div class="col-sm-12 content-section">
+      <div class="content">
+        <form [formGroup]="formElement" autocomplete="off" novalidate>
+          <div class="form-group">
+            <label>How satisfied were you with the training</label>
+            <div>
+              <p-rating formControlName="rateOfSatisfied" (onRate)="handleRate($event)"
+                (onCancel)="handleCancelRate($event)">
+              </p-rating>
+              <p class="msgError text-danger" *ngIf="msg">
+                Required Field.
+              </p>
+            </div>
+          </div>
+          <div class="form-goup">
+            <label>What you like about the training</label>
+            <input type="text" pInputText formControlName="likeAbout">
+          </div>
+          <div class="form-goup">
+            <label>How we can improve the training</label>
+            <input type="text" pInputText formControlName="improveAbout">
+          </div>
+          <div class="form-goup">
+            <label>Training you need in future</label>
+            <textarea pInputTextarea autoResize="autoResize" formControlName="needInFeature"></textarea>
+          </div>
+          <div class="form-group clearfix button-group text-right">
+            <button pButton type="button" label="Cancel" class="ui-button-raised ui-button-danger"
+              (click)="handleCancel()"></button>
+            <button pButton type="button" label="Save" class="ui-button-raised" (click)="handleSubmit()"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

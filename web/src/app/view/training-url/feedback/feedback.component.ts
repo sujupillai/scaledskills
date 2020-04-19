@@ -1,68 +1,106 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { ApiPath } from '../../../_helpers/_constants/api';
+import { first } from 'rxjs/operators';
+import { HttpService, SharedService } from '../../../_service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiPath } from 'src/app/_helpers/_constants/api';
-import { DialogService } from 'primeng/api';
-import { MessageComponent } from '../../../_shared/_dialogs/message/message.component';
-import { ReviewComponent } from '../../../_shared/_dialogs/review/review.component';
-import { HttpService, AuthenticationService, SharedService } from '../../../_service';
-import { Title } from "@angular/platform-browser";
 @Component({
   selector: 'app-feedback',
   templateUrl: './feedback.component.html',
 })
 export class FeedbackComponent implements OnInit {
-  refCode;
-  trainingId = 0;
-  urlString: string = '';
-  entity = null;
-  userId = 0;
-  userInfo: any = {};
-  isLoggedIn: boolean = false;
-  constructor(public dialogService: DialogService,
-    private _ActivatedRoute: ActivatedRoute, private _Router: Router, private _HttpService: HttpService, private _AuthenticationService: AuthenticationService, private _SharedService: SharedService) {
-  }
+  formElement: FormGroup;
+  trainingId: any = 0;
+  prevState;
+  feedbackObj = [];
+  submitted = false;
+  res
+  val2: number = 5;
+  msg = null;
+  constructor(private _FormBuilder: FormBuilder, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
-    let url = ApiPath.trainingUrl;
-    this._ActivatedRoute.params.subscribe((param: any) => {
-      this.urlString = param.url;
-      url = url.replace('{urlName}', this.urlString)
-      this.getUser()
-      this.getData(url)
-    });
-    localStorage.removeItem('returnurl');
+    this.createprofileForm(() => {
+      this.getData();
+    })
   }
-  getUser = () => {
-    this.userInfo = this._AuthenticationService.currentUserValue;
-    this.isLoggedIn = this.userInfo ? true : false;
+  createprofileForm = (callback) => {
+    this.formElement = this._FormBuilder.group({
+      rateOfSatisfied: ['', Validators.required],
+      likeAbout: [''],
+      improveAbout: [''],
+      needInFeature: [''],
+      id: 0
+    })
+    if (callback) {
+      callback();
+    }
   }
-  getData = (url) => {
+  get formControl() { return this.formElement.controls }
+  getData = () => {
+    let url = ApiPath.getTrainingReviewByUser;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        this.entity = res.result;
-        this.userId = this.entity['userId'];
-        this.trainingId = this.entity['trainingId']
+        this.feedbackObj = res.result;
+        Object.keys(this.feedbackObj).forEach(name => {
+          if (this.formControl[name]) {
+            this.formControl[name].setValue(this.feedbackObj[name]);
+          }
+        });
       }
     })
   }
-  goToLogin = (msg) => {
-    this.refCode = null;
-    this._ActivatedRoute.queryParams.subscribe(params => {
-      this.refCode = params.refCode
-    });
-    let returnUrl = window.location.pathname;
-    localStorage.setItem('returnurl', returnUrl);
-    let msgArray = [
-      { mgs: msg, class: 'confirmMsg' },
-      { mgs: 'Do you want to login ?', class: 'subMsg' },
-    ]
-    this._SharedService.dialogConfig(msgArray, true, true, true, 'YES', 'CANCEL', false, 'Information').subscribe(res => {
-      if (res) {
-        if (this.refCode) {
-          this._Router.navigate(['/auth/login'], { queryParams: { refCode: this.refCode } })
-        } else {
-          this._Router.navigate(['/auth/login']);
+  handleRate(event) {
+    this.msg = null;
+  }
+  handleCancelRate(event) {
+    this.msg = "Required Field.";
+  }
+  handleSubmit = (): void => {
+    let url = ApiPath.trainingReview;
+    url = url.replace('{TrainingId}', this.trainingId.toString())
+    let postObj = {
+      ...this.formElement.value
+    }
+    if (this.formElement.valid) {
+      this.submitted = false;
+      this._HttpService.httpCall(url, 'POST', postObj, null).subscribe(res => {
+        // if (res && res.responseCode == 200) {
+        //   this.ref.close();
+        // } else {
+        //   let msgArray = [
+        //     { mgs: 'Something went wrong', class: 'confirmMsg' }
+        //   ]
+        //   this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        // }
+      }, error => {
+        let msgArray = [
+          { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
+        ]
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+      });
+    } else {
+      this.msg = "Required Field.";
+      this.submitted = true;
+    }
+  }
+  resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    let dataObj = this.prevState;
+    if (dataObj) {
+      Object.keys(dataObj).forEach(name => {
+        if (this.formControl[name]) {
+          if (name != 'addressModel') {
+            this.formControl[name].setValue(this.prevState[name]);
+            control.setErrors(null);
+          }
         }
-      }
-    })
+      });
+    }
+  }
+  handleCancel = () => {
+    // this.ref.close();
   }
 }
