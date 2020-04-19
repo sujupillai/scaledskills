@@ -160,7 +160,7 @@ export class CommunicationComponent implements OnInit {
         let msgArray = [
           { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }
         ]
-        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Error')
+        this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success')
       }, error => {
         let msgArray = [
           { mgs: error['message'] ? error['message'] : 'Server Error', class: 'confirmMsg' },
