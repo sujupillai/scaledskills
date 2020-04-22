@@ -4,9 +4,9 @@
     <div *ngIf="selectedTickets && selectedTickets.length==0">
       <strong class="text-danger">Please selct ticket(s) for continue</strong>
     </div>
+    <!-- [ngClass]="(item.endDate | date: 'dd-MM-yyyy') > (currentDate | date: 'dd-MM-yyyy') ?'':'disabled'" -->
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
-      <div class="relative"
-        [ngClass]="(item.endDate | date: 'dd-MM-yyyy') > (currentDate | date: 'dd-MM-yyyy') ?'':'disabled'">
+      <div class="relative">
         <div class="left circle"></div>
         <div class="right circle"></div>
         <p-card>
