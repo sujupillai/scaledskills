@@ -13,7 +13,8 @@
             <ul class="ui-tabmenu-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
               <li class="ui-tabmenuitem ui-state-default ui-corner-top" *ngFor="let link of tabArray"
                 [routerLinkActive]="['ui-state-active']">
-                <a class="ui-menuitem-link ui-corner-all" [routerLink]="link.routerLink" [ngClass]="link.isDisabled?'disabled':''">
+                <a class="ui-menuitem-link ui-corner-all" [routerLink]="link.routerLink"
+                  [ngClass]="link.isDisabled || (link.isPublisedReq && isPublished)?'disabled':''">
                   <span class="ui-menuitem-text">
                     {{link.label}}
                   </span>
