@@ -16,7 +16,7 @@
                 <a class="ui-menuitem-link ui-corner-all" [routerLink]="link.routerLink"
                   [ngClass]="link.isDisabled || (link.isPublisedReq && isPublished)?'disabled':''">
                   <span class="ui-menuitem-text">
-                    {{link.label}}
+                    {{link.isPublisedReq && isPublished?'PUBLISHED':link.label}}
                   </span>
                 </a>
               </li>
