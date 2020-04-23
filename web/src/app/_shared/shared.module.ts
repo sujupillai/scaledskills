@@ -6,14 +6,13 @@ import { TrainingCardComponent } from './training-card/training-card.component';
 import {ExternalUrlDirective} from './ExternalUrlDirective ';
 import {MessageComponent} from './_dialogs/message/message.component';
 import { MembersTempComponent } from './members-temp/members-temp.component';
-import { ReviewTempComponent } from './review-temp/review-temp.component';
+
 
 
 @NgModule({
-  declarations: [LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, MembersTempComponent, ReviewTempComponent],
+  declarations: [LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, MembersTempComponent],
   exports: [
     LoaderComponent, DigitOnlyDirective, TrainingCardComponent, ExternalUrlDirective, MessageComponent, MembersTempComponent,
-    ReviewTempComponent
   ],
   imports: [
     NgPrimeModule,
