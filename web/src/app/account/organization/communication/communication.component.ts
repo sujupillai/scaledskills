@@ -80,12 +80,17 @@ export class CommunicationComponent implements OnInit {
     this._httpGetMaster(url, 'trainings', null, params, 'GET')
   }
   getUsers = (key, usersType) => {
-    let ids = this.getArray('trainings');
+    let trainings = this.getArray('trainings');
+    let userTypes = this.getArray('userTypes');
     let url = ApiPath.communicationTrainingsUser;
+    let data = {
+      trainings: trainings,
+      userTypes: userTypes
+    }
     let params = {
       users: usersType
     }
-    this._httpGetMaster(url, 'users', ids, params, 'POST')
+    this._httpGetMaster(url, 'users', data, null, 'POST')
   }
   getUserTypes = (key) => {
     let data = [
@@ -95,21 +100,25 @@ export class CommunicationComponent implements OnInit {
         "isSelect": false
       },
       {
-        "text": "Pending Registration",
+        "text": "Interested",
         "value": "2",
         "isSelect": false
+      },
+      {
+        "text": "Member",
+        "value": "3",
+        "isSelect": false
+      },
+      {
+        "text": "Pending Registration",
+        "value": "4",
+        "isSelect": false
+      },
+      {
+        "text": "Feedback Received",
+        "value": "5",
+        "isSelect": false
       }
-      // ,
-      // {
-      //   "text": "Interested",
-      //   "value": "3",
-      //   "isSelect": false
-      // },
-      // {
-      //   "text": "Feedback Received",
-      //   "value": "4",
-      //   "isSelect": false
-      // }
     ]
     this.masterData[key] = data;
   }
@@ -169,7 +178,6 @@ export class CommunicationComponent implements OnInit {
         emailBody: emailBody,
         emails: array
       }
-
       this._HttpService.httpCall(url, 'POST', data, null).subscribe(res => {
         let msgArray = [
           { mgs: res.responseMessege ? res.responseMessege : 'Success', class: 'confirmMsg' }

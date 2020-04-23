@@ -30,7 +30,7 @@
       <div class="form-group">
         <label>User Types <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['userTypes']" name="userTypes"
-          [(ngModel)]="entity['userTypes']" [settings]="settings" placeholder="User Types"
+          [(ngModel)]="entity['userTypes']" [settings]="multiSettings" placeholder="User Types"
           (onSelect)="onSelect($event, 'userTypes')" (onDeSelect)="OnDeSelect($event, 'userTypes')">
         </angular2-multiselect>
       </div>
