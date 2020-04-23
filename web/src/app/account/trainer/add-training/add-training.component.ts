@@ -5,47 +5,21 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './add-training.component.html'
 })
 export class AddTrainingComponent implements OnInit {
-  routeLinks = [];
+  tabArray = [];
   active: boolean = true;
   constructor(private _ActivatedRoute: ActivatedRoute) { }
   ngOnInit() {
-    this.routeLinks = [
-      {
-        label: 'Basic',
-        link: 'basic',
-      }, {
-        label: 'Location',
-        link: 'location',
-      }, {
-        label: 'Tags',
-        link: 'tags',
-      }, {
-        label: 'Images',
-        link: 'images',
-      }, {
-        label: 'Ticket',
-        link: 'ticket',
-      }
-      // , {
-      //   label: 'Custom Questions',
-      //   link: 'questions',
-      // }
-      // , {
-      //   label: 'Promotions',
-      //   link: 'promotions',
-      // }
-      // , {
-      //   label: 'Settings',
-      //   link: 'settings',
-      // }
-      , {
-        label: 'Add Trainer',
-        link: 'addTrainer',
-      }
-      , {
-        label: 'PUBLISH',
-        link: 'publish',
-      }
+    this.tabArray = [
+      { label: 'Basic', routerLink: 'basic' },
+      { label: 'Location', routerLink: 'location' },
+      { label: 'Tags', routerLink: 'tags' },
+      { label: 'Images', routerLink: 'images' },
+      { label: 'Ticket', routerLink: 'ticket' },
+      { label: 'Custom Questions', routerLink: 'questions' },
+      { label: 'Promotions', routerLink: 'promotions' },
+      { label: 'Settings', routerLink: 'settings' },
+      { label: 'Add Trainer', routerLink: 'addTrainer' },
+      { label: 'PUBLISH', routerLink: 'publish' },
     ];
   }
 }
