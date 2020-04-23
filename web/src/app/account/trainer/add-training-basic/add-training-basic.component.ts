@@ -244,7 +244,8 @@ export class AddTrainingBasicComponent implements OnInit {
             ]
             this._SharedService.dialogConfig(msgArray, false, false, false, null, null, false, 'Success').subscribe(res => {
               if (newTraining) {
-                this._Router.navigate(['account/trainer/training/' + this.trainingId + '/basic']);
+                let url = 'account/trainer/training/' + this.trainingId + '/basic';
+                window.location.href = url;
               } else {
                 this.getData(this.trainingId)
               }
