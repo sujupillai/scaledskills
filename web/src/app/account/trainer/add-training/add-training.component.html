@@ -9,7 +9,18 @@
     <div class="col-sm-12 content-section">
       <div class="content">
         <div class="tab-bar">
-          <p-tabMenu [model]="tabArray"></p-tabMenu>
+          <div class="ui-tabmenu ui-widget ui-widget-content ui-corner-all">
+            <ul class="ui-tabmenu-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+              <li class="ui-tabmenuitem ui-state-default ui-corner-top" *ngFor="let link of tabArray"
+                [routerLinkActive]="['ui-state-active']">
+                <a class="ui-menuitem-link ui-corner-all" [routerLink]="link.routerLink" [ngClass]="link.isDisabled?'disabled':''">
+                  <span class="ui-menuitem-text">
+                    {{link.label}}
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <router-outlet></router-outlet>
       </div>
