@@ -19,12 +19,12 @@ export class AddTrainingComponent implements OnInit {
       { label: 'Location', routerLink: 'location', idRequired: true },
       { label: 'Tags', routerLink: 'tags', idRequired: true },
       { label: 'Images', routerLink: 'images', idRequired: true },
-      { label: 'Ticket', routerLink: 'ticket' },
+      { label: 'Ticket', routerLink: 'ticket', idRequired: true },
       // { label: 'Custom Questions', routerLink: 'questions' },
       // { label: 'Promotions', routerLink: 'promotions' },
       // { label: 'Settings', routerLink: 'settings', idRequired: true },
       { label: 'Add Trainer', routerLink: 'addTrainer', idRequired: true },
-      { label: 'PUBLISH', routerLink: 'publish', idRequired: true, isPublisedReq: true },
+      { label: 'PUBLISH', routerLink: 'publish', idRequired: true},
     ];
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.trainingId = param.id;
@@ -35,7 +35,7 @@ export class AddTrainingComponent implements OnInit {
           }
         })
       } else {
-        this.getData(this.trainingId);
+        // this.getData(this.trainingId);
       }
     });
   }
