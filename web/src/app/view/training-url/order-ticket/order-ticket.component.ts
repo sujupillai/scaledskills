@@ -15,9 +15,15 @@ export class OrderTicketComponent implements OnInit {
   orderId = '';
   submitted = false;
   currentDate=new Date();
+  currentDate2;
+  currentDate3;
+  inc = 1000 * 60 * 60 // an hour
+  dec = (1000 * 60 * 60) * -1 // an hour
 
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
+    this.currentDate2=this.currentDate.getTime()+this.inc;
+    this.currentDate3=this.currentDate.getTime()+this.dec;
     let url = ApiPath.trainingTicket;
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.id;

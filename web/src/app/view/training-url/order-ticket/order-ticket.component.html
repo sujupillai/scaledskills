@@ -2,11 +2,16 @@
   <div class="ticket-cart-grid">
     <h2 class="text-center">Ticket List</h2>
     <div *ngIf="selectedTickets && selectedTickets.length==0">
-      <strong class="text-danger">Please selct ticket(s) for continue</strong>
+      <strong class="text-danger">Note: Please selct ticket(s) for continue</strong>
     </div>
-    <!-- [ngClass]="(item.endDate | date: 'dd-MM-yyyy') > (currentDate | date: 'dd-MM-yyyy') ?'':'disabled'" -->
+    <!-- <pre> currentDate {{currentDate |date: 'dd,MM,yyyy,HH,mm'}}</pre>
+    <pre> currentDate2 {{currentDate2 |date: 'dd,MM,yyyy,HH,mm'}}</pre>
+    <pre>currentDate3 {{currentDate3 |date: 'dd,MM,yyyy,HH,mm'}}</pre>
+    <pre>currentDate > currentDate2 {{(currentDate |date: 'dd,MM,yyyy,HH,mm')>(currentDate2 |date: 'dd,MM,yyyy,HH,mm')}}</pre>
+    <pre>currentDate > currentDate3  {{(currentDate |date: 'dd-MM-yyyy HH:mm')>(currentDate3 |date: 'dd-MM-yyyy HH:mm')}}</pre> -->
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
-      <div class="relative">
+      <div class="relative"
+        [ngClass]="(item.endDate | date: 'dd-MM-yyyy HH:mm') > (currentDate | date: 'dd-MM-yyyy HH:mm') ?'':'disabled'">
         <div class="left circle"></div>
         <div class="right circle"></div>
         <p-card>
@@ -69,4 +74,3 @@
       class="ui-button-raised" (click)="handleSubmit()"></button>
   </div>
 </div>
-1
