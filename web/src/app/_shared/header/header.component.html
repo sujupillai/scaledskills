@@ -1,52 +1,50 @@
 <nav class="navbar navbar-default navar-middle">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" [routerLink]="['/home']">
-        <span class="logoClr">
-          <img src="../../../assets/images/headerLogo.png" alt="">
-        </span>
-      </a>
+    <div class="navbar-wrapper">
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="['/home']">
+          <span class="logoClr">
+            <img src="../../../assets/images/headerLogo.png" alt="">
+          </span>
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" class="no-sm">
+          <a [routerLink]="['/contact']">
+            Contact Us: <strong>+919599350701</strong>
+          </a>
+        </li>
+        <li routerLinkActive="active" *ngIf="!isLoggedIn">
+          <a [routerLink]="['auth/register']">
+            <span class="glyphicon glyphicon-user"></span> Sign Up
+          </a>
+        </li>
+        <li routerLinkActive="active" *ngIf="!isLoggedIn">
+          <a (click)="goToLink()">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+          </a>
+        </li>
+        <li class="dropdown menu-dropdown" *ngIf="isLoggedIn">
+          <div class="dropdown-toggle profile-link" data-toggle="dropdown" href="javascript:void(0)">
+            <img *ngIf="!userInfo.image" src="../../../../assets/images/user.png" alt="image" class="dp-img"
+              class="dp-img">
+            <img *ngIf="userInfo.image" src="{{imageBaseUrl}}{{userInfo.image}}"
+              onError="this.src='../../../../assets/images/user.png';" alt="image" class="dp-img">
+            <span class="caret"></span></div>
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="welcome-user no-cursor clrPurple font-big font-bold">{{userInfo['firstName']?'Welcome '+ userInfo['firstName']:'Welcome User'}}</a>
+            </li>
+            <li><a [routerLink]="['account']">Portfolio</a></li>
+            <li><a [routerLink]="['account/trainer/training/0/basic']">Create Training</a></li>
+            <li><a [routerLink]="['/contact']">Contact Us: <strong>+919599350701</strong></a></li>
+            <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log
+                Out</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <!-- <li routerLinkActive="active">
-        <a [routerLink]="['/trainingRequests']">
-          Training Request
-        </a>
-      </li> -->
-      <li routerLinkActive="active">
-        <a [routerLink]="['/contact']">
-          Contact Us: <strong>+919599350701</strong>
-        </a>
-      </li>
-      <li routerLinkActive="active" *ngIf="!isLoggedIn">
-        <a [routerLink]="['auth/register']">
-          <span class="glyphicon glyphicon-user"></span> Sign Up
-        </a>
-      </li>
-      <li routerLinkActive="active" *ngIf="!isLoggedIn">
-        <a (click)="goToLink()">
-          <span class="glyphicon glyphicon-log-in"></span> Login
-        </a>
-      </li>
-      <li class="dropdown menu-dropdown" *ngIf="isLoggedIn">
-        <div class="dropdown-toggle profile-link" data-toggle="dropdown" href="javascript:void(0)">
-          <img *ngIf="!userInfo.image" src="../../../../assets/images/user.png" alt="image" class="dp-img"
-            class="dp-img">
-          <img *ngIf="userInfo.image" src="{{imageBaseUrl}}{{userInfo.image}}"
-            onError="this.src='../../../../assets/images/user.png';" alt="image" class="dp-img">
-          <span class="caret"></span></div>
-        <ul class="dropdown-menu">
-          <li>
-            <a
-              class="welcome-user no-cursor clrPurple font-big font-bold">{{userInfo['firstName']?'Welcome '+ userInfo['firstName']:'Welcome User'}}</a>
-          </li>
-          <li><a [routerLink]="['account']">Portfolio</a></li>
-          <li><a [routerLink]="['account/trainer/training/0/basic']">Create Training</a></li>
-          <li routerLinkActive="active" *ngIf="isLoggedIn"><a (click)="handleLogOut()" class="cursor-pointer">Log
-              Out</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
   </div>
 </nav>

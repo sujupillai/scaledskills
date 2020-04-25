@@ -20,10 +20,11 @@
 </section>
 <section class="section-padding clearfix bgGray">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-3" *ngFor="let item of RTList">
-        <app-training-card [item]="item"></app-training-card>
-        <br>
+    <div class="home-grid row-same-height">
+      <div class="col-same-height" *ngFor="let item of RTList">
+        <div class="content">
+          <app-training-card [item]="item"></app-training-card>
+        </div>
       </div>
       <div class="col-sm-12" *ngIf="RTList.length==0">
         <p-card>

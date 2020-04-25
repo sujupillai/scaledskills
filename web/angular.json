@@ -35,9 +35,9 @@
               "node_modules/angular2-multiselect-dropdown/themes/default.theme.css",
               "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css",
-              "src/assets/styles/responsive.scss",
+              "src/assets/styles/global.scss",
               "src/styles.scss",
-              "src/assets/styles/global.scss"
+              "src/assets/styles/responsive.scss"
             ],
             "scripts": [
               "node_modules/quill/dist/quill.js"
@@ -99,19 +99,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap3/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/scss/font-awesome.scss",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/nova-light/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/quill/dist/quill.core.css",
-              "node_modules/quill/dist/quill.snow.css",
-              "src/assets/styles/responsive.scss",
-              "src/styles.scss",
-              "src/assets/styles/global.scss"
+              
             ],
             "scripts": [
-              "node_modules/quill/dist/quill.js"
             ]
           }
         },

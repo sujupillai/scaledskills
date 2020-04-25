@@ -509,7 +509,7 @@ textarea {
 }
 
 .view-container {
-  padding-top: 70px;
+  padding-top: 65px;
 }
 
 .navbar {
@@ -2139,4 +2139,27 @@ body .tab-bar .ui-tabmenu .ui-tabmenu-nav {
 
 .padding-20 {
   padding: 20px;
+}
+
+.login-form-container {
+  margin: 0px auto;
+}
+
+.login-form-wrapper {
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+
+
+/* home page grid */
+.home-grid {
+  margin: 0 -4px;
+
+  .col-same-height {
+    width: 25%;
+    padding: 0 4px;
+    margin: 8px 0;
+  }
 }
