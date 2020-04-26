@@ -11,7 +11,7 @@ export class CommunicationComponent implements OnInit {
   trainingBasicForm: FormGroup;
   submitted: boolean = false;
   userInfo: any = {};
-  hostedById=null;
+  hostedById = null;
   isLoggedIn: boolean = false;
   defaultList = [{
     "text": "Select",
@@ -83,9 +83,6 @@ export class CommunicationComponent implements OnInit {
       trainings: trainings,
       userTypes: userTypes
     }
-    let params = {
-      users: usersType
-    }
     this._httpGetMaster(url, 'users', data, null, 'POST')
   }
   getUserTypes = (key) => {
@@ -149,11 +146,11 @@ export class CommunicationComponent implements OnInit {
     if (key == 'hostedBy' && event.value == 1) {
       this.getIndividualTrainings('organization', event.value);
       this.filtersOnHostedBy();
-      this.hostedById=event.value
+      this.hostedById = event.value
     } else if (key == 'hostedBy' && event.value == 2) {
       this.getOrgData()
       this.filtersOnHostedBy()
-      this.hostedById=event.value
+      this.hostedById = event.value
     } else if (key == 'organization') {
       this.getOrgTrainings('organization', event.value)
       this.filtersOnOrganizatoin()
@@ -165,6 +162,40 @@ export class CommunicationComponent implements OnInit {
     }
   }
   OnDeSelect(event, key) {
+    if (key == 'hostedBy' && event.value == 1) {
+      this.getIndividualTrainings('organization', event.value);
+      this.filtersOnHostedBy()
+    } else if (key == 'hostedBy' && event.value == 2) {
+      this.getOrgData()
+      this.filtersOnHostedBy()
+    } else if (key == 'organization') {
+      this.getOrgTrainings('organization', event.value)
+      this.filtersOnOrganizatoin()
+    } if (key == 'trainings') {
+      this.filtersOnTrainings()
+    } else if (key == 'userTypes') {
+      this.getUsers('users', event.value);
+      this.entity['users'] = [];
+    }
+  }
+  onSelectAll(event, key) {
+    if (key == 'hostedBy' && event.value == 1) {
+      this.getIndividualTrainings('organization', event.value);
+      this.filtersOnHostedBy()
+    } else if (key == 'hostedBy' && event.value == 2) {
+      this.getOrgData()
+      this.filtersOnHostedBy()
+    } else if (key == 'organization') {
+      this.getOrgTrainings('organization', event.value)
+      this.filtersOnOrganizatoin()
+    } if (key == 'trainings') {
+      this.filtersOnTrainings()
+    } else if (key == 'userTypes') {
+      this.getUsers('users', event.value);
+      this.entity['users'] = [];
+    }
+  }
+  onDeSelectAll(event, key) {
     if (key == 'hostedBy' && event.value == 1) {
       this.getIndividualTrainings('organization', event.value);
       this.filtersOnHostedBy()

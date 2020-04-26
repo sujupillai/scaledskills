@@ -14,7 +14,7 @@
         <label>Organization <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
           [(ngModel)]="entity['organization']" [settings]="settings" placeholder="Organization"
-          (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
+          (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')" (onSelectAll)="onSelectAll($event, 'organization')" (onDeSelectAll)="onDeSelectAll($event, 'organization')">
         </angular2-multiselect>
       </div>
     </div>
@@ -23,7 +23,7 @@
         <label>Trainings <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['trainings']" name="trainings"
           [(ngModel)]="entity['trainings']" [settings]="multiSettings" placeholder="Trainings"
-          (onSelect)="onSelect($event, 'trainings')" (onDeSelect)="OnDeSelect($event, 'trainings')">
+          (onSelect)="onSelect($event, 'trainings')" (onDeSelect)="OnDeSelect($event, 'trainings')" (onSelectAll)="onSelectAll($event, 'trainings')" (onDeSelectAll)="onDeSelectAll($event, 'trainings')">
         </angular2-multiselect>
       </div>
     </div>
@@ -32,7 +32,7 @@
         <label>User Types <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['userTypes']" name="userTypes"
           [(ngModel)]="entity['userTypes']" [settings]="multiSettings" placeholder="User Types"
-          (onSelect)="onSelect($event, 'userTypes')" (onDeSelect)="OnDeSelect($event, 'userTypes')">
+          (onSelect)="onSelect($event, 'userTypes')" (onDeSelect)="OnDeSelect($event, 'userTypes')" (onSelectAll)="onSelectAll($event, 'userTypes')" (onDeSelectAll)="onDeSelectAll($event, 'userTypes')">
         </angular2-multiselect>
       </div>
     </div>
