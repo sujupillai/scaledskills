@@ -78,6 +78,8 @@ export const ApiPath = {
   'communicationTrainingsUser': 'api/Communication/T/user',
   'communicationTrainingsEmail': 'api/Communication/T/email',
   'communicationTrainingsEmailTemplate': 'api/Communication/T/email/Template',
+  'CommunicationOrganization': 'api/Communication/O',
+  'CommunicationOrganizationTtraining': 'api/Communication/O/T',
   
   /* handle follow */
   'followOrg': 'api/Home/O/f',
