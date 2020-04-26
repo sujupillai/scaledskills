@@ -9,7 +9,7 @@
         </angular2-multiselect>
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" *ngIf="hostedById==2">
       <div class="form-group">
         <label>Organization <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"

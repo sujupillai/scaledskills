@@ -11,6 +11,7 @@ export class CommunicationComponent implements OnInit {
   trainingBasicForm: FormGroup;
   submitted: boolean = false;
   userInfo: any = {};
+  hostedById=null;
   isLoggedIn: boolean = false;
   defaultList = [{
     "text": "Select",
@@ -19,11 +20,7 @@ export class CommunicationComponent implements OnInit {
   }]
   masterData = {
     hostedBy: [{ text: 'Individual', value: '1' }, { text: 'Organization', value: '2' }],
-    organization: [{
-      text: 'Individual', value: '1'
-    },
-    { text: 'Organization', value: '2' }
-    ],
+    organization: [],
     trainings: [],
     userTypes: [],
     users: [],
@@ -128,27 +125,40 @@ export class CommunicationComponent implements OnInit {
     });
     return array
   }
+  filtersOnHostedBy = () => {
+    this.entity['organization'] = [];
+    this.masterData['organization'] = [];
+    this.entity['trainings'] = [];
+    this.masterData['trainings'] = [];
+    this.entity['userTypes'] = [];
+    this.entity['users'] = [];
+  }
+  filtersOnOrganizatoin = () => {
+    this.entity['trainings'] = []
+    this.entity['userTypes'] = [];
+    this.entity['users'] = [];
+    this.masterData['users'] = [];
+    this.masterData['users'] = [];
+  }
+  filtersOnTrainings = () => {
+    this.entity['userTypes'] = [];
+    this.entity['users'] = [];
+    this.masterData['users'] = [];
+  }
   onSelect(event, key) {
     if (key == 'hostedBy' && event.value == 1) {
       this.getIndividualTrainings('organization', event.value);
-      this.entity['organization'] = []
-      this.entity['trainings'] = []
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnHostedBy();
+      this.hostedById=event.value
     } else if (key == 'hostedBy' && event.value == 2) {
       this.getOrgData()
-      this.entity['organization'] = []
-      this.entity['trainings'] = []
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnHostedBy()
+      this.hostedById=event.value
     } else if (key == 'organization') {
       this.getOrgTrainings('organization', event.value)
-      this.entity['trainings'] = []
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnOrganizatoin()
     } if (key == 'trainings') {
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnTrainings()
     } else if (key == 'userTypes') {
       this.getUsers('users', event.value);
       this.entity['users'] = [];
@@ -157,24 +167,15 @@ export class CommunicationComponent implements OnInit {
   OnDeSelect(event, key) {
     if (key == 'hostedBy' && event.value == 1) {
       this.getIndividualTrainings('organization', event.value);
-      this.entity['organization'] = []
-      this.entity['trainings'] = []
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnHostedBy()
     } else if (key == 'hostedBy' && event.value == 2) {
       this.getOrgData()
-      this.entity['organization'] = []
-      this.entity['trainings'] = []
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnHostedBy()
     } else if (key == 'organization') {
       this.getOrgTrainings('organization', event.value)
-      this.entity['trainings'] = []
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnOrganizatoin()
     } if (key == 'trainings') {
-      this.entity['userTypes'] = [];
-      this.entity['users'] = [];
+      this.filtersOnTrainings()
     } else if (key == 'userTypes') {
       this.getUsers('users', event.value);
       this.entity['users'] = [];
