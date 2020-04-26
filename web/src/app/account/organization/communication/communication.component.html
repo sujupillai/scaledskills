@@ -2,13 +2,16 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
-        <!-- <label>Organization <span class="required">*</span></label>
-        <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
-          [(ngModel)]="entity['organization']" [settings]="settings" placeholder="Organization"
-          (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
-        </angular2-multiselect> -->
-
         <label for="">Hosted By <span class="required">*</span></label>
+        <angular2-multiselect class="form-control" [data]="masterData['hostedBy']" name="hostedBy"
+          [(ngModel)]="entity['hostedBy']" [settings]="settings" placeholder="Hosted By"
+          (onSelect)="onSelect($event, 'hostedBy')" (onDeSelect)="OnDeSelect($event, 'hostedBy')">
+        </angular2-multiselect>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Organization <span class="required">*</span></label>
         <angular2-multiselect class="form-control" [data]="masterData['organization']" name="organization"
           [(ngModel)]="entity['organization']" [settings]="settings" placeholder="Organization"
           (onSelect)="onSelect($event, 'organization')" (onDeSelect)="OnDeSelect($event, 'organization')">
@@ -24,8 +27,6 @@
         </angular2-multiselect>
       </div>
     </div>
-  </div>
-  <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
         <label>User Types <span class="required">*</span></label>

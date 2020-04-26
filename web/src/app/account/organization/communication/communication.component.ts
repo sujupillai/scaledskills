@@ -18,6 +18,7 @@ export class CommunicationComponent implements OnInit {
     "isSelect": false
   }]
   masterData = {
+    hostedBy: [{ text: 'Individual', value: '1' }, { text: 'Organization', value: '2' }],
     organization: [{
       text: 'Individual', value: '1'
     },
@@ -36,18 +37,13 @@ export class CommunicationComponent implements OnInit {
     this.createForm(() => { })
     this.settings = { singleSelection: true, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', enableSearchFilter: true, searchPlaceholderText: 'Search by name' };
     this.multiSettings = { singleSelection: false, text: "Select", labelKey: "text", primaryKey: "value", noDataLabel: 'No items', badgeShowLimit: 1 };
-    // this.getOrgData();
     this.getUserInfo();
-    this.getTrainings('organization', 2)
     this.getUserTypes('userTypes');
   }
   _httpGetMaster = (url, key, body, param, method) => {
     this._HttpService.httpCall(url, method, body, param).subscribe(res => {
       if (res.result) {
         this.masterData[key] = res.result;
-        if (key == 'organization') {
-          this.getTrainings('organization', 0)
-        }
       }
     })
   }
@@ -63,21 +59,24 @@ export class CommunicationComponent implements OnInit {
   }
   get formControl() { return this.trainingBasicForm.controls }
   getUserInfo = () => {
-    debugger
     this.userInfo = this._AuthenticationService.currentUserValue;
     this.isLoggedIn = this.userInfo ? true : false;
   }
   getOrgData = () => {
-    let url = ApiPath.organizationList
+    let url = ApiPath.CommunicationOrganization
     this._httpGetMaster(url, 'organization', null, null, 'GET')
   }
-  getTrainings = (key, id) => {
-    //let ids = this.getArray(key);
+  getIndividualTrainings = (key, id) => {
     let url = ApiPath.communicationTrainings;
     let params = {
       training_Hosted: id ? id : 0
     }
     this._httpGetMaster(url, 'trainings', null, params, 'GET')
+  }
+  getOrgTrainings = (key, id) => {
+    let url = ApiPath.CommunicationOrganizationTtraining;
+    let orgs = this.getArray('organization');
+    this._httpGetMaster(url, 'trainings', orgs, null, 'POST')
   }
   getUsers = (key, usersType) => {
     let trainings = this.getArray('trainings');
@@ -130,8 +129,20 @@ export class CommunicationComponent implements OnInit {
     return array
   }
   onSelect(event, key) {
-    if (key == 'organization') {
-      this.getTrainings('organization', event.value)
+    if (key == 'hostedBy' && event.value == 1) {
+      this.getIndividualTrainings('organization', event.value);
+      this.entity['organization'] = []
+      this.entity['trainings'] = []
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+    } else if (key == 'hostedBy' && event.value == 2) {
+      this.getOrgData()
+      this.entity['organization'] = []
+      this.entity['trainings'] = []
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+    } else if (key == 'organization') {
+      this.getOrgTrainings('organization', event.value)
       this.entity['trainings'] = []
       this.entity['userTypes'] = [];
       this.entity['users'] = [];
@@ -144,8 +155,20 @@ export class CommunicationComponent implements OnInit {
     }
   }
   OnDeSelect(event, key) {
-    if (key == 'organization') {
-      this.getTrainings('organization', event.value)
+    if (key == 'hostedBy' && event.value == 1) {
+      this.getIndividualTrainings('organization', event.value);
+      this.entity['organization'] = []
+      this.entity['trainings'] = []
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+    } else if (key == 'hostedBy' && event.value == 2) {
+      this.getOrgData()
+      this.entity['organization'] = []
+      this.entity['trainings'] = []
+      this.entity['userTypes'] = [];
+      this.entity['users'] = [];
+    } else if (key == 'organization') {
+      this.getOrgTrainings('organization', event.value)
       this.entity['trainings'] = []
       this.entity['userTypes'] = [];
       this.entity['users'] = [];

@@ -60,7 +60,6 @@ export class FeedbackComponent implements OnInit {
   getTrainingData = (url) => {
     this._HttpService.httpCall(url, 'GET', null, null).subscribe(res => {
       if (res && res.responseCode == 200) {
-        debugger
         this.entity = res.result;
         this.trainingId = res.result['trainingId'];
         if (this.entity.isRegister) {
