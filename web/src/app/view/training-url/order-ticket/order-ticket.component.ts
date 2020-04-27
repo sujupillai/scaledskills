@@ -39,13 +39,10 @@ export class OrderTicketComponent implements OnInit {
       if (res && res['responseCode'] == 200) {
         this.ticketList = res.result;
         this.ticketList.map((x) => {
-          x.orderQty = 0;
+          x.orderQty = 1;
           x.isAdded = false;
           x.maxBooking = x.maxBooking ? x.maxBooking : x.availableQty
         })
-        // this.ticketList[0].isAdded = true;
-        // this.ticketList[0].orderQty = 1;
-        // this.selectedTickets = this.ticketList.filter(x => x.isAdded);
       }
     })
   }
