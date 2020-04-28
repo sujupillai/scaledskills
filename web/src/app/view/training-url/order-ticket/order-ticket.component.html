@@ -5,8 +5,7 @@
       <strong class="text-danger">Note: Please selct ticket(s) for continue</strong>
     </div>
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
-      <!-- [ngClass]="((item.endDate | date: 'dd-MM-yyyy') > (currentDate | date: 'dd-MM-yyyy')) && (item.endDate | date: 'HH:mm') > (currentDate | date: 'HH:mm') ?'':'disabled'" -->
-      <div class="relative">
+      <div class="relative" [ngClass]="handleDate(item.endDate) ?'':'disabled'">
         <div class="left circle"></div>
         <div class="right circle"></div>
         <p-card>
@@ -19,7 +18,8 @@
           </div>
           <div class="inline-block ml-10">
             <p class="label-price border" [ngClass]="item.paymentCharge > 0 ?'':'free'">
-              {{item.paymentCharge?'Rs. '+item.paymentCharge:'FREE'}}</p>
+              {{item.paymentCharge?'Rs. '+item.paymentCharge:'FREE'}}
+            </p>
           </div>
           <div class="mb-5">
             <span *ngIf="item.minBooking">Min Booking : {{item.minBooking}}</span> <span *ngIf="item.maxBooking">, Max
@@ -31,13 +31,9 @@
             </div>
           </div>
           <div class="mb-5">
-            <span>
-              {{item.startDate | date: 'dd-MMM-yyyy'}} @ {{item.startDate | date: 'hh:mm a'}}
-            </span>
+            <span>{{item.startDate | date: 'dd-MMM-yyyy'}} @ {{item.startDate | date: 'hh:mm a'}}</span>
             - to -
-            <span>
-              {{item.endDate | date: 'dd-MMM-yyyy'}} @ {{item.endDate | date: 'hh:mm a'}}
-            </span>
+            <span>{{item.endDate | date: 'dd-MMM-yyyy'}} @ {{item.endDate | date: 'hh:mm a'}}</span>
           </div>
           <div class="mb-5">
             <div class="ui-inputgroup">
@@ -49,7 +45,11 @@
                 [ngClass]="(item.orderQty==item.maxBooking || item.orderQty==item.availableQty)?'disabled':''">+</span>
             </div>
           </div>
+          <div *ngIf="!handleDate(item.endDate)">
+            <strong class="text-danger">Ticket Expired</strong>
+          </div>
         </p-card>
+
       </div>
     </div>
     <div class="row">

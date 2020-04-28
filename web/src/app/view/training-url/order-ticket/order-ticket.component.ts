@@ -14,7 +14,7 @@ export class OrderTicketComponent implements OnInit {
   referralCode: '';
   orderId = '';
   submitted = false;
-  currentDate=new Date();
+  currentDate = new Date();
   currentDate2;
   currentDate3;
   inc = 1000 * 60 * 60 // an hour
@@ -22,8 +22,8 @@ export class OrderTicketComponent implements OnInit {
 
   constructor(private _location: Location, private _ActivatedRoute: ActivatedRoute, private _HttpService: HttpService, private _SharedService: SharedService, private _Router: Router) { }
   ngOnInit() {
-    this.currentDate2=this.currentDate.getTime()+this.inc;
-    this.currentDate3=this.currentDate.getTime()+this.dec;
+    this.currentDate2 = this.currentDate.getTime() + this.inc;
+    this.currentDate3 = this.currentDate.getTime() + this.dec;
     let url = ApiPath.trainingTicket;
     this._ActivatedRoute.params.subscribe((param: any) => {
       this.urlString = param.id;
@@ -45,6 +45,12 @@ export class OrderTicketComponent implements OnInit {
         })
       }
     })
+  }
+  handleDate = (end) => {
+    let endDate = new Date(end);
+    var diffTime = (endDate.getTime() - this.currentDate.getTime()) / 1000;
+    let seconds = Math.floor((diffTime));
+    return seconds >= 0 ? true : false
   }
   handleQty = (type, item) => {
     if (type == 1) {
