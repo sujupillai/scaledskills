@@ -2,11 +2,11 @@
   <div class="ticket-cart-grid">
     <h2 class="text-center">Ticket List</h2>
     <div *ngIf="selectedTickets && selectedTickets.length==0">
-      <strong class="text-danger">Note: Please select ticket(s) for continue</strong>
+      <strong class="text-danger">Note: Please selct ticket(s) for continue</strong>
     </div>
     <div class="form-group ticketWrap" *ngFor="let item of ticketList, let i=index">
       <div class="relative"
-        [ngClass]="(item.endDate | date: 'dd-MM-yyyy HH:mm') < (currentDate | date: 'dd-MM-yyyy HH:mm') ?'':'disabled'">
+        [ngClass]="(item.endDate | date: 'dd-MM-yyyy HH:mm') > (currentDate | date: 'dd-MM-yyyy HH:mm') ?'':'disabled'">
         <div class="left circle"></div>
         <div class="right circle"></div>
         <p-card>
