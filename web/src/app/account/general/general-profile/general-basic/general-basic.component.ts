@@ -76,6 +76,7 @@ export class GeneralBasicComponent implements OnInit {
         city: ['', Validators.required],
       }),
       isInterAffiliatePartner: false,
+      isSubscription: false,
       referralID: '',
       isTrainer: this.isGeneralUser ? false : true
     })
